@@ -1,0 +1,28 @@
+{
+  "name": "breko-hub",
+  "version": "0.0.1",
+  "description": "Babel React Koa - Hot Universal Boilerplate",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomatau/breko-hub.git"
+  },
+  "keywords": [
+    "babel",
+    "react",
+    "koa",
+    "react-rouer",
+    "es7",
+    "universal",
+    "hmr",
+    "babel-transforms",
+    "webpack"
+  ],
+  "author": "Thomas `tomatao` Hudspith-Tatham <tom@tomatao.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomatau/breko-hub/issues"
+  },
+  "homepage": "https://github.com/tomatau/breko-hub#readme"
+}
