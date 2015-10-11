@@ -1,1 +1,2 @@
-console.log('development')
+import koa from 'koa';
+import {ROOT} from '~/src/config/paths';
