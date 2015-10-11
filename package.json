@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
+    "start": "node ./scripts/babel.entry.js",
+    "dev": "node ./scripts/babel.entry.js --development"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,9 @@
     "node": "4.1.x",
     "npm": "~3.3.5"
   },
-  "homepage": "https://github.com/tomatau/breko-hub#readme"
+  "homepage": "https://github.com/tomatau/breko-hub#readme",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "yargs": "^3.27.0"
+  }
 }
