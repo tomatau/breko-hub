@@ -1,3 +1,5 @@
+# Work In Progress --- it's pointless right now :)
+
 Yes, another starter-kit, boilerplate for React Universal applications.
 
 This one uses Koa and Babel.
