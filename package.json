@@ -37,6 +37,12 @@
     "babel-root-import": "^1.0.1",
     "babel-runtime": "^5.8.25",
     "koa": "^1.0.0",
+    "webpack": "^1.12.2",
     "yargs": "^3.27.0"
+  },
+  "devDependencies": {
+    "koa-webpack-dev-middleware": "^1.0.1",
+    "koa-webpack-hot-middleware": "dayAlone/koa-webpack-hot-middleware",
+    "webpack-hot-middleware": "^2.4.1"
   }
 }
