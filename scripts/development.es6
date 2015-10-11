@@ -10,7 +10,13 @@ const compiler = webpack(webpackConfig)
 const app = koa()
 
 app.use(require('koa-webpack-dev-middleware')(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
+  quiet: true,
+  noInfo: true,
+  stats: {
+    colors: true,
+    reasons: true,
+  },
+  publicPath: webpackConfig.output.publicPath
 }))
 app.use(require('koa-webpack-hot-middleware')(compiler));
 

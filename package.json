@@ -49,8 +49,12 @@
     "yargs": "^3.27.0"
   },
   "devDependencies": {
+    "babel-plugin-react-transform": "^1.1.1",
     "koa-webpack-dev-middleware": "^1.0.1",
     "koa-webpack-hot-middleware": "dayAlone/koa-webpack-hot-middleware",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.1.1",
     "webpack-hot-middleware": "^2.4.1"
   }
 }
