@@ -1,30 +1,13 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-class App extends React.Component {
-  render() {
-    return (
-      <main className='application'>
-        The App
-      </main>
-    )
-  }
-}
-
-class Error extends React.Component {
-  render() {
-    return (
-      <main className='application'>
-        PROBLEM
-      </main>
-    )
-  }
-}
+import App from '~/src/app/componets/App';
+import Oops from '~/src/app/componets/Oops';
 
 const makeRoutes = (history) => (
   <Router history={history}>
     <Route path='/' component={App} />
-    <Route path='/oops' component={Error} />
+    <Route path='/oops' component={Oops} />
   </Router>
 )
 
