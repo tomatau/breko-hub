@@ -37,6 +37,8 @@
     "babel-root-import": "^1.0.1",
     "babel-runtime": "^5.8.25",
     "koa": "^1.0.0",
+    "node-env-file": "^0.1.7",
+    "npmlog": "^1.2.1",
     "webpack": "^1.12.2",
     "yargs": "^3.27.0"
   },

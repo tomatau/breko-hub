@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import {APP, STATIC} from '~/src/config/paths';
 
 export default {
-  devtool: '#eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     head: [
       'webpack-hot-middleware/client',
