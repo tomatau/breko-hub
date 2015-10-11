@@ -31,4 +31,18 @@ export default {
       }
     }),
   ],
+  module: {
+    loaders: [{
+      query: {
+        stage: 0,
+        optional: ["runtime"],
+        "plugins": [
+          "babel-root-import",
+        ]
+      },
+      test: /\.es6$/,
+      include: [/src\/app/],
+      loader: 'babel'
+    }]
+  }
 }
