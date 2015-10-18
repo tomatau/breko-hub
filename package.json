@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
-    "dev": "node ./scripts/babel.entry.js --development"
+    "dev": "rimraf ./webpack-assets.json && node ./scripts/babel.entry.js --development"
   },
   "repository": {
     "type": "git",
@@ -45,12 +45,14 @@
     "history": "^1.12.5",
     "koa": "^1.0.0",
     "koa-mount": "^1.3.0",
+    "loader-utils": "^0.2.11",
     "node-env-file": "^0.1.7",
     "node-sass": "^3.3.3",
     "npmlog": "^1.2.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "1.0.0-rc3",
+    "rimraf": "^2.4.3",
     "sass-loader": "^3.0.0",
     "style-loader": "^0.12.4",
     "url-loader": "^0.5.6",

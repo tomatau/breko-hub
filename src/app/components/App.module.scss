@@ -1,6 +1,8 @@
+@import "~vars";
+
 .app {
   font: {
     family: Arial;
   }
-  color: blue;
+  color: $color;
 }

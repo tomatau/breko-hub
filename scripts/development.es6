@@ -1,5 +1,5 @@
 import '~/src/config/environment';
-import {ROOT} from '~/src/config/paths';
+import {ROOT, STYLES, APP} from '~/src/config/paths';
 import path from 'path';
 import koa from 'koa';
 import mount from 'koa-mount';
@@ -8,9 +8,10 @@ import log from 'npmlog';
 import chokidar from 'chokidar';
 import cssModulesHook from 'css-modules-require-hook';
 import sass from 'node-sass';
+import loaderUtils from 'loader-utils';
 import webpackConfig from '~/src/config/webpack.config';
 cssModulesHook({
-  extensions: ['.scss'],
+  extensions: ['.scss', '.css'],
   generateScopedName(exportedName, exportedPath){
     const path = exportedPath.substr(1)
       .replace(/\.s?css$/, '')
@@ -18,7 +19,13 @@ cssModulesHook({
     return path + '-' + exportedName;
   },
   preprocessCss(css, filename){
-    return sass.renderSync({ data: css }).css;
+    return sass.renderSync({
+      includePaths: [ `${ROOT}/node_modules`, STYLES ],
+      data: css,
+      importer: function(url, fileContent) {
+        return { file: loaderUtils.urlToRequest(url) }
+      }
+    }).css;
   }
 })
 const compiler = webpack(webpackConfig)

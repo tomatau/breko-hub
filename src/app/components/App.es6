@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <main className={style.app}>
         <img src={img} alt="Me"/>
-        The App
+        The Apple
       </main>
     )
   }

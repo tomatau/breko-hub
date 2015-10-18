@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import isomorphicConfig from '~/src/config/isomorphic.config';
-import {APP, STATIC} from '~/src/config/paths';
+import {APP, STATIC, STYLES} from '~/src/config/paths';
 
 export default {
   devtool: 'cheap-module-eval-source-map',
@@ -21,9 +21,9 @@ export default {
   },
   resolve: {
     root: APP,
-    modulesDirectories: [ 'node_modules' ],
+    modulesDirectories: [ 'node_modules', STYLES ],
     extensions: [
-      '', '.js', '.jsx', '.es6'
+      '', '.js', '.jsx', '.es6', '.scss'
     ]
   },
   plugins: [
@@ -51,7 +51,8 @@ export default {
       include: [/src\/app/],
       loaders: [
         'style',
-        'css?modules&localIdentName=[path][name]-[local]!sass'
+        'css?modules&localIdentName=[path][name]-[local]',
+        'sass'
       ]
     }, {
       test: /\.s?css$/,
