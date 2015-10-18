@@ -13,8 +13,8 @@ cssModulesHook({
   extensions: ['.scss'],
   generateScopedName(exportedName, exportedPath){
     const path = exportedPath.substr(1)
-      .replace(/\//g, "-")
       .replace(/\.s?css$/, '')
+      .replace(/\/|\./g, "-")
     return path + '-' + exportedName;
   },
   preprocessCss(css, filename){

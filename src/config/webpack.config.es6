@@ -41,21 +41,21 @@ export default {
   ],
   module: {
     loaders: [{
-      test: /\.scss$/,
+      test: /module\.s?css$/,
       include: [/src\/app/],
       loader: ExtractTextPlugin.extract(
         'style',
-        'css-loader?modules&localIdentName=[path][name]-[local]!sass'
+        'css?modules&localIdentName=[path][name]-[local]!sass'
       )
     }, {
-      test: /\.css$/,
+      test: /\.s?css$/,
       include: [/src\/app/],
-      loaders: ExtractTextPlugin.extract(
+      exclude: /module\.s?css$/,
+      loader: ExtractTextPlugin.extract(
         'style',
-        'css-loader?modules&localIdentName=[path][name]-[local]'
+        'css?modules&localIdentName=[path][name]-[local]!sass'
       )
-    },
-    {
+    }, {
       test: /\.es6$/,
       include: [/src\/app/],
       loader: 'babel',
