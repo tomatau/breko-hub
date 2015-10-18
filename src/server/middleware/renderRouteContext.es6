@@ -5,7 +5,7 @@ import {Html} from '~/src/server/components/Html';
 function makeHtml(initialState, content){
   return ReactDOMServer.renderToString(
     <Html
-      title={'Evaluation App'}
+      title={'Breko Hub'}
       initialState={initialState}
       headScripts={['/head.js']}
       bodyScripts={['/body.js']}
