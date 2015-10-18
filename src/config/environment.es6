@@ -1,6 +1,7 @@
 import log from 'npmlog';
 import {ROOT} from './paths';
-require('node-env-file')(`${ROOT}/.env`)
+import nodeEnvFile from 'node-env-file';
+nodeEnvFile(`${ROOT}/.env`)
 log.level = process.env.NPM_CONFIG_LOGLEVEL;
 log.enableColor();
 log.info('config', 'Setting Environment From File')
