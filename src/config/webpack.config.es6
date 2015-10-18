@@ -37,6 +37,9 @@ export default {
   ],
   module: {
     loaders: [{
+      test: /\.es6$/,
+      include: [/src\/app/],
+      loader: 'babel',
       query: {
         stage: 0,
         optional: ["runtime"],
@@ -56,10 +59,7 @@ export default {
             }]
           }
         }
-      },
-      test: /\.es6$/,
-      include: [/src\/app/],
-      loader: 'babel'
+      }
     }]
   }
 }
