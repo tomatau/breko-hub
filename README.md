@@ -13,15 +13,15 @@ This one uses Koa and Babel.
 ## Usage
 
 ```bash
-npm build
+npm build [TODO]
 # production build
 # assumes environmental variables
-npm start
+npm start [TODO]
 # start the server
 # assumes environmental variables
 
 npm run dev
 # build and serve with babel-hmr - from .env file
-npm test
+npm test [TODO]
 # one time run mocha scripts
 ```
