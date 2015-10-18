@@ -9,6 +9,7 @@ function makeHtml(initialState, content){
       initialState={initialState}
       headScripts={['/head.js']}
       bodyScripts={['/body.js']}
+      headStyles={['/body.css']}
     >
       {content}
     </Html>

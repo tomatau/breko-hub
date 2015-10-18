@@ -8,12 +8,17 @@ import webpackConfig from '~/src/config/webpack.config';
 import log from 'npmlog';
 import chokidar from 'chokidar';
 import cssModulesHook from 'css-modules-require-hook';
+import sass from 'node-sass';
 cssModulesHook({
+  extensions: ['.scss'],
   generateScopedName(exportedName, exportedPath){
     const path = exportedPath.substr(1)
       .replace(/\//g, "-")
-      .replace('.css', '')
+      .replace(/\.s?css$/, '')
     return path + '-' + exportedName;
+  },
+  preprocessCss(css, filename){
+    return sass.renderSync({ data: css }).css;
   }
 })
 const compiler = webpack(webpackConfig)

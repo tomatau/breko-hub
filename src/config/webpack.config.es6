@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import {APP, STATIC} from '~/src/config/paths';
 
 export default {
@@ -34,15 +35,25 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({
       name: "head"
     }),
+    new ExtractTextPlugin("[name].css",{
+      allChunks: true
+    }),
   ],
   module: {
     loaders: [{
+      test: /\.scss$/,
+      include: [/src\/app/],
+      loader: ExtractTextPlugin.extract(
+        'style',
+        'css-loader?modules&localIdentName=[path][name]-[local]!sass'
+      )
+    }, {
       test: /\.css$/,
       include: [/src\/app/],
-      loaders: [
+      loaders: ExtractTextPlugin.extract(
         'style',
         'css-loader?modules&localIdentName=[path][name]-[local]'
-      ]
+      )
     },
     {
       test: /\.es6$/,
