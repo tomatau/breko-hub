@@ -2,25 +2,26 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {Html} from '~/src/server/components/Html';
 
-function makeHtml(initialState, content){
+function makeHtml(initialState, assets, content){
   return ReactDOMServer.renderToString(
     <Html
-      title={'Breko Hub'}
+      title={'Breko Hubba'}
       initialState={initialState}
-      headScripts={['/head.js']}
-      bodyScripts={['/body.js']}
-      headStyles={['/body.css']}
+      headScripts={[assets.javascript.head]}
+      bodyScripts={[assets.javascript.body]}
+      headStyles={[assets.styles.body]}
     >
       {content}
     </Html>
   );
 }
 
-export default function(){
+export default function(assets){
   return function *(next){
     const { routeContext } = this;
     const html = makeHtml(
       {},
+      assets,
       routeContext
     )
     this.response.body = `<!doctype html>${html}`;

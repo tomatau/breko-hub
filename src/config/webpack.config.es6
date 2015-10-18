@@ -1,5 +1,7 @@
 import webpack from 'webpack';
+import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import isomorphicConfig from '~/src/config/isomorphic.config';
 import {APP, STATIC} from '~/src/config/paths';
 
 export default {
@@ -14,7 +16,7 @@ export default {
   },
   output: {
     path: STATIC,
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
   resolve: {
@@ -26,6 +28,7 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new IsomorphicToolsPlugin(isomorphicConfig).development(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -35,25 +38,28 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({
       name: "head"
     }),
-    new ExtractTextPlugin("[name].css",{
+    new ExtractTextPlugin("[name].[hash].css",{
       allChunks: true
     }),
   ],
   module: {
     loaders: [{
+      test: /.*\.(gif|png|jpe?g|svg)$/i,
+      loader: 'file'
+    }, {
       test: /module\.s?css$/,
       include: [/src\/app/],
-      loader: ExtractTextPlugin.extract(
+      loaders: [
         'style',
         'css?modules&localIdentName=[path][name]-[local]!sass'
-      )
+      ]
     }, {
       test: /\.s?css$/,
       include: [/src\/app/],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
         'style',
-        'css?modules&localIdentName=[path][name]-[local]!sass'
+        'css!sass'
       )
     }, {
       test: /\.es6$/,

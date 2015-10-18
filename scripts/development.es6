@@ -4,11 +4,11 @@ import path from 'path';
 import koa from 'koa';
 import mount from 'koa-mount';
 import webpack from 'webpack';
-import webpackConfig from '~/src/config/webpack.config';
 import log from 'npmlog';
 import chokidar from 'chokidar';
 import cssModulesHook from 'css-modules-require-hook';
 import sass from 'node-sass';
+import webpackConfig from '~/src/config/webpack.config';
 cssModulesHook({
   extensions: ['.scss'],
   generateScopedName(exportedName, exportedPath){

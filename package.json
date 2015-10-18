@@ -55,6 +55,7 @@
     "style-loader": "^0.12.4",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
+    "webpack-isomorphic-tools": "^0.9.3",
     "yargs": "^3.27.0"
   },
   "devDependencies": {

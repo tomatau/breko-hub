@@ -1,0 +1,12 @@
+{
+  "javascript": {
+    "body": "/body.e238e11b79e7e9f96ab7.js",
+    "head": "/head.e238e11b79e7e9f96ab7.js"
+  },
+  "styles": {
+    "body": "/body.e238e11b79e7e9f96ab7.css"
+  },
+  "images": {
+    "./src/assets/avatar.jpeg": "/ae8e8b1cab0c19812421785592dba732.jpeg"
+  }
+}
