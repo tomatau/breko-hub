@@ -37,6 +37,14 @@ export default {
   ],
   module: {
     loaders: [{
+      test: /\.css$/,
+      include: [/src\/app/],
+      loaders: [
+        'style',
+        'css-loader?modules&localIdentName=[path][name]-[local]'
+      ]
+    },
+    {
       test: /\.es6$/,
       include: [/src\/app/],
       loader: 'babel',

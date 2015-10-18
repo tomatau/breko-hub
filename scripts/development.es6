@@ -7,7 +7,15 @@ import webpack from 'webpack';
 import webpackConfig from '~/src/config/webpack.config';
 import log from 'npmlog';
 import chokidar from 'chokidar';
-
+import cssModulesHook from 'css-modules-require-hook';
+cssModulesHook({
+  generateScopedName(exportedName, exportedPath){
+    const path = exportedPath.substr(1)
+      .replace(/\//g, "-")
+      .replace('.css', '')
+    return path + '-' + exportedName;
+  }
+})
 const compiler = webpack(webpackConfig)
 const app = koa()
 
