@@ -1,8 +1,10 @@
 @import "~vars";
+@import "~tao-scss/index";
 
 .app {
   font: {
     family: Arial;
+    size: rem(17px);
   }
   color: $color;
 }

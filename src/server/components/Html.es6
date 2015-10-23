@@ -23,7 +23,7 @@ export class Html extends React.Component {
       title, initialState,
       headStyles, headScripts,
       bodyScripts, bodyStyles
-    } = this.props;
+    } = this.props
     return (
       <html lang='en'>
         <head>

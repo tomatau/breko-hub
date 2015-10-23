@@ -18,12 +18,12 @@ function makeHtml(initialState, assets, content){
 
 export default function(assets){
   return function *(next){
-    const { routeContext } = this;
+    const { routeContext } = this
     const html = makeHtml(
       {},
       assets,
       routeContext
     )
-    this.response.body = `<!doctype html>${html}`;
+    this.response.body = `<!doctype html>${html}`
   }
 }

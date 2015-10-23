@@ -8,16 +8,13 @@ import setRouteContext from '~/src/server/middleware/setRouteContext';
 import renderRouteContext from '~/src/server/middleware/renderRouteContext';
 import isomorphicConfig from '~/src/config/isomorphic.config';
 
+const app = koa()
 const isomorphicTools = new IsomorphicTools(isomorphicConfig)
-if (process.env.NODE_ENV == 'development') {
-  isomorphicTools.development()
-}
-const app = koa();
-isomorphicTools.server(ROOT, ()=>{
+if (process.env.NODE_ENV == 'development') isomorphicTools.development()
+
+isomorphicTools.server(ROOT, () => {
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
-  if (process.env.NODE_ENV == 'development') {
-    isomorphicTools.refresh()
-  }
+  if (process.env.NODE_ENV == 'development') isomorphicTools.refresh()
   app.use(setRouteContext(makeRoutes))
   app.use(renderRouteContext(isomorphicTools.assets()))
 })

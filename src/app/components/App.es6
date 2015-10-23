@@ -7,8 +7,8 @@ class App extends React.Component {
   render() {
     return (
       <main className={style.app}>
-        <img src={img} alt="Me"/>
-        The Apple
+        <img src={img} alt='Me' />
+        The App
       </main>
     )
   }
