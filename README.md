@@ -1,29 +1,37 @@
-# Work In Progress --- it's pointless right now :)
+**B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
+# Breko-hub
 
 Yes, another starter-kit, boilerplate for React Universal applications.
 
-This one uses Koa and Babel.
-
-**B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
-
-#### Breko-hub
+[TOC]
 
 ## Features
 
 ## Usage
 
+### production build
+assumes environmental variables
 ```shell
 npm build [TODO]
-# production build
-# assumes environmental variables
-npm start [TODO]
-# start the server
-# assumes environmental variables
+```
 
+### start the server
+assumes environmental variables
+```shell
+npm start [TODO]
+```
+
+### build and serve
+
+with babel-hmr, reads from `./.env` file
+
+```shell
 npm run dev
-# build and serve with babel-hmr - from .env file
+```
+
+### one time run mocha scripts
+```shell
 npm test [TODO]
-# one time run mocha scripts
 ```
 
 
@@ -37,15 +45,6 @@ npm test [TODO]
 - [ ] Create start script to fire up server without building
 - [ ] Improve routing of private/public routes through react-router
 - [ ] Wire up react-router state to webpack (redux react router?)
-
-
-
-
-
-
-
-
-
 
 
 

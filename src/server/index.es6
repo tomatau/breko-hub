@@ -18,4 +18,5 @@ isomorphicTools.server(ROOT, () => {
   app.use(setRouteContext(makeRoutes))
   app.use(renderRouteContext(isomorphicTools.assets()))
 })
+
 export default app;
