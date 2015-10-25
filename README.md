@@ -48,7 +48,7 @@ Building creates bundles and assets through webpack and saves them into the untr
 
 ### start the server
 ```shell
-npm start [TODO]
+npm start
 ```
 
 This will run the application and serve any assets built to the configured public directory.
