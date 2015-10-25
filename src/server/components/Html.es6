@@ -29,6 +29,7 @@ export class Html extends React.Component {
         <head>
           <meta charSet="UTF-8" />
           <title>{title}</title>
+          <link rel="icon" type="image/x-icon" href="favicon.ico" />
           {headStyles.map((style, i) =>
             <link
               href={style} key={i}
