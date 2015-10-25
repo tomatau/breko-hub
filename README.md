@@ -84,7 +84,7 @@ npm test -- ci
 - [x] Create start script to fire up server without building
 - [ ] Integrate koa-router for API endpoints
 - [x] Session middleware, favicon, compression and logging
-- [ ] Flash messages middleware to server generated InitialState
+- [x] Flash messages middleware to server generated InitialState
 - [ ] Socket integration through redux reducer chain
 
 ## Details
