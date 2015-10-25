@@ -35,10 +35,12 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 
 ## Usage
 
-### production build [TODO]
+### production build
 ```shell
-npm build
+npm run build
 ```
+
+Building creates bundles and assets through webpack and saves them into the untracked `src/static` folder.
 
 ### start the server [TODO]
 ```shell
@@ -50,6 +52,8 @@ npm start [TODO]
 npm run dev
 ```
 
+Using webpack-middleware to build the assets into tmp and serving with hot reloading.
+
 ### one time run mocha unit tests [TODO]
 ```shell
 npm test
@@ -59,7 +63,6 @@ npm test
 ```shell
 npm test -- ci
 ```
-
 
 ## Todo
 
