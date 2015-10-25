@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
-    "dev": "rimraf ./webpack-assets.json && node ./scripts/babel.entry.js --development"
+    "dev": "node ./scripts/babel.entry.js --development"
   },
   "repository": {
     "type": "git",
