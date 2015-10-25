@@ -4,7 +4,9 @@ import {APP, STATIC, STYLES} from '~/src/config/paths';
 
 export default {
   entry: {
-    head: [],
+    head: [
+      `${APP}/utils/loadCSS.js`
+    ],
     body: [
       `${APP}/entry.es6`
     ]

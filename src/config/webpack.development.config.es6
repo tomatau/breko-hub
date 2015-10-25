@@ -10,6 +10,7 @@ export default {
   entry: {
     ...webpackConfig.entry,
     head: [
+      ...webpackConfig.entry.head,
       'webpack-hot-middleware/client',
     ]
   },
