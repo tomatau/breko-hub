@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import path from 'path';
 import {ROOT, APP} from '~/src/config/paths';
 import IsomorphicTools from 'webpack-isomorphic-tools';
+import createStore from '~/src/server/middleware/createStore';
 import setRouteContext from '~/src/server/middleware/setRouteContext';
 import renderRouteContext from '~/src/server/middleware/renderRouteContext';
 import isomorphicConfig from '~/src/config/isomorphic.config';
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV == 'development') isomorphicTools.development()
 isomorphicTools.server(ROOT, () => {
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
   if (process.env.NODE_ENV == 'development') isomorphicTools.refresh()
+  app.use(createStore)
   app.use(setRouteContext(makeRoutes))
   app.use(renderRouteContext(isomorphicTools.assets()))
 })
