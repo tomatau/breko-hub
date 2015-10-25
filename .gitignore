@@ -4,3 +4,4 @@ node_modules
 *.sublime-workspace
 untracked*
 webpack-assets.json
+src/static
