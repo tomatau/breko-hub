@@ -14,6 +14,12 @@ const middleware = [
 ]
 const store = makeCreateStore(middleware)(rootReducer, window.__INITIAL_STATE__)
 
+if (module.hot) {
+  module.hot.accept('./reducers', () =>
+    store.replaceReducer(require('./reducers'))
+  )
+}
+
 ReactDOM.render(
   makeContent(makeRoutes(history), store),
   document.getElementById('application-root')
