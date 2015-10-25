@@ -1,7 +1,7 @@
 import '~/src/config/environment';
 import './helpers/cssModulesHook.es6';
 import './helpers/cleanAssetJson.es6';
-import {ROOT, STYLES, APP} from '~/src/config/paths';
+import {ROOT} from '~/src/config/paths';
 import path from 'path';
 import koa from 'koa';
 import mount from 'koa-mount';

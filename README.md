@@ -13,6 +13,10 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 
 ## Features
 
+### Engine
+- npm v3.3.x
+- node v4.1.x
+
 ### Development
 - Hot reloading client JS
 - Hot reloading client CSS modules
