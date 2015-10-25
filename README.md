@@ -73,13 +73,17 @@ npm test -- ci
 ## Todo
 
 - [x] include directories into css and scss imports for both modules and non-modules
-- [ ] Setup redux on client
-- [ ] Setup redux on server with initialState
+- [x] Setup redux on client
+- [x] Setup redux on server with initialState
 - [ ] Setup Log and Dock Monitors for redux state
-- [ ] Create build config and bundle CSS-modules (no hot loading required)
-- [ ] Create start script to fire up server without building
+- [x] Create build config and bundle CSS-modules (no hot loading required)
+- [x] Create start script to fire up server without building
 - [ ] Improve routing of private/public routes through react-router
 - [ ] Wire up react-router state to webpack (redux react router?)
+- [ ] Integrate koa-router for API endpoints
+- [ ] Session middleware, favicon, compression 
+- [ ] Flash messages middleware to server generated InitialState
+- [ ] Socket integration through redux reducer chain
 
 
 ## Details
