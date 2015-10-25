@@ -3,7 +3,6 @@ import compress from 'koa-compress';
 import session from 'koa-session';
 import logger from 'koa-logger';
 import favicon from 'koa-favicon';
-
 import path from 'path';
 import {ROOT, APP, SRC} from '~/src/config/paths';
 import IsomorphicTools from 'webpack-isomorphic-tools';
@@ -15,6 +14,7 @@ import isomorphicConfig from '~/src/config/isomorphic.config';
 const app = koa()
 const isomorphicTools = new IsomorphicTools(isomorphicConfig)
 if (process.env.NODE_ENV == 'development') isomorphicTools.development()
+
 app.use(compress())
 app.use(favicon(`${SRC}/favicon.ico`))
 
