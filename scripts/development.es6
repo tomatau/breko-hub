@@ -1,4 +1,6 @@
 import '~/src/config/environment';
+import './helpers/cssModulesHook.es6';
+import './helpers/cleanAssetJson.es6';
 import {ROOT, STYLES, APP} from '~/src/config/paths';
 import path from 'path';
 import koa from 'koa';
@@ -6,8 +8,7 @@ import mount from 'koa-mount';
 import webpack from 'webpack';
 import log from 'npmlog';
 import chokidar from 'chokidar';
-import webpackConfig from '~/src/config/webpack.config';
-import './helpers/cssModulesHook.es6';
+import webpackConfig from '~/src/config/webpack.development.config';
 
 const compiler = webpack(webpackConfig)
 const app = koa()
