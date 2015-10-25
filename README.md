@@ -89,7 +89,7 @@ Using absolute requires helps with module portability and clarity, noone enjoys 
 
 When concentrating on load time performance of an application, it's a large improvement to focus on the above-the-fold or asynchronous asset loading split. So, there are intentionally, 2 entry points for this application, `body` and `head`. This is to give the developer more control over where their scripts are injected into the page. The bodyStyles array will load in css asynchronously after DOMContentLoaded.
 
-Unfortunately the CSS to JS requirements here are not perfect as JS required in the body build could require CSS that is suitable for the `head.css` build. The developer can configure this in `src/server/middleware/renderRouteContext.es6` by moving the available assets into the appropriate inclusion array. Also the ExtractTextPlugin will CSS (that isn't modular) into the head build.
+Unfortunately the CSS to JS correspondence in many projects are not perfect, as JS required in the body build could require a CSS file that is suitable for the `head.css` bundle. The developer can configure this in `src/server/middleware/renderRouteContext.es6` by moving the available assets into the appropriate inclusion array.  Also the ExtractTextPlugin will grab CSS (that isn't modular) into the head bundle from the body build.
 
 Whilst developing, to make the most of CSS hot reloading on the client, CSS-modules are not caught by ExtractTextPlugin -- this will be disabled in production but can be configured in the appropriate configurations.
 
