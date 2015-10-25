@@ -8,11 +8,9 @@ export const isNodeInTree = (parent, child) => {
   return false
 }
 
-export const isPromise = (value) => {
-  if (value !== null && typeof value === 'object') {
-    return value.promise && typeof value.promise.then === 'function'
-  }
-}
+export const isPromise = (obj) =>
+  !!obj && (typeof obj === 'object' || typeof obj === 'function')
+        && typeof obj.then === 'function'
 
 export const isBrowser = () => {
   return typeof GLOBAL == 'undefined'
