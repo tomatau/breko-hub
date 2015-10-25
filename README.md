@@ -20,17 +20,21 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 ### Development
 - Hot reloading client JS
 - Hot reloading client CSS modules
+- Hot reloading client redux-reducer chain
 - Hot reloading server
 - Hot reloading client build within server
 - Loading environment through .env
 - No global npm module requirements
 - No concurrent npm script requirements
 - Sorry, probably doesn't work on windows and isn't supposed to.
+- Session, favicon and compression with koa
+- Redux-devtools beta-3 with dock and log monitors
 
 ### Production
 - Webpack babel compile for all client code
 - Babel runtime compile for all server code
 - React v14
+- Redux
 - Koa JS integration
 - Optional CSS-modules or import to CSS file
 - SCSS preprocessing CSS-modules
@@ -75,7 +79,7 @@ npm test -- ci
 - [x] include directories into css and scss imports for both modules and non-modules
 - [x] Setup redux on client
 - [x] Setup redux on server with initialState
-- [ ] Setup Log and Dock Monitors for redux state
+- [x] Setup Log and Dock Monitors for redux state
 - [x] Create build config and bundle CSS-modules (no hot loading required)
 - [x] Create start script to fire up server without building
 - [ ] Integrate koa-router for API endpoints
