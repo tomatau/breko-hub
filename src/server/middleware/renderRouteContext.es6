@@ -10,6 +10,7 @@ function makeHtml(initialState, assets, content){
       headScripts={[assets.javascript.head]}
       bodyScripts={[assets.javascript.body]}
       headStyles={[assets.styles.body]}
+      bodyStyles={[]}
     >
       {content}
     </Html>

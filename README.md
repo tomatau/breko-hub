@@ -36,19 +36,16 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 ## Usage
 
 ### production build [TODO]
-assumes environmental variables
 ```shell
 npm build
 ```
 
 ### start the server [TODO]
-assumes environmental variables
 ```shell
 npm start [TODO]
 ```
 
 ### build and serve
-with babel-hmr, reads from `./.env` file
 ```shell
 npm run dev
 ```
@@ -76,8 +73,26 @@ npm test -- ci
 - [ ] Wire up react-router state to webpack (redux react router?)
 
 
+## Details
 
+**Environment**
 
+This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `LOG_LEVEL or NPM_CONFIG_LOG_LEVEL`. When developing, it's nice to use a `.env` file, so the configuration will look for `process.env.ENVIRONMENT` and if this is a falsey value -- it will load an environment from your `.env`. Therefore, in production, it is worth setting `ENVIRONMENT=true` to prevent the `.env` file from being used.
 
+**ES6 Imports**
 
+This project is ran through babel stage 0, also with the help of a plugin named `babel-root-imports` which resolves modules according to the project route when the suffix `~` is used. 
 
+Using absolute requires helps with module portability and clarity, noone enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code. Ideally it would be possible to use the `resolve.root` feature of webpack, but this isn't possible without compiling the server code through webpack... So, `babel-root-imports` is a universal solution for this.
+
+**Head and Body Script Loading**
+
+When concentrating on load time performance of an application, it's a large improvement to focus on the above-the-fold or asynchronous asset loading split. So, there are intentionally, 2 entry points for this application, `body` and `head`. This is to give the developer more control over where their scripts are injected into the page. The bodyStyles array will load in css asynchronously after DOMContentLoaded.
+
+Unfortunately the CSS to JS requirements here are not perfect as JS required in the body build could require CSS that is suitable for the `head.css` build. The developer can configure this in `src/server/middleware/renderRouteContext.es6` by moving the available assets into the appropriate inclusion array. Also the ExtractTextPlugin will CSS (that isn't modular) into the head build.
+
+Whilst developing, to make the most of CSS hot reloading on the client, CSS-modules are not caught by ExtractTextPlugin -- this will be disabled in production but can be configured in the appropriate configurations.
+
+**CSS Modules**
+
+You can import any SCSS or CSS into a client JS file, if the file has the extension `/.module.s?css/`, then it will be imported as a CSS-module. This gives more clarity about what sort of CSS file is being dealt with as well as some flexibility when managing styles.
