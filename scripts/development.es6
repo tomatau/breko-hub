@@ -6,29 +6,8 @@ import mount from 'koa-mount';
 import webpack from 'webpack';
 import log from 'npmlog';
 import chokidar from 'chokidar';
-import cssModulesHook from 'css-modules-require-hook';
-import sass from 'node-sass';
-import loaderUtils from 'loader-utils';
 import webpackConfig from '~/src/config/webpack.config';
-
-cssModulesHook({
-  extensions: ['.scss', '.css'],
-  generateScopedName(exportedName, exportedPath){
-    const path = exportedPath.substr(1)
-      .replace(/\.s?css$/, '')
-      .replace(/\/|\./g, '-')
-    return path + '-' + exportedName
-  },
-  preprocessCss(css, filename){
-    return sass.renderSync({
-      includePaths: [ `${ROOT}/node_modules`, STYLES ],
-      data: css,
-      importer: function(url, fileContent) {
-        return { file: loaderUtils.urlToRequest(url) }
-      }
-    }).css
-  }
-})
+import './helpers/cssModulesHook.es6';
 
 const compiler = webpack(webpackConfig)
 const app = koa()
