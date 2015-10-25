@@ -46,10 +46,12 @@ npm run build
 
 Building creates bundles and assets through webpack and saves them into the untracked `src/static` folder.
 
-### start the server [TODO]
+### start the server
 ```shell
 npm start [TODO]
 ```
+
+This will run the application and serve any assets built to the configured public directory.
 
 ### build and serve
 ```shell
