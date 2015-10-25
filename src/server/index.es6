@@ -1,11 +1,12 @@
 import koa from 'koa';
 import compress from 'koa-compress';
-import session from 'koa-session';
+import session from 'koa-session-store';
 import logger from 'koa-logger';
 import favicon from 'koa-favicon';
 import path from 'path';
 import {ROOT, APP, SRC} from '~/src/config/paths';
 import IsomorphicTools from 'webpack-isomorphic-tools';
+import sessionFlashArray from '~/src/server/middleware/sessionFlashArray';
 import createStore from '~/src/server/middleware/createStore';
 import setRouteContext from '~/src/server/middleware/setRouteContext';
 import renderRouteContext from '~/src/server/middleware/renderRouteContext';
@@ -19,8 +20,8 @@ app.use(compress())
 app.use(favicon(`${SRC}/favicon.ico`))
 
 isomorphicTools.server(ROOT, () => {
-  app.keys = ['d0n7', '7311', '4ny0n3']
-  app.use(session(app))
+  app.use(session())
+  app.use(sessionFlashArray())
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
   if (process.env.NODE_ENV == 'development') {
     app.use(logger())

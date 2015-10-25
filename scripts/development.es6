@@ -13,6 +13,8 @@ import webpackConfig from '~/src/config/webpack.development.config';
 const compiler = webpack(webpackConfig)
 const app = koa()
 
+app.keys = ['d0n7', '7311', '4ny0n3']
+
 app.use(require('koa-webpack-dev-middleware')(compiler, {
   quiet: true,
   noInfo: true,
