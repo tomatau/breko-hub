@@ -12,7 +12,9 @@ const middleware = [
   ...defaultMiddleware,
   // client only middleware
 ]
-const store = makeCreateStore(middleware)(rootReducer, window.__INITIAL_STATE__)
+const store = makeCreateStore(middleware)(
+  rootReducer, window.__INITIAL_STATE__
+)
 
 if (module.hot) {
   module.hot.accept('./reducers', () =>

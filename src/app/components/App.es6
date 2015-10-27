@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './App.module.scss';
-import './Appy.css';
+import './App.css';
 import img from '~/src/assets/avatar.jpeg';
 
 class App extends React.Component {
