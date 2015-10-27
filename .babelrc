@@ -2,6 +2,7 @@
   "stage": "0",
   "optional": ["runtime"],
   "plugins": [
+    "react-require",
     "babel-root-import"
   ]
 }

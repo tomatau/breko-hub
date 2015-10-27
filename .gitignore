@@ -1,7 +1,7 @@
-node_modules
 .env
+node_modules
+src/static
+webpack-assets.json
 *.log
 *.sublime-workspace
 untracked*
-webpack-assets.json
-src/static

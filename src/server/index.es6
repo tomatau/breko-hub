@@ -4,13 +4,13 @@ import session from 'koa-session-store';
 import logger from 'koa-logger';
 import favicon from 'koa-favicon';
 import path from 'path';
-import {ROOT, APP, SRC} from '~/src/config/paths';
 import IsomorphicTools from 'webpack-isomorphic-tools';
+import {ROOT, APP, SRC} from '~/src/config/paths';
+import isomorphicConfig from '~/src/config/isomorphic.config';
 import sessionFlashArray from '~/src/server/middleware/sessionFlashArray';
 import createStore from '~/src/server/middleware/createStore';
 import setRouteContext from '~/src/server/middleware/setRouteContext';
 import renderRouteContext from '~/src/server/middleware/renderRouteContext';
-import isomorphicConfig from '~/src/config/isomorphic.config';
 
 const app = koa()
 const isomorphicTools = new IsomorphicTools(isomorphicConfig)

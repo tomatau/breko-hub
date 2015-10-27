@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+      "name": "breko-hub",
+      "follow_symlinks": true,
+      "path": "."
+		}
+	]
+}
