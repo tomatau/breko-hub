@@ -82,7 +82,7 @@ npm test -- ci
 - [x] Setup Log and Dock Monitors for redux state
 - [x] Create build config and bundle CSS-modules (no hot loading required)
 - [x] Create start script to fire up server without building
-- [ ] Integrate koa-router for API endpoints
+- [x] Integrate koa-router
 - [x] Session middleware, favicon, compression and logging
 - [x] Flash messages middleware to server generated InitialState
 - [ ] Socket integration through redux reducer chain
