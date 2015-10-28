@@ -1,9 +1,9 @@
 
 export default function compose(...middlewares) {
   return function *(next) {
-    yield middlewares.reduce(
-      (acc, m) => m.call(this, acc),
-      middlewares.pop().call(this, next)
+    const len = middlewares.length;
+    yield middlewares.reduceRight((acc, m, i) =>
+      m.call(this, i == len ? next : acc)
     )
   }
 }

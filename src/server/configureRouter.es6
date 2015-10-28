@@ -23,6 +23,7 @@ export default function configureRouter(app, isomorphicTools) {
   )
 
   rootRoutes
+    .get('/error', renderApp)
     .get('/(.*)', renderApp)
 
   app.use(rootRoutes.routes())
