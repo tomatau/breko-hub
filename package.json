@@ -28,8 +28,8 @@
     "url": "https://github.com/tomatau/breko-hub/issues"
   },
   "engines": {
-    "node": "4.1.x",
-    "npm": "~3.3.5"
+    "node": "~5.0.x",
+    "npm": "~3.3.x"
   },
   "homepage": "https://github.com/tomatau/breko-hub#readme",
   "dependencies": {
