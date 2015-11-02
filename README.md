@@ -15,7 +15,7 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 
 ### Engine
 - npm v3.3.x
-- node v4.1.x
+- node v5.0.x
 
 ### Development
 - Hot reloading client JS
@@ -86,6 +86,8 @@ npm test -- ci
 - [x] Session middleware, favicon, compression and logging
 - [x] Flash messages middleware to server generated InitialState
 - [ ] Socket integration through redux reducer chain
+- [ ] Upgrade babel to v6
+- [ ] Example apps @ routes
 
 ## Details
 
