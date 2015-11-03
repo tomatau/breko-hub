@@ -36,8 +36,8 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 - React v14
 - Redux
 - Koa JS integration
-- Optional CSS-modules or import to CSS file
-- SCSS preprocessing CSS-modules
+- Optional CSS-modules or Extract to CSS file
+- SCSS preprocessing for CSS-modules
 - Head and/or body scripts for optimising JS and CSS first time page load
 - Universal React-router integration
 
@@ -88,6 +88,8 @@ npm test -- ci
 - [ ] Socket integration through redux reducer chain
 - [ ] Upgrade babel to v6
 - [ ] Example apps @ routes
+- [ ] Upgrade React
+- [ ] Upgrade React-Router
 
 ## Details
 
