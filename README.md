@@ -119,5 +119,7 @@ You can import any SCSS or CSS into a client JS file, if the file has the extens
 
 ## Thanks For Ideas!
 
+This repo is shamelessly reusing the ideas taken from:
+
 https://github.com/glenjamin/ultimate-hot-reloading-example
 https://github.com/erikras/react-redux-universal-hot-example
