@@ -74,6 +74,11 @@ npm test
 npm test -- ci
 ```
 
+### linkt
+```
+npm run lint
+```
+
 ## Todo
 
 - [x] include directories into css and scss imports for both modules and non-modules
@@ -91,7 +96,7 @@ npm test -- ci
 - [ ] Upgrade React
 - [ ] Upgrade React-Router
 - [ ] Test Runners
-- [ ] Linting
+- [x] Linting
 
 ## Details
 
