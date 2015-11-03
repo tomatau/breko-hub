@@ -74,14 +74,14 @@ npm test
 npm test -- ci
 ```
 
-### linkt
+### lint
 ```
 npm run lint
 ```
 
 ## Todo
 
-- [x] include directories into css and scss imports for both modules and non-modules
+- [x] include directories into CSS and SCSS imports for both modules and non-modules
 - [x] Setup redux on client
 - [x] Setup redux on server with initialState
 - [x] Setup Log and Dock Monitors for redux state
@@ -106,9 +106,9 @@ This project will be looking for various settings in your runtime environment, s
 
 **ES6 Imports**
 
-This project is ran through babel stage 0, also with the help of a plugin named `babel-root-imports` which resolves modules according to the project route when the suffix `~` is used. 
+This project is ran through babel stage 0, also with the help of a plug-in named `babel-root-imports` which resolves modules according to the project route when the suffix `~` is used. 
 
-Using absolute requires helps with module portability and clarity, noone enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code. Ideally it would be possible to use the `resolve.root` feature of webpack, but this isn't possible without compiling the server code through webpack... So, `babel-root-imports` is a universal solution for this.
+Using absolute requires helps with module portability and clarity, no-one enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code. Ideally it would be possible to use the `resolve.root` feature of webpack, but this isn't possible without compiling the server code through webpack... So, `babel-root-imports` is a universal solution for this.
 
 **Head and Body Script Loading**
 
