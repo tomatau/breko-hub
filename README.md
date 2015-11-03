@@ -90,6 +90,8 @@ npm test -- ci
 - [ ] Example apps @ routes
 - [ ] Upgrade React
 - [ ] Upgrade React-Router
+- [ ] Test Runners
+- [ ] Linting
 
 ## Details
 
