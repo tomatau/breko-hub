@@ -116,3 +116,8 @@ Whilst developing, to make the most of CSS hot reloading on the client, CSS-modu
 **CSS Modules**
 
 You can import any SCSS or CSS into a client JS file, if the file has the extension `/.module.s?css/`, then it will be imported as a CSS-module. This gives more clarity about what sort of CSS file is being dealt with as well as some flexibility when managing styles.
+
+## Thanks For Ideas!
+
+https://github.com/glenjamin/ultimate-hot-reloading-example
+https://github.com/erikras/react-redux-universal-hot-example
