@@ -37,7 +37,7 @@ export default {
       ),
     }, {
       test: /\.es6$/,
-      include: [ /src\/app/ ],
+      include: [ /src\/app/, /test/ ],
       loader: 'babel',
       query: {
         stage: 0,
