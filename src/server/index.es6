@@ -1,14 +1,13 @@
-import koa from 'koa';
-import compress from 'koa-compress';
-import session from 'koa-session-store';
-import logger from 'koa-logger';
-import favicon from 'koa-favicon';
-import path from 'path';
-import IsomorphicTools from 'webpack-isomorphic-tools';
-import {ROOT, APP, SRC} from '~/src/config/paths';
-import isomorphicConfig from '~/src/config/isomorphic.config';
-import sessionFlashArray from '~/src/server/middleware/sessionFlashArray';
-import configureRouter from '~/src/server/configureRouter';
+import koa from 'koa'
+import compress from 'koa-compress'
+import session from 'koa-session-store'
+import logger from 'koa-logger'
+import favicon from 'koa-favicon'
+import IsomorphicTools from 'webpack-isomorphic-tools'
+import { ROOT, SRC } from '~/src/config/paths'
+import isomorphicConfig from '~/src/config/isomorphic.config'
+import sessionFlashArray from '~/src/server/middleware/sessionFlashArray'
+import configureRouter from '~/src/server/configureRouter'
 
 const app = koa()
 const isomorphicTools = new IsomorphicTools(isomorphicConfig)
@@ -29,4 +28,4 @@ isomorphicTools.server(ROOT, () => {
   configureRouter(app, isomorphicTools)
 })
 
-export default app;
+export default app

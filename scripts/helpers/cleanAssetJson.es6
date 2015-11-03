@@ -1,6 +1,6 @@
-import {ROOT} from '~/src/config/paths';
-import log from 'npmlog';
-import rimraf from 'rimraf';
+import { ROOT } from '~/src/config/paths'
+import log from 'npmlog'
+import rimraf from 'rimraf'
 
 rimraf(`${ROOT}/webpack-assets.json`, err => {
   if (err) {

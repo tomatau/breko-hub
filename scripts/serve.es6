@@ -1,14 +1,14 @@
-import '~/src/config/environment';
-import './helpers/cssModulesHook.es6';
-import koa from 'koa';
-import serve from 'koa-static';
-import mount from 'koa-mount';
-import log from 'npmlog';
-import {ROOT, STATIC} from '~/src/config/paths';
+import '~/src/config/environment'
+import './helpers/cssModulesHook.es6'
+import koa from 'koa'
+import serve from 'koa-static'
+import mount from 'koa-mount'
+import log from 'npmlog'
+import { ROOT, STATIC } from '~/src/config/paths'
 
 const app = koa()
 
-app.keys = ['d0n7', '7311', '4ny0n3']
+app.keys = [ 'd0n7', '7311', '4ny0n3' ]
 app.use(serve(STATIC))
 app.use(function *() {
   yield mount(require(ROOT + '/src/server'))

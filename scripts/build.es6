@@ -1,8 +1,8 @@
-import '~/src/config/environment';
-import './helpers/cleanAssetJson.es6';
-import log from 'npmlog';
-import webpack from 'webpack';
-import webpackConfig from '~/src/config/webpack.production.config';
+import '~/src/config/environment'
+import './helpers/cleanAssetJson.es6'
+import log from 'npmlog'
+import webpack from 'webpack'
+import webpackConfig from '~/src/config/webpack.production.config'
 
 const compiler = webpack(webpackConfig)
 

@@ -1,19 +1,19 @@
-import '~/src/config/environment';
-import './helpers/cssModulesHook.es6';
-import './helpers/cleanAssetJson.es6';
-import {ROOT} from '~/src/config/paths';
-import path from 'path';
-import koa from 'koa';
-import mount from 'koa-mount';
-import webpack from 'webpack';
-import log from 'npmlog';
-import chokidar from 'chokidar';
-import webpackConfig from '~/src/config/webpack.development.config';
+import '~/src/config/environment'
+import './helpers/cssModulesHook.es6'
+import './helpers/cleanAssetJson.es6'
+import { ROOT } from '~/src/config/paths'
+import path from 'path'
+import koa from 'koa'
+import mount from 'koa-mount'
+import webpack from 'webpack'
+import log from 'npmlog'
+import chokidar from 'chokidar'
+import webpackConfig from '~/src/config/webpack.development.config'
 
 const compiler = webpack(webpackConfig)
 const app = koa()
 
-app.keys = ['d0n7', '7311', '4ny0n3']
+app.keys = [ 'd0n7', '7311', '4ny0n3' ]
 
 app.use(require('koa-webpack-dev-middleware')(compiler, {
   quiet: true,
@@ -22,7 +22,7 @@ app.use(require('koa-webpack-dev-middleware')(compiler, {
     colors: true,
     reasons: true,
   },
-  publicPath: webpackConfig.output.publicPath
+  publicPath: webpackConfig.output.publicPath,
 }))
 
 app.use(require('koa-webpack-hot-middleware')(compiler))

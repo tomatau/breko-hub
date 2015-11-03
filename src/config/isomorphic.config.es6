@@ -1,19 +1,16 @@
-import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import log from 'npmlog';
+import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
 
 export default {
 
-  exclude: [
-    /node_modules/
-  ],
+  exclude: [ /node_modules/ ],
 
   assets: {
     images: {
       extensions: [
-        'jpeg', 'jpg', 'png', 'gif', 'svg'
+        'jpeg', 'jpg', 'png', 'gif', 'svg',
       ],
-      parser: IsomorphicToolsPlugin.url_loader_parser
+      parser: IsomorphicToolsPlugin.url_loader_parser,
     },
-  }
+  },
 
 }

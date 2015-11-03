@@ -1,8 +1,8 @@
-import React from 'react';
-import {Router, Route, IndexRoute} from 'react-router';
+import React from 'react'
+import { Router, Route } from 'react-router'
 
-import App from '~/src/app/components/App';
-import Oops from '~/src/app/components/Oops';
+import App from '~/src/app/components/App'
+import Oops from '~/src/app/components/Oops'
 
 const makeRoutes = (history) => (
   <Router history={history}>
@@ -11,4 +11,4 @@ const makeRoutes = (history) => (
   </Router>
 )
 
-export default makeRoutes;
+export default makeRoutes
