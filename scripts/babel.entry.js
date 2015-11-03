@@ -3,6 +3,8 @@ const argv = require('yargs').argv
 
 const file = (()=>{
   switch(true) {
+  case argv.test:
+    return 'test.es6'
   case argv.development:
     return 'development.es6'
   case argv.build:

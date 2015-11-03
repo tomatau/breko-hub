@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
+    "test": "node ./scripts/babel.entry.js --test",
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
     "dev": "node ./scripts/babel.entry.js --development",
