@@ -1,15 +1,17 @@
 **B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
 # Breko-hub
 
-Yes, another starter-kit, boilerplate for React Universal applications.
+Yes, another starter-kit/boilerplate for React Universal applications!
 
 [TOC]
 
 ## Goals
 
-I'm creating this because I want a universal starting kit for react applications that is easy to understand, use and customise.
+This has been created because of a want for a universal starting kit that is easy to understand, use and customise.
 
-To achieve this, I've focused on smaller units of code that are consistent in their code style between both client and server.
+To achieve this, focused has been on composing smaller units of code that are consistent in their code style between both client and server.
+
+Another large focus is on Developer Experience, using hot reloading on both client and server for ES7 files and SCSS-modules.
 
 ## Features
 
@@ -17,27 +19,29 @@ To achieve this, I've focused on smaller units of code that are consistent in th
 - npm v3.3.x
 - node v5.0.x
 
+This project has been developed and tested using the above versions of npm and node. It's advised to use the same engine when using this boilerplate but it may still work with other configurations.
+
 ### Development
-- Hot reloading client JS
+- Hot reloading client JS (redux-reducer chain, etc...)
 - Hot reloading client CSS modules
-- Hot reloading client redux-reducer chain
 - Hot reloading server
 - Hot reloading client build within server
-- Loading environment through .env
+- Loading environment through `.env` or environment
 - No global npm module requirements
 - No concurrent npm script requirements
 - Sorry, probably doesn't work on windows and isn't supposed to.
-- Session, favicon and compression with koa
+- Minimal application setup for Koa including session, favicon, compression, etc...
 - Redux-devtools beta-3 with dock and log monitors
+- ES7 Mocha Unit-tests runnable in browser with hot-reloading
 
 ### Production
 - Webpack babel compile for all client code
 - Babel runtime compile for all server code
 - React v14
 - Redux
-- Koa JS integration
+- Koa JS
 - Optional CSS-modules or Extract to CSS file
-- SCSS preprocessing for CSS-modules
+- SCSS preprocessing for CSS-modules or Extracted CSS
 - Head and/or body scripts for optimising JS and CSS first time page load
 - Universal React-router integration
 
@@ -64,20 +68,31 @@ npm run dev
 
 Using webpack-middleware to build the assets into tmp and serving with hot reloading.
 
-### one time run mocha unit tests [TODO]
+### unit test development server
 ```shell
 npm test
 ```
 
+Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.es6` or imported directly from within `./test/index.es6`.
+
+This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser (including most server code).
+
+### unit test single run in node [TODO]
+```shell
+npm test -- run
+```
+
 ### one time run functional tests [TODO]
 ```shell
-npm test -- ci
+npm test -- functional
 ```
 
 ### lint
 ```
 npm run lint
 ```
+
+No semi colons, lots of commas on multi-lines for easy duplication, single-quotes, etc...
 
 ## Todo
 
@@ -95,8 +110,10 @@ npm run lint
 - [ ] Example apps @ routes
 - [ ] Upgrade React
 - [ ] Upgrade React-Router
-- [ ] Test Runners
+- [x] Unit Test Runner in browser
+- [ ] Unit Test Runner in node
 - [x] Linting
+- [ ] Write Unit tests for server middleware
 
 ## Details
 
@@ -126,5 +143,5 @@ You can import any SCSS or CSS into a client JS file, if the file has the extens
 
 This repo is shamelessly reusing the ideas taken from:
 
-https://github.com/glenjamin/ultimate-hot-reloading-example
-https://github.com/erikras/react-redux-universal-hot-example
+- https://github.com/glenjamin/ultimate-hot-reloading-example
+- https://github.com/erikras/react-redux-universal-hot-example

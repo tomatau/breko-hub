@@ -5,16 +5,20 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import isomorphicConfig from '~/src/config/isomorphic.config'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackConfig from './webpack.config'
-import { TESTS } from '~/src/config/paths'
+import { TESTS, ROOT } from '~/src/config/paths'
+import glob from 'glob'
 
 export default {
   ...webpackConfig,
   devtool: 'cheap-module-eval-source-map',
   entry: {
     main: [
-      // require glob of all test files ?
-      // or do manual requires in index.es6
+      // HMR seems to ignore tests that aren't replaced on a replacement
+      // refresh page works fine though
       `mocha!${TESTS}/index.es6`,
+      ...glob.sync('**/*.test.es6').map(file =>
+        `mocha!${path.join(ROOT, file)}`
+      ),
       'webpack-hot-middleware/client',
     ],
   },
