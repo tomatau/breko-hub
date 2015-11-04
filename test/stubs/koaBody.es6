@@ -1,7 +1,7 @@
-export const generator = function*(next){
-  yield next;
+export const generator = function *(next) {
+  yield next
 }
 
-export default function(){
-  return generator;
+export default function() {
+  return generator
 }

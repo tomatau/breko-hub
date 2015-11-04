@@ -1,6 +1,6 @@
 export default {
-  error: _ => null,
-  verbose: _ => null,
-  silly: _ => null,
-  info: _ => null,
+  error: _ => _,
+  verbose: _ => _,
+  silly: _ => _,
+  info: _ => _,
 }
