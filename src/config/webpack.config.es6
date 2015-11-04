@@ -41,6 +41,9 @@ export default {
     loaders: [ {
       test: /.*\.(gif|png|jpe?g|svg)$/i,
       loader: 'file',
+    }, {
+      test: /\.json$/i,
+      loader: 'json',
     } ],
   },
 }

@@ -1,23 +1,14 @@
 import '~/src/config/environment'
 import './helpers/cssModulesHook.es6'
 import './helpers/cleanAssetJson.es6'
-import { ROOT, TESTS } from '~/src/config/paths'
+import { ROOT } from '~/src/config/paths'
 import path from 'path'
 import koa from 'koa'
 import mount from 'koa-mount'
 import webpack from 'webpack'
 import log from 'npmlog'
 import chokidar from 'chokidar'
-import webpackConfig from '~/src/config/webpack.development.config'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-
-webpackConfig.entry = {
-  main: [
-    `mocha!${TESTS}/index.es6`,
-    'webpack-hot-middleware/client',
-  ]
-}
-webpackConfig.plugins.push(new HtmlWebpackPlugin())
+import webpackConfig from '~/src/config/webpack.unit-test.browser.config'
 
 const compiler = webpack(webpackConfig)
 const app = koa()
