@@ -1,7 +1,16 @@
 import co from 'co'
 import compose from './compose'
 
-describe('Compose', ()=> {
+describe('Compose Middleware', ()=> {
+
+  it('throws if called with no callbacks', ()=> {
+    expect(compose).to.throw(TypeError)
+  })
+
+  it('throws if called with no none functions', ()=> {
+    expect(() => compose([])).to.throw(TypeError)
+  })
+
   it('chains middlewares in order with upstream', async ()=> {
     let arr = []
     const stack = [
@@ -43,5 +52,40 @@ describe('Compose', ()=> {
     ]
     await co.wrap(compose(...stack))({})
     expect(arr).to.eql([ 'first', 'second', 'third' ])
+  })
+
+  it('throws on errors in middleware', ()=> {
+    let arr = []
+    return expect(
+      co.wrap(
+        compose(function *one() {
+          arr.push(1)
+          throw new Error('test error')
+        })
+      )({})
+    ).to.be.rejectedWith(/test error/)
+  })
+
+  it('catches downstream errors', async()=> {
+    let arr = []
+    const stack = [
+      function *(next) {
+        arr.push(1)
+        try {
+          arr.push(6)
+          yield next
+          arr.push(7)
+        } catch (err) {
+          arr.push(2)
+        }
+        arr.push(3)
+      },
+      function *() {
+        arr.push(4)
+        throw new Error()
+      },
+    ]
+    await co.wrap(compose(...stack))({})
+    expect(arr).to.eql([ 1, 6, 4, 2, 3 ])
   })
 })

@@ -5,7 +5,6 @@ import rootReducer from '~/src/app/reducers'
 export default function *createStore(next) {
   const { error } = this.session.state || {}
   const { flash, state:initialState } = this
-
   const middleware = [
     ...defaultMiddleware,
     // server only middleware

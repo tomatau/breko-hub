@@ -1,3 +1,5 @@
+import is_promise from 'is-promise'
+
 export const isNodeInTree = (parent, child) => {
   if (parent == child) return true
   let node = child.parentNode
@@ -8,8 +10,6 @@ export const isNodeInTree = (parent, child) => {
   return false
 }
 
-export const isPromise = (obj) =>
-  !!obj && (typeof obj === 'object' || typeof obj === 'function')
-        && typeof obj.then === 'function'
+export const isPromise = is_promise
 
 export const isBrowser = () => typeof GLOBAL == 'undefined'

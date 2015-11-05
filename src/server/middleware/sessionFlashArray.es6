@@ -10,7 +10,7 @@ export default function sessionFlashArray(key='flash') {
   return function *(next) {
     this.flash = this.session[key] || []
     this.nextFlash = this.session[key] = []
-    this.addFlash = (message, type) =>{
+    this.addFlash = (message, type) => {
       this.nextFlash.push(makeFlash(message, type))
     }
     yield* next
