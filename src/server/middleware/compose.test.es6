@@ -6,7 +6,7 @@ import httpMocks from 'node-mocks-http'
 const app = koa()
 
 describe('Compose', ()=> {
-  it('should chain middlewares in order', async ()=> {
+  it('chains middlewares in order', ()=> {
     let arr = []
     const stack = [
       function *one(next){
@@ -25,10 +25,10 @@ describe('Compose', ()=> {
 
     app.use(compose(...stack))
     app.callback()({}, {})
-    expect(arr).to.eql([1,2,3])
+    expect(arr).to.eql([1, 2, 3])
   })
 
-  it('should keep the same context for all chain', ()=> {
+  it('keeps the same context for middlewares', ()=> {
     let arr = []
     const stack = [
       function *one(next){

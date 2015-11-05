@@ -3,7 +3,7 @@ import createLocation from 'history/lib/createLocation';
 import createHistory from 'history/lib/createHistory';
 import { RoutingContext, match } from 'react-router';
 
-export default function(makeRoutes){
+export default function(makeRoutes) {
   return function *(next){
     const routes = makeRoutes();
     const location = createLocation(this.request.url)

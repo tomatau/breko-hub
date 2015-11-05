@@ -7,7 +7,7 @@
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
     "dev": "node ./scripts/babel.entry.js --development",
-    "lint": "eslint **/*.es6 **/**/*.es6"
+    "lint": "eslint . --ext .es6"
   },
   "repository": {
     "type": "git",
