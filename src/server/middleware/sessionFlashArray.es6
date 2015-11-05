@@ -3,7 +3,7 @@ import uuid from 'uuid'
 const makeFlash = (message, type='info') => ({
   type,
   message,
-  id: uuid.v1()
+  id: uuid.v1(),
 })
 
 export default function sessionFlashArray(key='flash') {

@@ -6,7 +6,7 @@ export const flashReducers = handleActions({
     ...state,
     messages: state.messages.filter(
       flash => flash.id !== action.flash_id
-    )
-  })
+    ),
+  }),
 
 }, { messages: [] })

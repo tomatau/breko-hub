@@ -15,5 +15,10 @@
   },
   "plugins": [
     "react"
-  ]
+  ],
+  "globals": {
+    "expect": true,
+    "global": true,
+    "window": true
+  }
 }

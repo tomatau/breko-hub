@@ -22,25 +22,25 @@ export class Html extends React.Component {
     const {
       title, initialState,
       headStyles, headScripts,
-      bodyScripts, bodyStyles
+      bodyScripts, bodyStyles,
     } = this.props
     return (
       <html lang='en'>
         <head>
-          <meta charSet="UTF-8" />
+          <meta charSet='UTF-8' />
           <title>{title}</title>
-          <link rel="icon" type="image/x-icon" href="favicon.ico" />
+          <link rel='icon' type='image/x-icon' href='favicon.ico' />
           {headStyles.map((style, i) =>
             <link
               href={style} key={i}
-              type="text/css" rel="stylesheet" media="screen"
+              type='text/css' rel='stylesheet' media='screen'
             />
           )}
           <script
             dangerouslySetInnerHTML={{
               __html: `window.__INITIAL_STATE__ = ${
                 JSON.stringify(initialState, null, 2)
-              };`
+              };`,
             }}
           />
           {headScripts.map((script, i) =>
@@ -49,9 +49,9 @@ export class Html extends React.Component {
         </head>
         <body>
           <div
-            id="application-root"
+            id='application-root'
             dangerouslySetInnerHTML={{
-              __html: ::this.getDivContent()
+              __html: ::this.getDivContent(),
             }}
           />
           {bodyScripts.map((script, i) =>
@@ -60,12 +60,12 @@ export class Html extends React.Component {
           {bodyStyles.map((style, i) =>
             <script key={i}
               dangerouslySetInnerHTML={{
-                __html: `loadCSS("${style}")`
+                __html: `loadCSS('${style}')`,
               }} />
           )}
           {bodyStyles.map((style, i) =>
             <noscript key={i} dangerouslySetInnerHTML={{
-              __html: `<link href="${style}" rel="stylesheet" />`
+              __html: `<link href='${style}' rel='stylesheet' />`,
             }} />
           )}
         </body>

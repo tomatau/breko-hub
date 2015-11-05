@@ -4,5 +4,5 @@ import { flashReducers as flash } from './flashReducers'
 
 export default combineReducers({
   error,
-  flash
+  flash,
 })

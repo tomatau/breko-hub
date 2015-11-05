@@ -19,7 +19,7 @@ function makeHtml(initialState, assets, content) {
 }
 
 export default function(assets) {
-  return function *(next) {
+  return function *() {
     const { routeContext, store } = this
     const html = makeHtml(
       store.getState(),

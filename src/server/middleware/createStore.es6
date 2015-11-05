@@ -13,7 +13,7 @@ export default function *createStore(next) {
   this.store = makeCreateStore(middleware)(rootReducer, {
     error: { errors: compact([ error ]) },
     flash: { messages: flash || {} },
-    ...initialState || {}
+    ...initialState || {},
   })
   yield next
 }

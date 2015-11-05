@@ -6,8 +6,8 @@ export const errorReducers = handleActions({
     ...state,
     errors: [
       ...state.errors,
-      action.payload.error
-    ]
-  })
+      action.payload.error,
+    ],
+  }),
 
 }, { errors: [] })

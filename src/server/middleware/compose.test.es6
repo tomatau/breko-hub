@@ -1,34 +1,31 @@
 import co from 'co'
 import compose from './compose'
-import koa from 'koa'
-import httpMocks from 'node-mocks-http'
-
-const app = koa()
 
 describe('Compose', ()=> {
-  it('chains middlewares in order', ()=> {
+  it('chains middlewares in order with upstream', async ()=> {
     let arr = []
     const stack = [
       function *one(next) {
         arr.push(1)
         yield next
+        arr.push(6)
       },
       function *two(next) {
         arr.push(2)
         yield next
+        arr.push(5)
       },
       function *three(next) {
         arr.push(3)
         yield next
-      }
+        arr.push(4)
+      },
     ]
-
-    app.use(compose(...stack))
-    app.callback()({}, {})
-    expect(arr).to.eql([ 1, 2, 3 ])
+    await co.wrap(compose(...stack))({})
+    expect(arr).to.eql([ 1, 2, 3, 4, 5, 6 ])
   })
 
-  it('keeps the same context for middlewares', ()=> {
+  it('keeps the same context for middlewares', async ()=> {
     let arr = []
     const stack = [
       function *one(next) {
@@ -42,10 +39,9 @@ describe('Compose', ()=> {
       function *three(next) {
         arr.push(this.first, this.second, 'third')
         yield next
-      }
+      },
     ]
-    app.use(compose(...stack))
-    app.callback()({}, {})
+    await co.wrap(compose(...stack))({})
     expect(arr).to.eql([ 'first', 'second', 'third' ])
   })
 })

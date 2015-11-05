@@ -8,23 +8,25 @@ import DevTools from '~/src/app/components/containers/DevTools'
 
 export const defaultMiddleware = [
   thunkMiddleware,
-  promiseMiddleware()
+  promiseMiddleware(),
 ]
 
 export const makeCreateStore = (middleware=defaultMiddleware) => {
   const BROWSER = isBrowser()
+  const DEVELOPMENT = process.env.NODE_ENV === 'development'
 
   if (BROWSER) middleware.push(
       createLogger({
-        predicate: () => process.env.NODE_ENV == 'development'
+        predicate: () => DEVELOPMENT,
       })
     )
 
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]
 
-  if (process.env.NODE_ENV == 'development') {
+  if (DEVELOPMENT) {
     topLevelMiddleware.push(DevTools.instrument())
-    if (BROWSER) topLevelMiddleware.push(persistState(
+    if (BROWSER)
+      topLevelMiddleware.push(persistState(
         window.location.href.match(/[?&]debug_session=([^&]+)\b/)
       ))
   }
