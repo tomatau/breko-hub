@@ -108,12 +108,13 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [ ] Socket integration through redux reducer chain
 - [ ] Upgrade babel to v6
 - [ ] Example apps @ routes
-- [ ] Upgrade React
+- [x] Upgrade React
 - [ ] Upgrade React-Router
 - [x] Unit Test Runner in browser
 - [ ] Unit Test Runner in node
 - [x] Linting
-- [ ] Write Unit tests for server middleware
+- [x] Example unit tests for server compose middleware
+- [ ] Example unit tests for client reducers
 
 ## Details
 
