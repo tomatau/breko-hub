@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import React, { PropTypes } from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 export class Html extends React.Component {
 
@@ -65,16 +65,16 @@ export class Html extends React.Component {
           )}
           {bodyStyles.map((style, i) =>
             <noscript key={i} dangerouslySetInnerHTML={{
-                __html: `<link href="${style}" rel="stylesheet" />`
-              }} />
+              __html: `<link href="${style}" rel="stylesheet" />`
+            }} />
           )}
         </body>
       </html>
     )
   }
 
-  getDivContent(){
-    const { children } = this.props;
+  getDivContent() {
+    const { children } = this.props
     return (children == null) ? null : ReactDOMServer.renderToString(children)
   }
 

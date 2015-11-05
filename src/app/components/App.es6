@@ -1,7 +1,7 @@
-import React from 'react';
-import style from './App.module.scss';
-import './App.css';
-import img from '~/src/assets/avatar.jpeg';
+import React from 'react'
+import style from './App.module.scss'
+import './App.css'
+import img from '~/src/assets/avatar.jpeg'
 
 class App extends React.Component {
   render() {
@@ -14,4 +14,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App

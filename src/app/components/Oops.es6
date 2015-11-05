@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Oops extends React.Component {
   render() {
@@ -10,4 +10,4 @@ class Oops extends React.Component {
   }
 }
 
-export default Oops;
+export default Oops

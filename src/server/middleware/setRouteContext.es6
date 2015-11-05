@@ -1,11 +1,11 @@
-import React from 'react';
-import createLocation from 'history/lib/createLocation';
-import createHistory from 'history/lib/createHistory';
-import { RoutingContext, match } from 'react-router';
+import React from 'react'
+import createLocation from 'history/lib/createLocation'
+import createHistory from 'history/lib/createHistory'
+import { RoutingContext, match } from 'react-router'
 
 export default function(makeRoutes) {
-  return function *(next){
-    const routes = makeRoutes();
+  return function *(next) {
+    const routes = makeRoutes()
     const location = createLocation(this.request.url)
     match({ routes, location }, (error, redirect, renderProps) => {
       if (redirect)
@@ -17,6 +17,6 @@ export default function(makeRoutes) {
       else
         this.routeContext = <RoutingContext {...renderProps}/>
     })
-    yield next;
+    yield next
   }
 }

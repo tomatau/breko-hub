@@ -1,10 +1,10 @@
-import {compose, createStore, applyMiddleware} from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import {persistState} from 'redux-devtools';
-import promiseMiddleware from 'redux-promise-middleware';
-import {isBrowser} from '~/src/app/utils/predicates';
-import DevTools from '~/src/app/components/containers/DevTools';
+import { compose, createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
+import { persistState } from 'redux-devtools'
+import promiseMiddleware from 'redux-promise-middleware'
+import { isBrowser } from '~/src/app/utils/predicates'
+import DevTools from '~/src/app/components/containers/DevTools'
 
 export const defaultMiddleware = [
   thunkMiddleware,
@@ -29,5 +29,5 @@ export const makeCreateStore = (middleware=defaultMiddleware) => {
       ))
   }
 
-  return compose(...topLevelMiddleware)(createStore);
+  return compose(...topLevelMiddleware)(createStore)
 }

@@ -9,43 +9,43 @@ describe('Compose', ()=> {
   it('chains middlewares in order', ()=> {
     let arr = []
     const stack = [
-      function *one(next){
+      function *one(next) {
         arr.push(1)
-        yield next;
+        yield next
       },
-      function *two(next){
+      function *two(next) {
         arr.push(2)
-        yield next;
+        yield next
       },
-      function *three(next){
+      function *three(next) {
         arr.push(3)
-        yield next;
+        yield next
       }
     ]
 
     app.use(compose(...stack))
     app.callback()({}, {})
-    expect(arr).to.eql([1, 2, 3])
+    expect(arr).to.eql([ 1, 2, 3 ])
   })
 
   it('keeps the same context for middlewares', ()=> {
     let arr = []
     const stack = [
-      function *one(next){
-        this.first = 'first';
-        yield next;
+      function *one(next) {
+        this.first = 'first'
+        yield next
       },
-      function *two(next){
-        this.second = 'second';
-        yield next;
+      function *two(next) {
+        this.second = 'second'
+        yield next
       },
-      function *three(next){
+      function *three(next) {
         arr.push(this.first, this.second, 'third')
-        yield next;
+        yield next
       }
     ]
     app.use(compose(...stack))
     app.callback()({}, {})
-    expect(arr).to.eql(['first', 'second', 'third'])
+    expect(arr).to.eql([ 'first', 'second', 'third' ])
   })
 })

@@ -1,6 +1,6 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import DevTools from '~/src/app/components/containers/DevTools';
+import React from 'react'
+import { Provider } from 'react-redux'
+import DevTools from '~/src/app/components/containers/DevTools'
 
 export const makeContent = (routes, store) =>
   <Provider store={store}>

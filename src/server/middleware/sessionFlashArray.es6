@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import uuid from 'uuid'
 
 const makeFlash = (message, type='info') => ({
   type,
@@ -6,19 +6,19 @@ const makeFlash = (message, type='info') => ({
   id: uuid.v1()
 })
 
-export default function sessionFlashArray(key='flash'){
-  return function *(next){
-    this.flash = this.session[key] || [];
-    this.nextFlash = this.session[key] = [];
+export default function sessionFlashArray(key='flash') {
+  return function *(next) {
+    this.flash = this.session[key] || []
+    this.nextFlash = this.session[key] = []
     this.addFlash = (message, type) =>{
       this.nextFlash.push(makeFlash(message, type))
     }
-    yield* next;
+    yield* next
     if (this.session && this.session[key].length == 0) {
-      delete this.session[key];
+      delete this.session[key]
     }
     if (this.status == 302 && this.session && !this.session[key] ) {
-      this.session[key] = this.flash;
+      this.session[key] = this.flash
     }
-  };
+  }
 }
