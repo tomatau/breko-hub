@@ -105,16 +105,17 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] Integrate koa-router
 - [x] Session middleware, favicon, compression and logging
 - [x] Flash messages middleware to server generated InitialState
-- [ ] Socket integration through redux reducer chain
+- [x] Socket integration 
+- [ ] Sockets through redux reducer chain
 - [ ] Upgrade babel to v6
-- [ ] Example apps @ routes
-- [x] Upgrade React
-- [ ] Upgrade React-Router
+- [ ] Example application
+- [x] Upgrade React 0.14.2
+- [ ] Upgrade React-Router beta-4
 - [x] Unit Test Runner in browser
 - [ ] Unit Test Runner in node
 - [x] Linting
-- [x] Example unit tests for server compose middleware
-- [ ] Example unit tests for client reducers
+- [x] Unit tests for server compose middleware
+- [ ] Unit tests for client reducers
 
 ## Details
 
