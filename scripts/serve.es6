@@ -1,5 +1,6 @@
 import '~/src/config/environment'
 import './helpers/cssModulesHook.es6'
+import http from 'http'
 import koa from 'koa'
 import serve from 'koa-static'
 import mount from 'koa-mount'
@@ -13,7 +14,9 @@ app.use(serve(STATIC))
 app.use(function *() {
   yield mount(require(ROOT + '/src/server'))
 })
+const server = http.createServer(app.callback())
+require(ROOT + '/src/server/sockets')(server)
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   log.info(`Serving`, `http://localhost:${process.env.PORT}`)
 })

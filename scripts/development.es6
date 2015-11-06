@@ -3,6 +3,7 @@ import './helpers/cssModulesHook.es6'
 import './helpers/cleanAssetJson.es6'
 import { ROOT } from '~/src/config/paths'
 import path from 'path'
+import http from 'http'
 import koa from 'koa'
 import mount from 'koa-mount'
 import webpack from 'webpack'
@@ -30,6 +31,8 @@ app.use(require('koa-webpack-hot-middleware')(compiler))
 app.use(function *() {
   yield mount(require(ROOT + '/src/server'))
 })
+const server = http.createServer(app.callback())
+require(ROOT + '/src/server/sockets')(server)
 
 const watcher = chokidar.watch(path.join(ROOT, '/src/server'))
 watcher.on('ready', () => {
@@ -49,6 +52,6 @@ compiler.plugin('done', () => {
   })
 })
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   log.info(`Serving`, `http://localhost:${process.env.PORT}`)
 })

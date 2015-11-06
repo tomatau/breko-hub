@@ -9,14 +9,14 @@ export class Html extends React.Component {
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
     headStyles: PropTypes.array,
-  }
+  };
 
   static defaultProps = {
     headScripts: [],
     bodyScripts: [],
     headStyles: [],
     bodyStyles: [],
-  }
+  };
 
   render() {
     const {
