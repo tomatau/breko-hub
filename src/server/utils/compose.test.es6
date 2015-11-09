@@ -1,7 +1,7 @@
 import co from 'co'
 import compose from './compose'
 
-describe('Compose Middleware', ()=> {
+describe('Compose Middleware Utility', ()=> {
 
   it('throws if called with no callbacks', ()=> {
     expect(compose).to.throw(TypeError)
