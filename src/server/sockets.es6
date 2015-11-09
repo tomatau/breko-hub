@@ -10,4 +10,6 @@ export default function(server) {
       log.verbose('socket:disconnected', socket.id)
     })
   })
+
+  return socketServer
 }

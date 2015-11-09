@@ -32,7 +32,7 @@ app.use(function *() {
   yield mount(require(ROOT + '/src/server'))
 })
 const server = http.createServer(app.callback())
-require(ROOT + '/src/server/sockets')(server)
+const socketServer = require(ROOT + '/src/server/sockets')(server)
 
 const watcher = chokidar.watch(path.join(ROOT, '/src/server'))
 watcher.on('ready', () => {
