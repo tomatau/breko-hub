@@ -110,7 +110,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [ ] Upgrade babel to v6
 - [ ] Example application
 - [x] Upgrade React 0.14.2
-- [ ] Upgrade React-Router beta-4
+- [x] Upgrade React-Router 1
 - [x] Unit Test Runner in browser
 - [ ] Unit Test Runner in node
 - [x] Linting
