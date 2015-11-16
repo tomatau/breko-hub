@@ -13,13 +13,13 @@ const filesToRun = [
   ...glob.sync('**/*.test.es6'),
 ]
 
-filesToRun.forEach(function(file) {
+filesToRun.forEach(file => {
   mocha.addFile(path.resolve(ROOT, file))
 })
 
 mocha.run(failures => {
-  process.on('exit', function () {
-    process.exit(failures);
-  });
+  process.on('exit', () => {
+    process.exit(failures)
+  })
 })
 

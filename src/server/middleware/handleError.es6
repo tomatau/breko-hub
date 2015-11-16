@@ -1,5 +1,5 @@
 import log from 'npmlog'
-import {set} from 'lodash';
+import { set } from 'lodash'
 
 export default function *handleError(next) {
   try {

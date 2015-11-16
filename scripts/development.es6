@@ -33,6 +33,7 @@ app.use(function *() {
 })
 const server = http.createServer(app.callback())
 const socketServer = require(ROOT + '/src/server/sockets')(server)
+global.socketServer = socketServer
 
 const watcher = chokidar.watch(path.join(ROOT, '/src/server'))
 watcher.on('ready', () => {
