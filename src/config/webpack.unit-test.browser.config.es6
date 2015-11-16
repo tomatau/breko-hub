@@ -32,7 +32,7 @@ export default {
     ...webpackConfig.resolve,
     modulesDirectories: [ 'node_modules', TESTS ],
     alias: {
-      'npmlog': path.join(TESTS, 'stubs/npmlog'),
+      'debug': path.join(TESTS, 'stubs/debug'),
       'koa-body': path.join(TESTS, 'stubs/koaBody'),
       'fs': path.join(TESTS, 'stubs/fs'),
     },
