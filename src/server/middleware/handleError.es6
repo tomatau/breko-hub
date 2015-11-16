@@ -1,4 +1,4 @@
-import log from 'npmlog'
+import debug from 'debug'
 import { set } from 'lodash'
 
 export default function *handleError(next) {
@@ -6,7 +6,7 @@ export default function *handleError(next) {
     yield next
     set(this, 'session.state', null)
   } catch (err) {
-    log.error('handle-error', err)
+    debug('handle-error')(err)
     this.app.emit('error', err, this)
     this.redirect('/oops')
   }

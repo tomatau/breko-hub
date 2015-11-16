@@ -5,16 +5,14 @@ import { makeContent } from '~/src/app/utils/makeContent'
 import { defaultMiddleware, makeCreateStore } from '~/src/app/store/configureStore'
 import rootReducer from '~/src/app/reducers'
 import io from 'socket.io-client'
+import debug from 'debug'
+debug.enable(process.env.DEBUG)
 
-/* eslint-disable no-console */
-console.info(`Running in [${process.env.NODE_ENV}] environment`)
-/* eslint-enable no-console */
+debug('Environment')(`Running in [${process.env.NODE_ENV}] environment`)
 
 const socket = io()
 socket.on('connect', () => {
-  /* eslint-disable no-console */
-  console.info('Client connected to socket')
-  /* eslint-enable no-console */
+  debug('socket-client')('Client connected to socket')
 })
 
 const middleware = [

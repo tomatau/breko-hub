@@ -1,7 +1,7 @@
 import '~/src/config/environment'
 import koa from 'koa'
 import webpack from 'webpack'
-import log from 'npmlog'
+import debug from 'debug'
 import webpackConfig from '~/src/config/webpack.unit-test.browser.config'
 
 const compiler = webpack(webpackConfig)
@@ -20,5 +20,5 @@ app.use(require('koa-webpack-dev-middleware')(compiler, {
 app.use(require('koa-webpack-hot-middleware')(compiler))
 
 app.listen(process.env.PORT, () => {
-  log.info(`Serving`, `http://localhost:${process.env.PORT}`)
+  debug(`serving`)(`http://localhost:${process.env.PORT}`)
 })

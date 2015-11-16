@@ -1,8 +1,10 @@
 import { ROOT, STYLES } from '~/src/config/paths'
 import cssModulesHook from 'css-modules-require-hook'
 import sass from 'node-sass'
+import debug from 'debug'
 import loaderUtils from 'loader-utils'
 
+debug('css-modules')('Building CSS-modules for all .scss and .css files')
 cssModulesHook({
   extensions: [ '.scss', '.css' ],
   generateScopedName(exportedName, exportedPath) {

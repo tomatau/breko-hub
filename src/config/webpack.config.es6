@@ -28,6 +28,7 @@ export default {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'DEBUG': JSON.stringify(process.env.DEBUG),
       },
     }),
     new webpack.optimize.CommonsChunkPlugin({

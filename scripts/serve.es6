@@ -4,7 +4,7 @@ import http from 'http'
 import koa from 'koa'
 import serve from 'koa-static'
 import mount from 'koa-mount'
-import log from 'npmlog'
+import debug from 'debug'
 import { ROOT, STATIC } from '~/src/config/paths'
 
 const app = koa()
@@ -19,5 +19,5 @@ const socketServer = require(ROOT + '/src/server/sockets')(server)
 global.socketServer = socketServer
 
 server.listen(process.env.PORT, () => {
-  log.info(`Serving`, `http://localhost:${process.env.PORT}`)
+  debug(`Serving`)(`http://localhost:${process.env.PORT}`)
 })

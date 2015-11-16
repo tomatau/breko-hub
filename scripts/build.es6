@@ -1,6 +1,6 @@
 import '~/src/config/environment'
 import './helpers/cleanAssetJson.es6'
-import log from 'npmlog'
+import debug from 'debug'
 import webpack from 'webpack'
 import webpackConfig from '~/src/config/webpack.production.config'
 
@@ -8,10 +8,10 @@ const compiler = webpack(webpackConfig)
 
 compiler.run((err, stats) => {
   if (err) {
-    log.error('webpack-compile', err)
+    debug('webpack-compile', err)
     process.exit(1)
   }
-  log.info('webpack-compile', stats.toString({
+  debug('webpack-compile', stats.toString({
     colors: true,
     // reasons: true,
   }))

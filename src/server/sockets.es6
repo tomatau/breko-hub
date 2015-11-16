@@ -1,13 +1,13 @@
 import Server from 'socket.io'
-import log from 'npmlog'
+import debug from 'debug'
 
 export default function(server) {
+  debug('sockets')('Starting socket server')
   const socketServer = Server(server)
-
   socketServer.on('connection', socket => {
-    log.verbose('socket:connected', socket.id)
+    debug('socket:connected')(socket.id)
     socket.on('disconnect', ()=> {
-      log.verbose('socket:disconnected', socket.id)
+      debug('socket:disconnected')(socket.id)
     })
   })
 
