@@ -15,7 +15,8 @@ export const makeCreateStore = (middleware=defaultMiddleware) => {
   const BROWSER = isBrowser()
   const DEVELOPMENT = process.env.NODE_ENV === 'development'
 
-  if (BROWSER) middleware.push(
+  if (BROWSER)
+    middleware.push(
       createLogger({
         predicate: () => DEVELOPMENT,
       })

@@ -4,14 +4,17 @@ import debug from 'debug'
 import webpack from 'webpack'
 import webpackConfig from '~/src/config/webpack.production.config'
 
+const log = {
+  webpack: debug('webpack-compile'),
+}
 const compiler = webpack(webpackConfig)
 
 compiler.run((err, stats) => {
   if (err) {
-    debug('webpack-compile', err)
+    log.webpack(err)
     process.exit(1)
   }
-  debug('webpack-compile', stats.toString({
+  log.webpack(stats.toString({
     colors: true,
     // reasons: true,
   }))

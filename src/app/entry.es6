@@ -7,12 +7,15 @@ import rootReducer from '~/src/app/reducers'
 import io from 'socket.io-client'
 import debug from 'debug'
 debug.enable(process.env.DEBUG)
-
-debug('Environment')(`Running in [${process.env.NODE_ENV}] environment`)
+const log = {
+  env: debug('environment'),
+  sock: debug('socket-client'),
+}
+log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
 const socket = io()
 socket.on('connect', () => {
-  debug('socket-client')('Client connected to socket')
+  log.sock('Client connected to socket')
 })
 
 const middleware = [

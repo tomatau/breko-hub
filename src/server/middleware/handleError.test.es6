@@ -38,16 +38,4 @@ describe('Handle Error Middleware', ()=> {
     sessionState.state = 'populated State'
     fakeARequest(app)
   })
-
-  // it('should redirect to oops', ()=> {
-  //   const app = koa()
-  //   app.use(function *(){
-  //     console.log('this')
-  //   })
-  //   app.use(handleError)
-  //   app.use(function *(next){
-  //     throw new Error('test')
-  //   })
-  //   fakeARequest(app)
-  // })
 })

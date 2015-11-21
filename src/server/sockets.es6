@@ -1,13 +1,17 @@
 import Server from 'socket.io'
 import debug from 'debug'
 
+const log = {
+  sockets: debug('sockets'),
+}
+
 export default function(server) {
-  debug('sockets')('Starting socket server')
+  log.sockets('Starting socket server')
   const socketServer = Server(server)
   socketServer.on('connection', socket => {
-    debug('socket:connected')(socket.id)
+    log.sockets('Connected', socket.id)
     socket.on('disconnect', ()=> {
-      debug('socket:disconnected')(socket.id)
+      log.sockets('Disconnected', socket.id)
     })
   })
 

@@ -6,7 +6,7 @@ if (!process.env.ENVIRONMENT) {
 }
 debug.enable(process.env.DEBUG)
 const configDebug = debug('config')
-configDebug('Setting Environment From File')
+!process.env.ENVIRONMENT && configDebug('Environment was set from `.env` file')
 configDebug(`Running in ENV`, process.env.NODE_ENV)
-configDebug(`Supplied PORT`, process.env.PORT)
+configDebug(`Supplied with PORT`, process.env.PORT)
 
