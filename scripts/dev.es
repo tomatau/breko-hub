@@ -1,6 +1,6 @@
 import '~/src/config/environment'
-import '~/scripts/helpers/cssModulesHook.es6'
-import '~/scripts/helpers/cleanAssetJson.es6'
+import '~/scripts/helpers/cssModulesHook'
+import '~/scripts/helpers/cleanAssetJson'
 import { ROOT } from '~/src/config/paths'
 import path from 'path'
 import http from 'http'

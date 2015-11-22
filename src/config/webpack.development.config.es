@@ -36,7 +36,7 @@ export default {
         'style', 'css!sass'
       ),
     }, {
-      test: /\.es6$/,
+      test: /\.(es6?|jsx)$/,
       include: [ /src\/app/, /test/ ],
       loader: 'babel',
       query: {

@@ -4,15 +4,15 @@ const argv = require('yargs').argv
 const file = (() => {
   switch(true) {
     case argv.test:
-      return argv.run ? 'test-run.es6' : 'test.es6'
+      return argv.run ? 'test-run.es' : 'test.es'
     case argv.dev:
-      return 'dev.es6'
+      return 'dev.es'
     case argv.build:
-      return 'build.es6'
+      return 'build.es'
     default:
     case argv.production:
     case argv.serve:
-      return 'serve.es6'
+      return 'serve.es'
   }
 })()
 

@@ -73,7 +73,7 @@ Using webpack-middleware to build the assets into tmp and serving with hot reloa
 npm test
 ```
 
-Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.es6` or imported directly from within `./test/index.es6`.
+Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.es` or imported directly from within `./test/index.es`.
 
 This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser (including most server code).
 
@@ -123,7 +123,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 
 This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `LOG_LEVEL or NPM_CONFIG_LOG_LEVEL`. When developing, it's nice to use a `.env` file, so the configuration will look for `process.env.ENVIRONMENT` and if this is a falsey value -- it will load an environment from your `.env`. Therefore, in production, it is worth setting `ENVIRONMENT=true` to prevent the `.env` file from being used.
 
-**ES6 Imports**
+**ES Imports**
 
 This project is ran through babel stage 0, also with the help of a plug-in named `babel-root-imports` which resolves modules according to the project route when the suffix `~` is used. 
 
@@ -133,7 +133,7 @@ Using absolute requires helps with module portability and clarity, no-one enjoys
 
 When concentrating on load time performance of an application, it's a large improvement to focus on the above-the-fold or asynchronous asset loading split. So, there are intentionally, 2 entry points for this application, `body` and `head`. This is to give the developer more control over where their scripts are injected into the page. The bodyStyles array will load in css asynchronously after DOMContentLoaded.
 
-Unfortunately the CSS to JS correspondence in many projects are not perfect, as JS required in the body build could require a CSS file that is suitable for the `head.css` bundle. The developer can configure this in `src/server/middleware/renderRouteContext.es6` by moving the available assets into the appropriate inclusion array.  Also the ExtractTextPlugin will grab CSS (that isn't modular) into the head bundle from the body build.
+Unfortunately the CSS to JS correspondence in many projects are not perfect, as JS required in the body build could require a CSS file that is suitable for the `head.css` bundle. The developer can configure this in `src/server/middleware/renderRouteContext.es` by moving the available assets into the appropriate inclusion array.  Also the ExtractTextPlugin will grab CSS (that isn't modular) into the head bundle from the body build.
 
 Whilst developing, to make the most of CSS hot reloading on the client, CSS-modules are not caught by ExtractTextPlugin -- this will be disabled in production but can be configured in the appropriate configurations.
 

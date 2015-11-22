@@ -15,8 +15,8 @@ export default {
     main: [
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
-      `mocha!${TESTS}/index.es6`,
-      ...glob.sync('**/*.test.es6').map(file =>
+      `mocha!${TESTS}/index.es`,
+      ...glob.sync('**/*.test.es').map(file =>
         `mocha!${path.join(ROOT, file)}`
       ),
       'webpack-hot-middleware/client',
@@ -53,7 +53,7 @@ export default {
         'style', 'css!sass'
       ),
     }, {
-      test: /\.es6$/,
+      test: /\.(es6?|jsx)$/,
       include: [ /src/, /test/ ],
       loader: 'babel',
       query: {

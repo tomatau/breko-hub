@@ -1,5 +1,5 @@
 import '~/src/config/environment'
-import './helpers/cssModulesHook.es6'
+import './helpers/cssModulesHook'
 import http from 'http'
 import koa from 'koa'
 import serve from 'koa-static'

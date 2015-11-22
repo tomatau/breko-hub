@@ -1,5 +1,5 @@
 import '~/src/config/environment'
-import './helpers/cleanAssetJson.es6'
+import './helpers/cleanAssetJson'
 import debug from 'debug'
 import webpack from 'webpack'
 import webpackConfig from '~/src/config/webpack.production.config'
