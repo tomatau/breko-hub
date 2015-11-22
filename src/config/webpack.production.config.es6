@@ -39,6 +39,8 @@ export default {
         stage: 0,
         optional: [ 'runtime' ],
         'plugins': [
+          'lodash',
+          'react-require',
           'babel-root-import',
         ],
       },

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import makeRoutes from '~/src/app/makeRoutes'
-import { history } from '~/src/app/utils/history'
+import { history } from '~/src/app/store/history'
 import { makeContent } from '~/src/app/utils/makeContent'
 import { defaultMiddleware, makeCreateStore } from '~/src/app/store/configureStore'
 import rootReducer from '~/src/app/reducers'

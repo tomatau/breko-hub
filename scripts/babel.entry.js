@@ -5,8 +5,8 @@ const file = (() => {
   switch(true) {
     case argv.test:
       return argv.run ? 'test-run.es6' : 'test.es6'
-    case argv.development:
-      return 'development.es6'
+    case argv.dev:
+      return 'dev.es6'
     case argv.build:
       return 'build.es6'
     default:

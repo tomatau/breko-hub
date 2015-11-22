@@ -1,10 +1,13 @@
-import { ROOT } from '~/src/config/paths'
+import { ASSET_FILE } from '~/src/config/paths'
 import debug from 'debug'
 import rimraf from 'rimraf'
+const log = {
+  clean: debug('clean-assets'),
+}
 
-rimraf(`${ROOT}/webpack-assets.json`, err => {
+rimraf(ASSET_FILE, err => {
   if (err) {
-    debug('clean-assets')(err)
+    log.clean(err)
     process.exit(1)
   }
 })

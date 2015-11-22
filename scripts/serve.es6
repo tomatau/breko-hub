@@ -15,8 +15,7 @@ app.use(function *() {
   yield mount(require(ROOT + '/src/server'))
 })
 const server = http.createServer(app.callback())
-const socketServer = require(ROOT + '/src/server/sockets')(server)
-global.socketServer = socketServer
+global.socketServer = require(ROOT + '/src/server/sockets')(server)
 
 server.listen(process.env.PORT, () => {
   debug(`Serving`)(`http://localhost:${process.env.PORT}`)

@@ -6,7 +6,8 @@ export const makeContent = (routes, store) =>
   <Provider store={store}>
     <div className='bh-app__root'>
       {routes}
-      {(process.env.NODE_ENV !== 'development') ? null :
-        <DevTools />}
+      {(process.env.NODE_ENV === 'development')
+        ? <DevTools />
+        : null}
     </div>
   </Provider>

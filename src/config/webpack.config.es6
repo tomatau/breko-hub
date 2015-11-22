@@ -20,7 +20,7 @@ export default {
     root: APP,
     modulesDirectories: [ 'node_modules', STYLES ],
     extensions: [
-      '', '.js', '.jsx', '.es6', '.scss',
+      '', '.js', '.jsx', '.es', '.es6', '.scss',
     ],
   },
   plugins: [
@@ -42,6 +42,18 @@ export default {
     loaders: [ {
       test: /.*\.(gif|png|jpe?g|svg)$/i,
       loader: 'file',
+    // }, {
+    //   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+    //   loader: "url?limit=10000&minetype=application/font-woff"
+    // }, {
+    //   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+    //   loader: "url?limit=10000&minetype=application/octet-stream"
+    // }, {
+    //   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+    //   loader: "file"
+    // }, {
+    //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    //   loader: "url?limit=10000&minetype=image/svg+xml"
     }, {
       test: /\.json$/i,
       loader: 'json',

@@ -6,7 +6,6 @@ import webpackConfig from './webpack.config'
 
 export default {
   ...webpackConfig,
-  devtool: 'cheap-module-eval-source-map',
   entry: {
     ...webpackConfig.entry,
     head: [
@@ -14,6 +13,7 @@ export default {
       'webpack-hot-middleware/client',
     ],
   },
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new IsomorphicToolsPlugin(isomorphicConfig).development(),

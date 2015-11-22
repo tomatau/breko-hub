@@ -3,15 +3,20 @@ import cssModulesHook from 'css-modules-require-hook'
 import sass from 'node-sass'
 import debug from 'debug'
 import loaderUtils from 'loader-utils'
+const log = {
+  css: debug('css-hook'),
+}
 
-debug('css-modules')('Building CSS-modules for all .scss and .css files')
+log.css('Building CSS-modules for all .scss and .css files')
 cssModulesHook({
   extensions: [ '.scss', '.css' ],
   generateScopedName(exportedName, exportedPath) {
-    const path = exportedPath.substr(1)
+    const path = exportedPath
+      .replace(`${ROOT}/`, '')
+      .replace(/^\//, '')
       .replace(/\.s?css$/, '')
       .replace(/\/|\./g, '-')
-    return path + '-' + exportedName
+    return `${path}-${exportedName}`
   },
   preprocessCss(css/*, filename*/) {
     return sass.renderSync({

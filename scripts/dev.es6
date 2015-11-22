@@ -1,6 +1,6 @@
 import '~/src/config/environment'
-import './helpers/cssModulesHook.es6'
-import './helpers/cleanAssetJson.es6'
+import '~/scripts/helpers/cssModulesHook.es6'
+import '~/scripts/helpers/cleanAssetJson.es6'
 import { ROOT } from '~/src/config/paths'
 import path from 'path'
 import http from 'http'
@@ -11,7 +11,7 @@ import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
 import webpackConfig from '~/src/config/webpack.development.config'
-
+import isomorphicTools from '~/src/server/isomorphicTools'
 const log = {
   app: debug('app'),
   hot: debug('hot-reload'),
@@ -21,6 +21,9 @@ const compiler = webpack(webpackConfig)
 const app = koa()
 
 app.keys = [ 'd0n7', '7311', '4ny0n3' ]
+
+compiler.plugin('compile', () => log.app('Webpack compile started...'))
+compiler.plugin('compilation', () => log.app('Webpack compiling...'))
 
 app.use(require('koa-webpack-dev-middleware')(compiler, {
   quiet: true,
@@ -59,6 +62,7 @@ compiler.plugin('done', () => {
     if (/\/app\//.test(id)) delete require.cache[id]
     if (/\/server\//.test(id)) delete require.cache[id]
   })
+  isomorphicTools.refresh()
 })
 
 server.listen(process.env.PORT, () => {

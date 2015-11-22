@@ -8,7 +8,7 @@ import createStore from '~/src/server/middleware/createStore'
 import setRouteContext from '~/src/server/middleware/setRouteContext'
 import renderRouteContext from '~/src/server/middleware/renderRouteContext'
 
-export default function configureRouter(app, isomorphicTools) {
+export default function configureRouter(app, assets) {
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
   const rootRouter = Router()
   const apiRouter = Router()
@@ -24,7 +24,7 @@ export default function configureRouter(app, isomorphicTools) {
   const renderApp = compose(
     createStore,
     setRouteContext(makeRoutes),
-    renderRouteContext(isomorphicTools.assets())
+    renderRouteContext(assets)
   )
 
   rootRouter
