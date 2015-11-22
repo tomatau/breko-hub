@@ -14,6 +14,7 @@ app.use(serve(STATIC))
 app.use(function *() {
   yield mount(require(ROOT + '/src/server'))
 })
+
 const server = http.createServer(app.callback())
 global.socketServer = require(ROOT + '/src/server/sockets')(server)
 

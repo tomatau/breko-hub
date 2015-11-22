@@ -1,18 +1,34 @@
 import Server from 'socket.io'
 import debug from 'debug'
+import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
+import rootReducer from '~/src/app/reducers'
+import { defaultMiddleware, makeCreateStore } from '~/src/app/store/configureStore'
 
 const log = {
   sockets: debug('sockets'),
 }
 
-export default function(server) {
+export default function sockets(server) {
   log.sockets('Starting socket server')
   const socketServer = Server(server)
+  const middleware = [
+    ...defaultMiddleware,
+    outServerViaSocketIO(socketServer),
+  ]
+
+  const serverStore = makeCreateStore(middleware)(rootReducer, {})
+
   socketServer.on('connection', socket => {
-    log.sockets('Connected', socket.id)
+    log.sockets('New connection made with id', socket.id)
     socket.on('disconnect', ()=> {
       log.sockets('Disconnected', socket.id)
     })
+  })
+
+  inServerViaSocketIO(socketServer, (action, socket) => {
+    log.sockets('Action', `${socket.id} -- ${action.type}`)
+    log.sockets('Payload', action.payload)
+    serverStore.dispatch(action)
   })
 
   return socketServer
