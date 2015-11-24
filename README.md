@@ -106,7 +106,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] Session middleware, favicon, compression and logging
 - [x] Flash messages middleware to server generated InitialState
 - [x] Socket integration 
-- [ ] Sockets through redux reducer chain
+- [x] Sockets through redux reducer chain
 - [ ] Upgrade babel to v6
 - [ ] Example application
 - [x] Upgrade React 0.14.2
@@ -115,6 +115,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] Unit Test Runner in node
 - [x] Linting
 - [x] Unit tests for server compose middleware
+- [ ] React router state in store
 - [ ] Unit tests for client reducers
 
 ## Details

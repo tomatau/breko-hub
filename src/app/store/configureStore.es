@@ -15,21 +15,24 @@ export const makeCreateStore = (middleware=defaultMiddleware) => {
   const BROWSER = isBrowser()
   const DEVELOPMENT = process.env.NODE_ENV === 'development'
 
-  if (BROWSER)
+  if (BROWSER) {
     middleware.push(
       createLogger({
         predicate: () => DEVELOPMENT,
       })
     )
+  }
 
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]
 
   if (DEVELOPMENT) {
     topLevelMiddleware.push(DevTools.instrument())
-    if (BROWSER)
+
+    if (BROWSER) {
       topLevelMiddleware.push(persistState(
         window.location.href.match(/[?&]debug_session=([^&]+)\b/)
       ))
+    }
   }
 
   return compose(...topLevelMiddleware)(createStore)
