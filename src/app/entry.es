@@ -5,6 +5,7 @@ import { makeContent } from '~/src/app/utils/makeContent'
 import { defaultMiddleware, makeCreateStore } from '~/src/app/store/configureStore'
 import rootReducer from '~/src/app/reducers'
 import { outClientViaSocketIO, inClientViaSocketIO } from 'redux-via-socket.io'
+import { syncReduxAndRouter } from 'redux-simple-router'
 import io from 'socket.io-client'
 import debug from 'debug'
 debug.enable(process.env.DEBUG)
@@ -20,6 +21,8 @@ const store = makeCreateStore([
   ...defaultMiddleware,
   outClientViaSocketIO(socket),
 ])(rootReducer, window.__INITIAL_STATE__)
+
+syncReduxAndRouter(history, store)
 inClientViaSocketIO(socket, store.dispatch)
 
 socket.on('connect', () => {

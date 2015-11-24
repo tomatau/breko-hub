@@ -12,6 +12,10 @@ export default function *createStore(next) {
   this.store = makeCreateStore(middleware)(rootReducer, {
     error: { errors: compact([ error ]) },
     flash: { messages: flash || {} },
+    routing: {
+      changeId: 1,
+      path: this.request.url,
+    },
     ...initialState || {},
   })
   yield next
