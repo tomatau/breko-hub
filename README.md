@@ -115,7 +115,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] Unit Test Runner in node
 - [x] Linting
 - [x] Unit tests for server compose middleware
-- [ ] React router state in store
+- [x] React router state in store with redux-simple-router
 - [ ] Unit tests for client reducers
 
 ## Details
