@@ -37,10 +37,13 @@ app.use(require('koa-webpack-dev-middleware')(compiler, {
 
 app.use(require('koa-webpack-hot-middleware')(compiler))
 
-app.use(function *() {
-  log.app('Mounting koa app')
-  yield mount(require(ROOT + '/src/server'))
+isomorphicTools.server(ROOT, () => {
+  app.use(function *() {
+    log.app('Mounting koa app')
+    yield mount(require(ROOT + '/src/server')(isomorphicTools.assets()))
+  })
 })
+
 const server = http.createServer(app.callback())
 global.socketServer = require(ROOT + '/src/server/sockets')(server)
 

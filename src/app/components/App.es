@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <main className={style.app}>
         <HeadNavigation />
-        <img src={img} alt='me' width='70' style={{ float: 'right' }} />
+        <img src={img} alt='mee' width='70' style={{ float: 'right' }} />
         <h1>The App</h1>
         Page: { this.props.children || 'index' }
       </main>

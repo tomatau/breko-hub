@@ -3,17 +3,17 @@ import compress from 'koa-compress'
 import session from 'koa-session-store'
 import logger from 'koa-logger'
 import favicon from 'koa-favicon'
-import { ROOT, SRC } from '~/src/config/paths'
-import isomorphicTools from '~/src/server/isomorphicTools'
+import { SRC } from '~/src/config/paths'
 import sessionFlashArray from '~/src/server/middleware/sessionFlashArray'
 import configureRouter from '~/src/server/configureRouter'
 
-const app = koa()
+export default function(assets) {
 
-app.use(compress())
-app.use(favicon(`${SRC}/favicon.ico`))
+  const app = koa()
 
-isomorphicTools.server(ROOT, () => {
+  app.use(compress())
+  app.use(favicon(`${SRC}/favicon.ico`))
+
   app.use(session())
   app.use(sessionFlashArray())
 
@@ -21,7 +21,7 @@ isomorphicTools.server(ROOT, () => {
     app.use(logger())
   }
 
-  configureRouter(app, isomorphicTools.assets())
-})
+  configureRouter(app, assets)
 
-export default app
+  return app
+}

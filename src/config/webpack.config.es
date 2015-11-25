@@ -1,6 +1,10 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import { APP, STATIC, STYLES } from '~/src/config/paths'
+import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
+import isomorphicConfig from '~/src/config/isomorphic.config'
+
+const isoToolsPlugin = new IsomorphicToolsPlugin(isomorphicConfig)
 
 export default {
   entry: {
@@ -40,8 +44,10 @@ export default {
   ],
   module: {
     loaders: [ {
-      test: /.*\.(gif|png|jpe?g|svg)$/i,
-      loader: 'file',
+      // test: /.*\.(gif|png|jpe?g|svg)$/i,
+      test: isoToolsPlugin.regular_expression('images'),
+      loader: 'url-loader?limit=10240',
+      // loader: 'file',
     // }, {
     //   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
     //   loader: "url?limit=10000&minetype=application/font-woff"

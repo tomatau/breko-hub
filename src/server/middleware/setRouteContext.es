@@ -15,7 +15,6 @@ export default function(makeRoutes) {
         return this.throw(404, 'Not found')
       else
         this.routeContext = <RoutingContext {...renderProps} />
-      console.log(renderProps)
     })
     yield next
   }
