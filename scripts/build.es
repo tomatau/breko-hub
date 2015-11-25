@@ -2,12 +2,15 @@ import '~/src/config/environment'
 import './helpers/cleanAssetJson'
 import debug from 'debug'
 import webpack from 'webpack'
-import webpackConfig from '~/src/config/webpack.production.config'
+import webpackProductionConfig from '~/src/config/webpack.production.config'
 
 const log = {
   webpack: debug('webpack-compile'),
+  build: debug('build'),
 }
-const compiler = webpack(webpackConfig)
+log.build('Forcing into [production] environment')
+process.env.NODE_ENV = 'production'
+const compiler = webpack(webpackProductionConfig)
 
 compiler.run((err, stats) => {
   if (err) {
