@@ -54,6 +54,7 @@ export class Html extends React.Component {
               __html: ::this.getDivContent(),
             }}
           />
+          <div id='debug-panel-root' />
           {bodyScripts.map((script, i) =>
             <script src={script} key={i} />
           )}

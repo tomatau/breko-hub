@@ -8,6 +8,8 @@ import { outClientViaSocketIO, inClientViaSocketIO } from 'redux-via-socket.io'
 import { syncReduxAndRouter } from 'redux-simple-router'
 import io from 'socket.io-client'
 import debug from 'debug'
+import DevTools from '~/src/app/components/containers/DevTools'
+
 debug.enable(process.env.DEBUG)
 const log = {
   env: debug('environment'),
@@ -38,6 +40,13 @@ ReactDOM.render(
   makeContent(makeRoutes(history), store),
   document.getElementById('application-root')
 )
+
+if (process.env.NODE_ENV === 'development') {
+  ReactDOM.render(
+    makeContent(<DevTools />, store),
+    document.getElementById('debug-panel-root')
+  )
+}
 
 if (module.hot) {
   module.hot.accept('./reducers', () =>

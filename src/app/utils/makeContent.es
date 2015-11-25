@@ -1,13 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import DevTools from '~/src/app/components/containers/DevTools'
 
-export const makeContent = (routes, store) =>
+export const makeContent = (content, store) =>
   <Provider store={store}>
-    <div className='bh-app__root'>
-      {routes}
-      {(process.env.NODE_ENV === 'development')
-        ? <DevTools />
-        : null}
-    </div>
+    {content}
   </Provider>
