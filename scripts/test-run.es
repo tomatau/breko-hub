@@ -9,8 +9,8 @@ const mocha = new Mocha({
 })
 
 const filesToRun = [
-  ...[ `${TESTS}/index.es6` ],
-  ...glob.sync('**/*.test.es6'),
+  ...[ `${TESTS}/index.es` ],
+  ...glob.sync('**/*.test.es'),
 ]
 
 filesToRun.forEach(file => {
