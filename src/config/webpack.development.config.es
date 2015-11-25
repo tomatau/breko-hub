@@ -1,8 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
-import isomorphicConfig from '~/src/config/isomorphic.config'
 import webpackConfig from './webpack.config'
+import { isomorphicPlugin } from '~/src/server/isomorphicTools'
 
 export default {
   ...webpackConfig,
@@ -16,7 +15,7 @@ export default {
   devtool: 'cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new IsomorphicToolsPlugin(isomorphicConfig).development(),
+    isomorphicPlugin,
     ...webpackConfig.plugins,
   ],
   module: {

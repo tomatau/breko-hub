@@ -1,12 +1,11 @@
 import webpack from 'webpack'
 import path from 'path'
-import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
+import glob from 'glob'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import isomorphicConfig from '~/src/config/isomorphic.config'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpackConfig from './webpack.config'
 import { TESTS, ROOT } from '~/src/config/paths'
-import glob from 'glob'
+import { isomorphicPlugin } from '~/src/server/isomorphicTools'
 
 export default {
   ...webpackConfig,
@@ -24,7 +23,7 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new IsomorphicToolsPlugin(isomorphicConfig).development(),
+    isomorphicPlugin,
     ...webpackConfig.plugins,
     new HtmlWebpackPlugin(),
   ],

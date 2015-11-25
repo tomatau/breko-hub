@@ -11,7 +11,7 @@ import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
 import webpackConfig from '~/src/config/webpack.development.config'
-import isomorphicTools from '~/src/server/isomorphicTools'
+import { isomorphicTools } from '~/src/server/isomorphicTools'
 const log = {
   app: debug('app'),
   hot: debug('hot-reload'),
@@ -40,7 +40,8 @@ app.use(require('koa-webpack-hot-middleware')(compiler))
 isomorphicTools.server(ROOT, () => {
   app.use(function *() {
     log.app('Mounting koa app')
-    yield mount(require(ROOT + '/src/server')(isomorphicTools.assets()))
+    const apiServer = require(ROOT + '/src/server')
+    yield mount(apiServer(isomorphicTools.assets()))
   })
 })
 

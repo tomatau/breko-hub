@@ -1,10 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import { APP, STATIC, STYLES } from '~/src/config/paths'
-import IsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin'
-import isomorphicConfig from '~/src/config/isomorphic.config'
-
-const isoToolsPlugin = new IsomorphicToolsPlugin(isomorphicConfig)
+import { isomorphicPlugin } from '~/src/server/isomorphicTools'
 
 export default {
   entry: {
@@ -44,22 +41,20 @@ export default {
   ],
   module: {
     loaders: [ {
-      // test: /.*\.(gif|png|jpe?g|svg)$/i,
-      test: isoToolsPlugin.regular_expression('images'),
+      test: isomorphicPlugin.regular_expression('images'),
       loader: 'url-loader?limit=10240',
-      // loader: 'file',
-    // }, {
-    //   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-    //   loader: "url?limit=10000&minetype=application/font-woff"
-    // }, {
-    //   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-    //   loader: "url?limit=10000&minetype=application/octet-stream"
-    // }, {
-    //   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-    //   loader: "file"
-    // }, {
-    //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    //   loader: "url?limit=10000&minetype=image/svg+xml"
+    }, {
+      test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+      loader: 'url?limit=10000&minetype=application/font-woff',
+    }, {
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      loader: 'url?limit=10000&minetype=application/octet-stream',
+    }, {
+      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      loader: 'file',
+    }, {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      loader: 'url?limit=10000&minetype=image/svg+xml',
     }, {
       test: /\.json$/i,
       loader: 'json',
