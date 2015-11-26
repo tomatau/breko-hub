@@ -117,7 +117,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] Unit tests for server compose middleware
 - [x] React router state in store with redux-simple-router
 - [ ] Unit tests for client reducers
-- [ ] Universal component data fetching for a route
+- [~] Universal component data fetching for a route
 
 ## Details
 
