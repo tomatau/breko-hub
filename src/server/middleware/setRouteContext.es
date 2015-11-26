@@ -17,9 +17,7 @@ export default function(makeRoutes) {
           return this.throw(404, 'Not found')
         else
           loadPropsOnServer(renderProps, (err, asyncProps) => {
-            this.asyncPropsState = asyncProps.propsArray.reduce((acc, v)=>
-              ({ ...acc, ...v }), {}
-            )
+            this.asyncPropsState = asyncProps.propsArray
             this.routeContext = <AsyncProps {...renderProps} {...asyncProps}/>
             resolve()
           })
