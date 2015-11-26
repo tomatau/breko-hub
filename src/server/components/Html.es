@@ -9,7 +9,7 @@ export class Html extends React.Component {
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
     headStyles: PropTypes.array,
-    asyncPropsState: PropTypes.object,
+    asyncPropsState: PropTypes.array,
   };
 
   static defaultProps = {

@@ -7,6 +7,7 @@ import { socket } from '~/src/app/state/socket'
 import debug from 'debug'
 import { syncReduxAndRouter } from 'redux-simple-router'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
+import { enableBatching } from 'redux-batched-actions'
 
 const log = {
   store: debug('store'),
@@ -14,7 +15,8 @@ const log = {
 }
 
 export const store = makeCreateStore(middleware)(
-  rootReducer, isBrowser() ? window.__INITIAL_STATE__ : {}
+  enableBatching(rootReducer),
+  isBrowser() ? window.__INITIAL_STATE__ : {}
 )
 
 if (isBrowser()) {
