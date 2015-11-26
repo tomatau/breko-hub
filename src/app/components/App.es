@@ -8,6 +8,7 @@ import debug from 'debug'
 debug('App.es')('Customisable logging for both node and browser')
 
 class App extends React.Component {
+
   render() {
     return (
       <main className={style.app}>

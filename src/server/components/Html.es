@@ -9,6 +9,7 @@ export class Html extends React.Component {
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
     headStyles: PropTypes.array,
+    asyncPropsState: PropTypes.object,
   };
 
   static defaultProps = {
@@ -23,6 +24,7 @@ export class Html extends React.Component {
       title, initialState,
       headStyles, headScripts,
       bodyScripts, bodyStyles,
+      asyncPropsState,
     } = this.props
     return (
       <html lang='en'>
@@ -43,6 +45,11 @@ export class Html extends React.Component {
               };`,
             }}
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__ASYNC_PROPS__ = '${JSON.stringify(asyncPropsState)}';`,
+            }}
+          />
           {headScripts.map((script, i) =>
             <script src={script} key={i} />
           )}
@@ -55,6 +62,11 @@ export class Html extends React.Component {
             }}
           />
           <div id='debug-panel-root' />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.props.inlineScript,
+            }}
+          />
           {bodyScripts.map((script, i) =>
             <script src={script} key={i} />
           )}

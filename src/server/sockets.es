@@ -2,10 +2,10 @@ import Server from 'socket.io'
 import debug from 'debug'
 import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
 import rootReducer from '~/src/app/reducers'
-import { defaultMiddleware, makeCreateStore } from '~/src/app/store/configureStore'
+import { defaultMiddleware, makeCreateStore } from '~/src/app/state/configureStore'
 
 const log = {
-  sockets: debug('sockets'),
+  sockets: debug('sockets-server'),
 }
 
 export default function sockets(server) {
