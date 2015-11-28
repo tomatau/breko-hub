@@ -28,7 +28,7 @@ export default function sockets(server) {
   inServerViaSocketIO(socketServer, (action, socket) => {
     log.sockets({
       socket: socket.id,
-      ...action
+      ...action,
     })
     serverStore.dispatch(action)
   })
