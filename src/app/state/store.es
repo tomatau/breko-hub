@@ -1,5 +1,5 @@
 import { isBrowser } from '~/src/app/utils/predicates'
-import { makeCreateStore } from '~/src/app/state/configureStore'
+import { makeCreateStore } from '~/src/app/state/makeCreateStore'
 import { history } from '~/src/app/state/history'
 import rootReducer from '~/src/app/reducers'
 import { middleware } from '~/src/app/state/middleware'

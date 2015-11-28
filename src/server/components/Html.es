@@ -9,7 +9,6 @@ export class Html extends React.Component {
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
     headStyles: PropTypes.array,
-    asyncPropsState: PropTypes.array,
   };
 
   static defaultProps = {
@@ -24,7 +23,6 @@ export class Html extends React.Component {
       title, initialState,
       headStyles, headScripts,
       bodyScripts, bodyStyles,
-      asyncPropsState,
     } = this.props
     return (
       <html lang='en'>
@@ -43,11 +41,6 @@ export class Html extends React.Component {
               __html: `window.__INITIAL_STATE__ = ${
                 JSON.stringify(initialState, null, 2)
               };`,
-            }}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__ASYNC_PROPS__ = '${JSON.stringify(asyncPropsState)}';`,
             }}
           />
           {headScripts.map((script, i) =>

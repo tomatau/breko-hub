@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
-import AsyncProps from 'async-props'
 import { Router } from 'react-router'
+import { getPrefetchedData } from 'react-fetcher'
 import { makeContent } from '~/src/app/utils/makeContent'
 import { history } from '~/src/app/state/history'
 import { store } from '~/src/app/state/store'
@@ -16,9 +16,14 @@ const log = {
 
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
+function handleRouterUpdate() {
+  const { components, location, params } = this.state
+  getPrefetchedData(components, { store, location, params })
+}
+
 ReactDOM.render(
   makeContent(
-    <Router history={history} RoutingContext={AsyncProps}>
+    <Router history={history} onUpdate={handleRouterUpdate}>
       {makeRoutes()}
     </Router>, store),
   document.getElementById('application-root')

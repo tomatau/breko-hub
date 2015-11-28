@@ -2,7 +2,7 @@ import Server from 'socket.io'
 import debug from 'debug'
 import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
 import rootReducer from '~/src/app/reducers'
-import { defaultMiddleware, makeCreateStore } from '~/src/app/state/configureStore'
+import { defaultMiddleware, makeCreateStore } from '~/src/app/state/makeCreateStore'
 
 const log = {
   sockets: debug('sockets-server'),
@@ -26,8 +26,10 @@ export default function sockets(server) {
   })
 
   inServerViaSocketIO(socketServer, (action, socket) => {
-    log.sockets('Action', `${socket.id} -- ${action.type}`)
-    log.sockets('Payload', action.payload)
+    log.sockets({
+      socket: socket.id,
+      ...action
+    })
     serverStore.dispatch(action)
   })
 

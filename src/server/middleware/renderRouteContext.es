@@ -4,12 +4,11 @@ import { Html } from '~/src/server/components/Html'
 import { makeContent } from '~/src/app/utils/makeContent'
 import { store } from '~/src/app/state/store'
 
-function makeHtml(initialState, assets, content, asyncPropsState) {
+function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
     <Html
       title={'Breko Hub'}
       initialState={initialState}
-      asyncPropsState={asyncPropsState}
       headScripts={[ assets.javascript.head ]}
       bodyScripts={[ assets.javascript.body ]}
       headStyles={[ assets.styles.body ]}
@@ -25,8 +24,7 @@ export default function renderRouteContext(assets) {
     const html = makeHtml(
       store.getState(),
       assets,
-      makeContent(routeContext, store),
-      this.asyncPropsState
+      makeContent(routeContext, store)
     )
     this.response.body = `<!doctype html>${html}`
   }
