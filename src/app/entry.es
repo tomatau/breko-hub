@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { getPrefetchedData } from 'react-fetcher'
+import { after } from 'lodash'
 import { makeContent } from '~/src/app/utils/makeContent'
 import { history } from '~/src/app/state/history'
 import { store } from '~/src/app/state/store'
@@ -23,7 +24,7 @@ function handleRouterUpdate() {
 
 ReactDOM.render(
   makeContent(
-    <Router history={history} onUpdate={handleRouterUpdate}>
+    <Router history={history} onUpdate={after(2, handleRouterUpdate)}>
       {makeRoutes()}
     </Router>, store),
   document.getElementById('application-root')
