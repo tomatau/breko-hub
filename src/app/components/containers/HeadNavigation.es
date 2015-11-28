@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as RRLink } from 'react-router'
+import { IndexLink, Link as RRLink } from 'react-router'
 import { updatePath } from 'redux-simple-router'
 import { connect } from 'react-redux'
 
@@ -13,6 +13,10 @@ class HeadNavigation extends React.Component {
   render() {
     return (
       <div>
+        <IndexLink to='/'>
+          Home
+        </IndexLink>
+        &nbsp;|&nbsp;
         <RRLink to='/foo'>
           Foo
         </RRLink>

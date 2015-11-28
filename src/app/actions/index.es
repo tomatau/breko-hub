@@ -1,0 +1,1 @@
+export reduxLoadProps from './reduxLoadProps'

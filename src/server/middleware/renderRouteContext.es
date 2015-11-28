@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { Html } from '~/src/server/components/Html'
 import { makeContent } from '~/src/app/utils/makeContent'
+import { store } from '~/src/app/state/store'
 
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
@@ -19,7 +20,7 @@ function makeHtml(initialState, assets, content) {
 
 export default function renderRouteContext(assets) {
   return function *() {
-    const { store, routeContext } = this
+    const { routeContext } = this
     const html = makeHtml(
       store.getState(),
       assets,
