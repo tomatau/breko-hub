@@ -64,6 +64,7 @@
     "node-env-file": "^0.1.7",
     "node-sass": "^3.4.2",
     "react": "^0.14.2",
+    "react-document-meta": "^2.0.0",
     "react-dom": "^0.14.2",
     "react-fetcher": "^0.2.0",
     "react-redux": "^4.0.0",

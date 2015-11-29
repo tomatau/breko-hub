@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
+import DocumentMeta from 'react-document-meta'
 import ReactDOMServer from 'react-dom/server'
 
 export class Html extends React.Component {
 
   static propTypes = {
-    title: PropTypes.string,
     initialState: PropTypes.object,
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
@@ -20,15 +20,14 @@ export class Html extends React.Component {
 
   render() {
     const {
-      title, initialState,
+      initialState,
       headStyles, headScripts,
       bodyScripts, bodyStyles,
     } = this.props
     return (
       <html lang='en'>
         <head>
-          <meta charSet='UTF-8' />
-          <title>{title}</title>
+          {DocumentMeta.renderAsReact()}
           <link rel='icon' type='image/x-icon' href='favicon.ico' />
           {headStyles.map((style, i) =>
             <link

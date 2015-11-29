@@ -1,11 +1,13 @@
 import React from 'react'
+import DocumentMeta from 'react-document-meta'
 
 class BarRoute extends React.Component {
   render() {
     return (
-      <div>
+      <section>
+        <DocumentMeta extend {...{ title: 'Breko Hub - Bar' }} />
         Bar
-      </div>
+      </section>
     )
   }
 }

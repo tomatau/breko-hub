@@ -2,7 +2,6 @@ import React from 'react'
 import { prefetch } from 'react-fetcher'
 import { isBrowser } from '~/src/app/utils/predicates'
 
-
 const fooFetchDataCreator = () => ({
   type: 'FOO_ROUTE_FETCH',
   payload: {
@@ -16,9 +15,9 @@ const fooFetchDataCreator = () => ({
 class FooRoute extends React.Component {
   render() {
     return (
-      <div>
+      <section>
         Foo
-      </div>
+      </section>
     )
   }
 }
