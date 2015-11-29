@@ -118,6 +118,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - [x] React router state in store with redux-simple-router
 - [ ] Unit tests for client reducers
 - [x] Universal route data fetching
+- [x] Universal document meta
 
 ## Details
 
