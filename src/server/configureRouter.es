@@ -9,13 +9,16 @@ import renderRouteContext from '~/src/server/middleware/renderRouteContext'
 
 const rootRouter = Router()
 const parseBody = koaBody()
+const removeRouterMiddleware = app =>
+  has(last(app.middleware), 'router') && app.middleware.pop()
+
 export default function configureRouter(app, assets) {
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
   const apiRouter = Router()
   rootRouter.stack.length = 0
 
   apiRouter
-    .post('ping', parseBody, function *() {
+    .post('ping', 'ping', parseBody, function *() {
       this.response.body = { pong: this.request.body }
     })
 
@@ -26,10 +29,9 @@ export default function configureRouter(app, assets) {
 
   rootRouter
     .use('/api', apiRouter.routes())
-    .get('/error', renderApp)
-    .get('/(.*)', renderApp)
+    .get('error', '/error', renderApp)
+    .get('react', '/(.*)', renderApp)
 
-  if (has(last(app.middleware), 'router')) app.middleware.pop()
-
+  removeRouterMiddleware(app)
   app.use(rootRouter.routes())
 }

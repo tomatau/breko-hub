@@ -14,7 +14,7 @@ import webpackConfig from '~/src/config/webpack.development.config'
 import { isomorphicTools } from '~/src/server/isomorphicTools'
 const log = {
   app: debug('app'),
-  hot: debug('hot-reload')
+  hot: debug('hot-reload'),
 }
 
 const compiler = webpack(webpackConfig)
