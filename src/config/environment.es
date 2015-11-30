@@ -7,10 +7,17 @@ if (!process.env.ENVIRONMENT) {
 }
 
 debug.enable(process.env.DEBUG)
-const configDebug = debug('config')
+const log = {
+  config: debug('config'),
+  err: debug('app-error'),
+}
+
+process.on('unhandledRejection', function(err) {
+  log.err('Promise rejection unhandled', err.stack)
+})
 
 if (!process.env.ENVIRONMENT)
-  configDebug('Environment was set from `.env` file')
-configDebug(`Running in ENV`, process.env.NODE_ENV)
-configDebug(`Supplied with PORT`, process.env.PORT)
+  log.config('Environment was set from `.env` file')
+log.config(`Running in ENV`, process.env.NODE_ENV)
+log.config(`Supplied with PORT`, process.env.PORT)
 

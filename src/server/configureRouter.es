@@ -1,4 +1,5 @@
 import path from 'path'
+import { last, has } from 'lodash'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
 import { APP } from '~/src/config/paths'
@@ -28,6 +29,7 @@ export default function configureRouter(app, assets) {
     .get('/error', renderApp)
     .get('/(.*)', renderApp)
 
-  console.log(app)
+  if (has(last(app.middleware), 'router')) app.middleware.pop()
+
   app.use(rootRouter.routes())
 }

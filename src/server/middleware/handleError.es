@@ -4,10 +4,6 @@ const log = {
   err: debug('handle-error'),
 }
 
-process.on('unhandledRejection', function(err) {
-  log.err('Promise rejection unhandled', err.stack)
-})
-
 export default function *handleError(next) {
   try {
     yield next
