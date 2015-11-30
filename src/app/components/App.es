@@ -14,7 +14,7 @@ const metaData = {
   title: 'Breko Hub',
   description: 'Breko Hub minimal boilerplate application',
   meta: {
-    charset: 'utf-8',
+    charSet: 'utf-8',
     name: {
       keywords: 'react,redux,react-router,koa,universal,babel,es7,hmr,webpack',
     },

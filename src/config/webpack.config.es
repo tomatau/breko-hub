@@ -32,12 +32,16 @@ export default {
         'DEBUG': JSON.stringify(process.env.DEBUG),
       },
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'head',
     }),
     new ExtractTextPlugin('[name].[hash].css',{
       allChunks: true,
     }),
+    // new webpack.ProvidePlugin({
+    //   React: "react"
+    // }),
   ],
   module: {
     loaders: [ {

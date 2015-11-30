@@ -54,11 +54,6 @@ export class Html extends React.Component {
             }}
           />
           <div id='debug-panel-root' />
-          <div
-            dangerouslySetInnerHTML={{
-              __html: this.props.inlineScript,
-            }}
-          />
           {bodyScripts.map((script, i) =>
             <script src={script} key={i} />
           )}

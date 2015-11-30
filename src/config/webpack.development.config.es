@@ -24,15 +24,18 @@ export default {
       include: [ /src\/app/ ],
       loaders: [
         'style',
-        'css?modules&localIdentName=[path][name]-[local]',
-        'sass',
+        'css' +
+          '?modules' +
+          '&localIdentName=[path][name]-[local]',
+        'sass' +
+          '?outputStyle=expanded',
       ],
     }, {
       test: /\.s?css$/,
       include: [ /src\/app/ ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
-        'style', 'css!sass'
+        'style', 'css!sass?outputStyle=expanded'
       ),
     }, {
       test: /\.(es6?|jsx)$/,

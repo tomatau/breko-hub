@@ -3,17 +3,15 @@ import Router from 'koa-router'
 import koaBody from 'koa-body'
 import { APP } from '~/src/config/paths'
 import compose from '~/src/server/utils/compose'
-import handleError from '~/src/server/middleware/handleError'
 import setRouteContext from '~/src/server/middleware/setRouteContext'
 import renderRouteContext from '~/src/server/middleware/renderRouteContext'
 
+const rootRouter = Router()
+const parseBody = koaBody()
 export default function configureRouter(app, assets) {
   const makeRoutes = require(path.join(APP, 'makeRoutes'))
-  const rootRouter = Router()
   const apiRouter = Router()
-  const parseBody = koaBody()
-
-  app.use(handleError)
+  rootRouter.stack.length = 0
 
   apiRouter
     .post('ping', parseBody, function *() {
@@ -30,5 +28,6 @@ export default function configureRouter(app, assets) {
     .get('/error', renderApp)
     .get('/(.*)', renderApp)
 
+  console.log(app)
   app.use(rootRouter.routes())
 }
