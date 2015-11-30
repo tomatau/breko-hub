@@ -7,7 +7,6 @@ import { store } from '~/src/app/state/store'
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
     <Html
-      title={'Breko Hub'}
       initialState={initialState}
       headScripts={[ assets.javascript.head ]}
       bodyScripts={[ assets.javascript.body ]}

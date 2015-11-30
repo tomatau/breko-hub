@@ -1,1 +1,1 @@
-export reduxLoadProps from './reduxLoadProps'
+
