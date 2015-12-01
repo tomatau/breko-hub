@@ -1,8 +1,8 @@
-import '~/src/config/environment'
+import 'config/environment'
 import koa from 'koa'
 import webpack from 'webpack'
 import debug from 'debug'
-import webpackConfig from '~/src/config/webpack.unit-test.browser.config'
+import webpackConfig from 'config/webpack.unit-test.browser.config'
 
 const compiler = webpack(webpackConfig)
 const app = koa()

@@ -1,8 +1,8 @@
-import '~/src/config/environment'
-import './helpers/cleanAssetJson'
+import 'config/environment'
+import '~/scripts/helpers/cleanAssetJson'
 import debug from 'debug'
 import webpack from 'webpack'
-import webpackProductionConfig from '~/src/config/webpack.production.config'
+import webpackProductionConfig from 'config/webpack.production.config'
 
 const log = {
   webpack: debug('webpack-compile'),

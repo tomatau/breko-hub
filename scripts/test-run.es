@@ -1,7 +1,7 @@
 import path from 'path'
 import Mocha from 'mocha'
 import glob from 'glob'
-import { TESTS, ROOT } from '~/src/config/paths'
+import { TESTS, ROOT } from 'config/paths'
 
 const mocha = new Mocha({
   reporter: 'nyan',

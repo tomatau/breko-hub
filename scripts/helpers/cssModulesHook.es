@@ -1,4 +1,4 @@
-import { ROOT, STYLES } from '~/src/config/paths'
+import { ROOT, STYLES } from 'config/paths'
 import cssModulesHook from 'css-modules-require-hook'
 import sass from 'node-sass'
 import debug from 'debug'

@@ -1,7 +1,7 @@
-import '~/src/config/environment'
+import 'config/environment'
 import '~/scripts/helpers/cssModulesHook'
 import '~/scripts/helpers/cleanAssetJson'
-import { ROOT } from '~/src/config/paths'
+import { ROOT } from 'config/paths'
 import path from 'path'
 import http from 'http'
 import koa from 'koa'
@@ -10,8 +10,8 @@ import webpack from 'webpack'
 import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
-import webpackConfig from '~/src/config/webpack.development.config'
-import { isomorphicTools } from '~/src/server/isomorphicTools'
+import webpackConfig from 'config/webpack.development.config'
+import { isomorphicTools } from 'server/isomorphicTools'
 const log = {
   app: debug('app'),
   hot: debug('hot-reload'),
