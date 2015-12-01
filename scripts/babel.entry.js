@@ -1,4 +1,9 @@
-require('babel/register')
+const path = require('path')
+require('babel/register')({
+  resolveModuleSource: require('babel-resolve-relative-module')(
+    path.join(__dirname, '..', 'src')
+  ),
+})
 const argv = require('yargs').argv
 
 const file = (() => {

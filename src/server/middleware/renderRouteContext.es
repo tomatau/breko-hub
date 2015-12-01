@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { Html } from '~/src/server/components/Html'
-import { makeContent } from '~/src/app/utils/makeContent'
-import { store } from '~/src/app/state/store'
+import { Html } from 'server/components/Html'
+import { makeContent } from 'app/utils/makeContent'
+import { store } from 'app/state/store'
 
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(

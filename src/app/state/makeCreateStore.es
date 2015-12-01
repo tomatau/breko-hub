@@ -2,8 +2,8 @@ import { compose, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { persistState } from 'redux-devtools'
 import promiseMiddleware from 'redux-promise-middleware'
-import { isBrowser } from '~/src/app/utils/predicates'
-import DevTools from '~/src/app/components/containers/DevTools'
+import { isBrowser } from 'app/utils/predicates'
+import DevTools from 'app/components/containers/DevTools'
 
 export const defaultMiddleware = [
   thunkMiddleware,

@@ -1,4 +1,4 @@
-import { ASSET_FILE } from '~/src/config/paths'
+import { ASSET_FILE } from 'config/paths'
 
 export default {
 

@@ -3,9 +3,9 @@ import path from 'path'
 import glob from 'glob'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpackConfig from './webpack.config'
-import { TESTS, ROOT } from '~/src/config/paths'
-import { isomorphicPlugin } from '~/src/server/isomorphicTools'
+import webpackConfig from 'config/webpack.config'
+import { TESTS, ROOT } from 'config/paths'
+import { isomorphicPlugin } from 'server/isomorphicTools'
 
 export default {
   ...webpackConfig,

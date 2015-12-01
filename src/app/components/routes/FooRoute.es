@@ -1,6 +1,6 @@
 import React from 'react'
 import { prefetch } from 'react-fetcher'
-import { isBrowser } from '~/src/app/utils/predicates'
+import { isBrowser } from 'app/utils/predicates'
 
 const fooFetchDataCreator = () => ({
   type: 'FOO_ROUTE_FETCH',

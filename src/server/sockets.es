@@ -1,8 +1,8 @@
 import Server from 'socket.io'
 import debug from 'debug'
 import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
-import rootReducer from '~/src/app/reducers'
-import { defaultMiddleware, makeCreateStore } from '~/src/app/state/makeCreateStore'
+import rootReducer from 'app/reducers'
+import { defaultMiddleware, makeCreateStore } from 'app/state/makeCreateStore'
 
 const log = {
   sockets: debug('sockets-server'),

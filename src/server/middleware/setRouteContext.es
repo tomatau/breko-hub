@@ -1,8 +1,8 @@
 import React from 'react'
 import { RoutingContext, match } from 'react-router'
 import { getPrefetchedData } from 'react-fetcher'
-import { store } from '~/src/app/state/store'
-import { history } from '~/src/app/state/history'
+import { store } from 'app/state/store'
+import { history } from 'app/state/history'
 
 export default function(makeRoutes) {
   return function *(next) {

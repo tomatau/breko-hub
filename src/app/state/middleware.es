@@ -1,7 +1,7 @@
 import createLogger from 'redux-logger'
-import { isBrowser } from '~/src/app/utils/predicates'
-import { defaultMiddleware } from '~/src/app/state/makeCreateStore'
-import { socket } from '~/src/app/state/socket'
+import { isBrowser } from 'app/utils/predicates'
+import { defaultMiddleware } from 'app/state/makeCreateStore'
+import { socket } from 'app/state/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import debug from 'debug'
 const log = {

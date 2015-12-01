@@ -3,10 +3,10 @@ import compress from 'koa-compress'
 import session from 'koa-session-store'
 import logger from 'koa-logger'
 import favicon from 'koa-favicon'
-import { SRC } from '~/src/config/paths'
-import sessionFlashArray from '~/src/server/middleware/sessionFlashArray'
-import handleError from '~/src/server/middleware/handleError'
-import configureRouter from '~/src/server/configureRouter'
+import { SRC } from 'config/paths'
+import sessionFlashArray from 'server/middleware/sessionFlashArray'
+import handleError from 'server/middleware/handleError'
+import configureRouter from 'server/configureRouter'
 
 const app = koa()
 

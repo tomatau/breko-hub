@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { APP, STATIC, STYLES } from '~/src/config/paths'
-import { isomorphicPlugin } from '~/src/server/isomorphicTools'
+import { SRC, APP, STATIC, STYLES } from 'config/paths'
+import { isomorphicPlugin } from 'server/isomorphicTools'
 
 export default {
   entry: {
@@ -18,7 +18,7 @@ export default {
     publicPath: '/',
   },
   resolve: {
-    root: APP,
+    root: SRC,
     modulesDirectories: [ 'node_modules', STYLES ],
     extensions: [
       '', '.js', '.jsx', '.es', '.es6', '.scss',

@@ -1,9 +1,9 @@
 import React from 'react'
 import DocumentMeta from 'react-document-meta'
 import debug from 'debug'
-import HeadNavigation from '~/src/app/components/containers/HeadNavigation'
+import HeadNavigation from 'app/components/containers/HeadNavigation'
+import img from 'assets/avatar.jpeg'
 import style from './App.module.scss'
-import img from '~/src/assets/avatar.jpeg'
 import './App.css'
 
 const log = {

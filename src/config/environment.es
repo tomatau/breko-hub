@@ -1,6 +1,6 @@
 import debug from 'debug'
 import nodeEnvFile from 'node-env-file'
-import { ROOT } from './paths'
+import { ROOT } from 'config/paths'
 
 if (!process.env.ENVIRONMENT) {
   nodeEnvFile(`${ROOT}/.env`)

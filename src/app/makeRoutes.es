@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router'
 
-import App from '~/src/app/components/App'
-import FooRoute from '~/src/app/components/routes/FooRoute'
-import BarRoute from '~/src/app/components/routes/BarRoute'
-import Oops from '~/src/app/components/Oops'
+import App from 'app/components/App'
+import FooRoute from 'app/components/routes/FooRoute'
+import BarRoute from 'app/components/routes/BarRoute'
+import Oops from 'app/components/Oops'
 
 const makeRoutes = () => (
   <Route path='/' component={App}>

@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import webpackConfig from './webpack.config'
-import { isomorphicPlugin } from '~/src/server/isomorphicTools'
+import webpackConfig from 'config/webpack.config'
+import { isomorphicPlugin } from 'server/isomorphicTools'
 
 export default {
   ...webpackConfig,
