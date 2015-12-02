@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import webpackConfig from 'config/webpack.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
+import autoprefixer from 'autoprefixer'
 
 export default {
   ...webpackConfig,
@@ -14,6 +15,7 @@ export default {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
   ],
+  postcss: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
   module: {
     loaders: [ {
       test: /module\.s?css$/,
@@ -21,6 +23,7 @@ export default {
       loader: ExtractTextPlugin.extract(
         'style',
         'css?modules&localIdentName=[path][name]-[local]' +
+        'postcss' +
         '!sass?outputStyle=compressed'
       ),
     }, {
@@ -28,7 +31,7 @@ export default {
       include: [ /src\/app/ ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
-        'style', 'css!sass?outputStyle=compressed'
+        'style', 'css!postcss!sass?outputStyle=compressed'
       ),
     }, {
       test: /\.(es6?|jsx)$/,

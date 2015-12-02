@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig from 'config/webpack.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
+import autoprefixer from 'autoprefixer'
 
 export default {
   ...webpackConfig,
@@ -18,6 +19,7 @@ export default {
     isomorphicPlugin,
     ...webpackConfig.plugins,
   ],
+  postcss: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
   module: {
     loaders: [ {
       test: /module\.s?css$/,
@@ -27,6 +29,7 @@ export default {
         'css' +
           '?modules' +
           '&localIdentName=[path][name]-[local]',
+        'postcss',
         'sass' +
           '?outputStyle=expanded',
       ],
@@ -35,7 +38,7 @@ export default {
       include: [ /src\/app/ ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
-        'style', 'css!sass?outputStyle=expanded'
+        'style', 'css!postcss!sass?outputStyle=expanded'
       ),
     }, {
       test: /\.(es6?|jsx)$/,
