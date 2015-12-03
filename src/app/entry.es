@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
-import { getPrefetchedData } from 'react-fetcher'
-import { after } from 'lodash'
+import { getPrefetchedData, getDeferredData } from 'react-fetcher'
+import { after, flow } from 'lodash'
 import { makeContent } from 'app/utils/makeContent'
 import { history } from 'app/state/history'
 import { store } from 'app/state/store'
@@ -17,14 +17,20 @@ const log = {
 
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
-function handleRouterUpdate() {
-  const { components, location, params } = this.state
-  getPrefetchedData(components, { store, location, params })
-}
+const onUpdate = flow(
+  after(2, function handleRouterUpdate() {
+    const { components, location, params } = this.state
+    getPrefetchedData(components, { store, location, params })
+  }),
+  function clientOnlyRouteUpdate() {
+    const { components, location, params } = this.state
+    getDeferredData(components, { store, location, params })
+  }
+)
 
 ReactDOM.render(
   makeContent(
-    <Router history={history} onUpdate={after(2, handleRouterUpdate)}>
+    <Router history={history} onUpdate={onUpdate}>
       {makeRoutes()}
     </Router>, store),
   document.getElementById('application-root')

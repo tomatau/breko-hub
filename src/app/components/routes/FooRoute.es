@@ -1,5 +1,5 @@
 import React from 'react'
-import { prefetch } from 'react-fetcher'
+import { prefetch, defer } from 'react-fetcher'
 import { isBrowser } from 'app/utils/predicates'
 
 const fooFetchDataCreator = () => ({
@@ -9,9 +9,15 @@ const fooFetchDataCreator = () => ({
   },
 })
 
-@prefetch(({ store }) => {
-  store.dispatch(fooFetchDataCreator())
+const clietOnlyCreator = () => ({
+  type: 'FOO_ROUTE_FETCH_CLIENT_ONLY',
+  payload: {
+    example: 'Client Only Data',
+  },
 })
+
+@prefetch(({ store }) => store.dispatch(fooFetchDataCreator()))
+@defer(({ store }) => store.dispatch(clietOnlyCreator()))
 class FooRoute extends React.Component {
   render() {
     return (
