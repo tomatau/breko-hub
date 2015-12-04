@@ -65,7 +65,7 @@ export class Html extends React.Component {
           )}
           {bodyStyles.map((style, i) =>
             <noscript key={i} dangerouslySetInnerHTML={{
-              __html: `<link href='${style}' rel='stylesheet' />`,
+              __html: `<link href="${style}" rel="stylesheet" />`,
             }} />
           )}
         </body>

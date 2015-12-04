@@ -9,18 +9,15 @@ const fooFetchDataCreator = () => ({
   },
 })
 
-const clietOnlyCreator = () =>
-  (dispatch) => dispatch({
-    type: 'FOO_ROUTE_FETCH_CLIENT_ONLY',
-    payload: {
-      example: 'Client Only Data',
-    },
-  })
+const clietOnlyCreator = () => ({
+  type: 'FOO_ROUTE_FETCH_CLIENT_ONLY',
+  payload: {
+    example: 'Client Only Data',
+  },
+})
 
 @prefetch(({ store }) => store.dispatch(fooFetchDataCreator()))
-@defer(({ store }) => {
-  console.log(store.dispatch(clietOnlyCreator()))
-})
+@defer(({ store }) => store.dispatch(clietOnlyCreator()))
 class FooRoute extends React.Component {
   render() {
     return (

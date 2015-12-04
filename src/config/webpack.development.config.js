@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import webpackConfig from 'config/webpack.config'
+import webpackConfig from 'config/webpack.base.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 import autoprefixer from 'autoprefixer'
 

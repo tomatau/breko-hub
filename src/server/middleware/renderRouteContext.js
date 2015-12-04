@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { Html } from 'server/components/Html'
+import { compact } from 'lodash'
 import { makeContent } from 'app/utils/makeContent'
 import { store } from 'app/state/store'
 
@@ -8,10 +9,10 @@ function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
     <Html
       initialState={initialState}
-      headScripts={[ assets.javascript.head ]}
-      bodyScripts={[ assets.javascript.body ]}
-      headStyles={[ assets.styles.body ]}
-      bodyStyles={[]}
+      headScripts={compact([ assets.javascript.head ])}
+      bodyScripts={compact([ assets.javascript.body ])}
+      headStyles={compact([ assets.styles.body ])}
+      bodyStyles={compact([ ])}
       children={content}
     />
   )
