@@ -41,7 +41,7 @@ export default {
         'style', 'css!postcss!sass?outputStyle=expanded'
       ),
     }, {
-      test: /\.(es6?|jsx)$/,
+      test: /\.(es6?|jsx?)$/,
       include: [ /src\/app/, /test/ ],
       loader: 'babel',
       query: {

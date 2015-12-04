@@ -9,7 +9,7 @@ export default {
       `${APP}/utils/loadCSS.js`,
     ],
     body: [
-      `${APP}/entry.es`,
+      `${APP}/entry.js`,
     ],
   },
   output: {

@@ -34,7 +34,7 @@ export default {
         'style', 'css!postcss!sass?outputStyle=compressed'
       ),
     }, {
-      test: /\.(es6?|jsx)$/,
+      test: /\.(es6?|jsx?)$/,
       include: [ /src\/app/ ],
       loader: 'babel',
       query: {

@@ -14,8 +14,8 @@ export default {
     main: [
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
-      `mocha!${TESTS}/index.es`,
-      ...glob.sync('**/*.test.es').map(file =>
+      `mocha!${TESTS}/index.js`,
+      ...glob.sync('**/*.test.js').map(file =>
         `mocha!${path.join(ROOT, file)}`
       ),
       'webpack-hot-middleware/client',
