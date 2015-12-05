@@ -5,7 +5,7 @@ import koa from 'koa'
 import serve from 'koa-static'
 import mount from 'koa-mount'
 import debug from 'debug'
-import { ROOT, STATIC, SERVER } from 'config/paths'
+import { ROOT, STATIC, SERVER, SOCKETS } from 'config/paths'
 import { isomorphicTools } from 'server/isomorphicTools'
 const log = {
   app: debug('app'),
@@ -24,7 +24,7 @@ isomorphicTools.server(ROOT, () => {
 })
 
 const server = http.createServer(app.callback())
-global.socketServer = require(SERVER + '/sockets')(server)
+global.socketServer = require(SOCKETS)(server)
 
 server.listen(process.env.PORT, () => {
   log.app(`http://localhost:${process.env.PORT}`)

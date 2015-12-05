@@ -12,7 +12,7 @@ const log = {
 
 const metaData = {
   title: 'Breko Hub',
-  description: 'Breko Hub minimal boilerplate application',
+  description: 'Breko Hub, a minimal boilerplate for building universal react applications',
   meta: {
     charSet: 'utf-8',
     name: {
@@ -29,7 +29,7 @@ class App extends React.Component {
       <main className={style.app}>
         <DocumentMeta {...metaData} />
         <HeadNavigation />
-        <img src={img} alt='mee' width='70' style={{ float: 'right' }} />
+        <img src={img} alt='me' width='70' />
         <h1>The App</h1>
         Page: {this.props.children}
       </main>

@@ -1,7 +1,7 @@
 import 'config/environment'
 import '~/scripts/helpers/cssModulesHook'
 import '~/scripts/helpers/cleanAssetJson'
-import { ROOT } from 'config/paths'
+import { ROOT, SERVER, SOCKETS } from 'config/paths'
 import path from 'path'
 import http from 'http'
 import koa from 'koa'
@@ -40,15 +40,15 @@ app.use(require('koa-webpack-hot-middleware')(compiler))
 isomorphicTools.server(ROOT, () => {
   app.use(function *() {
     log.app('Mounting koa app')
-    const apiServer = require(ROOT + '/src/server')
+    const apiServer = require(SERVER)
     yield mount(apiServer(isomorphicTools.assets()))
   })
 })
 
 const server = http.createServer(app.callback())
-global.socketServer = require(ROOT + '/src/server/sockets')(server)
+global.socketServer = require(SOCKETS)(server)
 
-const watcher = chokidar.watch(path.join(ROOT, '/src/server'))
+const watcher = chokidar.watch(path.join(SERVER))
 log.hot('Watching server source')
 watcher.on('ready', () => {
   watcher.on('all', () => {
