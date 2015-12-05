@@ -23,7 +23,7 @@ export default {
       loader: ExtractTextPlugin.extract(
         'style',
         'css?modules&localIdentName=[path][name]-[local]' +
-        'postcss' +
+        '!postcss' +
         '!sass?outputStyle=compressed'
       ),
     }, {

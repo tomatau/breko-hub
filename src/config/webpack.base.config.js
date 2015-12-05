@@ -39,9 +39,6 @@ export default {
     new ExtractTextPlugin('[name].[hash].css',{
       allChunks: true,
     }),
-    // new webpack.ProvidePlugin({
-    //   React: "react"
-    // }),
   ],
   module: {
     loaders: [ {
