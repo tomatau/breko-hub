@@ -1,130 +1,107 @@
 **B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
 # Breko-hub
 
-Yes, another starter-kit/boilerplate for React Universal applications!
+Another starter kit for Universal React applications.
 
-[TOC]
+# Why Another Starter Kit?
 
-## Goals
+The goal here is to build on the existing starter kits, but using smaller files and simple solutions where possible to achieve similar results.
 
-This has been created because of a want for a universal starting kit that is easy to understand, use and customise.
+Also, this boilerplate doesn't include any existing applications - so you don't need to delete anything before getting started.
 
-To achieve this, focused has been on composing smaller units of code that are consistent in their code style between both client and server.
+# Features
 
-Another large focus is on Developer Experience, using hot reloading on both client and server for ES7 files and SCSS-modules.
-
-## Features
-
-### Engine
-- npm v3.3.x
-- node v5.0.x
-
-This project has been developed and tested using the above versions of npm and node. It's advised to use the same engine when using this boilerplate but it may still work with other configurations.
-
-### Development
-- Hot reloading client JS (redux-reducer chain, etc...)
-- Hot reloading client CSS modules
-- Hot reloading server
-- Hot reloading client build within server
-- Loading environment through `.env` or environment
-- No global npm module requirements
-- No concurrent npm script requirements
-- Sorry, probably doesn't work on windows and isn't supposed to.
-- Minimal application setup for Koa including session, favicon, compression, etc...
-- Redux-devtools beta-3 with dock and log monitors
-- ES7 Mocha Unit-tests runnable in browser with hot-reloading
-
-### Production
-- Webpack babel compile for all client code
-- Babel runtime compile for all server code
-- React v14
-- Redux
-- Koa JS
-- Optional CSS-modules or Extract to CSS file
-- SCSS preprocessing for CSS-modules or Extracted CSS
-- Head and/or body scripts for optimising JS and CSS first time page load
-- Universal React-router integration
+- Configurable async CSS files for improved page loads
+- React 0.14
+- Redux 3.0
+- Koa 1.0
+- React-router 1.0
+- SocketIO integrated with redux
+- Router integrated with redux
+- Server side data fetching through redux
+- No global dependencies
+- Consistent code style
+  + ES6 features throughout
+  + Minimal `require` statements
+- Asset file imports
+- (S)CSS Modules
+- PostCSS
+- Hot loading
+  + Components
+  + Reducers
+  + Server API and routing
+  + (S)CSS modules
+- Simple configurations
+  + .Env file integration
+  + Minimal isomorphic setup
+  + Seperate webpack configs for development and production
+- Lots of logging and debugging support
+  + Redux-devtools
+  + debug on both client and server
+  + Server request logging
+  + Redux logging both client and server dispatches
+- Universal tests
 
 ## Usage
 
-### production build
-```shell
-npm run build
-```
-
-Building creates bundles and assets through webpack and saves them into the untracked `src/static` folder.
-
-### start the server
-```shell
-npm start
-```
-
-This will run the application and serve any assets built to the configured public directory.
-
-### build and serve
+**developing**
 ```shell
 npm run dev
 ```
 
-Using webpack-middleware to build the assets into tmp and serving with hot reloading.
+Builds and serves app with hot reloading and debugging support.
 
-### unit test development server
+**production build**
+```shell
+npm run build
+```
+
+Creates bundles and assets into `src/static`.
+
+**start the server**
+```shell
+npm start
+```
+
+Expects bundles and assets, runs the server in production mode.
+
+***unit test development server***
 ```shell
 npm test
 ```
 
-Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.es` or imported directly from within `./test/index.es`.
+Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.js` or imported directly from within `./test/index.js`.
 
-This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser (including most server code).
+This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser. Most server code can also be tested this way.
 
-### unit test single run in node
+***unit test single run***
 ```shell
 npm test -- --run
 ```
 
-### one time run functional tests [TODO -- waiting for cypressIO]
-```shell
-npm test -- functional
-```
+Runs the test suite in node environment through mocha, once.
 
-### lint
+**lint**
 ```
 npm run lint
 ```
 
-No semi colons, lots of commas on multi-lines for easy duplication, single-quotes, etc...
+No semi colons, lots of commas on multi-lines for easy duplication, single-quotes. You may not like it, but it works just fine.
 
-## Todo
+## Coming Soon
 
-- [x] include directories into CSS and SCSS imports for both modules and non-modules
-- [x] Setup redux on client
-- [x] Setup redux on server with initialState
-- [x] Setup Log and Dock Monitors for redux state
-- [x] Create build config and bundle CSS-modules (no hot loading required)
-- [x] Create start script to fire up server without building
-- [x] Integrate koa-router
-- [x] Session middleware, favicon, compression and logging
-- [x] Flash messages middleware to server generated InitialState
-- [x] Socket integration 
-- [x] Sockets through redux reducer chain
-- [ ] Upgrade babel to v6
-- [ ] Example application
-- [x] Upgrade React 0.14.2
-- [x] Upgrade React-Router 1
-- [x] Unit Test Runner in browser
-- [x] Unit Test Runner in node
-- [x] Linting
-- [x] Unit tests for server compose middleware
-- [x] React router state in store with redux-simple-router
-- [ ] Unit tests for client reducers
-- [x] Universal route data fetching
-- [x] Universal document meta
+- Some sort of example application. I'd rather not just make a counter or TodoList though!
+- More tests, currently only two middleware are tested. Once an example is ready, the testing situation will be kicked around a lot more.
+- Docs, I'd like to explain all the features in more detail.
+- Babel 6, just waiting on those React transforms :D
 
-## Details
+## Description
 
-**Environment**
+**.env**
 
-This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `LOG_LEVEL or NPM_CONFIG_LOG_LEVEL`. When developing, it's nice to use a `.env` file, so the configuration will look for `process.env.ENVIRONMENT` and if this is a falsey value -- it will load an environment from your `.env`. Therefore, in production, it is worth setting `ENVIRONMENT=true` to prevent the `.env` file from being used.
+This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `DEBUG`. When developing, it's nice to use a `.env` file, so the configuration will look for `process.env.ENVIRONMENT` and if this is a falsey value -- it will load an environment from your `.env`. Therefore, in production, it is worth setting `ENVIRONMENT=true` to prevent the `.env` file from being used and making sure you setup the appropriate ENV config!
+
+Note: `Npm start` ignores the `env.NODE_ENV` and forces production mode.
 
 **ES Imports**
 
@@ -144,9 +121,17 @@ Whilst developing, to make the most of CSS hot reloading on the client, CSS-modu
 
 You can import any SCSS or CSS into a client JS file, if the file has the extension `/.module.s?css/`, then it will be imported as a CSS-module. This gives more clarity about what sort of CSS file is being dealt with as well as some flexibility when managing styles.
 
+### Engine
+- npm v3.3.x
+- node v5.0.x
+
+This project has been developed and tested using the above versions of npm and node. It's advised to use the same engine when using this boilerplate but it may still work with other configurations.
+
+Also, it probably doesn't work on Windows... if you want to make PRs for that, please do! (But nothing too crazy, I'd rather people just stopped that whole windows development thing.)
+
 ## Thanks For Ideas!
 
-This repo is shamelessly reusing the ideas taken from:
+This boilerplate is shamelessly reusing a bunch of ideas from:
 
 - https://github.com/glenjamin/ultimate-hot-reloading-example
 - https://github.com/erikras/react-redux-universal-hot-example
