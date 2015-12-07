@@ -10,6 +10,11 @@ export default {
         'jpeg', 'jpg', 'png', 'gif', 'svg',
       ],
     },
+    fonts: {
+      extensions: [
+        'woff', 'ttf', 'woff2', 'eot',
+      ],
+    },
   },
 
 }

@@ -21,11 +21,12 @@ cssModulesHook({
       .replace(/\/|\./g, '-')
     return `${path}-${exportedName}`
   },
-  preprocessCss(css/*, filename*/) {
+  preprocessCss(css, filename) {
     return sass.renderSync({
       includePaths: [ `${ROOT}/node_modules`, STYLES ],
       data: css,
-      importer(url/*, fileContent*/) {
+      file: filename,
+      importer(url) {
         return { file: loaderUtils.urlToRequest(url) }
       },
     }).css
