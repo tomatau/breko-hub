@@ -10,7 +10,7 @@ const mocha = new Mocha({
 
 const filesToRun = [
   ...[ `${TESTS}/index.js` ],
-  ...glob.sync('**/*.test.js'),
+  ...glob.sync('./{src,test}/**/*.test.js'),
 ]
 
 filesToRun.forEach(file => {
