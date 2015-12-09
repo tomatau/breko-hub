@@ -3,7 +3,7 @@ import path from 'path'
 import glob from 'glob'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpackConfig from 'config/webpack.config'
+import webpackConfig from 'config/webpack.base.config'
 import { TESTS, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 
@@ -15,7 +15,7 @@ export default {
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
       `mocha!${TESTS}/index.js`,
-      ...glob.sync('**/*.test.js').map(file =>
+      ...glob.sync('./{src,test}/**/*.test.js').map(file =>
         `mocha!${path.join(ROOT, file)}`
       ),
       'webpack-hot-middleware/client',
@@ -52,7 +52,7 @@ export default {
         'style', 'css!sass'
       ),
     }, {
-      test: /\.(es6?|jsx)$/,
+      test: /\.(es6?|jsx?)$/,
       include: [ /src/, /test/ ],
       loader: 'babel',
       query: {
