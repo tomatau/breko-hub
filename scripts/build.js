@@ -9,7 +9,6 @@ const log = {
   build: debug('build'),
 }
 log.build('Forcing into [production] environment')
-process.env.NODE_ENV = 'production'
 const compiler = webpack(webpackProductionConfig)
 
 compiler.run((err, stats) => {

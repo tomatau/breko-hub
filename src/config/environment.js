@@ -3,8 +3,13 @@ import nodeEnvFile from 'node-env-file'
 import { ROOT } from 'config/paths'
 
 if (!process.env.ENVIRONMENT) {
-  nodeEnvFile(`${ROOT}/.env`)
+  nodeEnvFile(`${ROOT}/.env`, {
+    raise: false,
+  })
 }
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env.PORT = process.env.PORT || 9001
 
 debug.enable(process.env.DEBUG)
 const log = {
