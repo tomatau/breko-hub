@@ -44,6 +44,7 @@
     "babel-resolve-relative-module": "^1.0.0",
     "babel-root-import": "^1.0.1",
     "babel-runtime": "^5.8.25",
+    "bluebird": "^3.0.6",
     "chokidar": "^1.4.0",
     "clean-webpack-plugin": "^0.1.5",
     "css-loader": "^0.23.0",
