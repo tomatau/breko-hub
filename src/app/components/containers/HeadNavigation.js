@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import { updatePath } from 'redux-simple-router'
+import { pushPath } from 'redux-simple-router'
 import { store } from 'app/state/store'
 import styles from './HeadNavigation.module.scss'
 
@@ -8,7 +8,7 @@ const RSRLink = ({ path, ...props }) =>
   <a href={`${path}`}
     onClick={e => {
       e.preventDefault()
-      store.dispatch(updatePath(path, false))
+      store.dispatch(pushPath(path, false))
     }} {...props} />
 
 class HeadNavigation extends React.Component {

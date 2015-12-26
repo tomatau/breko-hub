@@ -1,11 +1,9 @@
 import { isBrowser } from 'app/utils/predicates'
 import { makeCreateStore } from 'app/state/makeCreateStore'
-import { history } from 'app/state/history'
 import rootReducer from 'app/reducers'
 import { middleware } from 'app/state/middleware'
 import { socket } from 'app/state/socket'
 import debug from 'debug'
-import { syncReduxAndRouter } from 'redux-simple-router'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 import { enableBatching } from 'redux-batched-actions'
 
@@ -20,7 +18,6 @@ export const store = makeCreateStore(middleware)(
 )
 
 if (isBrowser()) {
-  syncReduxAndRouter(history, store)
   inClientViaSocketIO(socket, store.dispatch)
 
   socket.on('connect', () => {
