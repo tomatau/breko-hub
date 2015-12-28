@@ -19,7 +19,6 @@ export const store = makeCreateStore(middleware)(
 
 if (isBrowser()) {
   inClientViaSocketIO(socket, store.dispatch)
-
   socket.on('connect', () => {
     log.sock('Client connected to socket')
     store.dispatch({

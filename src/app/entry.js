@@ -8,7 +8,6 @@ import { store } from 'app/state/store'
 import makeRoutes from 'app/makeRoutes'
 import DevTools from 'app/components/containers/DevTools'
 import debug from 'debug'
-import { syncReduxAndRouter } from 'redux-simple-router'
 
 debug.enable(process.env.DEBUG)
 
@@ -18,7 +17,6 @@ const log = {
 
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
-const reduxRouterHistory = syncReduxAndRouter(history, store)
 
 const onUpdate = flow(
   after(2, function handleRouterUpdate() {
@@ -33,7 +31,7 @@ const onUpdate = flow(
 
 ReactDOM.render(
   makeContent(
-    <Router history={reduxRouterHistory} onUpdate={onUpdate}>
+    <Router history={history} onUpdate={onUpdate}>
       {makeRoutes()}
     </Router>, store),
   document.getElementById('application-root')
