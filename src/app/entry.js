@@ -17,7 +17,6 @@ const log = {
 
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
-
 const onUpdate = flow(
   after(2, function handleRouterUpdate() {
     const { components, location, params } = this.state
