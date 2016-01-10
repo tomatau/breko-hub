@@ -67,7 +67,7 @@ Breko Hub will attempt to use a `.env` file when `process.env.ENVIRONMENT` is fa
 
 **developing**
 ```shell
-npm run dev
+npm run dev [-- --open]
 ```
 
 Builds and serves app with hot reloading and debugging support.
@@ -114,7 +114,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - Some sort of example application. I'd rather not just make a counter or TodoList though!
 - More tests, currently only two middleware are tested. Once an example is ready, the testing situation will be kicked around a lot more.
 - Docs, I'd like to explain all the features in more detail.
-- Babel 6, just waiting on those React transforms :D
+- Babel 6
 
 ## Description
 
