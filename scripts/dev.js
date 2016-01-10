@@ -3,6 +3,7 @@ import '~/scripts/helpers/cssModulesHook'
 import '~/scripts/helpers/cleanAssetJson'
 import { ROOT, SERVER, SOCKETS } from 'config/paths'
 import path from 'path'
+import { argv } from 'yargs'
 import http from 'http'
 import koa from 'koa'
 import mount from 'koa-mount'
@@ -10,17 +11,20 @@ import webpack from 'webpack'
 import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
-import webpackConfig from 'config/webpack.development.config'
+import webpackDevelopmentConfig from 'config/webpack.development.config'
 import { isomorphicTools } from 'server/isomorphicTools'
+import addMiddleware from 'server/addMiddleware'
+
 const log = {
   app: debug('app'),
   hot: debug('hot-reload'),
 }
 
-const compiler = webpack(webpackConfig)
+const compiler = webpack(webpackDevelopmentConfig)
 const app = koa()
 
 app.keys = [ 'd0n7', '7311', '4ny0n3' ]
+addMiddleware(app)
 
 compiler.plugin('compile', () => log.app('Webpack compile started...'))
 compiler.plugin('compilation', () => log.app('Webpack compiling...'))
@@ -32,7 +36,7 @@ app.use(require('koa-webpack-dev-middleware')(compiler, {
     colors: true,
     reasons: true,
   },
-  publicPath: webpackConfig.output.publicPath,
+  publicPath: webpackDevelopmentConfig.output.publicPath,
 }))
 
 app.use(require('koa-webpack-hot-middleware')(compiler))
@@ -40,8 +44,9 @@ app.use(require('koa-webpack-hot-middleware')(compiler))
 isomorphicTools.server(ROOT, () => {
   app.use(function *() {
     log.app('Mounting koa app')
-    const apiServer = require(SERVER)
-    yield mount(apiServer(isomorphicTools.assets()))
+    const { routerApp, setRoutes } = require(`${SERVER}/router`)
+    setRoutes(isomorphicTools.assets())
+    yield mount(routerApp)
   })
 })
 
@@ -72,5 +77,5 @@ compiler.plugin('done', () => {
 server.listen(process.env.PORT, () => {
   const URI = `http://localhost:${process.env.PORT}`
   log.app(`Serving`, URI)
-  open(URI)
+  if (argv.open || argv.o) open(URI)
 })

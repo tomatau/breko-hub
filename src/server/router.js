@@ -1,5 +1,5 @@
+import koa from 'koa'
 import path from 'path'
-import { last, has } from 'lodash'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
 import { APP } from 'config/paths'
@@ -7,13 +7,14 @@ import compose from 'server/utils/compose'
 import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
 
-const rootRouter = Router()
-const parseBody = koaBody()
-const removeRouterMiddleware = app =>
-  has(last(app.middleware), 'router') && app.middleware.pop()
+export const rootRouter = Router()
+export const routerApp = koa()
+routerApp.use(rootRouter.routes())
 
-export default function configureRouter(app, assets) {
-  const makeRoutes = require(path.join(APP, 'makeRoutes'))
+const parseBody = koaBody()
+
+export function setRoutes(assets) {
+  const reactRoutes = require(path.join(APP, 'makeRoutes'))
   const apiRouter = Router()
   rootRouter.stack.length = 0
 
@@ -23,7 +24,7 @@ export default function configureRouter(app, assets) {
     })
 
   const renderApp = compose(
-    setRouteContext(makeRoutes),
+    setRouteContext(reactRoutes),
     renderRouteContext(assets)
   )
 
@@ -31,7 +32,4 @@ export default function configureRouter(app, assets) {
     .use('/api', apiRouter.routes())
     .get('error', '/error', renderApp)
     .get('react', '/(.*)', renderApp)
-
-  removeRouterMiddleware(app)
-  app.use(rootRouter.routes())
 }

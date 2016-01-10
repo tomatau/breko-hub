@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { getPrefetchedData, getDeferredData } from 'react-fetcher'
 import { after, flow } from 'lodash'
-import { isBrowser } from 'app/utils/predicates'
 import { makeContent } from 'app/utils/makeContent'
 import { history } from 'app/state/history'
 import { store } from 'app/state/store'
@@ -21,17 +20,15 @@ const log = {
 
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
-if (isBrowser()) {
-  inClientViaSocketIO(socket, store.dispatch)
-  socket.on('connect', () => {
-    log.sock('Client connected to socket')
-    store.dispatch({
-      type: 'NEW_SOCKET_SESSION',
-      payload: { data: Math.random() },
-      meta: { broadcast: true, next: false },
-    })
+inClientViaSocketIO(socket, store.dispatch)
+socket.on('connect', () => {
+  log.sock('Client connected to socket')
+  store.dispatch({
+    type: 'NEW_SOCKET_SESSION',
+    payload: { data: Math.random() },
+    meta: { broadcast: true, next: false },
   })
-}
+})
 
 const onUpdate = flow(
   after(2, function handleRouterUpdate() {

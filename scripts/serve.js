@@ -7,19 +7,22 @@ import mount from 'koa-mount'
 import debug from 'debug'
 import { ROOT, STATIC, SERVER, SOCKETS } from 'config/paths'
 import { isomorphicTools } from 'server/isomorphicTools'
+import addMiddleware from 'server/addMiddleware'
+
 const log = {
   app: debug('app'),
 }
 
 const app = koa()
-
 app.keys = [ 'd0n7', '7311', '4ny0n3' ]
+addMiddleware(app)
 app.use(serve(STATIC))
 
 isomorphicTools.server(ROOT, () => {
   app.use(function *() {
-    const apiServer = require(SERVER)
-    yield mount(apiServer(isomorphicTools.assets()))
+    const { routerApp, setRoutes } = require(`${SERVER}/router`)
+    setRoutes(isomorphicTools.assets())
+    yield mount(routerApp)
   })
 })
 
