@@ -1,6 +1,7 @@
 import createLogger from 'redux-logger'
+import promiseMiddleware from 'redux-promise-middleware'
+import thunkMiddleware from 'redux-thunk'
 import { isBrowser } from 'app/utils/predicates'
-import { defaultMiddleware } from 'app/state/makeCreateStore'
 import { socket } from 'app/state/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { syncHistory } from 'redux-simple-router'
@@ -10,7 +11,10 @@ import debug from 'debug'
 const log = {
   action: debug('DISPATCH:'),
 }
-
+export const defaultMiddleware = [
+  thunkMiddleware,
+  promiseMiddleware(),
+]
 export const middleware = [
   ...defaultMiddleware,
 ]

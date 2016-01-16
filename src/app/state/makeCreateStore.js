@@ -1,16 +1,9 @@
 import { compose, createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
 import { persistState } from 'redux-devtools'
-import promiseMiddleware from 'redux-promise-middleware'
 import { isBrowser } from 'app/utils/predicates'
 import DevTools from 'app/components/containers/DevTools'
 
-export const defaultMiddleware = [
-  thunkMiddleware,
-  promiseMiddleware(),
-]
-
-export const makeCreateStore = (middleware=defaultMiddleware) => {
+export const makeCreateStore = (middleware) => {
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]
 
   if (process.env.NODE_ENV === 'development') {
