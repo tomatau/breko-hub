@@ -8,7 +8,7 @@ export default function(makeRoutes) {
   return function *(next) {
     const routes = makeRoutes()
     const location = history.createLocation(this.request.url)
-    yield new Promise(resolve => {
+    this.routeContext = yield new Promise(resolve => {
       match({ routes, location }, async (error, redirect, renderProps) => {
         if (redirect)
           return this.redirect(redirect.pathname + redirect.search)
@@ -16,14 +16,12 @@ export default function(makeRoutes) {
           return this.throw(error.message)
         else if (renderProps == null)
           return this.throw(404, 'Not found')
-        const locals = {
+        await getPrefetchedData(renderProps.components, {
           store,
           location: renderProps.location,
           params: renderProps.params,
-        }
-        await getPrefetchedData(renderProps.components, locals)
-        this.routeContext = <RoutingContext {...renderProps} />
-        resolve()
+        })
+        resolve(<RoutingContext {...renderProps} />)
       })
     })
     yield next
