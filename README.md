@@ -12,6 +12,7 @@ Also, this boilerplate doesn't include any existing applications - so you don't 
 # Features
 
 - Configurable async CSS files for improved page loads
+- Babel 6
 - React 0.14
 - Redux 3.0
 - Koa 1.0
@@ -114,7 +115,6 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 - Some sort of example application. I'd rather not just make a counter or TodoList though!
 - More tests, currently only two middleware are tested. Once an example is ready, the testing situation will be kicked around a lot more.
 - Docs, I'd like to explain all the features in more detail.
-- Babel 6
 
 ## Description
 
