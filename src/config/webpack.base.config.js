@@ -9,6 +9,7 @@ export default {
       `${APP}/utils/loadCSS.js`,
     ],
     body: [
+      'babel-polyfill',
       `${APP}/entry.js`,
     ],
   },

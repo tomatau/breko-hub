@@ -38,12 +38,13 @@ export default {
       include: [ /src\/app/ ],
       loader: 'babel',
       query: {
-        stage: 0,
-        optional: [ 'runtime' ],
+        'presets': [ 'es2015', 'react', 'stage-0' ],
         'plugins': [
+          'add-module-exports',
           'lodash',
           'react-require',
           'babel-root-import',
+          'transform-decorators-legacy',
         ],
       },
     }, ...webpackConfig.module.loaders ],

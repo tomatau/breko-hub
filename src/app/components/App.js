@@ -30,7 +30,7 @@ class App extends React.Component {
         <DocumentMeta {...metaData} />
         <HeadNavigation />
         <img src={img} alt='me' width='70' />
-        <h1>The App</h1>
+        <h1>The Apple</h1>
         Page: {this.props.children}
       </main>
     )

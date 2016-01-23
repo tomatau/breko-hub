@@ -45,16 +45,14 @@ export default {
       include: [ /src\/app/, /test/ ],
       loader: 'babel',
       query: {
-        stage: 0,
-        optional: [ 'runtime' ],
+        'presets': [ 'es2015', 'react', 'stage-0' ],
         'plugins': [
+          'add-module-exports',
           'lodash',
           'react-require',
           'babel-root-import',
-          'react-transform',
-        ],
-        'extra': {
-          'react-transform': {
+          'transform-decorators-legacy',
+          [ 'react-transform', {
             'transforms': [ {
               'transform': 'react-transform-hmr',
               'imports': [ 'react' ],
@@ -63,8 +61,8 @@ export default {
               'transform': 'react-transform-catch-errors',
               'imports': [ 'react', 'redbox-react' ],
             } ],
-          },
-        },
+          } ],
+        ],
       },
     }, ...webpackConfig.module.loaders ],
   },

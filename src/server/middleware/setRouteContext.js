@@ -6,10 +6,12 @@ import { history } from 'app/state/history'
 
 export default function(makeRoutes) {
   return function *(next) {
-    const routes = makeRoutes()
-    const location = history.createLocation(this.request.url)
+    let routing = { // can't make this const?
+      routes: makeRoutes(),
+      location: history.createLocation(this.request.url),
+    }
     this.routeContext = yield new Promise(resolve => {
-      match({ routes, location }, async (error, redirect, renderProps) => {
+      match(routing, async (error, redirect, renderProps) => {
         if (redirect)
           return this.redirect(redirect.pathname + redirect.search)
         else if (error)
