@@ -6,26 +6,32 @@ import { history } from 'app/state/history'
 
 export default function(makeRoutes) {
   return function *(next) {
-    let routing = { // can't make this const?
-      routes: makeRoutes(),
-      location: history.createLocation(this.request.url),
-    }
-    this.routeContext = yield new Promise(resolve => {
-      match(routing, async (error, redirect, renderProps) => {
-        if (redirect)
-          return this.redirect(redirect.pathname + redirect.search)
-        else if (error)
-          return this.throw(error.message)
-        else if (renderProps == null)
-          return this.throw(404, 'Not found')
-        await getPrefetchedData(renderProps.components, {
-          store,
-          location: renderProps.location,
-          params: renderProps.params,
+    try {
+      this.routeContext = yield new Promise((resolve, reject) => {
+        match({
+          routes: makeRoutes(),
+          location: history.createLocation(this.request.url),
+        }, (error, redirect, renderProps) => {
+          if (redirect)
+            return reject(this.redirect(redirect.pathname + redirect.search))
+          else if (error)
+            return reject(this.throw(error.message))
+          else if (renderProps == null)
+            return reject(this.throw(404, 'Not found'))
+
+          getPrefetchedData(renderProps.components, {
+            store,
+            location: renderProps.location,
+            params: renderProps.params,
+          }).then(() =>
+            resolve(<RoutingContext {...renderProps} />)
+          )
         })
-        resolve(<RoutingContext {...renderProps} />)
       })
-    })
-    yield next
+      yield next
+    } catch (error) {
+      if (error == null) return // redirecting
+      throw error
+    }
   }
 }
