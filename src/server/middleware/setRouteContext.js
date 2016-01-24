@@ -7,11 +7,11 @@ import { history } from 'app/state/history'
 export default function(makeRoutes) {
   return function *(next) {
     try {
-      this.routeContext = yield new Promise((resolve, reject) =>
+      this.routeContext = yield new Promise((resolve, reject) => {
         match({
           routes: makeRoutes(),
           location: history.createLocation(this.request.url),
-        }, async (error, redirect, renderProps) => {
+        }, (error, redirect, renderProps) => {
           if (redirect)
             return reject(this.redirect(redirect.pathname + redirect.search))
           else if (error)
@@ -19,14 +19,15 @@ export default function(makeRoutes) {
           else if (renderProps == null)
             return reject(this.throw(404, 'Not found'))
 
-          await getPrefetchedData(renderProps.components, {
+          getPrefetchedData(renderProps.components, {
             store,
             location: renderProps.location,
             params: renderProps.params,
-          })
-          resolve(<RoutingContext {...renderProps} />)
+          }).then(() =>
+            resolve(<RoutingContext {...renderProps} />)
+          )
         })
-      )
+      })
       yield next
     } catch (error) {
       if (error == null) return // redirecting
