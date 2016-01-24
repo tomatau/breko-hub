@@ -15,9 +15,9 @@ export default {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-         screw_ie8: true, // eslint-disable-line camelcase
-         warnings: false 
-      }
+        screw_ie8: true, // eslint-disable-line camelcase
+        warnings: false,
+      },
     }),
   ],
   postcss: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
