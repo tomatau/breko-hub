@@ -1,6 +1,6 @@
 {
   "name": "breko-hub",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
     "test": "node ./scripts/babel.entry.js --test",
@@ -30,8 +30,8 @@
     "url": "https://github.com/tomatau/breko-hub/issues"
   },
   "engines": {
-    "node": "~5.0.x",
-    "npm": "~3.3.x"
+    "node": "~5.x",
+    "npm": "~3.x"
   },
   "homepage": "https://github.com/tomatau/breko-hub#readme",
   "dependencies": {
@@ -52,7 +52,6 @@
     "babel-runtime": "~6.3.19",
     "chokidar": "~1.4.2",
     "clean-webpack-plugin": "~0.1.6",
-    "core-js": "~2.0.3",
     "css-loader": "~0.23.0",
     "css-modules-require-hook": "~2.1.0",
     "debug": "~2.2.0",
