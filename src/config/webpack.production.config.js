@@ -13,7 +13,12 @@ export default {
     isomorphicPlugin,
     ...webpackConfig.plugins,
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+         screw_ie8: true, // eslint-disable-line camelcase
+         warnings: false 
+      }
+    }),
   ],
   postcss: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
   module: {
