@@ -124,6 +124,7 @@
     "react-transform-catch-errors": "~1.0.0",
     "react-transform-hmr": "~1.0.1",
     "redbox-react": "~1.1.1",
+    "sinon": "^2.0.0-pre",
     "supertest": "~1.1.0",
     "webpack-hot-middleware": "~2.6.0"
   }

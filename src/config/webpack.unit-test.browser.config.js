@@ -12,6 +12,7 @@ export default {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     main: [
+      'babel-polyfill',
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
       `mocha!${TESTS}/index.js`,
