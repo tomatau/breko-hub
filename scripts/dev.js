@@ -12,8 +12,11 @@ import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
 import webpackDevelopmentConfig from 'config/webpack.development.config'
-import { isomorphicTools } from 'server/isomorphicTools'
+import { isomorphicTools, isomorphicPlugin } from 'server/isomorphicTools'
 import addMiddleware from 'server/addMiddleware'
+
+isomorphicTools.development()
+isomorphicPlugin.development()
 
 const log = {
   app: debug('app'),

@@ -62,9 +62,9 @@ TEST_DATABASE_URL=
 DEBUG=*,-babel,-koa*,-css-modules*,-engine*,-socket.io*
 ```
 
-Do not check-in this file. When in production, you would want to set the appropriate settings in the deployment environment as environmental variables. When using environmental variables to drive your config, create a variable called `ENVIRONMENT` and set this to true.
+Do not check-in this file. When in production, you would want to set the appropriate settings in the deployment environment as environmental variables. The `.env` file will never overwrite that which exists in your environment.
 
-Breko Hub will attempt to use a `.env` file when `process.env.ENVIRONMENT` is falsey. If no .env exists, the app will default to development mode with a port 9001.
+Breko Hub will attempt to use a `.env` file. If no .env exists, the app will default to development mode with a port 9001.
 
 **developing**
 ```shell
@@ -120,9 +120,7 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 
 **.env**
 
-This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `DEBUG`. When developing, it's nice to use a `.env` file. The app will look for `process.env.ENVIRONMENT` and if this is a falsey value -- it will load an environment from your `.env`. Therefore, in production, it is worth setting `ENVIRONMENT=true` to prevent the `.env` file from being used and making sure you setup the appropriate Environmental variables!
-
-Note: When process.env.ENVIRONMENT is falsey and there is no .env file, the app will default to development mode with a port of 9001.
+This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `DEBUG`. When developing, it's nice to use a `.env` file. The app will load an environment from your `.env`.
 
 **ES Imports**
 
