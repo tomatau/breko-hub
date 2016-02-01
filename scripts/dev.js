@@ -5,15 +5,13 @@ import { ROOT, SERVER, SOCKETS } from 'config/paths'
 import path from 'path'
 import { argv } from 'yargs'
 import http from 'http'
-import koa from 'koa'
-import mount from 'koa-mount'
 import webpack from 'webpack'
 import debug from 'debug'
 import chokidar from 'chokidar'
 import open from 'open'
 import webpackDevelopmentConfig from 'config/webpack.development.config'
 import { isomorphicTools, isomorphicPlugin } from 'server/isomorphicTools'
-import addMiddleware from 'server/addMiddleware'
+import app from 'server/index'
 
 isomorphicTools.development()
 isomorphicPlugin.development()
@@ -24,10 +22,6 @@ const log = {
 }
 
 const compiler = webpack(webpackDevelopmentConfig)
-const app = koa()
-
-app.keys = [ 'd0n7', '7311', '4ny0n3' ]
-addMiddleware(app)
 
 compiler.plugin('compile', () => log.app('Webpack compile started...'))
 compiler.plugin('compilation', () => log.app('Webpack compiling...'))
@@ -47,9 +41,9 @@ app.use(require('koa-webpack-hot-middleware')(compiler))
 isomorphicTools.server(ROOT, () => {
   app.use(function *() {
     log.app('Mounting koa app')
-    const { routerApp, setRoutes } = require(`${SERVER}/router`)
+    const { rootRouter, setRoutes } = require(`${SERVER}/router`)
     setRoutes(isomorphicTools.assets())
-    yield mount(routerApp)
+    yield rootRouter.routes()
   })
 })
 

@@ -1,4 +1,3 @@
-import koa from 'koa'
 import path from 'path'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
@@ -9,9 +8,6 @@ import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
 
 export const rootRouter = Router()
-export const routerApp = koa()
-routerApp.use(rootRouter.routes())
-
 const parseBody = koaBody()
 
 export function setRoutes(assets) {

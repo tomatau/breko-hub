@@ -1,3 +1,4 @@
+import koa from 'koa'
 import compress from 'koa-compress'
 import session from 'koa-session-store'
 import logger from 'koa-logger'
@@ -6,15 +7,19 @@ import { SRC } from 'config/paths'
 import sessionFlashArray from 'server/middleware/sessionFlashArray'
 import handleError from 'server/middleware/handleError'
 
-export default function addMiddleware(app) {
-  app.use(compress())
-  app.use(favicon(`${SRC}/favicon.ico`))
-  app.use(session())
-  app.use(sessionFlashArray())
+const app = koa()
 
-  if (process.env.NODE_ENV == 'development') {
-    app.use(logger())
-  }
+app.keys = [ 'd0n7', '7311', '4ny0n3' ]
 
-  app.use(handleError)
+app.use(compress())
+app.use(favicon(`${SRC}/favicon.ico`))
+app.use(session())
+app.use(sessionFlashArray())
+
+if (process.env.NODE_ENV == 'development') {
+  app.use(logger())
 }
+
+app.use(handleError)
+
+export default app
