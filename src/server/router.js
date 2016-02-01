@@ -4,6 +4,7 @@ import Router from 'koa-router'
 import koaBody from 'koa-body'
 import { APP } from 'config/paths'
 import compose from 'server/utils/compose'
+import setStore from 'server/middleware/setStore'
 import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
 
@@ -24,6 +25,7 @@ export function setRoutes(assets) {
     })
 
   const renderApp = compose(
+    setStore,
     setRouteContext(reactRoutes),
     renderRouteContext(assets)
   )

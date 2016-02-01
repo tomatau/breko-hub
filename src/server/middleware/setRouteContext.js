@@ -1,12 +1,12 @@
 import React from 'react'
 import { RoutingContext, match } from 'react-router'
 import { getPrefetchedData } from 'react-fetcher'
-import { store } from 'app/state/store'
 import { history } from 'app/state/history'
 
 export default function(makeRoutes) {
   return function *(next) {
     try {
+      const { store } = this
       this.routeContext = yield new Promise((resolve, reject) => {
         match({
           routes: makeRoutes(),
@@ -18,7 +18,6 @@ export default function(makeRoutes) {
             return reject(this.throw(error.message))
           else if (renderProps == null)
             return reject(this.throw(404, 'Not found'))
-
           getPrefetchedData(renderProps.components, {
             store,
             location: renderProps.location,

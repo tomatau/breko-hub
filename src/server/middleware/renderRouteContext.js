@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server'
 import { Html } from 'server/components/Html'
 import { compact } from 'lodash'
 import { makeContent } from 'app/utils/makeContent'
-import { store } from 'app/state/store'
 
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
@@ -20,7 +19,7 @@ function makeHtml(initialState, assets, content) {
 
 export default function renderRouteContext(assets) {
   return function *() {
-    const { routeContext } = this
+    const { routeContext, store } = this
     const html = makeHtml(
       store.getState(),
       assets,

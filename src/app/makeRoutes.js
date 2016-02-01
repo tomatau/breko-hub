@@ -11,6 +11,7 @@ const makeRoutes = () => (
     <Route path='foo' component={FooRoute} />
     <Route path='bar' component={BarRoute} />
     <Route path='oops' component={Oops} />
+    <Route path='private' component={Oops} onEnter={(_, go) => go(null, '/foo')} />
   </Route>
 )
 
