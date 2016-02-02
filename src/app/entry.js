@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { getPrefetchedData, getDeferredData } from 'react-fetcher'
-import { flow } from 'lodash'
 import { makeContent } from 'app/utils/makeContent'
 import { history } from 'app/state/history'
 import { store } from 'app/state/store'
@@ -30,20 +29,15 @@ socket.on('connect', () => {
   })
 })
 
-const onUpdate = flow(
-  function handleRouterUpdate() {
-    const { components, location, params } = this.state
-    getPrefetchedData(components, { store, location, params })
-  },
-  function clientOnlyRouteUpdate() {
-    const { components, location, params } = this.state
-    getDeferredData(components, { store, location, params })
-  }
-)
+function onRouteUpdate() {
+  const { components, location, params } = this.state
+  getPrefetchedData(components, { store, location, params })
+  getDeferredData(components, { store, location, params })
+}
 
 ReactDOM.render(
   makeContent(
-    <Router history={history} onUpdate={onUpdate}>
+    <Router history={history} onUpdate={onRouteUpdate}>
       {makeRoutes()}
     </Router>, store),
   document.getElementById('application-root')

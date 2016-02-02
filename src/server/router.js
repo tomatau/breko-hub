@@ -16,7 +16,7 @@ export function setRoutes(assets) {
   rootRouter.stack.length = 0
 
   apiRouter
-    .post('ping', 'ping', parseBody, function *() {
+    .post('ping', '/ping', parseBody, function *() {
       this.response.body = { pong: this.request.body }
     })
 
