@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import { routeActions } from 'redux-simple-router'
+import { routeActions } from 'react-router-redux'
 import { store } from 'app/state/store'
 import styles from './HeadNavigation.module.scss'
 
