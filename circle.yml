@@ -17,4 +17,4 @@ test:
     - npm run lint
     - npm run start:
         background: true
-    - npm run test -- --run
+    - npm run test -- --run --reporter spec
