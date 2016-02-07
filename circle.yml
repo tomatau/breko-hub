@@ -15,6 +15,6 @@ dependencies:
 test:
   override:
     - npm run lint
-    - npm start:
-      background: true
+    - npm run start:
+        background: true
     - npm run test -- --run

@@ -1,6 +1,8 @@
 **B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
 # Breko-hub
 
+[![Circle CI](https://circleci.com/gh/tomatau/breko-hub.svg?style=svg)](https://circleci.com/gh/tomatau/breko-hub)
+
 Another starter kit for Universal React applications.
 
 # Why Another Starter Kit?
