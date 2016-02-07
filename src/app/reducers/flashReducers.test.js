@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { flashReducers } from './flashReducers'
 
 describe('Flash reducers', ()=> {
@@ -15,15 +14,14 @@ describe('Flash reducers', ()=> {
     const stateWithMessages = { messages }
 
     describe('REMOVE_FLASH action', ()=> {
-      let removeFlashAction
-      beforeEach(() => {
-        removeFlashAction = {
-          type: 'REMOVE_FLASH',
-          payload: {
-            flash_id: _.sample(messages).id,
-          },
-        }
+      const removeFlashAction = Object.freeze({
+        type: 'REMOVE_FLASH',
+        payload: {
+          flash_id: _.sample(messages).id,
+        },
       })
+      const updateFlashId = () =>
+        removeFlashAction.payload.flash_id = _.sample(messages).id
 
       it('does nothing when the flash_id isn\'t contained', ()=> {
         function assertStateUnchanged(state, flash_id) {
@@ -40,7 +38,8 @@ describe('Flash reducers', ()=> {
       })
 
 
-      it('removes a message by id', ()=> {
+      it('removes a message by id', repeat(6, ()=> {
+        updateFlashId()
         const nextState = flashReducers(stateWithMessages, removeFlashAction)
         const expectedMessages = _.reject(messages, {
           id: removeFlashAction.payload.flash_id,
@@ -48,7 +47,7 @@ describe('Flash reducers', ()=> {
         expect(nextState).to.eql({
           messages: expectedMessages,
         })
-      })
+      }))
     })
   })
 })

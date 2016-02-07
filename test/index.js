@@ -11,4 +11,6 @@ function setGlobals(global) {
   global.expect = expect
   global.sinon = sinon
   global._ = lodash
+  global.repeat = (times, assertion) =>
+    () => _.times(times, assertion)
 }
