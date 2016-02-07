@@ -1,6 +1,4 @@
-import React from 'react'
 import DocumentMeta from 'react-document-meta'
-import debug from 'debug'
 import HeadNavigation from 'app/components/containers/HeadNavigation'
 import img from 'assets/avatar.jpeg'
 import style from './App.module.scss'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { RoutingContext, match } from 'react-router'
 import { getPrefetchedData } from 'react-fetcher'
 import { history } from 'app/state/history'

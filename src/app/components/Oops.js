@@ -1,4 +1,3 @@
-import React from 'react'
 
 class Oops extends React.Component {
   render() {

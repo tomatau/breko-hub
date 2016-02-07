@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import DocumentMeta from 'react-document-meta'
 import ReactDOMServer from 'react-dom/server'
 

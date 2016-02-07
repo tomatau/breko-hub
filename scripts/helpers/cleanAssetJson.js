@@ -1,6 +1,6 @@
 import { ASSET_FILE } from 'config/paths'
-import debug from 'debug'
 import rimraf from 'rimraf'
+
 const log = {
   clean: debug('clean-assets'),
 }

@@ -6,7 +6,6 @@ import favicon from 'koa-favicon'
 import { SRC } from 'config/paths'
 import sessionFlashArray from 'server/middleware/sessionFlashArray'
 import handleError from 'server/middleware/handleError'
-import debug from 'debug'
 
 const app = koa()
 
