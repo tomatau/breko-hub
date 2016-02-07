@@ -1,0 +1,21 @@
+machine:
+  timezone:
+    Europe/London
+  node:
+    version: v5
+  environment:
+    PORT: 9001
+    DEBUG: *,-babel,-koa*,-css-modules*,-engine*,-socket.io*,-mocha*
+
+dependencies:
+  cache_directories:
+    - node_modules
+  post:
+    - npm run build
+
+test:
+  override:
+    - npm run lint
+    - npm start:
+      background: true
+    - npm run test -- --run
