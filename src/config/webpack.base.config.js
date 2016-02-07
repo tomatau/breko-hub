@@ -1,6 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import { SRC, APP, STATIC, STYLES } from 'config/paths'
+import CleanPlugin from 'clean-webpack-plugin'
+import { SRC, APP, STATIC, STYLES, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 
 export default {
@@ -27,6 +28,9 @@ export default {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
+    new CleanPlugin([ 'src/static' ], {
+      root: ROOT,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),

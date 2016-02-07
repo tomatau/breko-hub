@@ -1,6 +1,5 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import CleanPlugin from 'clean-webpack-plugin'
 import webpackConfig from 'config/webpack.base.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 import autoprefixer from 'autoprefixer'
@@ -9,7 +8,6 @@ export default {
   ...webpackConfig,
   devtool: null,
   plugins: [
-    new CleanPlugin([ webpackConfig.output.path ]),
     isomorphicPlugin,
     ...webpackConfig.plugins,
     new webpack.optimize.DedupePlugin(),
