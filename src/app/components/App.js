@@ -20,7 +20,6 @@ const metaData = {
 }
 
 class App extends React.Component {
-
   render() {
     log.app('render')
     return (

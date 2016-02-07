@@ -28,6 +28,6 @@ export function setRoutes(assets) {
 
   rootRouter
     .use('/api', apiRouter.routes())
-    .get('error', '/error', renderApp)
+    .get('error', '/oops', renderApp)
     .get('react', '/(.*)', renderApp)
 }

@@ -37,17 +37,18 @@ describe('Flash reducers', ()=> {
         assertStateUnchanged(stateWithMessages, '')
       })
 
-
-      it('removes a message by id', repeat(6, ()=> {
-        updateFlashId()
-        const nextState = flashReducers(stateWithMessages, removeFlashAction)
-        const expectedMessages = _.reject(messages, {
-          id: removeFlashAction.payload.flash_id,
+      it('removes a message by id', ()=> {
+        _.times(6, () => {
+          updateFlashId()
+          const nextState = flashReducers(stateWithMessages, removeFlashAction)
+          const expectedMessages = _.reject(messages, {
+            id: removeFlashAction.payload.flash_id,
+          })
+          expect(nextState).to.eql({
+            messages: expectedMessages,
+          })
         })
-        expect(nextState).to.eql({
-          messages: expectedMessages,
-        })
-      }))
+      })
     })
   })
 })
