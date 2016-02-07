@@ -1,5 +1,5 @@
 import { RoutingContext, match } from 'react-router'
-import { getPrefetchedData } from 'react-fetcher'
+import { trigger } from 'redial'
 import { history } from 'app/state/history'
 
 export default function(makeRoutes) {
@@ -17,7 +17,7 @@ export default function(makeRoutes) {
             return reject(this.throw(error.message))
           else if (renderProps == null)
             return reject(this.throw(404, 'Not found'))
-          getPrefetchedData(renderProps.components, {
+          trigger('prefetch', renderProps.components, {
             store,
             location: renderProps.location,
             params: renderProps.params,
