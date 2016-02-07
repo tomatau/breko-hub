@@ -1,4 +1,4 @@
-import chai,{ expect } from 'chai'
+import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import lodash from 'lodash/index'
 chai.use(require('chai-shallow-deep-equal'))

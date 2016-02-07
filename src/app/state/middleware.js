@@ -6,7 +6,6 @@ import { socket } from 'app/state/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { syncHistory } from 'react-router-redux'
 import { history } from 'app/state/history'
-import debug from 'debug'
 
 const log = {
   action: debug('DISPATCH:'),

@@ -1,4 +1,3 @@
-import React from 'react'
 import { prefetch, defer } from 'react-fetcher'
 import { isBrowser } from 'app/utils/predicates'
 

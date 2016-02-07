@@ -1,4 +1,3 @@
-import debug from 'debug'
 import { set } from 'lodash'
 const log = {
   err: debug('handle-error'),

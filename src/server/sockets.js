@@ -1,5 +1,4 @@
 import Socket from 'socket.io'
-import debug from 'debug'
 import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
 import rootReducer from 'app/reducers'
 import { defaultMiddleware } from 'app/state/middleware'

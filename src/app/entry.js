@@ -6,7 +6,6 @@ import { history } from 'app/state/history'
 import { store } from 'app/state/store'
 import makeRoutes from 'app/makeRoutes'
 import DevTools from 'app/components/containers/DevTools'
-import debug from 'debug'
 import { socket } from 'app/state/socket'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 

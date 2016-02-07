@@ -47,7 +47,13 @@ export default {
         'plugins': [
           'add-module-exports',
           'lodash',
-          'react-require',
+          [ 'provide-modules', {
+            'debug': 'debug',
+            'react': {
+              'default': 'React',
+              'destructured': [ 'PropTypes' ],
+            },
+          } ],
           'babel-root-import',
           'transform-decorators-legacy',
         ],

@@ -1,4 +1,3 @@
-import debug from 'debug'
 import loadEnv from 'node-env-file'
 import { ROOT } from 'config/paths'
 
