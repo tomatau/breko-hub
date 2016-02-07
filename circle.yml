@@ -5,7 +5,6 @@ machine:
     version: v5
   environment:
     PORT: 9001
-    DEBUG: *,-babel,-koa*,-css-modules*,-engine*,-socket.io*,-mocha*
 
 dependencies:
   cache_directories:
