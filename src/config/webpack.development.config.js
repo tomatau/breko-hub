@@ -49,6 +49,7 @@ export default {
         'plugins': [
           'add-module-exports',
           'lodash',
+          'ramda',
           [ 'provide-modules', {
             'debug': 'debug',
             'react': {

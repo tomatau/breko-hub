@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
-import { after, flow } from 'lodash'
+import { after } from 'lodash'
+import { compose } from 'ramda'
 import { trigger } from 'redial'
 import { makeContent } from 'app/utils/makeContent'
 import { history } from 'app/state/history'
@@ -29,7 +30,7 @@ socket.on('connect', () => {
   })
 })
 
-const onRouteUpdate = flow(
+const onRouteUpdate = compose(
   after(2, function() {
     const { components, location, params } = this.state
     trigger('prefetch', components, { store, location, params })

@@ -1,7 +1,9 @@
 import ReactDOMServer from 'react-dom/server'
 import { Html } from 'server/components/Html'
-import { compact } from 'lodash'
+import { filter, identity } from 'ramda'
 import { makeContent } from 'app/utils/makeContent'
+
+const compact = filter(identity)
 
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
