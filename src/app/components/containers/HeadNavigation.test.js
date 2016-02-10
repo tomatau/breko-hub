@@ -1,4 +1,4 @@
-import { WrappedComponent as HeadNavigation } from './HeadNavigation'
+import HeadNavigation from './HeadNavigation'
 import sd from 'skin-deep'
 import { IndexLink, Link } from 'react-router'
 import styles from './HeadNavigation.module.scss'
@@ -11,7 +11,8 @@ describe('Head Navigation Component', ()=> {
 
   it('should render a nav element with head-navigation className', ()=> {
     const nav = tree.findNode('nav')
-    expect(nav.props).to.have.property('className', 'head-navigation')
+    expect(nav.props).to.have.property('className',
+      'src-app-components-containers-HeadNavigation-module-nav')
   })
 
   it('should render an IndexLink', ()=> {

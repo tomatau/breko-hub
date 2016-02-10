@@ -5,7 +5,7 @@ export default class HeadNavigation extends React.Component {
   render() {
     const { ...props } = this.props
     return (
-      <nav className='head-navigation' className={styles.nav} {...props}>
+      <nav className={styles.nav} {...props}>
         <IndexLink activeClassName={styles.active} to='/'>
           Home
         </IndexLink>
