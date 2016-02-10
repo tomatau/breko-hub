@@ -1,5 +1,5 @@
 import DocumentMeta from 'react-document-meta'
-import HeadNavigation from 'app/components/containers/HeadNavigation'
+import HeadNavigation from 'app/components/HeadNavigation'
 import img from 'assets/avatar.jpeg'
 import style from './App.module.scss'
 import './App.css'

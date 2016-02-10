@@ -12,7 +12,7 @@ describe('Head Navigation Component', ()=> {
   it('should render a nav element with head-navigation className', ()=> {
     const nav = tree.findNode('nav')
     expect(nav.props).to.have.property('className',
-      'src-app-components-containers-HeadNavigation-module-nav')
+      'src-app-components-HeadNavigation-module-nav')
   })
 
   it('should render an IndexLink', ()=> {
