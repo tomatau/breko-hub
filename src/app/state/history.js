@@ -1,10 +1,6 @@
-import createBrowserHistory from 'history/lib/createBrowserHistory'
-import createMemoryHistory from 'history/lib/createMemoryHistory'
-import useQueries from 'history/lib/useQueries'
 import { isBrowser } from 'app/utils/predicates'
+import { browserHistory, createMemoryHistory } from 'react-router'
 
-export const history =
-  isBrowser()
-    ? useQueries(createBrowserHistory)({ queryKey: false })
-    : useQueries(createMemoryHistory)()
-
+export const history = isBrowser()
+  ? browserHistory
+  : createMemoryHistory()

@@ -1,30 +1,20 @@
 import { IndexLink, Link } from 'react-router'
-import { routeActions } from 'react-router-redux'
-import { connect } from 'react-redux'
 import styles from './HeadNavigation.module.scss'
 
-const RSRLink = ({ path, dispatch, ...props }) =>
-  <a href={`${path}`}
-    onClick={e => {
-      e.preventDefault()
-      dispatch(routeActions.push(path, false))
-    }} {...props} />
-
-@connect()
 export default class HeadNavigation extends React.Component {
   render() {
-    const { dispatch, ...props } = this.props
+    const { ...props } = this.props
     return (
-      <nav className='head-navigation' {...props}>
+      <nav className='head-navigation' className={styles.nav} {...props}>
         <IndexLink activeClassName={styles.active} to='/'>
           Home
         </IndexLink>
         <Link activeClassName={styles.active} to='/foo'>
           Foo
         </Link>
-        <RSRLink dispatch={dispatch} path='/bar'>
+        <Link activeClassName={styles.active} to='/bar'>
           Bar
-        </RSRLink>
+        </Link>
       </nav>
     )
   }
