@@ -1,4 +1,4 @@
-import { RoutingContext, match } from 'react-router'
+import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
 import { history } from 'app/state/history'
 
@@ -22,7 +22,7 @@ export default function(makeRoutes) {
             location: renderProps.location,
             params: renderProps.params,
           }).then(() =>
-            resolve(<RoutingContext {...renderProps} />)
+            resolve(<RouterContext {...renderProps} />)
           )
         })
       })

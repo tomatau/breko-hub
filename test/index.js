@@ -13,6 +13,4 @@ function setGlobals(global) {
   global.sinon = sinon
   global._ = lodash
   global.R = ramda
-  global.repeat = (times, assertion) =>
-    () => _.times(times, assertion)
 }

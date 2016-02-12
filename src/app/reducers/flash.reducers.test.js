@@ -1,6 +1,6 @@
 import { flashReducers } from './flashReducers'
 
-describe('Flash reducers', ()=> {
+describe('Flash Reducers', ()=> {
   it('should return the initial state', ()=> {
     expect(flashReducers(undefined, {})).to.eql({ messages: [] })
   })

@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 import { routeReducer } from 'react-router-redux'
-import { errorReducers as error } from './errorReducers'
-import { flashReducers as flash } from './flashReducers'
-import { exampleReducers as example } from './exampleReducers'
+import { flashReducers as flash } from './flash.reducers'
+import { barReducers as bar } from './bar.reducers'
+import { fooReducers as foo } from './foo.reducers'
 import { enableBatching } from 'redux-batched-actions'
 
 export default enableBatching(combineReducers({
-  error,
   flash,
-  example,
+  foo,
+  bar,
   routing: routeReducer,
 }))
