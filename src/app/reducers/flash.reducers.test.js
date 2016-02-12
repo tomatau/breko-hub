@@ -1,4 +1,4 @@
-import { flashReducers } from './flashReducers'
+import { flashReducers } from './flash.reducers'
 
 describe('Flash Reducers', ()=> {
   it('should return the initial state', ()=> {
