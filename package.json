@@ -9,6 +9,9 @@
     "dev": "node ./scripts/babel.entry.js --dev",
     "lint": "eslint . --ext .js"
   },
+  "pre-push": [
+    "test -- --run"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomatau/breko-hub.git"
@@ -117,6 +120,7 @@
     "glob": "~7.0.0",
     "html-webpack-plugin": "~2.8.1",
     "json-loader": "~0.5.3",
+    "pre-push": "^0.1.1",
     "koa-webpack-dev-middleware": "~1.1.0",
     "koa-webpack-hot-middleware": "~1.0.3",
     "mocha": "~2.4.5",
