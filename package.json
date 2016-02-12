@@ -4,13 +4,14 @@
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
     "test": "node ./scripts/babel.entry.js --test",
+    "test:run": "node ./scripts/babel.entry.js --test --run",
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
     "dev": "node ./scripts/babel.entry.js --dev",
     "lint": "eslint . --ext .js"
   },
   "pre-push": [
-    "test -- --run"
+    "test:run"
   ],
   "repository": {
     "type": "git",
