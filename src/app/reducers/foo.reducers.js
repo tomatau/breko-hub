@@ -11,12 +11,12 @@ const initialState = {
 
 export const fooReducers = typeToReducer({
 
-  [GET]: (state, action) => ({
+  [ GET ]: (state, action) => ({
     ...state,
     data: getFoo(action),
   }),
 
-  [GET_CLIENT_ONLY]: (state, action) => ({
+  [ GET_CLIENT_ONLY ]: (state, action) => ({
     ...state,
     data: getFoo(action),
   }),
