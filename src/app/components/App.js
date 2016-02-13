@@ -1,7 +1,10 @@
 import DocumentMeta from 'react-document-meta'
 import HeadNavigation from 'app/components/HeadNavigation'
+// example image import
 import img from 'assets/avatar.jpeg'
+// example s?css module import
 import style from './App.module.scss'
+// example s?css import (no module)
 import './App.css'
 
 const log = {
@@ -22,15 +25,16 @@ const metaData = {
 
 class App extends React.Component {
   render() {
+    const { children } = this.props
     log.app('render')
     return (
       <main className={style.app}>
         <DocumentMeta {...metaData} />
         <HeadNavigation />
         <img src={img} alt='me' width='70' />
-        <h1>The Apple</h1>
+        <h1>Breko Hub</h1>
         <div>
-          {this.props.children}
+          {children}
         </div>
       </main>
     )

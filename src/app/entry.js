@@ -18,27 +18,33 @@ const log = {
   sock: debug('socket'),
 }
 
+const { dispatch } = store
+
 log.env(`Running in [${process.env.NODE_ENV}] environment`)
 
-inClientViaSocketIO(socket, store.dispatch)
-socket.on('connect', () => {
+inClientViaSocketIO(socket, dispatch)
+
+// example socket broadcast
+/*socket.on('connect', () => {
   log.sock('Client connected to socket')
-  store.dispatch({
+  dispatch({
     type: 'NEW_SOCKET_SESSION',
     payload: { data: Math.random() },
     meta: { broadcast: true, next: false },
   })
-})
+})*/
+
+function routeLocalsTrigger(event) {
+  return function() {
+    const { components, location, params } = this.state
+    trigger(event, components, { dispatch, location, params })
+  }
+}
 
 const onRouteUpdate = compose(
-  after(2, function() {
-    const { components, location, params } = this.state
-    trigger('prefetch', components, { store, location, params })
-  }),
-  function() {
-    const { components, location, params } = this.state
-    trigger('defer', components, { store, location, params })
-  }
+  routeLocalsTrigger('defer'),
+  // ignore first update, pre-fetched data already in server render
+  after(2, routeLocalsTrigger('prefetch'))
 )
 
 ReactDOM.render(

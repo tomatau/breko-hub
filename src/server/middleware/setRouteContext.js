@@ -11,14 +11,14 @@ export default function(makeRoutes) {
           routes: makeRoutes(),
           location: history.createLocation(this.request.url),
         }, (error, redirect, renderProps) => {
-          if (redirect)
+          if (redirect) {
+            this.addFlash('You may not view the private route!!', 'error')
             return reject(this.redirect(redirect.pathname + redirect.search))
-          else if (error)
+          } else if (error)
             return reject(this.throw(error.message))
-          else if (renderProps == null)
-            return reject(this.throw(404, 'Not found'))
+
           trigger('prefetch', renderProps.components, {
-            store,
+            dispatch: store.dispatch,
             location: renderProps.location,
             params: renderProps.params,
           }).then(() =>

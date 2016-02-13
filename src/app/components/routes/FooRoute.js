@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import { fooGet, fooGetClientOnly } from 'app/actions/foo'
 import { get } from 'app/utils'
 
+// Example hooks
 @provideHooks({
-  prefetch: ({ store }) => store.dispatch(fooGet()),
-  defer: ({ store }) => store.dispatch(fooGetClientOnly()),
+  // prefetch both for server side and client side render
+  prefetch: ({ dispatch }) => dispatch(fooGet()),
+  // defer hook only on client
+  defer: ({ dispatch }) => dispatch(fooGetClientOnly()),
 })
 @connect(state => ({
   foo: get('foo.data')(state),
