@@ -20,6 +20,7 @@
     "expect": true,
     "global": true,
     "window": true,
+    "sinon": true,
     "debug": true,
     "React": true,
     "PropTypes": true,

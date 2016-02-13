@@ -1,4 +1,4 @@
-import { handleActions, get } from 'app/utils'
+import { typeToReducer, get } from 'app/utils'
 import { API_FETCH } from 'app/actions/bar'
 
 const getBar = get([ 'payload', 'bar' ])
@@ -9,7 +9,7 @@ const initialState = {
   data: [],
 }
 
-export const barReducers = handleActions({
+export const barReducers = typeToReducer({
 
   [ API_FETCH ]: {
     PENDING: () => ({

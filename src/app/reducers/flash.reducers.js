@@ -1,9 +1,10 @@
 import { filter } from 'ramda'
-import { handleActions, get } from 'app/utils'
+import { typeToReducer, get } from 'app/utils'
 
 const getFlashId = get([ 'payload', 'flash_id' ])
+const initialState = { messages: [] }
 
-export const flashReducers = handleActions({
+export const flashReducers = typeToReducer({
 
   ['REMOVE_FLASH']: (state, action) => ({
     ...state,
@@ -13,4 +14,4 @@ export const flashReducers = handleActions({
     ),
   }),
 
-}, { messages: [] })
+}, initialState)
