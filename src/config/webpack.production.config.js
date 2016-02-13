@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import webpackConfig from 'config/webpack.base.config'
+import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 import autoprefixer from 'autoprefixer'
 
@@ -37,26 +37,7 @@ export default {
         'style', 'css!postcss!sass?outputStyle=compressed'
       ),
     }, {
-      test: /\.(es6?|jsx?)$/,
-      include: [ /src\/app/ ],
-      loader: 'babel',
-      query: {
-        'presets': [ 'es2015', 'react', 'stage-0' ],
-        'plugins': [
-          'add-module-exports',
-          'lodash',
-          'ramda',
-          [ 'provide-modules', {
-            'debug': 'debug',
-            'react': {
-              'default': 'React',
-              'destructured': [ 'PropTypes' ],
-            },
-          } ],
-          'babel-root-import',
-          'transform-decorators-legacy',
-        ],
-      },
+      ...babelLoaderConfig,
     }, ...webpackConfig.module.loaders ],
   },
 }

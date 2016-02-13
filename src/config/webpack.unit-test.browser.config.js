@@ -3,7 +3,7 @@ import path from 'path'
 import glob from 'glob'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpackConfig from 'config/webpack.base.config'
+import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
 import { TESTS, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 
@@ -54,24 +54,12 @@ export default {
         'style', 'css!sass'
       ),
     }, {
-      test: /\.(es6?|jsx?)$/,
+      ...babelLoaderConfig,
       include: [ /src/, /test/ ],
-      loader: 'babel',
       query: {
-        'presets': [ 'es2015', 'react', 'stage-0' ],
+        ...babelLoaderConfig.query,
         'plugins': [
-          'add-module-exports',
-          'lodash',
-          'ramda',
-          [ 'provide-modules', {
-            'debug': 'debug',
-            'react': {
-              'default': 'React',
-              'destructured': [ 'PropTypes' ],
-            },
-          } ],
-          'babel-root-import',
-          'transform-decorators-legacy',
+          ...babelLoaderConfig.query.plugins,
           [ 'react-transform', {
             'transforms': [ {
               'transform': 'react-transform-hmr',

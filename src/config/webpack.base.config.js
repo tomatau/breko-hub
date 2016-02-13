@@ -67,3 +67,26 @@ export default {
     } ],
   },
 }
+
+export const babelLoaderConfig = {
+  test: /\.(es6?|jsx?)$/,
+  include: [ /src\/app/ ],
+  loader: 'babel',
+  query: {
+    'presets': [ 'es2015', 'react', 'stage-0' ],
+    'plugins': [
+      'add-module-exports',
+      'lodash',
+      'ramda',
+      [ 'provide-modules', {
+        'debug': 'debug',
+        'react': {
+          'default': 'React',
+          'destructured': [ 'PropTypes' ],
+        },
+      } ],
+      'babel-root-import',
+      'transform-decorators-legacy',
+    ],
+  },
+}

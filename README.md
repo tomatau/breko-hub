@@ -1,24 +1,22 @@
-**B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
-# Breko-hub
-
 [![Circle CI](https://circleci.com/gh/tomatau/breko-hub.svg?style=svg)](https://circleci.com/gh/tomatau/breko-hub)
+
+**B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
+### Breko-hub
 
 Another starter kit for Universal React applications.
 
-# Why Another Starter Kit?
-
 The goal here is to build on the existing starter kits, but using smaller files and simple solutions where possible to achieve similar results.
 
-Also, this boilerplate doesn't include any existing applications - so you don't need to delete anything before getting started.
+This boilerplate doesn't include any existing applications - so you don't need to delete too much before getting started.
 
-# Features
+## Features
 
 - Configurable async CSS files for improved page loads
 - Babel 6
 - React 0.14
-- Redux 3.0
-- Koa 1.0
-- React-router 1.0
+- Redux 3
+- Koa 1
+- React-router 2
 - SocketIO integrated with redux
 - Router integrated with redux
 - Server side data fetching through redux
@@ -51,20 +49,9 @@ Also, this boilerplate doesn't include any existing applications - so you don't 
 
 1. git clone
 2. npm install
-3. It's recommended to create a `.env` file for local development in the project root. An example `.env` file would be:
+3. It's recommended to create a `.env` file for local development in the project root. An example `.env` file has been provided.
 
-```
-NODE_ENV=development
-NPM_CONFIG_LOGLEVEL=warn
-NPM_CONFIG_PRODUCTION=false
-NODE_MODULES_CACHE=false
-PORT=9001
-DATABASE_URL=
-TEST_DATABASE_URL=
-DEBUG=*,-babel,-koa*,-css-modules*,-engine*,-socket.io*
-```
-
-Do not check-in this file. When in production, you would want to set the appropriate settings in the deployment environment as environmental variables. The `.env` file will never overwrite that which exists in your environment.
+Do not check-in your `.env`. When in production, you would want to set the appropriate settings in the deployment environment as environmental variables. The `.env` file will never overwrite that which exists in your environment.
 
 Breko Hub will attempt to use a `.env` file. If no .env exists, the app will default to development mode with a port 9001.
 
@@ -114,9 +101,9 @@ No semi colons, lots of commas on multi-lines for easy duplication, single-quote
 
 ## Coming Soon
 
-- Some sort of example application. I'd rather not just make a counter or TodoList though!
-- More tests, currently only two middleware are tested. Once an example is ready, the testing situation will be kicked around a lot more.
-- Docs, I'd like to explain all the features in more detail.
+- Example applications. I'd rather not just make a counter or TodoList though!
+- More tests.
+- Better documentation.
 
 ## Description
 
@@ -126,9 +113,12 @@ This project will be looking for various settings in your runtime environment, s
 
 **ES Imports**
 
-This project is ran through babel stage 0, also with the help of a plug-in named `babel-root-imports` which resolves modules according to the project route when the suffix `~` is used. 
+`babel` has been configured to treat `src/` as the default import root. 
 
-Using absolute requires helps with module portability and clarity, no-one enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code. Ideally it would be possible to use the `resolve.root` feature of webpack, but this isn't possible without compiling the server code through webpack... So, `babel-root-imports` is a universal solution for this.
+Using absolute requires helps with module portability and clarity, no-one enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code.
+
+`babel-root-imports` is also included which resolves modules according to the project route when the suffix `~` is used -- this is handy if you need to require something from above `src/`.
+
 
 **Head and Body Script Loading**
 
@@ -143,16 +133,17 @@ Whilst developing, to make the most of CSS hot reloading on the client, CSS-modu
 You can import any SCSS or CSS into a client JS file, if the file has the extension `/.module.s?css/`, then it will be imported as a CSS-module. This gives more clarity about what sort of CSS file is being dealt with as well as some flexibility when managing styles.
 
 ### Engine
-- npm v3.3.x
-- node v5.0.x
+- npm v3.x
+- node v5.x
 
 This project has been developed and tested using the above versions of npm and node. It's advised to use the same engine when using this boilerplate but it may still work with other configurations.
 
-Also, it probably doesn't work on Windows... if you want to make PRs for that, please do! (But nothing too crazy, I'd rather people just stopped that whole windows development thing.)
+Also, it probably doesn't work to develop, build, test or serve on Windows... if you want to make PRs for that, please do! (But nothing too ugly, I'd rather people just stopped that whole windows development thing.)
 
 ## Thanks For Ideas!
 
-This boilerplate is shamelessly reusing a bunch of ideas from:
+This boilerplate is shamelessly reusing some ideas from:
 
 - https://github.com/glenjamin/ultimate-hot-reloading-example
 - https://github.com/erikras/react-redux-universal-hot-example
+- https://github.com/davezuko/react-redux-starter-kit

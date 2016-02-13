@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import webpackConfig from 'config/webpack.base.config'
+import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 import autoprefixer from 'autoprefixer'
 
@@ -24,6 +24,7 @@ export default {
     loaders: [ {
       test: /module\.s?css$/,
       include: [ /src\/app/ ],
+      // not extracting css-modules in development for hot-reloading
       loaders: [
         'style',
         'css' +
@@ -41,24 +42,11 @@ export default {
         'style', 'css!postcss!sass?outputStyle=expanded'
       ),
     }, {
-      test: /\.(es6?|jsx?)$/,
-      include: [ /src\/app/, /test/ ],
-      loader: 'babel',
+      ...babelLoaderConfig,
       query: {
-        'presets': [ 'es2015', 'react', 'stage-0' ],
+        ...babelLoaderConfig.query,
         'plugins': [
-          'add-module-exports',
-          'lodash',
-          'ramda',
-          [ 'provide-modules', {
-            'debug': 'debug',
-            'react': {
-              'default': 'React',
-              'destructured': [ 'PropTypes' ],
-            },
-          } ],
-          'babel-root-import',
-          'transform-decorators-legacy',
+          ...babelLoaderConfig.query.plugins,
           [ 'react-transform', {
             'transforms': [ {
               'transform': 'react-transform-hmr',
