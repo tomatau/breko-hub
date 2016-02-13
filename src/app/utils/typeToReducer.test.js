@@ -15,7 +15,7 @@ describe('Handle Actions', function() {
     expect(reducer(undefined, fooAction)).to.eql(initialState)
   })
 
-  context('Given A Flap Reducer Config', ()=> {
+  context('Given A Flat Reducer Config', ()=> {
     const initialState = { initial: 'state' }
     beforeEach(()=> {
       this.reducerConfig = {

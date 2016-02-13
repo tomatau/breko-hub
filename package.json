@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .js"
   },
   "pre-push": [
+    "lint",
     "test:run"
   ],
   "repository": {
