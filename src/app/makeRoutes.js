@@ -14,9 +14,9 @@ const makeRoutes = () => (
     <Route path='foo' component={FooRoute} />
     <Route path='bar' component={BarRoute} />
     <Route path='oops' component={Oops} />
-    <Route path='private' component={Oops} onEnter={(_, go) => {
+    <Route path='private' component={Oops} onEnter={(_, redirect) => {
       store.dispatch(addMessage('You may not view the private route!!', 'error'))
-      go('/foo')
+      redirect('/foo')
     }} />
     <Route path='*' component={NotFound} />
   </Route>

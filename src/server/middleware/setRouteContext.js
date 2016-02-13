@@ -12,6 +12,7 @@ export default function(makeRoutes) {
           location: history.createLocation(this.request.url),
         }, (error, redirect, renderProps) => {
           if (redirect) {
+            // todo: figure out how to persist client redirect state on server render
             this.addFlash('You may not view the private route!!', 'error')
             return reject(this.redirect(redirect.pathname + redirect.search))
           } else if (error)
