@@ -103,6 +103,7 @@
     "socket.io-client": "~1.4.5",
     "style-loader": "~0.13.0",
     "tao-scss": "~0.3.0",
+    "type-to-reducer": "^1.0.0",
     "url-loader": "~0.5.6",
     "uuid": "~2.0.1",
     "webpack": "^1.12.13",
