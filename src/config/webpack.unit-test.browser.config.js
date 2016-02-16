@@ -22,6 +22,11 @@ export default {
       'webpack-hot-middleware/client',
     ],
   },
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/ReactContext/), // skin-deep

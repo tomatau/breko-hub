@@ -9,25 +9,47 @@ describe('Head Navigation Component', ()=> {
     tree = sd.shallowRender(<HeadNavigation />)
   })
 
-  it('should render a nav element with head-navigation className', ()=> {
+  it('renders a nav element with styles.nav className', ()=> {
     const nav = tree.findNode('nav')
-    expect(nav.props).to.have.property('className',
-      'src-app-components-HeadNavigation-module-nav')
+    expect(nav.props).to.have.property('className', styles.nav)
   })
 
-  it('should render an IndexLink', ()=> {
-    const indexLink = tree.findNode('IndexLink')
-    expect(indexLink.type).to.eql(IndexLink)
-    expect(indexLink.props).to.have.property('children', 'Home')
-    expect(indexLink.props).to.have.property('to', '/')
-    expect(indexLink.props).to.have.property('activeClassName', styles.active)
+  it('passes other props through', ()=> {
+    const otherProps = { foo: 'foo', bar: 'bar' }
+    let treeWithProps = sd.shallowRender(<HeadNavigation {...otherProps} />)
+    expect(treeWithProps.props).to.shallowDeepEqual(otherProps)
   })
 
-  it('should render a Link', ()=> {
-    const link = tree.findNode('Link')
-    expect(link.type).to.eql(Link)
-    expect(link.props).to.have.property('children', 'Foo')
-    expect(link.props).to.have.property('to', '/foo')
-    expect(link.props).to.have.property('activeClassName', styles.active)
+  describe('Links', ()=> {
+    const links = [
+      { to: '/foo',     content: 'Foo' },
+      { to: '/bar',     content: 'Bar' },
+      { to: '/private', content: 'Private' },
+    ]
+
+    it('only renders the necessary links', ()=> {
+      expect(tree.everySubTree(Link.displayName)).to.have.length(links.length)
+    })
+
+    it('renders an IndexLink', ()=> {
+      const indexLink = tree.findNode(IndexLink.displayName)
+      expect(indexLink.type).to.eql(IndexLink)
+      expect(indexLink.props).to.eql({
+        children: 'Home',
+        'to': '/',
+        'activeClassName': styles.active,
+      })
+    })
+
+    links.forEach(link =>
+      it(`renders the ${link.content} link`, ()=> {
+        const node = tree.findComponentLike(Link.displayName, { to: link.to })
+        expect(node.type).to.eql(Link)
+        expect(node.props).to.shallowDeepEqual({
+          children: link.content,
+          activeClassName: styles.active,
+        })
+      })
+    )
   })
 })

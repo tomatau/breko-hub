@@ -1,4 +1,5 @@
 import '~/scripts/helpers/cssModulesHook'
+import '~/scripts/helpers/globalJSDOM'
 import path from 'path'
 import Mocha from 'mocha'
 import glob from 'glob'
@@ -24,4 +25,3 @@ mocha.run(failures => {
     process.exit(failures)
   })
 })
-
