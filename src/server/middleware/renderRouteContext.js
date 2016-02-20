@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server'
+import { Provider } from 'react-redux'
 import { Html } from 'server/components/Html'
 import { filter, identity } from 'ramda'
-import { makeContent } from 'app/utils/makeContent'
 
 const compact = filter(identity)
 
@@ -24,7 +24,9 @@ export default function renderRouteContext(assets) {
     const html = makeHtml(
       store.getState(),
       assets,
-      makeContent(routeContext, store)
+      <Provider store={store}>
+        {routeContext}
+      </Provider>
     )
     this.response.body = `<!doctype html>${html}`
   }

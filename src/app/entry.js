@@ -2,8 +2,8 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import { after } from 'lodash'
 import { compose } from 'ramda'
+import { Provider } from 'react-redux'
 import { trigger } from 'redial'
-import { makeContent } from 'app/utils/makeContent'
 import { history } from 'app/state/history'
 import { store } from 'app/state/store'
 import makeRoutes from 'app/makeRoutes'
@@ -48,16 +48,19 @@ const onRouteUpdate = compose(
 )
 
 ReactDOM.render(
-  makeContent(
+  <Provider store={store}>
     <Router history={history} onUpdate={onRouteUpdate}>
       {makeRoutes()}
-    </Router>, store),
+    </Router>
+  </Provider>,
   document.getElementById('application-root')
 )
 
 if (process.env.NODE_ENV === 'development') {
   ReactDOM.render(
-    makeContent(<DevTools />, store),
+    <Provider store={store}>
+      <DevTools />
+    </Provider>,
     document.getElementById('debug-panel-root')
   )
 }
