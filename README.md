@@ -9,6 +9,20 @@ The goal here is to build on the existing starter kits, but using smaller files 
 
 This boilerplate doesn't include any existing applications - so you don't need to delete too much before getting started.
 
+## What's in the box?
+
+There's a FooRoute component showing how to wire up data on pre-render of both server and client, as well as just client only data.
+
+There's a BarRoute component showing how to prefetch route data with a promise-action.
+
+A tiny trivial API to support the BarRoute's data needs.
+
+There's a Private route doing a redirect on both client and server with a flash message.
+
+FlashMessage component gives an example of action -> reducer flow, as well as a saga to remove messages after a delay. This also shows some BEM utility for managing class names from css-modules in SCSS.
+
+A commented out dispatch call in `src/app/entry.js` to show how to broadcast actions over a socket. And a small socket server hosted within the app (on the same port) to wire up the said broadcast actions.
+
 ## Features
 
 - Configurable async CSS files for improved page loads
