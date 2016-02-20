@@ -56,7 +56,14 @@ A commented out dispatch call in `src/app/entry.js` to show how to broadcast act
   + debug on both client and server
   + Server request logging
   + Redux logging both client and server dispatches
-- Universal tests
+- Universal tests (all through babel)
+  + Mocha
+  + skin-deep for simple shallow component tests
+  + enzyme on both server and client tests too... for more involved component tests
+  + chai and some helper libs
+- Lots of utilities
+  + lodash and ramda both with babel optimisation plugins
+  + more
 
 ## Usage
 
