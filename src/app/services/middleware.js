@@ -6,6 +6,8 @@ import { socket } from 'app/services/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { syncHistory } from 'react-router-redux'
 import { history } from 'app/services/history'
+import rootSaga from 'app/sagas'
+import createSagaMiddleware from 'redux-saga'
 
 const log = {
   action: debug('DISPATCH:'),
@@ -13,6 +15,7 @@ const log = {
 export const defaultMiddleware = [
   thunkMiddleware,
   promiseMiddleware(),
+  createSagaMiddleware(rootSaga),
 ]
 export const middleware = [
   ...defaultMiddleware,
@@ -26,12 +29,14 @@ if (isBrowser()) {
     outClientViaSocketIO(socket),
     createLogger({
       predicate: () => process.env.NODE_ENV === 'development',
+      collapsed: true,
     })
   )
 } else {
   middleware.push(
     () => next => action => {
-      log.action(action)
+      if (!action.MONITOR_ACTION)
+        log.action(action)
       next(action)
     }
   )
