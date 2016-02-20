@@ -18,6 +18,7 @@ This boilerplate doesn't include any existing applications - so you don't need t
 - Koa 1
 - React-router 2
 - SocketIO integrated with redux
+- Redux sagas for side effects
 - Router integrated with redux
 - Server side data fetching through redux
 - No global dependencies
