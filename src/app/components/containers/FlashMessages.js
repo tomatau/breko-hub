@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
-import { get } from 'app/utils'
 import { removeMessage } from 'app/actions/flash'
+import * as selectors from 'app/selectors'
 
-const Msg = ({ msg, ...props }) =>
+export const Msg = ({ msg, ...props }) =>
   <span {...props}
     className={msg.type}>
     {msg.message} <strong>x</strong>
   </span>
 
 @connect(state => ({
-  messages: get('flash.messages')(state),
-}))
+  messages: selectors.flashMessages(state),
+}), { removeMessage })
 class FlashMessages extends React.Component {
   render() {
     const { messages } = this.props
@@ -27,7 +27,7 @@ class FlashMessages extends React.Component {
   }
 
   clickMessage(msg) {
-    this.props.dispatch(removeMessage(msg.id))
+    this.props.removeMessage(msg.id)
   }
 }
 
