@@ -28,7 +28,7 @@ function * takeFlashMessages() {
   while (DAEMON) {
     const action = yield take('flash/ADD_MESSAGE')
     log.sagas('Hello Sagas!', { action })
-    yield timeoutRemoveFlash(action.payload)
+    yield fork(timeoutRemoveFlash, action.payload)
   }
 }
 

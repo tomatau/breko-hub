@@ -1,0 +1,22 @@
+@import "~tao-scss/index";
+
+.msg {
+  &__info {
+    color: #0E8DCE;
+  }
+  &__error {
+    color: #AF0000;
+  }
+  &__good {
+    color: #066506;
+  }
+}
+
+.close {
+  border: 1px solid #8E7F7F;
+  border-radius: rem(10px);
+  padding: 1px rem(5px);
+  &:hover {
+    cursor: pointer;
+  }
+}
