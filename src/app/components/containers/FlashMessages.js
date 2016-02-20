@@ -1,13 +1,18 @@
 import { connect } from 'react-redux'
 import { removeMessage } from 'app/actions/flash'
+import { Bem } from 'app/utils'
 import * as selectors from 'app/selectors'
 import styles from './FlashMessages.module.scss'
 
 export const Msg = ({ msg, ...props }) =>
   <span {...props}
-    className={styles[`msg__${msg.type}`]}>
-    {msg.message} <strong className={styles.close}>x</strong>
+    {...Msg.classes(null, msg.type)}>
+    {msg.message}
+    &nbsp;
+    <strong className={styles.close}>x</strong>
   </span>
+
+Msg.classes = Bem(styles.msg)
 
 Msg.propTypes = {
   msg: PropTypes.shape({

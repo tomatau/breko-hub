@@ -1,13 +1,16 @@
 @import "~tao-scss/index";
 
 .msg {
-  &__info {
+  display: block;
+  margin-bottom: rem(5px);
+
+  &--info {
     color: #0E8DCE;
   }
-  &__error {
+  &--error {
     color: #AF0000;
   }
-  &__good {
+  &--good {
     color: #066506;
   }
 }

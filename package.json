@@ -82,6 +82,7 @@
     "postcss-loader": "^0.8.1",
     "ramda": "^0.19.1",
     "react": "^0.14.7",
+    "react-bem-helper": "^1.1.0",
     "react-document-meta": "~2.0.2",
     "react-dom": "^0.14.7",
     "react-redux": "~4.4.0",
