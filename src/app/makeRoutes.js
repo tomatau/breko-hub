@@ -6,7 +6,7 @@ import BarRoute from 'app/components/routes/BarRoute'
 import Oops from 'app/components/routes/Oops'
 import NotFound from 'app/components/routes/NotFound'
 
-import { store } from 'app/state/store'
+import { store } from 'app/services/store'
 import { addMessage } from 'app/actions/flash'
 
 const makeRoutes = () => (

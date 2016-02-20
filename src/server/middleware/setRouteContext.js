@@ -1,6 +1,6 @@
 import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
-import { history } from 'app/state/history'
+import { history } from 'app/services/history'
 
 export default function(makeRoutes) {
   return function *(next) {

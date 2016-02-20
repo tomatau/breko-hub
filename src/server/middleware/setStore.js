@@ -1,6 +1,6 @@
-import { makeCreateStore } from 'app/state/makeCreateStore'
+import { makeCreateStore } from 'app/services/makeCreateStore'
 import rootReducer from 'app/reducers'
-import { middleware } from 'app/state/middleware'
+import { middleware } from 'app/services/middleware'
 import { addMessage } from 'app/actions/flash'
 
 // make a new store for each request

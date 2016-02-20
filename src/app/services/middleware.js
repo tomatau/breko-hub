@@ -2,10 +2,10 @@ import createLogger from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
 import { isBrowser } from 'app/utils/predicates'
-import { socket } from 'app/state/socket'
+import { socket } from 'app/services/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { syncHistory } from 'react-router-redux'
-import { history } from 'app/state/history'
+import { history } from 'app/services/history'
 
 const log = {
   action: debug('DISPATCH:'),

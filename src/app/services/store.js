@@ -1,7 +1,7 @@
 import { isBrowser } from 'app/utils/predicates'
-import { makeCreateStore } from 'app/state/makeCreateStore'
+import { makeCreateStore } from 'app/services/makeCreateStore'
 import rootReducer from 'app/reducers'
-import { middleware } from 'app/state/middleware'
+import { middleware } from 'app/services/middleware'
 
 export const store = makeCreateStore(middleware)(
   rootReducer,
