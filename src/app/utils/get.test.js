@@ -1,17 +1,16 @@
 describe('Get', function() {
-
-  it('should return null when property doesnt exist', ()=> {
+  it.skip('should return null when property doesnt exist', ()=> {
   })
 
-  it('should get a property from an object', ()=> {
+  it.skip('should get a property from an object', ()=> {
   })
 
-  it('should get a deep property from an object by array syntax', ()=> {
+  it.skip('should get a deep property from an object by array syntax', ()=> {
   })
 
-  it('should get a deep property from an object by array syntax', ()=> {
+  it.skip('should get a deep property from an object by array syntax', ()=> {
   })
 
-  it('should get a deep property from an object by dot syntax', ()=> {
+  it.skip('should get a deep property from an object by dot syntax', ()=> {
   })
 })

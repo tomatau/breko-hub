@@ -1,27 +1,27 @@
 // import App from './App'
 
 describe('App Component', ()=> {
-  it('renders a main tag with className', ()=> {
+  it.skip('renders a main tag with className', ()=> {
 
   })
 
-  it('renders a document meta', ()=> {
+  it.skip('renders a document meta', ()=> {
 
   })
 
-  it('renders a flash messages component', ()=> {
+  it.skip('renders a flash messages component', ()=> {
 
   })
 
-  it('renders an image with src alt and width', ()=> {
+  it.skip('renders an image with src alt and width', ()=> {
 
   })
 
-  it('renders the title', ()=> {
+  it.skip('renders the title', ()=> {
 
   })
 
-  it('renders the children in a div', ()=> {
+  it.skip('renders the children in a div', ()=> {
 
   })
 })
