@@ -10,7 +10,6 @@ export default function *handleError(next) {
     set(this, 'session.state', null)
   } catch (err) {
     log.err(err)
-    this.app.emit('error', err, this)
     this.redirect('/oops')
   }
 }
