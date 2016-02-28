@@ -1,19 +1,19 @@
 import 'config/environment'
 import koa from 'koa'
 import webpack from 'webpack'
-import webpackConfig from 'config/webpack.unit-test.browser.config'
+import webpackUnitTestConfig from 'config/webpack.unit-test.browser.config'
 
-const compiler = webpack(webpackConfig)
+const compiler = webpack(webpackUnitTestConfig)
 const app = koa()
 
 app.use(require('koa-webpack-dev-middleware')(compiler, {
-  quiet: true,
-  noInfo: true,
+  // quiet: true,
+  // noInfo: true,
   stats: {
     colors: true,
     reasons: true,
   },
-  publicPath: webpackConfig.output.publicPath,
+  publicPath: webpackUnitTestConfig.output.publicPath,
 }))
 
 app.use(require('koa-webpack-hot-middleware')(compiler))

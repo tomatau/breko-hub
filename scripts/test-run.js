@@ -3,17 +3,24 @@ import '~/scripts/helpers/globalJSDOM'
 import path from 'path'
 import Mocha from 'mocha'
 import glob from 'glob'
-import { TESTS, ROOT } from 'config/paths'
+import { TESTS, ROOT, SRC } from 'config/paths'
 import { argv } from 'yargs'
+import nodeHookFilename from 'node-hook-filename'
+
+nodeHookFilename([ '.css', '.jpeg' ])
 
 const mocha = new Mocha({
   reporter: argv.reporter || 'nyan',
   ui: 'bdd',
 })
 
+const functionalTests = TESTS
+const unitTests = SRC
+const testsPath = argv.functional ? functionalTests : unitTests
+
 const filesToRun = [
-  ...[ `${TESTS}/index.js` ],
-  ...glob.sync('./{src,test}/**/*.test.js'),
+  ...[ `${TESTS}/test.setup.js` ],
+  ...glob.sync(`${testsPath}/**/*.test.js`),
 ]
 
 filesToRun.forEach(file => {

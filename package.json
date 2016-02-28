@@ -133,6 +133,7 @@
     "koa-webpack-hot-middleware": "~1.0.3",
     "mocha": "~2.4.5",
     "mocha-loader": "~0.7.1",
+    "node-hook-filename": "^0.2.0",
     "node-mocks-http": "~1.5.1",
     "open": "~0.0.5",
     "pre-push": "^0.1.1",
@@ -144,6 +145,7 @@
     "sinon-chai": "^2.8.0",
     "skin-deep": "^0.14.0",
     "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.0.0",
     "webpack-hot-middleware": "^2.7.1"
   }
 }
