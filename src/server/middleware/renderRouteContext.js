@@ -11,7 +11,7 @@ function makeHtml(initialState, assets, content) {
       initialState={initialState}
       headScripts={compact([ assets.javascript.head ])}
       bodyScripts={compact([ assets.javascript.body ])}
-      headStyles={compact([ assets.styles.body ])}
+      headStyles={compact([ assets.styles.body, assets.styles.head ])}
       bodyStyles={compact([ ])}
       children={content}
     />
