@@ -64,9 +64,3 @@ if (process.env.NODE_ENV === 'development') {
     document.getElementById('debug-panel-root')
   )
 }
-
-if (module.hot) {
-  module.hot.accept('./reducers', () =>
-    store.replaceReducer(require('./reducers'))
-  )
-}

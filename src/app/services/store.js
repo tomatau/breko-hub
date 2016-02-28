@@ -7,3 +7,9 @@ export const store = makeCreateStore(middleware)(
   rootReducer,
   isBrowser() ? window.__INITIAL_STATE__ : {}
 )
+
+if (module.hot) {
+  module.hot.accept('app/reducers', () => {
+    store.replaceReducer(require('app/reducers'))
+  })
+}
