@@ -9,7 +9,7 @@ import NotFound from 'app/components/routes/NotFound'
 import { store } from 'app/services/store'
 import { addMessage } from 'app/actions/flash'
 
-const makeRoutes = () => (
+export const makeRoutes = () => (
   <Route path='/' component={App}>
     <Route path='foo' component={FooRoute} />
     <Route path='bar' component={BarRoute} />
