@@ -1,4 +1,4 @@
-console.log('Hello, I am a test asset')
+'Hello, I am a test asset'
 /*
 This file is used for testing asset requests. It needs a filesize to enable gzip compression
 

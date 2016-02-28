@@ -1,3 +1,5 @@
 export default {
-  readFile: function(){}
+  readFile() {
+
+  },
 }
