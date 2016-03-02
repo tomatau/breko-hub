@@ -36,7 +36,6 @@ export default {
   ],
   resolve: {
     ...webpackConfig.resolve,
-    modulesDirectories: [ 'node_modules' ],
     alias: {
       'koa-body': path.join(TESTS, 'stubs/koaBody'),
       'fs': path.join(TESTS, 'stubs/fs'),

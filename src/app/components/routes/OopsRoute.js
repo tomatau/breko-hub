@@ -2,9 +2,9 @@
 class OopsRoute extends React.Component {
   render() {
     return (
-      <main className='OopsRoute'>
+      <section className='OopsRoute'>
         PROBLEM
-      </main>
+      </section>
     )
   }
 }

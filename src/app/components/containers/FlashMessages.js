@@ -27,6 +27,16 @@ Msg.propTypes = {
   messages: selectors.flashMessages(state),
 }), { removeMessage })
 class FlashMessages extends React.Component {
+  static propTypes = {
+    messages: PropTypes.array,
+    removeMessage: PropTypes.func,
+  };
+
+  static defaultProps = {
+    messages: [],
+    removeMessage: ()=>null,
+  };
+
   render() {
     const { messages } = this.props
     return (

@@ -3,14 +3,13 @@ import sd from 'skin-deep'
 import { IndexLink, Link } from 'react-router'
 import styles from './HeadNavigation.module.scss'
 
-describe('Head Navigation Component', ()=> {
-  let tree
+describe('Head Navigation Component', function() {
   beforeEach(()=> {
-    tree = sd.shallowRender(<HeadNavigation />)
+    this.tree = sd.shallowRender(<HeadNavigation />)
   })
 
   it('renders a nav element with styles.nav className', ()=> {
-    const nav = tree.findNode('nav')
+    const nav = this.tree.findNode('nav')
     expect(nav.props).to.have.property('className', styles.nav)
   })
 
@@ -28,11 +27,13 @@ describe('Head Navigation Component', ()=> {
     ]
 
     it('only renders the necessary links', ()=> {
-      expect(tree.everySubTree(Link.displayName)).to.have.length(links.length)
+      expect(
+        this.tree.everySubTree(Link.displayName)
+      ).to.have.length(links.length)
     })
 
     it('renders an IndexLink', ()=> {
-      const indexLink = tree.findNode(IndexLink.displayName)
+      const indexLink = this.tree.findNode(IndexLink.displayName)
       expect(indexLink.type).to.eql(IndexLink)
       expect(indexLink.props).to.eql({
         children: 'Home',
@@ -43,7 +44,9 @@ describe('Head Navigation Component', ()=> {
 
     links.forEach(link =>
       it(`renders the ${link.content} link`, ()=> {
-        const node = tree.findComponentLike(Link.displayName, { to: link.to })
+        const node = this.tree.findComponentLike(
+          Link.displayName, { to: link.to }
+        )
         expect(node.type).to.eql(Link)
         expect(node.props).to.shallowDeepEqual({
           children: link.content,

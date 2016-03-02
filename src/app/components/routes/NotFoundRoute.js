@@ -2,9 +2,9 @@
 class NotFoundRoute extends React.Component {
   render() {
     return (
-      <main className='NotFoundRoute'>
+      <section className='NotFoundRoute'>
         404, page not found
-      </main>
+      </section>
     )
   }
 }
