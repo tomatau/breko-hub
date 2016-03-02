@@ -10,6 +10,6 @@ export const apiFetch = () => ({
 })
 
 const fetchBar = async () => {
-  const { data } = await fetch.get('http://localhost:9001/api/bar')
+  const { data } = await fetch.get('/api/bar')
   return data
 }

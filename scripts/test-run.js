@@ -7,7 +7,7 @@ import { TESTS, ROOT, SRC } from 'config/paths'
 import { argv } from 'yargs'
 import nodeHookFilename from 'node-hook-filename'
 
-nodeHookFilename([ '.css', '.jpeg' ])
+nodeHookFilename([ '.jpeg' ])
 
 const mocha = new Mocha({
   reporter: argv.reporter || 'nyan',

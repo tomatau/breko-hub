@@ -5,10 +5,12 @@ import { Route } from 'react-router'
 import supertest from 'supertest-as-promised'
 import { TESTS } from 'config/paths'
 import { setRoutes, rootRouter } from 'server/router'
-import { store } from 'app/services/store'
-import * as routes from 'app/makeRoutes'
+import { makeCreateStore } from 'app/services/makeCreateStore'
+import rootReducer from 'app/reducers'
+import { middleware } from 'app/services/middleware'
+import * as routes from 'app/routes'
 
-const isntArray = _.negate(_.isArray)
+const testStore = makeCreateStore(middleware)(rootReducer, {})
 const AppRoute = ({ children }) => <div><h2>App</h2>{children}</div>
 const TestRoute = () => <div>Test Route</div>
 const AnotherRoute = () => <div>Another Route</div>
@@ -112,7 +114,7 @@ describe('Server Side Render', function() {
       .expect((res) => {
         const hasInitialState =  res.text.includes(
           `window.__INITIAL_STATE__ = ${JSON.stringify(
-            store.getState(), null, 2
+            testStore.getState(), null, 2
           )}`
         )
         if (!hasInitialState) {
@@ -126,6 +128,7 @@ describe('Server Side Render', function() {
       .get('/')
       .expect(200)
       .expect(res => {
+        const isntArray = _.negate(_.isArray)
         const cookieHeader = res.headers['set-cookie']
         const allSessionHttpOnly = _.every(cookieHeader, (c) =>
           c.match(/koa:sess/) && c.match(/path=\//) && c.match(/httponly/)

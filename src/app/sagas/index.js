@@ -1,4 +1,3 @@
-import { delay } from 'lodash'
 import { call, put, fork, take, race } from 'redux-saga/effects'
 import * as selectors from 'app/selectors'
 import { removeMessage, ADD_MESSAGE, REMOVE_MESSAGE } from 'app/actions/flash'
@@ -8,7 +7,7 @@ const log = {
   sagas: debug('sagas'),
 }
 
-const wait = (time) => new Promise(resolve => delay(resolve, time))
+const wait = (time) => new Promise(resolve => setTimeout(resolve, time))
 
 function * timeoutRemoveFlash(nextFlash) {
   if (nextFlash) {

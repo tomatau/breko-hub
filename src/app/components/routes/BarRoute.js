@@ -15,7 +15,7 @@ class BarRoute extends React.Component {
   render() {
     const { bar } = this.props
     return (
-      <section>
+      <section className='BarRoute'>
         <DocumentMeta extend {...{ title: 'Breko Hub - Bar' }} />
         <h3>Bar</h3>
         {bar.map((item, i) =>

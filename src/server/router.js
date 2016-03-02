@@ -3,7 +3,7 @@ import compose from 'server/utils/compose'
 import setStore from 'server/middleware/setStore'
 import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
-import * as routes from 'app/makeRoutes'
+import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
 
 export const rootRouter = Router()

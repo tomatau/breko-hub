@@ -3,12 +3,9 @@
   "plugins": [
     "add-module-exports",
     "babel-root-import",
+    "react-require",
     ["provide-modules", {
-      "debug": "debug",
-      "react": {
-        "default": "React",
-        "destructured": ["PropTypes"],
-      }
+      "debug": "debug"
     }],
     "transform-decorators-legacy"
   ]

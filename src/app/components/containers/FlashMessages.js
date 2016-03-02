@@ -4,6 +4,8 @@ import { Bem } from 'app/utils'
 import * as selectors from 'app/selectors'
 import styles from './FlashMessages.module.scss'
 
+const { PropTypes } = React
+
 export const Msg = ({ msg, ...props }) =>
   <span {...props}
     {...Msg.classes(null, msg.type)}>
@@ -28,7 +30,7 @@ class FlashMessages extends React.Component {
   render() {
     const { messages } = this.props
     return (
-      <div className='flash-messages'>
+      <div className='FlashMessages'>
         {messages.map(msg =>
           <Msg key={msg.id}
             msg={msg}

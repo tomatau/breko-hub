@@ -17,7 +17,7 @@ class FooRoute extends React.Component {
   render() {
     const { foo } = this.props
     return (
-      <section>
+      <section className='FooRoute'>
         <h3>Foo</h3>
         <span>{foo}</span>
       </section>

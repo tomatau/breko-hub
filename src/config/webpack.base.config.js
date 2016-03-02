@@ -78,12 +78,9 @@ export const babelLoaderConfig = {
       'add-module-exports',
       'lodash',
       'ramda',
+      'react-require',
       [ 'provide-modules', {
         'debug': 'debug',
-        'react': {
-          'default': 'React',
-          'destructured': [ 'PropTypes' ],
-        },
       } ],
       'babel-root-import',
       'transform-decorators-legacy',

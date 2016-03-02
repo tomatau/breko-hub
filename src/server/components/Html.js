@@ -2,6 +2,8 @@ import DocumentMeta from 'react-document-meta'
 import ReactDOMServer from 'react-dom/server'
 import { hasWindow } from 'app/utils'
 
+const { PropTypes } = React
+
 export class Html extends React.Component {
 
   static propTypes = {
