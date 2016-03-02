@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node ./scripts/babel.entry.js --test",
     "test:run": "node ./scripts/babel.entry.js --test --run",
+    "test:functional": "node ./scripts/babel.entry.js --test --functional",
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
     "dev": "node ./scripts/babel.entry.js --dev",
@@ -12,7 +13,8 @@
   },
   "pre-push": [
     "lint",
-    "test:run"
+    "test:run",
+    "test:functional"
   ],
   "repository": {
     "type": "git",
@@ -97,7 +99,7 @@
     "redux-devtools-log-monitor": "^1.0.4",
     "redux-logger": "^2.5.2",
     "redux-promise-middleware": "~2.3.3",
-    "redux-saga": "^0.8.2",
+    "redux-saga": "^0.9.3",
     "redux-thunk": "~1.0.3",
     "redux-via-socket.io": "~0.3.0",
     "reselect": "^2.0.3",

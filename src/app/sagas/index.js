@@ -1,4 +1,4 @@
-import { call, put, fork, take, race } from 'redux-saga/effects'
+import { call, put, fork, take, race, select } from 'redux-saga/effects'
 import * as selectors from 'app/selectors'
 import { removeMessage, ADD_MESSAGE, REMOVE_MESSAGE } from 'app/actions/flash'
 
@@ -9,7 +9,8 @@ const log = {
 
 const wait = (time) => new Promise(resolve => setTimeout(resolve, time))
 
-function * timeoutRemoveFlash(nextFlash) {
+function * timeoutRemoveFlash() {
+  const nextFlash = yield select(selectors.nextFlashMessage)
   if (nextFlash) {
     const { removed } = yield race({
       timeout: call(wait, 4000),
@@ -32,7 +33,7 @@ function * takeFlashMessages() {
   }
 }
 
-export default function * rootSaga(getState) {
-  yield fork(timeoutRemoveFlash, selectors.nextFlashMessage(getState()))
+export default function * rootSaga() {
+  yield fork(timeoutRemoveFlash)
   yield fork(takeFlashMessages)
 }
