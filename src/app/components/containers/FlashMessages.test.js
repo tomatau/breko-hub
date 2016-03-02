@@ -1,11 +1,10 @@
 import WrappedFlashMessages, { Msg } from './FlashMessages'
 import { shallow } from 'enzyme'
+import { Provider } from 'react-redux'
+import { mount } from 'enzyme'
+import * as actions from 'app/actions/flash'
 import styles from './FlashMessages.module.scss'
 
-/*
-The connected component was tested through functional tests
-The functional tests have not tested the mapped actionCreator
- */
 describe('FlashMessages Component', function() {
   const messages = [ {
     id: '1', message: 'test message', type: 'error',
@@ -15,6 +14,7 @@ describe('FlashMessages Component', function() {
     id: '3', message: 'more test message', type: 'info',
   } ]
   const FlashMessages = WrappedFlashMessages.WrappedComponent
+
   beforeEach(()=> {
     this.tree = shallow(<FlashMessages />)
   })
@@ -42,6 +42,7 @@ describe('FlashMessages Component', function() {
     })
 
     it('renders a Msg component for each message in props', ()=> {
+      expect(this.tree.find(Msg)).to.have.length(messages.length)
       messages.forEach(msg => {
         const item = this.tree.find({ msg })
         expect(item).to.have.length(1)
@@ -59,7 +60,7 @@ describe('FlashMessages Component', function() {
     })
   })
 
-  describe('Msg Component', function() {
+  describe('Msg Component', () => {
     beforeEach(()=> {
       this.msg = _.sample(messages)
       this.tree = shallow(<Msg msg={this.msg} />)
@@ -89,6 +90,36 @@ describe('FlashMessages Component', function() {
 
     it('should render a close button with close className', ()=> {
       expect(this.tree.find({ className: styles.close })).to.have.length(1)
+    })
+  })
+
+  describe('Connected FlashMessages', () => {
+    beforeEach(()=> {
+      this.store = helpers.createStore({
+        flash: { messages },
+      })
+      sinon.stub(this.store, 'dispatch')
+      this.tree = mount(
+        <Provider store={this.store}>
+          <WrappedFlashMessages />
+        </Provider>
+      )
+    })
+
+    it('should render messages from store', ()=> {
+      const flashMessages = this.tree.find(`.${styles.msg}`)
+      expect(flashMessages).to.have.length(messages.length)
+      flashMessages.forEach((node, i) => {
+        expect(node.text()).to.contain(messages[i].message)
+      })
+    })
+
+    it('should be connected to removeMessage action creator',()=> {
+      const flashMessage = this.tree.find(FlashMessages)
+      flashMessage.prop('removeMessage')('123')
+      expect(
+        this.store.dispatch
+      ).to.have.been.calledWith(actions.removeMessage('123'))
     })
   })
 })

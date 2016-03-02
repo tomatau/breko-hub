@@ -4,6 +4,10 @@ import sinon from 'sinon'
 import lodash from 'lodash/index'
 import ramda from 'ramda/dist/ramda'
 import { isBrowser } from 'app/utils/predicates'
+import { makeCreateStore } from 'app/services/makeCreateStore'
+import rootReducer from 'app/reducers'
+import promiseMiddleware from 'redux-promise-middleware'
+import thunkMiddleware from 'redux-thunk'
 
 chai.use(require('chai-shallow-deep-equal'))
 chai.use(require('chai-as-promised'))
@@ -15,6 +19,12 @@ const helpers = {
     clone.keys = lodash.clone(app.keys)
     clone.middleware = lodash.clone(app.middleware)
     return clone
+  },
+  createStore(initialState={}) {
+    return makeCreateStore([
+      promiseMiddleware,
+      thunkMiddleware,
+    ])(rootReducer, initialState)
   },
 }
 

@@ -5,12 +5,9 @@ import { Route } from 'react-router'
 import supertest from 'supertest-as-promised'
 import { TESTS } from 'config/paths'
 import { setRoutes, rootRouter } from 'server/router'
-import { makeCreateStore } from 'app/services/makeCreateStore'
-import rootReducer from 'app/reducers'
-import { middleware } from 'app/services/middleware'
 import * as routes from 'app/routes'
 
-const testStore = makeCreateStore(middleware)(rootReducer, {})
+const testStore = helpers.createStore()
 const AppRoute = ({ children }) => <div><h2>App</h2>{children}</div>
 const TestRoute = () => <div>Test Route</div>
 const AnotherRoute = () => <div>Another Route</div>
