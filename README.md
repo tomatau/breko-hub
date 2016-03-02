@@ -56,11 +56,16 @@ A commented out dispatch call in `src/app/entry.js` to show how to broadcast act
   + debug on both client and server
   + Server request logging
   + Redux logging both client and server dispatches
-- Universal tests (all through babel)
+- Universal Unit tests (all through babel)
   + Mocha
   + skin-deep for simple shallow component tests
   + enzyme on both server and client tests too... for more involved component tests
   + chai and some helper libs
+- Functional Tests (all through babel)
+  + Mocha
+  + Client render, routing logic
+  + Server render, route matching logic, headers and assets
+  + Server API routes
 - Lots of utilities
   + lodash and ramda both with babel optimisation plugins
   + more
@@ -103,7 +108,7 @@ Expects bundles and assets, runs the server in production mode.
 npm test
 ```
 
-Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.js` or imported directly from within `./test/index.js`.
+Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
 
 This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser. Most server code can also be tested this way.
 
@@ -113,6 +118,15 @@ npm test -- --run
 ```
 
 Runs the test suite in node environment through mocha, once.
+
+***functional tests run***
+```shell
+npm test -- --functional
+```
+
+The purpose of the functional tests is to sit between unit tests and acceptance tests. They are for testing groups of units and how they communicate without being too closely coupled to implementation.
+
+Functional tests can only be ran in Node context (not the browser) as they contain tests for the server logic. The functional tests are faster than *Acceptance* tests as they stub out IO. The server render tests stub out all client render logic.
 
 **lint**
 ```

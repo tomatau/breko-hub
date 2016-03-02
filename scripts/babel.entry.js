@@ -10,7 +10,7 @@ const argv = require('yargs').argv
 const file = (() => {
   switch(true) {
     case argv.test:
-      return argv.run ? 'test-run.js' : 'test.js'
+      return argv.run || argv.functional ? 'test-run.js' : 'test.js'
     case argv.dev:
       return 'dev.js'
     case argv.build:
