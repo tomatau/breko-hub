@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 
 export default {
   ...webpackConfig,
@@ -18,7 +19,10 @@ export default {
       },
     }),
   ],
-  postcss: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
+  postcss: [
+    autoprefixer({ browsers: [ 'last 2 versions' ] }),
+    cssnano(),
+  ],
   module: {
     loaders: [ {
       test: /module\.s?css$/,
