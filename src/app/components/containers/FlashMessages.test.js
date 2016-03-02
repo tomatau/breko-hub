@@ -1,7 +1,6 @@
 import WrappedFlashMessages, { Msg } from './FlashMessages'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
 import * as actions from 'app/actions/flash'
 import styles from './FlashMessages.module.scss'
 

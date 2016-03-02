@@ -2,7 +2,7 @@ import DocumentMeta from 'react-document-meta'
 import HeadNavigation from 'app/components/HeadNavigation'
 import FlashMessages from 'app/components/containers/FlashMessages'
 // example image import
-import img from 'assets/avatar.jpeg'
+import avatarPath from 'assets/avatar.jpeg'
 // example s?css module import
 import style from './App.module.scss'
 // example s?css import (no module)
@@ -33,9 +33,9 @@ class App extends React.Component {
         <DocumentMeta {...metaData} />
         <HeadNavigation />
         <FlashMessages />
-        <img src={img} alt='me' width='70' />
+        <img src={avatarPath} alt='me' width='70' />
         <h1>Breko Hub</h1>
-        <div>
+        <div className={style.content}>
           {children}
         </div>
       </main>
