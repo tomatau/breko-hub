@@ -2,6 +2,7 @@ options:
   merge-default-rules: true
 files:
   include: 'src/**/*.@(scss|css)'
+  ignore: 'src/static/**/*'
 rules:
   force-element-nesting: 0
   no-qualifying-elements: 0
