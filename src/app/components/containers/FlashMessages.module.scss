@@ -1,24 +1,28 @@
-@import "~tao-scss/index";
+@import '~vars';
+@import '~tao-scss/index';
 
 .msg {
   display: block;
   margin-bottom: rem(5px);
 
   &--info {
-    color: #0E8DCE;
+    color: $info-blue;
   }
+
   &--error {
-    color: #AF0000;
+    color: $error-red;
   }
+
   &--good {
-    color: #066506;
+    color: $good-green;
   }
 }
 
 .close {
-  border: 1px solid #8E7F7F;
+  border: 1px solid $border-grey;
   border-radius: rem(10px);
   padding: 1px rem(5px);
+
   &:hover {
     cursor: pointer;
   }

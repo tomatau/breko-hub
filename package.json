@@ -9,10 +9,12 @@
     "start": "node ./scripts/babel.entry.js",
     "build": "node ./scripts/babel.entry.js --build",
     "dev": "node ./scripts/babel.entry.js --dev",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "lint:styles": "sass-lint --verbose -c .sass-lint.yml"
   },
   "pre-push": [
     "lint",
+    "lint:styles",
     "test:run",
     "test:functional"
   ],
@@ -143,6 +145,7 @@
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.2",
     "redbox-react": "~1.2.2",
+    "sass-lint": "^1.5.1",
     "sinon": "^2.0.0-pre",
     "sinon-chai": "^2.8.0",
     "skin-deep": "^0.14.0",

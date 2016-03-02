@@ -1,12 +1,10 @@
-@import "~tao-scss/index";
-
-$link-color: forestgreen;
-$active-color: #055605;
+@import '~vars';
+@import '~tao-scss/index';
 
 .nav a {
+  color: $link-color;
   margin-right: rem(10px);
   text-decoration: none;
-  color: $link-color;
 
   &:last-of-type {
     margin-right: 0;
@@ -16,4 +14,3 @@ $active-color: #055605;
 a.active {
   color: $active-color;
 }
-

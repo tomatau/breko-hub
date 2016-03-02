@@ -131,9 +131,12 @@ Functional tests can only be ran in Node context (not the browser) as they conta
 **lint**
 ```
 npm run lint
+npm run lint:styles
 ```
 
 No semi colons, lots of commas on multi-lines for easy duplication, single-quotes. You may not like it, but it works just fine.
+
+Style linting is all default except for some rules which are not important for css modules.
 
 ## Coming Soon
 

@@ -1,0 +1,7 @@
+options:
+  merge-default-rules: true
+files:
+  include: 'src/**/*.@(scss|css)'
+rules:
+  force-element-nesting: 0
+  no-qualifying-elements: 0
