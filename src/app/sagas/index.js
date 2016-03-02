@@ -9,8 +9,7 @@ const log = {
 
 const wait = (time) => new Promise(resolve => setTimeout(resolve, time))
 
-function * timeoutRemoveFlash() {
-  const nextFlash = yield select(selectors.nextFlashMessage)
+function * timeoutRemoveFlash(nextFlash) {
   if (nextFlash) {
     const { removed } = yield race({
       timeout: call(wait, 4000),
@@ -34,6 +33,7 @@ function * takeFlashMessages() {
 }
 
 export default function * rootSaga() {
-  yield fork(timeoutRemoveFlash)
+  const nextFlash = yield select(selectors.nextFlashMessage)
+  yield fork(timeoutRemoveFlash, nextFlash)
   yield fork(takeFlashMessages)
 }
