@@ -1,16 +1,35 @@
+import get from './get'
+
 describe('Get', function() {
-  it.skip('should return null when property doesnt exist', ()=> {
+  beforeEach(()=> {
+    this.object = {
+      foo: 'bar',
+      bar: {
+        deeply: {
+          nested: 'value',
+          another: 1,
+        },
+      },
+    }
   })
 
-  it.skip('should get a property from an object', ()=> {
+  it('should return undefined when property doesnt exist', ()=> {
+    expect(get('missing')(this.object)).to.eql(undefined)
   })
 
-  it.skip('should get a deep property from an object by array syntax', ()=> {
+  it('should get a property from an object', ()=> {
+    expect(get('foo')(this.object)).to.eql(this.object.foo)
   })
 
-  it.skip('should get a deep property from an object by array syntax', ()=> {
+  it('should get a deep property from an object by array syntax', ()=> {
+    expect(
+      get([ 'bar', 'deeply' ])(this.object)
+    ).to.eql(this.object.bar.deeply)
   })
 
-  it.skip('should get a deep property from an object by dot syntax', ()=> {
+  it('should get a deep property from an object by dot syntax', ()=> {
+    expect(
+      get('bar.deeply.nested')(this.object)
+    ).to.eql(this.object.bar.deeply.nested)
   })
 })
