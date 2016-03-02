@@ -4,8 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import { isBrowser } from 'app/utils/predicates'
 import { socket } from 'app/services/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
-import { syncHistory } from 'react-router-redux'
-import { history } from 'app/services/history'
 import rootSaga from 'app/sagas'
 import createSagaMiddleware from 'redux-saga'
 
@@ -20,12 +18,9 @@ export const defaultMiddleware = [
 export const middleware = [
   ...defaultMiddleware,
 ]
-// unused export, listenForReplays is currently buggy...
-export const routerReduxMiddleware = syncHistory(history)
 
 if (isBrowser()) {
   middleware.push(
-    routerReduxMiddleware,
     outClientViaSocketIO(socket),
     createLogger({
       predicate: () => process.env.NODE_ENV === 'development',

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routeReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux'
 import { flashReducers as flash } from './flash.reducers'
 import { barReducers as bar } from './bar.reducers'
 import { fooReducers as foo } from './foo.reducers'
@@ -9,5 +9,5 @@ export default enableBatching(combineReducers({
   flash,
   foo,
   bar,
-  routing: routeReducer,
+  routing: routerReducer,
 }))
