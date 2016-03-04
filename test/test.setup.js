@@ -37,4 +37,10 @@ function setGlobals(global) {
   global._ = lodash
   global.R = ramda
   global.helpers = helpers
+  global.location = {
+    protocol: 'http:',
+    host: 'localhost:3210',
+    hostname: 'localhost',
+    port: '3210',
+  }
 }
