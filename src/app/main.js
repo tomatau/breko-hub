@@ -3,12 +3,14 @@ import { after } from 'lodash'
 import { compose } from 'ramda'
 import { Provider } from 'react-redux'
 import { trigger } from 'redial'
-import { store } from 'app/services/store'
+import { inClientViaSocketIO } from 'redux-via-socket.io'
 import { history } from 'app/services/history'
+import { socket } from 'app/services/socket'
+import { store, dispatch } from 'app/services/store'
 import makeRoutes from 'app/routes'
 import DevTools from 'app/components/containers/DevTools'
 
-const { dispatch } = store
+inClientViaSocketIO(socket, dispatch)
 
 function routeLocalsTrigger(event) {
   return function() {

@@ -1,4 +1,4 @@
 import io from 'socket.io-client'
-import { isBrowser } from 'app/utils/predicates'
+import { hasWindow } from 'app/utils/predicates'
 
-export const socket = isBrowser() ? io() : {}
+export const socket = hasWindow() ? io({ autoConnect: false }) : {}
