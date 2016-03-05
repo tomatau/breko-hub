@@ -61,7 +61,7 @@ A commented out dispatch call in `src/app/entry.js` to show how to broadcast act
   + skin-deep for simple shallow component tests
   + enzyme on both server and client tests too... for more involved component tests
   + chai and some helper libs
-- Functional Tests (all through babel)
+- Functional/Integration Tests (all through babel)
   + Mocha
   + Client render, routing logic
   + Server render, route matching logic, headers and assets
@@ -119,14 +119,16 @@ npm test -- --run
 
 Runs the test suite in node environment through mocha, once.
 
-***functional tests run***
+***functional/integration tests run***
 ```shell
 npm test -- --functional
 ```
 
-The purpose of the functional tests is to sit between unit tests and acceptance tests. They are for testing groups of units and how they communicate without being too closely coupled to implementation.
+The purpose of the functional (integration) tests is to sit between unit tests and acceptance tests. They are for testing groups of units and how they communicate without being too closely coupled to implementation.
 
 Functional tests can only be ran in Node context (not the browser) as they contain tests for the server logic. The functional tests are faster than *Acceptance* tests as they stub out IO. The server render tests stub out all client render logic.
+
+It would be possible here to create specific tests for connections to IO if it's desired to test wiring between a DB or external API also. But as Breko-hub doesn't use either of these, the contracts between client and server code are tested instead.
 
 **lint**
 ```
