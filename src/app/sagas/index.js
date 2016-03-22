@@ -7,9 +7,9 @@ const log = {
   sagas: debug('sagas'),
 }
 
-const wait = (time) => new Promise(resolve => setTimeout(resolve, time))
+export const wait = (time) => new Promise(resolve => setTimeout(resolve, time))
 
-function * timeoutRemoveFlash(nextFlash) {
+export function * timeoutRemoveFlash(nextFlash) {
   if (nextFlash) {
     const { removed } = yield race({
       timeout: call(wait, 4000),
@@ -24,7 +24,7 @@ function * timeoutRemoveFlash(nextFlash) {
   }
 }
 
-function * takeFlashMessages() {
+export function * takeFlashMessages() {
   while (DAEMON) {
     const action = yield take(ADD_MESSAGE)
     log.sagas('Flash added, saga will remove it automatically')
