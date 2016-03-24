@@ -10,12 +10,10 @@ describe('Saga Tests', function() {
     })
 
     it('should call select with nextFlashMessage', ()=> {
-      const nextFlashReturn = { ret: 'value' }
-      expect(this.saga.next().value).to.eql(select(selectors.nextFlashMessage))
-      expect(
-        this.saga.next(nextFlashReturn).value
-      ).to.eql(fork(timeoutRemoveFlash, nextFlashReturn))
-      expect(this.saga.next().value).to.eql(fork(takeFlashMessages))
+      const nextFlash = { ret: 'value' }
+      expect(this.saga.next()).to.deep.yield(select(selectors.nextFlashMessage))
+      expect(this.saga.next(nextFlash)).to.deep.yield(fork(timeoutRemoveFlash, nextFlash))
+      expect(this.saga.next()).to.deep.yield(fork(takeFlashMessages))
     })
   })
 
@@ -25,11 +23,9 @@ describe('Saga Tests', function() {
     })
 
     it('should call take with an add_message', ()=> {
-      expect(this.saga.next().value).to.eql(take(ADD_MESSAGE))
       const takeReturn = { payload: { fake: 'stuff' } }
-      expect(
-        this.saga.next(takeReturn).value
-      ).to.eql(fork(timeoutRemoveFlash, takeReturn.payload))
+      expect(this.saga.next()).to.deep.yield(take(ADD_MESSAGE))
+      expect(this.saga.next(takeReturn)).to.deep.yield(fork(timeoutRemoveFlash, takeReturn.payload))
       expect(this.saga.next().done).to.eql(false)
     })
   })

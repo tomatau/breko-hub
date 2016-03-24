@@ -12,6 +12,7 @@ import thunkMiddleware from 'redux-thunk'
 chai.use(require('chai-shallow-deep-equal'))
 chai.use(require('chai-as-promised'))
 chai.use(require('sinon-chai'))
+chai.use(require('chai-generator'))
 
 const helpers = {
   cloneApp(app) {
@@ -37,10 +38,12 @@ function setGlobals(global) {
   global._ = lodash
   global.R = ramda
   global.helpers = helpers
-  global.location = {
-    protocol: 'http:',
-    host: 'localhost:3210',
-    hostname: 'localhost',
-    port: '3210',
+  if (!global.location.port) {
+    global.location = {
+      protocol: 'http:',
+      host: 'localhost:3210',
+      hostname: 'localhost',
+      port: '3210',
+    }
   }
 }
