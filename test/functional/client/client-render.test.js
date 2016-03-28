@@ -104,7 +104,7 @@ describe('Client Render', function() {
       }
 
       const selectFlashMessages = () =>
-        this.wrapper.find('.FlashMessages').find('span')
+        this.wrapper.findWhere(n => n.hasClass('FlashMessages__Msg'))
 
       before(()=> {
         this.clock = sinon.useFakeTimers()

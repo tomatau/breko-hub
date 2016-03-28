@@ -29,16 +29,16 @@ class App extends React.Component {
     const { children } = this.props
     log.app('render')
     return (
-      <main className={style.app}>
+      <div className={style.app}>
         <DocumentMeta {...metaData} />
         <HeadNavigation />
         <FlashMessages />
         <img src={avatarPath} alt='me' width='70' />
         <h1>Breko Hub</h1>
-        <div className={style.content}>
+        <main className={style.content}>
           {children}
-        </div>
-      </main>
+        </main>
+      </div>
     )
   }
 }

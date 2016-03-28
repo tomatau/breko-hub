@@ -6,7 +6,7 @@ export const GET_CLIENT_ONLY = 'foo/GET_CLIENT_ONLY'
 export const fooGet = () => ({
   type: GET,
   payload: {
-    foo: isBrowser() ? 'Data from the browser' : 'Data from the server',
+    foo: isBrowser ? 'Data from the browser' : 'Data from the server',
   },
 })
 

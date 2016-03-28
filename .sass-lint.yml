@@ -6,3 +6,10 @@ files:
 rules:
   force-element-nesting: 0
   no-qualifying-elements: 0
+  class-name-format: 0
+  nesting-depth:
+    - 1
+    -
+      max-depth: 3
+  no-mergeable-selectors: 0
+  force-pseudo-nesting: 0

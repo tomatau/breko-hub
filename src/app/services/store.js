@@ -5,7 +5,7 @@ import { middleware } from 'app/services/middleware'
 
 export const store = makeCreateStore(middleware)(
   rootReducer,
-  isBrowser() ? window.__INITIAL_STATE__ : {}
+  isBrowser ? window.__INITIAL_STATE__ : {}
 )
 
 export const { dispatch } = store

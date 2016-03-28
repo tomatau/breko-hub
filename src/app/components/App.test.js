@@ -11,10 +11,10 @@ describe('App Component', function() {
     this.tree = shallow(<App />)
   })
 
-  it('renders a main tag with className', ()=> {
-    const main = this.tree.find('main')
-    expect(main).to.have.length(1)
-    expect(main.hasClass(styles.app)).to.eql(true)
+  it('renders a div tag with className', ()=> {
+    const div = this.tree.find('div').first()
+    expect(div).to.have.length(1)
+    expect(div.hasClass(styles.app)).to.eql(true)
   })
 
   it('renders a document meta', ()=> {
@@ -45,11 +45,12 @@ describe('App Component', function() {
     expect(title.text()).to.contain('Breko Hub')
   })
 
-  it('renders the children in a div', ()=> {
+  it('renders the children in a main', ()=> {
     const children = <p><span>test</span><span>child</span></p>
     this.tree = shallow(<App>{children}</App>)
     const childTree = shallow(children)
-    const content = this.tree.find(`.${styles.content}`).find('p')
-    expect(content.html()).to.eql(childTree.html())
+    const content = this.tree.find(`.${styles.content}`)
+    expect(content.type()).to.eql('main')
+    expect(content.find('p').html()).to.eql(childTree.html())
   })
 })

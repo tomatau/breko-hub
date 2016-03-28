@@ -1,7 +1,7 @@
 import createLogger from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
-import { isBrowser } from 'app/utils/predicates'
+import { hasWindow } from 'app/utils/predicates'
 import { socket } from 'app/services/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import rootSaga from 'app/sagas'
@@ -13,14 +13,14 @@ const log = {
 export const defaultMiddleware = [
   thunkMiddleware,
   promiseMiddleware(),
-  createSagaMiddleware(rootSaga),
 ]
 export const middleware = [
   ...defaultMiddleware,
 ]
 
-if (isBrowser()) {
+if (hasWindow) {
   middleware.push(
+    createSagaMiddleware(rootSaga),
     outClientViaSocketIO(socket),
     createLogger({
       predicate: () => process.env.NODE_ENV === 'development',

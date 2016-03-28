@@ -12,6 +12,7 @@ export default {
     body: [
       'babel-polyfill',
       `${APP}/entry.js`,
+      `${STYLES}/main.scss`,
     ],
   },
   output: {
@@ -70,7 +71,7 @@ export default {
 
 export const babelLoaderConfig = {
   test: /\.(es6?|jsx?)$/,
-  include: [ /src\/app/ ],
+  include: [ /src\/app/, /src\/config/, /src\/server/ ],
   loader: 'babel',
   query: {
     'presets': [ 'es2015', 'react', 'stage-0' ],

@@ -14,7 +14,7 @@ export default {
       'webpack-hot-middleware/client',
     ],
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     isomorphicPlugin,
@@ -27,7 +27,7 @@ export default {
   module: {
     loaders: [ {
       test: /module\.s?css$/,
-      include: [ /src\/app/ ],
+      include: [ /\/src\// ],
       // not extracting css-modules in development for hot-reloading
       loaders: [
         'style',
@@ -40,7 +40,7 @@ export default {
       ],
     }, {
       test: /\.s?css$/,
-      include: [ /src\/app/ ],
+      include: [ /src\/app/, /src\/styles/ ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
         'style', 'css!postcss!sass?outputStyle=expanded'

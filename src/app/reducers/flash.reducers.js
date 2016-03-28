@@ -17,7 +17,7 @@ export const flashReducers = typeToReducer({
 
   [ ADD_MESSAGE ]: (state, action) => ({
     ...state,
-    messages: state.messages.concat(action.payload),
+    messages: [ ...state.messages, action.payload ],
   }),
 
 }, initialState)

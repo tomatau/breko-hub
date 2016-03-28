@@ -8,7 +8,7 @@ const { PropTypes } = React
 
 export const Msg = ({ msg, ...props }) =>
   <span {...props}
-    {...Msg.classes(null, msg.type)}>
+    {...Msg.classes(null, msg.type, 'FlashMessages__Msg')}>
     {msg.message}
     &nbsp;
     <strong className={styles.close}>x</strong>

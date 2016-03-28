@@ -9,7 +9,7 @@ export const makeCreateStore = (middleware) => {
   if (process.env.NODE_ENV === 'development') {
     topLevelMiddleware.push(DevTools.instrument())
 
-    if (isBrowser()) {
+    if (isBrowser) {
       topLevelMiddleware.push(persistState(
         window.location.href.match(/[?&]debug_session=([^&]+)\b/)
       ))
