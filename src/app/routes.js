@@ -6,7 +6,7 @@ import BarRoute from 'app/components/routes/BarRoute'
 import OopsRoute from 'app/components/routes/OopsRoute'
 import NotFoundRoute from 'app/components/routes/NotFoundRoute'
 
-import { store } from 'app/services/store'
+import { dispatch } from 'app/services/store'
 import { addMessage } from 'app/actions/flash'
 
 export const makeRoutes = () => (
@@ -15,7 +15,7 @@ export const makeRoutes = () => (
     <Route path='bar' component={BarRoute} />
     <Route path='oops' component={OopsRoute} />
     <Route path='private' component={OopsRoute} onEnter={(_, redirect) => {
-      store.dispatch(
+      dispatch(
         addMessage('You may not view the private route!!', 'error')
       )
       redirect('/foo')
