@@ -23,6 +23,10 @@ FlashMessage component gives an example of action -> reducer flow, as well as a 
 
 A commented out dispatch call in `src/app/entry.js` to show how to broadcast actions over a socket. And a small socket server hosted within the app (on the same port) to wire up the said broadcast actions.
 
+## Built With Breko Hub
+
+I've used breko hub for various private projects behind DSLs as well as my personal blog [https://tomatao-blog.herokuapp.com/](https://tomatao-blog.herokuapp.com/). You can find the [source-code for my blog on github](https://github.com/tomatau/tomatao-blog).
+
 ## Features
 
 - Configurable async CSS files for improved page loads
