@@ -12,7 +12,10 @@ const fakeARequest = (
   app,
   req=mockHTTP.createRequest({ method: 'GET', url: '/' }),
   res=mockHTTP.createResponse()
-) => app.callback()(req, res)
+) => {
+  req.socket = {}
+  app.callback()(req, res)
+}
 
 describe('Handle Error Middleware', ()=> {
   it('should work without session', (done)=> {
