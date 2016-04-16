@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { noop } from 'lodash'
 import { removeMessage } from 'app/actions/flash'
 import { Bem } from 'app/utils'
 import * as selectors from 'app/selectors'
@@ -34,7 +35,7 @@ class FlashMessages extends React.Component {
 
   static defaultProps = {
     messages: [],
-    removeMessage: ()=>null,
+    removeMessage: noop,
   };
 
   render() {
