@@ -71,6 +71,6 @@ compiler.plugin('done', () => {
 
 server.listen(process.env.PORT, () => {
   const URI = `http://localhost:${process.env.PORT}`
-  log.app(`Serving`, URI)
+  log.app('Serving', URI)
   if (argv.open || argv.o) open(URI)
 })

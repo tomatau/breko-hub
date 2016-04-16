@@ -20,6 +20,6 @@ process.on('unhandledRejection', function(err) {
 
 if (!process.env.ENVIRONMENT)
   log.config('Environment was set from `.env` file')
-log.config(`Running in ENV`, process.env.NODE_ENV)
-log.config(`Supplied with PORT`, process.env.PORT)
+log.config('Running in ENV', process.env.NODE_ENV)
+log.config('Supplied with PORT', process.env.PORT)
 

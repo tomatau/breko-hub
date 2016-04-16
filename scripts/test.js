@@ -19,5 +19,5 @@ app.use(require('koa-webpack-dev-middleware')(compiler, {
 app.use(require('koa-webpack-hot-middleware')(compiler))
 
 app.listen(process.env.PORT, () => {
-  debug(`serving`)(`http://localhost:${process.env.PORT}`)
+  debug('serving')(`http://localhost:${process.env.PORT}`)
 })

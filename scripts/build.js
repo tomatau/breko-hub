@@ -8,7 +8,7 @@ const log = {
   build: debug('build'),
 }
 
-log.build(`Building in ENV`, process.env.NODE_ENV)
+log.build('Building in ENV', process.env.NODE_ENV)
 const compiler = webpack(webpackProductionConfig)
 
 compiler.run((err, stats) => {
