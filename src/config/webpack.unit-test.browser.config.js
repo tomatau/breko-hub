@@ -29,7 +29,7 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.IgnorePlugin(/ReactContext/), // skin-deep
+    new webpack.IgnorePlugin(/ReactContext|react\/addons/), // skin-deep
     isomorphicPlugin,
     ...webpackConfig.plugins,
     new HtmlWebpackPlugin(),
