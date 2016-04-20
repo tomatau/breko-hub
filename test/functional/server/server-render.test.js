@@ -12,10 +12,12 @@ const AppRoute = ({ children }) => <div><h2>App</h2>{children}</div>
 const TestRoute = () => <div>Test Route</div>
 const AnotherRoute = () => <div>Another Route</div>
 const RedirectRoute = () => <div>Never resolved</div>
+const ErrorRoute = () => { throw new Error('error from react route') }
 const ReactRoutes = (
   <Route path='/' component={AppRoute}>
     <Route path='test' component={TestRoute} />
     <Route path='another' component={AnotherRoute} />
+    <Route path='error-route' component={ErrorRoute} />
     <Route path='redirect' component={RedirectRoute}
       onEnter={(_, redirect) => redirect('/test')} />
   </Route>
@@ -57,7 +59,7 @@ describe('Server Side Render', function() {
     app.use(serve(TESTS + '/fixtures/assets'))
     // setup a broken route
     testRouter.get('/broken-route', function *() {
-      this.throw('I am broken')
+      throw new Error('I am broken')
     })
     app.use(testRouter.routes())
     // add rootRouer routes
@@ -79,9 +81,16 @@ describe('Server Side Render', function() {
       .expect(404, /Not found/)
   )
 
-  it('should redirect to /oops when an error', ()=>
+  it('should redirect to /oops when a server error', ()=>
     supertest(app.callback())
       .get('/broken-route')
+      .expect(302)
+      .expect('location', '/oops')
+  )
+
+  it('should redirect to /oops when a react error', ()=>
+    supertest(app.callback())
+      .get('/error-route')
       .expect(302)
       .expect('location', '/oops')
   )
