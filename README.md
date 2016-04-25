@@ -5,9 +5,7 @@
 
 Another starter kit for Universal React applications.
 
-The goal here is to build on the existing starter kits, but using smaller files and simple solutions where possible to achieve similar results.
-
-This boilerplate doesn't include any existing applications - so you don't need to delete too much before getting started.
+The goal here is to build on the existing starter kits, but focusing on more manageable files for a better developer experience.
 
 ## What's in the box?
 
@@ -87,8 +85,11 @@ Do not check-in your `.env`. When in production, you would want to set the appro
 Breko Hub will attempt to use a `.env` file. If no .env exists, the app will default to development mode with a port 9001.
 
 **developing**
+
+Set the NODE_ENV flag to development in your .env file.
+
 ```shell
-npm run dev [-- --open]
+npm run start [-- --open]
 ```
 
 Builds and serves app with hot reloading and debugging support.
@@ -101,6 +102,9 @@ npm run build
 Creates bundles and assets into `src/static`.
 
 **start the server**
+
+Set the NODE_ENV flag to production in your .env file.
+
 ```shell
 npm start
 ```
@@ -118,14 +122,14 @@ This allows tests to be placed next to the file they are testing as well as a ni
 
 ***unit test single run***
 ```shell
-npm test -- --run
+npm run test:unit
 ```
 
 Runs the test suite in node environment through mocha, once.
 
 ***functional/integration tests run***
 ```shell
-npm test -- --functional
+npm run test:func
 ```
 
 The purpose of the functional (integration) tests is to sit between unit tests and acceptance tests. They are for testing groups of units and how they communicate without being too closely coupled to implementation.
