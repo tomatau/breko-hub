@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import { hasWindow } from 'app/utils/predicates'
 import { socket } from 'app/services/socket'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
-import rootSaga from 'app/sagas'
 import createSagaMiddleware from 'redux-saga'
 
 const log = {
@@ -18,12 +17,14 @@ export const middleware = [
   ...defaultMiddleware,
 ]
 
+export const sagaMiddleware = createSagaMiddleware()
+
 if (hasWindow) {
   middleware.push(
-    createSagaMiddleware(rootSaga),
+    sagaMiddleware,
     outClientViaSocketIO(socket),
     createLogger({
-      predicate: () => process.env.NODE_ENV === 'development',
+      predicate: () => debug.enabled(),
       collapsed: true,
     })
   )
