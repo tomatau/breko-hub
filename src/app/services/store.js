@@ -1,4 +1,4 @@
-import { isBrowser, hasWindow } from 'app/utils/predicates'
+import { isBrowser } from 'app/utils/predicates'
 import { makeCreateStore } from 'app/services/makeCreateStore'
 import rootReducer from 'app/reducers'
 import { middleware, sagaMiddleware } from 'app/services/middleware'
@@ -9,8 +9,7 @@ export const store = makeCreateStore(middleware)(
   isBrowser ? window.__INITIAL_STATE__ : {}
 )
 
-if (hasWindow)
-  sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga)
 
 export const { dispatch } = store
 

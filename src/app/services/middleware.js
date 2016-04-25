@@ -9,19 +9,15 @@ import createSagaMiddleware from 'redux-saga'
 const log = {
   action: debug('DISPATCH:'),
 }
-export const defaultMiddleware = [
+export const sagaMiddleware = createSagaMiddleware()
+export const middleware = [
   thunkMiddleware,
   promiseMiddleware(),
+  sagaMiddleware,
 ]
-export const middleware = [
-  ...defaultMiddleware,
-]
-
-export const sagaMiddleware = createSagaMiddleware()
 
 if (hasWindow) {
   middleware.push(
-    sagaMiddleware,
     outClientViaSocketIO(socket),
     createLogger({
       predicate: () => debug.enabled(),

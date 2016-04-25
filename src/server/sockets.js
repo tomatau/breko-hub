@@ -1,7 +1,7 @@
 import Socket from 'socket.io'
 import { inServerViaSocketIO, outServerViaSocketIO } from 'redux-via-socket.io'
 import rootReducer from 'app/reducers'
-import { defaultMiddleware } from 'app/services/middleware'
+import { middleware } from 'app/services/middleware'
 import { makeCreateStore } from 'app/services/makeCreateStore'
 
 const log = {
@@ -11,12 +11,11 @@ const log = {
 export default function sockets(server) {
   log.sockets('Starting socket server')
   const socketServer = Socket(server)
-  const middleware = [
-    ...defaultMiddleware,
-    outServerViaSocketIO(socketServer),
-  ]
 
-  const socketsStore = makeCreateStore(middleware)(rootReducer, {})
+  const socketsStore = makeCreateStore([
+    ...middleware,
+    outServerViaSocketIO(socketServer),
+  ])(rootReducer, {})
 
   socketServer.on('connection', socket => {
     log.sockets('New connection made with id', socket.id)
