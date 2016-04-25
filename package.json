@@ -3,20 +3,19 @@
   "version": "1.0.0-rc",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
-    "test": "node ./scripts/babel.entry.js --test",
-    "test:run": "node ./scripts/babel.entry.js --test --run",
-    "test:functional": "node ./scripts/babel.entry.js --test --functional",
-    "start": "node ./scripts/babel.entry.js",
-    "build": "node ./scripts/babel.entry.js --build",
-    "dev": "node ./scripts/babel.entry.js --dev",
+    "test": "node ./scripts/entry.babel.js --test",
+    "test:unit": "mocha --opts ./test/mocha.opts 'test/test.setup.js' 'src/**/*.test.js'",
+    "test:func": "mocha --opts ./test/mocha.opts 'test/test.setup.js' 'test/functional/**/*.test.js'",
+    "start": "node ./scripts/entry.babel.js",
+    "build": "node ./scripts/entry.babel.js --build",
     "lint": "eslint src scripts test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml"
   },
   "pre-push": [
     "lint",
     "lint:styles",
-    "test:run",
-    "test:functional"
+    "test:unit",
+    "test:func"
   ],
   "repository": {
     "type": "git",

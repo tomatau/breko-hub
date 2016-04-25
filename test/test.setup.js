@@ -23,8 +23,8 @@ const helpers = {
   },
   createStore(initialState={}) {
     return makeCreateStore([
-      promiseMiddleware,
       thunkMiddleware,
+      promiseMiddleware(),
     ])(rootReducer, initialState)
   },
 }
