@@ -9,12 +9,12 @@ const log = {
   hot: debug('hot-reload'),
 }
 
-const compiler = webpack(webpackDevelopmentConfig)
-
-compiler.plugin('compile', () => log.webpack('Webpack compile started...'))
-compiler.plugin('compilation', () => log.webpack('Webpack compiling...'))
-
 export default function hotReload(app) {
+  const compiler = webpack(webpackDevelopmentConfig)
+
+  compiler.plugin('compile', () => log.webpack('Webpack compile started...'))
+  compiler.plugin('compilation', () => log.webpack('Webpack compiling...'))
+
   app.use(require('koa-webpack-dev-middleware')(compiler, {
     quiet: true,
     noInfo: true,
