@@ -15,7 +15,8 @@ dependencies:
 test:
   override:
     - npm run lint
+    - npm run lint:styles
     # - npm run start:
     #     background: true
-    - npm run test -- --run --reporter spec
-    - npm run test -- --run --functional --reporter spec
+    - npm run test:unit -- --reporter spec
+    - npm run test:func -- --reporter spec
