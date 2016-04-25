@@ -1,3 +1,6 @@
+/*
+  Using a node file to start webpack so that configs can make use of resolveModuleSource
+ */
 import 'config/environment'
 import '~/scripts/helpers/cleanAssetJson'
 import webpack from 'webpack'
