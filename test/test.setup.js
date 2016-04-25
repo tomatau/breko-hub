@@ -1,3 +1,4 @@
+import 'config/environment'
 import chai, { expect } from 'chai'
 import koa from 'koa'
 import sinon from 'sinon'
