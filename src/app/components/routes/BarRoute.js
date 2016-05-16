@@ -6,7 +6,7 @@ import { get } from 'app/utils'
 
 @provideHooks({
   // return the promise for server side trigger
-  defer: ({ dispatch }) => dispatch(apiFetch()).payload.promise,
+  defer: ({ dispatch }) => dispatch(apiFetch()),
 })
 @connect(state => ({
   bar: get('bar.data')(state),
