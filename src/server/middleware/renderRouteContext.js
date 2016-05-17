@@ -4,7 +4,9 @@ import { Html } from 'server/components/Html'
 import { filter, identity } from 'ramda'
 
 const compact = filter(identity)
-
+// want to reuse the function better... make assets a bit more explicit
+// move doctype into here too
+//
 function makeHtml(initialState, assets, content) {
   return ReactDOMServer.renderToString(
     <Html

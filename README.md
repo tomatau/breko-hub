@@ -1,198 +1,140 @@
 [![Circle CI](https://circleci.com/gh/tomatau/breko-hub.svg?style=svg)](https://circleci.com/gh/tomatau/breko-hub)
 
 **B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
-### Breko-hub
 
-Another starter kit for Universal React applications.
+## Breko Hub
 
-The goal here is to build on the existing starter kits, but focusing on more manageable files for a better developer experience.
+Breko hub is a github repository that helps anyone create new JavaScript applications. Giving you a technically sound and well tested starting point for your application.
 
-## What's in the box?
+### Documentation
 
-There's a FooRoute component showing how to wire up data on pre-render of both server and client, as well as just client only data.
+[https://tomatao.gitbooks.io/breko-hub/content/](https://tomatao.gitbooks.io/breko-hub/content/)
 
-There's a BarRoute component showing how to prefetch route data with a promise-action.
+### Features
 
-A tiny trivial API to support the BarRoute's data needs.
+- Enables building universal SPAs
+- A modern redux architecture
+- Hot reloading of CSS-modules
+- Fast server side hot reloading
+- 99% ES-next code-base
+- Hot reloading unit tests in a browser
+- A comprehensive functional and unit test suite
+- A lucid code-base
+- A pretty console output
+- Useful debugging tools
 
-There's a Private route doing a redirect on both client and server with a flash message.
+### Quick Start
 
-FlashMessage component gives an example of action -> reducer flow, as well as a saga to remove messages after a delay. This also shows some BEM utility for managing class names from css-modules in SCSS.
+Use the following commands to get started on your new app using breko-hub.
 
-A commented out dispatch call in `src/app/entry.js` to show how to broadcast actions over a socket. And a small socket server hosted within the app (on the same port) to wire up the said broadcast actions.
+```
+git clone git@github.com:tomatau/breko-hub.git <directory-name>
+cd <directory-name>
+npm i
+mv example.env .env
+npm start
+```
 
-## Built With Breko Hub
+With the default `.env` file, this will start your application in development mode on port 9001. It also provides a configuration for running the debugger with a useful console output.
 
-I've used breko hub for various private projects behind DSLs as well as my personal blog [https://tomatao-blog.herokuapp.com/](https://tomatao-blog.herokuapp.com/). You can find the [source-code for my blog on github](https://github.com/tomatau/tomatao-blog).
+Open a browser window at `localhost:9001`.
 
-## Features
+### Blog
 
-- Configurable async CSS files for improved page loads
-- Babel 6
-- React 0.14
-- Redux 3
-- Koa 1
-- React-router 2
-- SocketIO integrated with redux
-- Redux sagas for side effects
-- Router integrated with redux
-- Server side data fetching through redux
-- No global dependencies
-- Consistent code style
-  + ES6 features throughout
-  + Minimal `require` statements
-- Asset file imports
-- (S)CSS Modules
-- PostCSS
-- Hot loading
-  + Components
-  + Reducers
-  + Server API and routing
-  + (S)CSS modules
-- Simple configurations
-  + .Env file integration
-  + Minimal isomorphic setup
-  + Seperate webpack configs for development and production
-- Lots of logging and debugging support
-  + Redux-devtools
-  + debug on both client and server
-  + Server request logging
-  + Redux logging both client and server dispatches
-- Universal Unit tests (all through babel)
-  + Mocha
-  + skin-deep for simple shallow component tests
-  + enzyme on both server and client tests too... for more involved component tests
-  + chai and some helper libs
-- Functional/Integration Tests (all through babel)
-  + Mocha
-  + Client render, routing logic
-  + Server render, route matching logic, headers and assets
-  + Server API routes
-- Lots of utilities
-  + lodash and ramda both with babel optimisation plugins
-  + more
+There is also a new [blog](https://tomatao-blog.herokuapp.com/) that documents some of the techniques used in breko-hub. The blog was also created using breko-hub as a starting point.
 
-## Usage
+### Libraries
 
-**setup**
+Breko hub uses the following libraries at its core:
 
-1. git clone
-2. npm install
-3. It's recommended to create a `.env` file for local development in the project root. An example `.env` file has been provided.
+##### Build tools
+- [webpack](https://webpack.github.io/) - A module bundler.
+- [babel](http://babeljs.io/) - A JavaScript compiler.
+- [webpack-isomorphic-tools](https://www.npmjs.com/package/webpack-isomorphic-tools) - Library for isomorphic rendering.
 
-Do not check-in your `.env`. When in production, you would want to set the appropriate settings in the deployment environment as environmental variables. The `.env` file will never overwrite that which exists in your environment.
+##### Server
+- [koa](http://koajs.com/) - A lightweight server framework.
+- [koa-router](https://github.com/alexmingoia/koa-router) - Router middleware for koa.
+- [socket.io](http://socket.io/) - A node engine for WebSocket communication.
+- [redux-via-socket.io](https://www.npmjs.com/package/redux-via-socket.io) - An adapter for sharing redux actions over WebSockets.
 
-Breko Hub will attempt to use a `.env` file. If no .env exists, the app will default to development mode with a port 9001.
+##### Universal Application
+- [react](http://facebook.github.io/react/) - A library for building interfaces.
+- [redux](http://redux.js.org/) - A library for state management.
+- [react-router](https://github.com/reactjs/react-router) - A routing library for React.
+- [react-router-redux](https://github.com/reactjs/react-router-redux) - Binding between react-router and redux.
+- [redial](https://www.npmjs.com/package/redial) - Universal data fetching for React.
+- [redux-saga](https://github.com/yelouafi/redux-saga) - Side effect management for redux.
+- [reselect](https://github.com/reactjs/reselect) - A library for creating state selectors.
+- [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) - A redux middleware for creating asynchronous actions.
 
-**developing**
+##### Utility
+- [lodash](http://lodash.com/) - A popular modular utility library. 
+- [ramda](http://ramdajs.com/) - A modular utility library focused on functional programming.
 
-Set the NODE_ENV flag to development in your .env file.
+##### Styling
+- [SCSS](http://sass-lang.com/guide) - A popular CSS preprocessor.
+- [PostCSS](http://postcss.org/) - CSS transformations with JavaScript.
+- [css-modules](https://github.com/css-modules/css-modules) - A build step for modular, local scoped CSS management.
 
-```shell
+### Commands
+
+**Developing**
+
+```
 npm run start [-- --open]
 ```
 
 Builds and serves app with hot reloading and debugging support.
 
-**production build**
-```shell
+**Build client-side app**
+
+```
 npm run build
 ```
 
-Creates bundles and assets into `src/static`.
+Creates bundles and assets into `./src/static` directory. Reads `.env` but always uses production Webpack configuration.
 
-**start the server**
+**Start the server**
 
 Set the NODE_ENV flag to production in your .env file.
 
-```shell
+```
 npm start
 ```
 
-Expects bundles and assets, runs the server in production mode.
+Expects bundles and assets to exist in the `./src/static` directory. Runs the server in production mode.
 
-***unit test development server***
-```shell
+**Unit test development server**
+
+```
 npm test
 ```
 
-Using mocha and webpack middleware to start test server that will provide browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
+Start a test server using Mocha and Webpack-middleware. Provides a browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
 
-This allows tests to be placed next to the file they are testing as well as a nice developer experience developing tests in a browser. Most server code can also be tested this way.
 
-***unit test single run***
-```shell
+**Unit test single run**
+
+```
 npm run test:unit
 ```
 
-Runs the test suite in node environment through mocha, once.
+Runs the test suite in a node environment through mocha, once.
 
-***functional/integration tests run***
-```shell
+**Functional/integration tests run**
+
+```
 npm run test:func
 ```
 
-The purpose of the functional (integration) tests is to sit between unit tests and acceptance tests. They are for testing groups of units and how they communicate without being too closely coupled to implementation.
+Runs functional tests inside `./test/functional` directory.
 
-Functional tests can only be ran in Node context (not the browser) as they contain tests for the server logic. The functional tests are faster than *Acceptance* tests as they stub out IO. The server render tests stub out all client render logic.
+**Lint**
 
-It would be possible here to create specific tests for connections to IO if it's desired to test wiring between a DB or external API also. But as Breko-hub doesn't use either of these, the contracts between client and server code are tested instead.
-
-**lint**
 ```
 npm run lint
 npm run lint:styles
 ```
 
-No semi colons, lots of commas on multi-lines for easy duplication, single-quotes. You may not like it, but it works just fine.
-
-Style linting is all default except for some rules which are not important for css modules.
-
-## Coming Soon
-
-- Example applications. I'd rather not just make a counter or TodoList though!
-- More tests.
-- Better documentation.
-
-## Description
-
-**.env**
-
-This project will be looking for various settings in your runtime environment, such as `PORT`, `NODE_ENV`, `DEBUG`. When developing, it's nice to use a `.env` file. The app will load an environment from your `.env`.
-
-**ES Imports**
-
-`babel` has been configured to treat `src/` as the default import root. 
-
-Using absolute requires helps with module portability and clarity, no-one enjoys `../../../` and in a large application it's very appealing to give some hierarchy to units of code.
-
-`babel-root-imports` is also included which resolves modules according to the project route when the suffix `~` is used -- this is handy if you need to require something from above `src/`.
-
-
-**Head and Body Script Loading**
-
-When concentrating on load time performance of an application, it's a large improvement to focus on the above-the-fold or asynchronous asset loading split. So, there are intentionally, 2 entry points for this application, `body` and `head`. This is to give the developer more control over where their scripts are injected into the page. The bodyStyles array will load in css asynchronously after DOMContentLoaded.
-
-Unfortunately the CSS to JS correspondence in many projects are not perfect, as JS required in the body build could require a CSS file that is suitable for the `head.css` bundle. The developer can configure this in `src/server/middleware/renderRouteContext.es` by moving the available assets into the appropriate inclusion array.  Also the ExtractTextPlugin will grab CSS (that isn't modular) into the head bundle from the body build.
-
-Whilst developing, to make the most of CSS hot reloading on the client, CSS-modules are not caught by ExtractTextPlugin -- this will be disabled in production but can be configured in the appropriate configurations.
-
-**CSS Modules**
-
-You can import any SCSS or CSS into a client JS file, if the file has the extension `/.module.s?css/`, then it will be imported as a CSS-module. This gives more clarity about what sort of CSS file is being dealt with as well as some flexibility when managing styles.
-
-### Engine
-- npm v3.x
-- node v5.x
-
-This project has been developed and tested using the above versions of npm and node. It's advised to use the same engine when using this boilerplate but it may still work with other configurations.
-
-Also, it probably doesn't work to develop, build, test or serve on Windows... if you want to make PRs for that, please do! (But nothing too ugly, I'd rather people just stopped that whole windows development thing.)
-
-## Thanks For Ideas!
-
-This boilerplate is shamelessly reusing some ideas from:
-
-- https://github.com/glenjamin/ultimate-hot-reloading-example
-- https://github.com/erikras/react-redux-universal-hot-example
-- https://github.com/davezuko/react-redux-starter-kit
+Reads `.eslintrc` and `sass-lint.yml` for linting configurations.

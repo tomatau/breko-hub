@@ -7,15 +7,15 @@ import styles from './FlashMessages.module.scss'
 
 const { PropTypes } = React
 
-export const Msg = ({ msg, ...props }) =>
+export const Msg = ({ msg, className, ...props }) =>
   <span {...props}
-    {...Msg.classes(null, msg.type, 'FlashMessages__Msg')}>
+    {...Msg.bem(null, msg.type, className)}>
     {msg.message}
     &nbsp;
     <strong className={styles.close}>x</strong>
   </span>
 
-Msg.classes = Bem(styles.msg)
+Msg.bem = Bem(styles.msg)
 
 Msg.propTypes = {
   msg: PropTypes.shape({
@@ -27,7 +27,7 @@ Msg.propTypes = {
 @connect(state => ({
   messages: selectors.flashMessages(state),
 }), { removeMessage })
-class FlashMessages extends React.Component {
+export default class FlashMessages extends React.Component {
   static propTypes = {
     messages: PropTypes.array,
     removeMessage: PropTypes.func,
@@ -38,23 +38,24 @@ class FlashMessages extends React.Component {
     removeMessage: noop,
   };
 
+  bem = new Bem('FlashMessages');
+
+  clickMessage(msg) {
+    this.props.removeMessage(msg.id)
+  }
+
   render() {
     const { messages } = this.props
     return (
-      <div className='FlashMessages'>
+      <div {...this.bem()}>
         {messages.map(msg =>
           <Msg key={msg.id}
             msg={msg}
             onClick={() => this.clickMessage(msg)}
+            {...this.bem('Msg')}
           />
         )}
       </div>
     )
   }
-
-  clickMessage(msg) {
-    this.props.removeMessage(msg.id)
-  }
 }
-
-export default FlashMessages
