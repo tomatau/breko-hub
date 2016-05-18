@@ -1,5 +1,6 @@
 import Router from 'koa-router'
-import compose from 'server/utils/compose'
+import { compose } from 'server/utils'
+import { compact } from 'app/utils'
 import setStore from 'server/middleware/setStore'
 import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
@@ -14,7 +15,12 @@ export function setRoutes(assets) {
   const renderApp = compose(
     setStore,
     setRouteContext(routes.makeRoutes),
-    renderRouteContext(assets)
+    renderRouteContext({
+      headScripts: compact([ assets.javascript.head ]),
+      bodyScripts: compact([ assets.javascript.body ]),
+      headStyles: compact([ assets.styles.body, assets.styles.head ]),
+      bodyStyles: compact([]),
+    })
   )
 
   rootRouter

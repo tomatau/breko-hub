@@ -78,7 +78,7 @@ describe('Server Side Render', function() {
   it('should offer 404 when not found', ()=>
     supertest(app.callback())
       .get('/moo')
-      .expect(404, /Not found/)
+      .expect(404, /not found/i)
   )
 
   it('should redirect to /oops when a server error', ()=>

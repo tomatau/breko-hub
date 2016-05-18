@@ -3,6 +3,7 @@ import { trigger } from 'redial'
 import { history } from 'app/services/history'
 import * as selectors from 'app/selectors'
 import { store as clientStore } from 'app/services/store'
+import NotFoundRoute from 'app/components/routes/NotFoundRoute'
 
 export default function(makeRoutes) {
   return function *(next) {
@@ -18,7 +19,7 @@ export default function(makeRoutes) {
             return reject(this.redirect(`${redirect.pathname}${redirect.search}`))
           } else if (!renderProps) {
             this.status = 404
-            return resolve(<p>Not found</p>)
+            return resolve(<NotFoundRoute />)
           } else if (error) {
             return reject(this.throw(error.message))
           }
