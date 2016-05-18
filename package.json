@@ -1,6 +1,6 @@
 {
   "name": "breko-hub",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc2",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "scripts": {
     "test": "node ./scripts/entry.babel.js --test",
