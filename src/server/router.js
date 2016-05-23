@@ -1,9 +1,12 @@
 import Router from 'koa-router'
+import { ERROR_PATH } from 'config/paths'
 import { compose } from 'server/utils'
 import { compact } from 'app/utils'
+import handleNotFound from 'server/middleware/handleNotFound'
 import setStore from 'server/middleware/setStore'
 import setRouteContext from 'server/middleware/setRouteContext'
 import renderRouteContext from 'server/middleware/renderRouteContext'
+import flashMessages from 'server/middleware/flashMessages'
 import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
 
@@ -12,19 +15,23 @@ export const rootRouter = Router()
 export function setRoutes(assets) {
   rootRouter.stack.length = 0
 
+  const assetMap = {
+    headScripts: compact([ assets.javascript.head ]),
+    bodyScripts: compact([ assets.javascript.body ]),
+    headStyles: compact([ assets.styles.body, assets.styles.head ]),
+    bodyStyles: [],
+  }
+
   const renderApp = compose(
+    handleNotFound(assetMap.headStyles),
     setStore,
-    setRouteContext(routes.makeRoutes),
-    renderRouteContext({
-      headScripts: compact([ assets.javascript.head ]),
-      bodyScripts: compact([ assets.javascript.body ]),
-      headStyles: compact([ assets.styles.body, assets.styles.head ]),
-      bodyStyles: compact([]),
-    })
+    flashMessages,
+    setRouteContext(routes.makeRoutes()),
+    renderRouteContext(assetMap)
   )
 
   rootRouter
     .use(apiRouter.routes())
-    .get('error', '/oops', renderApp)
+    .get('error', ERROR_PATH, renderApp)
     .get('react', '/(.*)', renderApp)
 }

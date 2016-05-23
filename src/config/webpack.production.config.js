@@ -1,15 +1,11 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
-import { isomorphicPlugin } from 'server/isomorphicTools'
-import autoprefixer from 'autoprefixer'
-import cssnano from 'cssnano'
 
 export default {
   ...webpackConfig,
   devtool: null,
   plugins: [
-    isomorphicPlugin,
     ...webpackConfig.plugins,
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -18,10 +14,6 @@ export default {
         warnings: false,
       },
     }),
-  ],
-  postcss: [
-    autoprefixer({ browsers: [ 'last 2 versions' ] }),
-    cssnano(),
   ],
   module: {
     loaders: [ {

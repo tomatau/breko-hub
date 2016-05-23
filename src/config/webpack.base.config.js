@@ -3,6 +3,8 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import { SRC, APP, STATIC, STYLES, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 
 export default {
   entry: {
@@ -27,7 +29,12 @@ export default {
       '', '.js', '.jsx', '.es', '.es6', '.scss',
     ],
   },
+  postcss: [
+    autoprefixer({ browsers: [ 'last 2 versions' ] }),
+    cssnano(),
+  ],
   plugins: [
+    isomorphicPlugin,
     new webpack.NoErrorsPlugin(),
     new CleanPlugin([ 'src/static' ], {
       root: ROOT,

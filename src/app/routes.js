@@ -1,4 +1,5 @@
 import { Route } from 'react-router'
+import { ERROR_PATH } from 'config/paths'
 
 import App from 'app/components/App'
 import FooRoute from 'app/components/routes/FooRoute'
@@ -13,13 +14,11 @@ export const makeRoutes = () => (
   <Route path='/' component={App}>
     <Route path='foo' component={FooRoute} />
     <Route path='bar' component={BarRoute} />
-    <Route path='oops' component={OopsRoute} />
     <Route path='private' component={OopsRoute} onEnter={(_, redirect) => {
-      dispatch(
-        addMessage('You may not view the private route!!', 'error')
-      )
+      dispatch(addMessage('You may not view the private route!!', 'error'))
       redirect('/foo')
     }} />
+    <Route path={ERROR_PATH} component={OopsRoute} />
     <Route path='*' component={NotFoundRoute} />
   </Route>
 )

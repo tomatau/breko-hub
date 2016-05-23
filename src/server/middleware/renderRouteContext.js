@@ -1,15 +1,15 @@
 import { Provider } from 'react-redux'
 import { makeHtml } from 'server/utils'
+const log = debug('render-route-context')
 
 export default function renderRouteContext(assets) {
   return function *() {
-    const { routeContext, store } = this
-
+    log('setting body')
     this.response.body = makeHtml(
-      store.getState(),
+      this.store.getState(),
       assets,
-      <Provider store={store}>
-        {routeContext}
+      <Provider store={this.store}>
+        {this.routeContext}
       </Provider>
     )
   }

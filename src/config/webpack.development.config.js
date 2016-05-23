@@ -1,9 +1,6 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
-import { isomorphicPlugin } from 'server/isomorphicTools'
-import autoprefixer from 'autoprefixer'
-import cssnano from 'cssnano'
 
 export default {
   ...webpackConfig,
@@ -17,12 +14,7 @@ export default {
   devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    isomorphicPlugin,
     ...webpackConfig.plugins,
-  ],
-  postcss: [
-    autoprefixer({ browsers: [ 'last 2 versions' ] }),
-    cssnano(),
   ],
   module: {
     loaders: [ {

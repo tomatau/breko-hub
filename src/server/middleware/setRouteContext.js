@@ -1,49 +1,41 @@
 import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
-import { history } from 'app/services/history'
-import * as selectors from 'app/selectors'
-import { store as clientStore } from 'app/services/store'
-import NotFoundRoute from 'app/components/routes/NotFoundRoute'
 
-export default function(makeRoutes) {
+export default function(routes) {
   return function *(next) {
     try {
-      const { store } = this
-      this.routeContext = yield new Promise((resolve, reject) => {
-        match({
-          routes: makeRoutes(),
-          location: history.createLocation(this.request.url),
-        }, (error, redirect, renderProps) => {
-          if (redirect) {
-            transferFlashMessages.call(this)
-            return reject(this.redirect(`${redirect.pathname}${redirect.search}`))
-          } else if (!renderProps) {
-            this.status = 404
-            return resolve(<NotFoundRoute />)
-          } else if (error) {
-            return reject(this.throw(error.message))
-          }
-
-          trigger('prefetch', renderProps.components, {
-            dispatch: store.dispatch,
-            location: renderProps.location,
-            params: renderProps.params,
-          }).then(() =>
-            resolve(<RouterContext {...renderProps} />)
-          )
-        })
-      })
+      this.routeContext = yield getRouteContext(this, routes)
       yield next
     } catch (error) {
-      if (error == null) return // redirecting
-      throw error
-    }
-
-    function transferFlashMessages() {
-      const nextFlashMessage = selectors.nextFlashMessage(clientStore.getState())
-      if (nextFlashMessage) {
-        this.addFlash(nextFlashMessage.message, nextFlashMessage.type)
-      }
+      if (error instanceof Error) throw error
     }
   }
 }
+
+const getRouteContext = (ctx, routes) =>
+  new Promise((resolve, reject) => {
+    match({
+      routes, location: ctx.request.url,
+    }, async (error, redirect, renderProps) => {
+      if (error) {
+        ctx.status = 500
+        reject(ctx.throw(error))
+
+      } else if (redirect) {
+        ctx.status = 302
+        reject(ctx.redirect(`${redirect.pathname}${redirect.search}`))
+
+      } else if (!renderProps) {
+        ctx.status = 404
+        reject()
+
+      } else {
+        await trigger('prefetch', renderProps.components, {
+          dispatch: ctx.store.dispatch,
+          location: renderProps.location,
+          params: renderProps.params,
+        })
+        resolve(<RouterContext {...renderProps} />)
+      }
+    })
+  })
