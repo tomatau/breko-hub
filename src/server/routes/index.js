@@ -9,7 +9,7 @@ apiRouter
     this.response.body = { pong: this.request.body }
   })
   .get('bar', '/bar', function *() {
-    this.response.body = { bar: [ 'bruce', 'willis', 'wet', 'himself', 'lol' ] }
+    this.response.body = { bar: [ 'bruce', 'willis', 'wet', 'himself' ] }
   })
 
 export default apiRouter
