@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import { socket } from 'app/services/socket'
+import socket from 'app/services/socket'
 import { dispatch } from 'app/services/store'
 import { Main, Dev } from 'app/main'
 
