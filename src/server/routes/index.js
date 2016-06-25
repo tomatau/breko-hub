@@ -1,8 +1,8 @@
-import Router from 'koa-router'
+import router from 'koa-router'
 import koaBody from 'koa-body'
 
 const parseBody = koaBody()
-const apiRouter = Router({ prefix: '/api' })
+const apiRouter = router({ prefix: '/api' })
 
 apiRouter
   .all('ping', '/ping', parseBody, function *() {

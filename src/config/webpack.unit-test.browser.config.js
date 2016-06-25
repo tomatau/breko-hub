@@ -42,7 +42,7 @@ export default {
     },
   },
   module: {
-    loaders: [ {
+    loaders: [ ...webpackConfig.module.loaders, {
       test: /module\.s?css$/,
       include: [ /src\/app/, /src\/styles/ ],
       loaders: [
@@ -76,6 +76,6 @@ export default {
           } ],
         ],
       },
-    }, ...webpackConfig.module.loaders ],
+    } ],
   },
 }

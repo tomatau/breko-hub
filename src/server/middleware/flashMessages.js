@@ -2,7 +2,7 @@ import { store as clientStore } from 'app/services/store'
 import * as selectors from 'app/selectors'
 import { addMessage } from 'app/actions/flash'
 
-export default function *transferFlash(next) {
+export default function *flashMessages(next) {
   this.flash.map(({ message, type }) =>
     this.store.dispatch(addMessage(message, type))
   )

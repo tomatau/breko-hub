@@ -2,7 +2,7 @@ import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
 
 export default function(routes) {
-  return function *(next) {
+  return function *setRouteContext(next) {
     try {
       this.routeContext = yield getRouteContext(this, routes)
       yield next

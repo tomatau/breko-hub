@@ -3,8 +3,8 @@ import App from 'app/components/App'
 import NotFoundRoute from 'app/components/routes/NotFoundRoute'
 import { makeHtml } from 'server/utils'
 
-export default function handleNotFound(headStyles) {
-  return function * (next) {
+export default function(headStyles) {
+  return function *handleNotFound(next) {
     yield next
     if (this.response.status === 404) {
       this.response.body = renderNotFound(this.store, headStyles)

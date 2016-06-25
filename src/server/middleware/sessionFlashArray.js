@@ -1,6 +1,6 @@
 
-export default function sessionFlashArray(key='flash') {
-  return function *(next) {
+export default function(key='flash') {
+  return function *sessionFlashArray(next) {
     this.flash = this.session[key] || []
     this.nextFlash = []
     this.addFlash = (message, type) => {

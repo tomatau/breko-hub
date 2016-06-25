@@ -17,7 +17,7 @@ export default {
     ...webpackConfig.plugins,
   ],
   module: {
-    loaders: [ {
+    loaders: [ ...webpackConfig.module.loaders, {
       test: /module\.s?css$/,
       include: [ /\/src\// ],
       // not extracting css-modules in development for hot-reloading
@@ -55,6 +55,6 @@ export default {
           } ],
         ],
       },
-    }, ...webpackConfig.module.loaders ],
+    } ],
   },
 }

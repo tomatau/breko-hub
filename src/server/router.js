@@ -1,4 +1,4 @@
-import Router from 'koa-router'
+import router from 'koa-router'
 import { ERROR_PATH } from 'config/paths'
 import { compose } from 'server/utils'
 import { compact } from 'app/utils'
@@ -10,7 +10,7 @@ import flashMessages from 'server/middleware/flashMessages'
 import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
 
-export const rootRouter = Router()
+export const rootRouter = router()
 
 export function setRoutes(assets) {
   rootRouter.stack.length = 0
