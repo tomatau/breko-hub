@@ -121,15 +121,16 @@ describe('Server Side Render', function() {
       .get('/test')
       .expect((res) => {
         const initStateRegex = /<script [\w-="]+>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
-        const keyPath = 'routing.locationBeforeTransitions.key'
+        const routingKeyPath = [ 'routing', 'locationBeforeTransitions', 'key' ]
+        const stripRoutingKey = R.assocPath(routingKeyPath, null)
+        const hasDifferentState = _.negate(R.eqBy(stripRoutingKey))
+
         syncHistoryWithStore(createMemoryHistory('/test'), testStore)
 
         const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)
         const storeState = testStore.getState()
-        _.unset(renderedState, keyPath)
-        _.unset(storeState, keyPath)
 
-        if (!_.isMatch(renderedState, storeState)) {
+        if (hasDifferentState(renderedState, storeState)) {
           throw new Error('should render initial state')
         }
       })

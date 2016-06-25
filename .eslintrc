@@ -26,6 +26,7 @@
     "React": true,
     "PropTypes": true,
     "_": true,
+    "R": true,
     "helpers": true
   }
 }
