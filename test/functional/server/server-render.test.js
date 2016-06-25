@@ -3,6 +3,8 @@ import serve from 'koa-static'
 import Router from 'koa-router'
 import { Route } from 'react-router'
 import supertest from 'supertest-as-promised'
+import { createMemoryHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { TESTS } from 'config/paths'
 import { setRoutes, rootRouter } from 'server/router'
 import * as routes from 'app/routes'
@@ -37,7 +39,7 @@ These tests cover:
   - that the favicon works
   - that the headers contain a sessions cookie array
 
-It don't cover:
+The tests don't cover:
   - flash messages, needs complete session inspection
   - server side meta tag rendering
  */
@@ -118,12 +120,16 @@ describe('Server Side Render', function() {
     supertest(app.callback())
       .get('/test')
       .expect((res) => {
-        const hasInitialState =  res.text.includes(
-          `window.__INITIAL_STATE__ = ${JSON.stringify(
-            testStore.getState(), null, 2
-          )}`
-        )
-        if (!hasInitialState) {
+        const initStateRegex = /<script [\w-="]+>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
+        const keyPath = 'routing.locationBeforeTransitions.key'
+        syncHistoryWithStore(createMemoryHistory('/test'), testStore)
+
+        const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)
+        const storeState = testStore.getState()
+        _.unset(renderedState, keyPath)
+        _.unset(storeState, keyPath)
+
+        if (!_.isMatch(renderedState, storeState)) {
           throw new Error('should render initial state')
         }
       })
