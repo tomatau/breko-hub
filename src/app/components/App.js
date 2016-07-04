@@ -8,9 +8,7 @@ import style from './App.module.scss'
 // example s?css import (no module)
 import './App.css'
 
-const log = {
-  app: debug('App.es'),
-}
+const log = debug('App.js')
 
 const metaData = {
   title: 'Breko Hub',
@@ -27,7 +25,7 @@ const metaData = {
 class App extends React.Component {
   render() {
     const { children } = this.props
-    log.app('render')
+    log('render')
     return (
       <div className={style.app}>
         <DocumentMeta {...metaData} />

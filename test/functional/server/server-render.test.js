@@ -1,4 +1,5 @@
 import server from 'server'
+import ReactDOM from 'react-dom/server'
 import serve from 'koa-static'
 import Router from 'koa-router'
 import { Route } from 'react-router'
@@ -102,29 +103,36 @@ describe('Server Side Render', function() {
       .get('/test')
       .expect(200)
       .expect(/<!doctype html>/)
-      .expect(/<html lang="en"/)
-      .expect(/<link href="\/test-asset.css" type="text\/css" rel="stylesheet" media="screen"/)
-      .expect(/<script src="\/test-asset.js"/)
+      .expect(/<html lang="en">/)
+      .expect(/<link href="\/test-asset.css" type="text\/css" rel="stylesheet" media="screen"\/>/)
+      .expect(/<script src="\/test-asset.js">/)
   )
 
   it('should render a react route', ()=>
     supertest(app.callback())
       .get('/test')
       .expect(200)
-      // can't test complete match because of generated data-reactids
-      .expect(/App/)
-      .expect(/Test Route/)
+      .expect((res) => {
+        const renderedApp = ReactDOM.renderToString(
+          <AppRoute>
+            <TestRoute />
+          </AppRoute>
+        )
+
+        if (!res.text.includes(renderedApp)) {
+          throw new Error('should render a react route!')
+        }
+      })
   )
 
   it('should render initial state from the store', ()=>
     supertest(app.callback())
       .get('/test')
       .expect((res) => {
-        const initStateRegex = /<script [\w-="]+>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
+        const initStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
         const routingKeyPath = [ 'routing', 'locationBeforeTransitions', 'key' ]
         const stripRoutingKey = R.assocPath(routingKeyPath, null)
         const hasDifferentState = _.negate(R.eqBy(stripRoutingKey))
-
         syncHistoryWithStore(createMemoryHistory('/test'), testStore)
 
         const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)

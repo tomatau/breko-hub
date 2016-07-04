@@ -1,5 +1,4 @@
 import DocumentMeta from 'react-document-meta'
-import ReactDOMServer from 'react-dom/server'
 import { hasWindow } from 'app/utils'
 
 const { PropTypes } = React
@@ -7,6 +6,7 @@ const { PropTypes } = React
 export class Html extends React.Component {
 
   static propTypes = {
+    app: PropTypes.string,
     initialState: PropTypes.object,
     headScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
@@ -22,6 +22,7 @@ export class Html extends React.Component {
 
   render() {
     const {
+      app,
       initialState,
       headStyles, headScripts,
       bodyScripts, bodyStyles,
@@ -52,7 +53,7 @@ export class Html extends React.Component {
           <div
             id='application-root'
             dangerouslySetInnerHTML={{
-              __html: ::this.getDivContent(),
+              __html: app,
             }}
           />
           <div id='debug-panel-root' />
@@ -73,10 +74,5 @@ export class Html extends React.Component {
         </body>
       </html>
     )
-  }
-
-  getDivContent() {
-    const { children } = this.props
-    return (children == null) ? null : ReactDOMServer.renderToString(children)
   }
 }
