@@ -82,7 +82,7 @@ describe('FlashMessages Component', function() {
     })
 
     it('should transfer props to the root element', ()=> {
-      const otherProps = { foo: 'bar', other: 'prop' }
+      const otherProps = { id: 'bar', 'data-other': 'prop' }
       this.tree = shallow(<Msg msg={this.msg} {...otherProps} />)
       expect(this.tree.props()).to.shallowDeepEqual(otherProps)
     })

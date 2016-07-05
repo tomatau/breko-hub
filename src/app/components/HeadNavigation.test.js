@@ -14,7 +14,7 @@ describe('Head Navigation Component', function() {
   })
 
   it('passes other props through', ()=> {
-    const otherProps = { foo: 'foo', bar: 'bar' }
+    const otherProps = { id: 'foo', 'data-prop': 'bar' }
     let treeWithProps = sd.shallowRender(<HeadNavigation {...otherProps} />)
     expect(treeWithProps.props).to.shallowDeepEqual(otherProps)
   })
