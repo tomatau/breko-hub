@@ -47,10 +47,9 @@ describe('App Component', function() {
 
   it('renders the children in a main', ()=> {
     const children = <p><span>test</span><span>child</span></p>
-    this.tree = shallow(<App>{children}</App>)
-    const childTree = shallow(children)
-    const content = this.tree.find(`.${styles.content}`)
+    const content = shallow(<App>{children}</App>).find(`.${styles.content}`)
+
     expect(content.type()).to.eql('main')
-    expect(content.find('p').html()).to.eql(childTree.html())
+    expect(content.containsMatchingElement(children)).to.eql(true)
   })
 })
