@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-node './scripts/test/test-entry.js'
+babel-node './test/test-server.js'

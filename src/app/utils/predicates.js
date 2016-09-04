@@ -1,5 +1,10 @@
 import is_promise from 'is-promise'
 
+export const isPromise = is_promise
+export const hasWindow = typeof window !== 'undefined'
+export const isBrowser = typeof GLOBAL === 'undefined'
+
+/* istanbul ignore next */
 export const isNodeInTree = (parent, child) => {
   if (parent == child) return true
   let node = child.parentNode
@@ -9,8 +14,3 @@ export const isNodeInTree = (parent, child) => {
   }
   return false
 }
-
-export const isPromise = is_promise
-
-export const hasWindow = typeof window !== 'undefined'
-export const isBrowser = typeof GLOBAL === 'undefined'

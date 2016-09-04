@@ -6,6 +6,7 @@ import DevTools from 'app/components/containers/DevTools'
 export const makeCreateStore = (middleware) => {
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]
 
+  /* istanbul ignore if  */
   if (process.env.NODE_ENV === 'development') {
     topLevelMiddleware.push(DevTools.instrument())
 

@@ -13,7 +13,9 @@ sagaMiddleware.run(rootSaga)
 
 export const { dispatch } = store
 
+/* istanbul ignore if  */
 if (module.hot) {
+  /* istanbul ignore next */
   module.hot.accept('app/reducers', () => {
     store.replaceReducer(require('app/reducers'))
   })

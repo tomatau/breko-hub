@@ -15,6 +15,7 @@ export const middleware = [
   sagaMiddleware,
 ]
 
+/* istanbul ignore else  */
 if (hasWindow) {
   middleware.push(
     outClientViaSocketIO(require('./socket')),

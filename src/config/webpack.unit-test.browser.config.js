@@ -15,7 +15,7 @@ export default {
       'babel-polyfill',
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
-      `mocha!${TESTS}/test.setup.js`,
+      `mocha!${TESTS}/test-setup.js`,
       ...glob.sync('./src/**/*.test.js').map(file =>
         `mocha!${path.join(ROOT, file)}`
       ),

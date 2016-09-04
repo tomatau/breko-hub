@@ -17,6 +17,7 @@ app.use(session())
 app.use(sessionFlashArray())
 
 // reads process.env.DEBUG
+/* istanbul ignore if  */
 if (debug.enabled('server')) {
   app.use(logger())
 }
