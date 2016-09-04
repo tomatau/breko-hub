@@ -7,6 +7,13 @@
     ["provide-modules", {
       "debug": "debug"
     }],
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    ["module-alias", [
+      { "src": "./src/app", "expose": "app" },
+      { "src": "./src/assets", "expose": "assets" },
+      { "src": "./src/config", "expose": "config" },
+      { "src": "./src/server", "expose": "server" },
+      { "src": "./src/styles", "expose": "styles" }
+    ]]
   ]
 }

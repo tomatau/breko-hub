@@ -1,4 +1,5 @@
-require('./helpers/babel.setup')
+require('babel-polyfill')
+require('babel-register')
 const argv = require('yargs').argv
 
 const file = (() => {
