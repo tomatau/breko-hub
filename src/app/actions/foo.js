@@ -1,4 +1,4 @@
-import { isBrowser } from 'app/utils/predicates'
+import { isBrowser } from 'app/utils'
 
 export const GET = 'foo/GET'
 export const GET_CLIENT_ONLY = 'foo/GET_CLIENT_ONLY'

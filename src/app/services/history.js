@@ -1,4 +1,4 @@
-import { isBrowser } from 'app/utils/predicates'
+import { isBrowser } from 'app/utils'
 import { browserHistory, createMemoryHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { store } from 'app/services/store'

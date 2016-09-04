@@ -8,26 +8,29 @@ describe('Server API', function() {
 
   before(()=> {
     app.use(function *() {
-      setRoutes({})
+      setRoutes({
+        javascript: {},
+        styles: {},
+      })
       yield rootRouter.routes()
     })
   })
 
-  it('should respond to ping route', ()=> {
+  it('should respond to ping route', (done)=> {
     const body = { test: 'body' }
     supertest(app.callback())
       .post('/api/ping')
       .send(body)
       .expect('content-type', /application\/json/)
       .expect({ pong: body })
-      .end()
+      .end(done)
   })
 
-  it('should respond to the bar route', ()=> {
+  it('should respond to the bar route', (done)=> {
     supertest(app.callback())
       .get('/api/bar')
       .expect('content-type', /application\/json/)
-      .expect({ bar: [ 'bruce', 'willis', 'wet', 'himself', 'lol' ] })
-      .end()
+      .expect({ bar: [ 'bruce', 'willis', 'wet', 'himself' ] })
+      .end(done)
   })
 })

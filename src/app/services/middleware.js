@@ -1,7 +1,7 @@
 import createLogger from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
-import { hasWindow } from 'app/utils/predicates'
+import { hasWindow } from 'app/utils'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import createSagaMiddleware from 'redux-saga'
 import { pipe, tap } from 'ramda'

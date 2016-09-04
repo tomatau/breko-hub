@@ -1,4 +1,4 @@
-import { isBrowser } from 'app/utils/predicates'
+import { isBrowser } from 'app/utils'
 import { makeCreateStore } from 'app/services/makeCreateStore'
 import rootReducer from 'app/reducers'
 import { middleware, sagaMiddleware } from 'app/services/middleware'
