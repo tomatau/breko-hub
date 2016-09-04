@@ -10,7 +10,8 @@
     "build": "node ./scripts/entry.babel.js --build",
     "lint": "eslint src scripts test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml",
-    "cover": "babel-node node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- 'src/**/*.test.js' 'test/functional/**/*.test.js'"
+    "coverage": "babel-node node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- 'src/**/*.test.js' 'test/functional/**/*.test.js'",
+    "coverage:check": "babel-istanbul check-coverage"
   },
   "pre-push": [
     "lint",

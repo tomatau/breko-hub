@@ -6,6 +6,10 @@ machine:
   environment:
     PORT: 9001
 
+general:
+  artifacts:
+    - coverage
+
 dependencies:
   cache_directories:
     - node_modules
