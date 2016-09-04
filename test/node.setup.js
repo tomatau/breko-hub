@@ -1,5 +1,5 @@
-import '~/scripts/helpers/cssModulesHook'
-import '~/scripts/helpers/globalJSDOM'
+import 'helpers/cssModulesHook'
+import 'helpers/globalJSDOM'
 import nodeHookFilename from 'node-hook-filename'
 
 process.env.DEBUG = false

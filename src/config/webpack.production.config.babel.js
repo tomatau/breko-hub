@@ -1,3 +1,5 @@
+import 'config/environment'
+import 'helpers/cleanAssetJson'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
