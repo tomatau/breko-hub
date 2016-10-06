@@ -39,6 +39,7 @@ export default {
     alias: {
       'koa-body': path.join(TESTS, 'stubs/koaBody'),
       'fs': path.join(TESTS, 'stubs/fs'),
+      'net': path.join(TESTS, 'stubs/net'),
     },
   },
   module: {
