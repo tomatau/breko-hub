@@ -108,7 +108,7 @@ Expects bundles and assets to exist in the `./src/static` directory. Runs the se
 **Unit test development server**
 
 ```
-npm test
+npm run test:server
 ```
 
 Start a test server using Mocha and Webpack-middleware. Provides a browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
@@ -138,3 +138,12 @@ npm run lint:styles
 ```
 
 Reads `.eslintrc` and `sass-lint.yml` for linting configurations.
+
+**Coverage**
+
+```
+npm run coverage
+npm run coverage:check
+```
+
+Reads `.istanbul.yml` for thresholds in check.
