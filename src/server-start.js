@@ -13,7 +13,6 @@ import app from 'server/index'
 const log = debug('app')
 
 if (process.env.NODE_ENV === 'development') {
-  isomorphicTools.development()
   isomorphicPlugin.development()
   hotReload(app)
 } else {
