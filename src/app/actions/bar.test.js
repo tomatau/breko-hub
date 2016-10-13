@@ -1,23 +1,25 @@
 import { apiFetch, API_FETCH } from './bar'
-import { fetch } from 'app/utils'
+import { request } from 'app/utils'
 
 describe('Bar Actions', ()=> {
   describe('apiFetch()', ()=> {
     beforeEach(()=> {
-      sinon.stub(fetch, 'get')
+      sinon.stub(request, 'fetch')
     })
 
     afterEach(()=> {
-      fetch.get.restore()
+      request.fetch.restore()
     })
 
     it('should return an action resolving the promise from /api/bar', async ()=> {
-      const fetchResolve = { data: { some: 'data' } }
-      fetch.get.returns(Promise.resolve(fetchResolve))
+      const requestResolve = { some: 'data' }
+      request.fetch.returns(Promise.resolve(requestResolve))
+
       const actual = apiFetch()
-      expect(actual.type).to.eql(API_FETCH)
       const resolved = await actual.payload.promise
-      expect(resolved).to.eql(fetchResolve.data)
+
+      expect(actual.type).to.eql(API_FETCH)
+      expect(resolved).to.eql(requestResolve)
     })
   })
 })

@@ -2,23 +2,23 @@ import { Main } from 'app/main'
 import { mount } from 'enzyme'
 import { history } from 'app/services/history'
 import App from 'app/components/App'
+import fetchMock from 'fetch-mock'
 
 describe('Client Render', function() {
   before(()=> {
-    this.server = sinon.fakeServer.create()
+    history.push('/')
   })
 
   after(()=> {
-    this.server.restore()
   })
 
   beforeEach(()=> {
     this.wrapper = mount(Main)
-    history.push('/')
   })
 
   afterEach(()=> {
     this.wrapper.unmount()
+    fetchMock.restore()
   })
 
   it('should render the app', ()=> {
@@ -47,11 +47,17 @@ describe('Client Render', function() {
 
     describe('/bar', ()=> {
       const barResponse = [ 'some', 'test', 'response', 'data' ]
-      before(()=> {
-        this.server.respondWith(
-          '/api/bar', JSON.stringify({ bar: barResponse })
-        )
-        this.server.respondImmediately = true
+      const requiredHeaders = {
+        'Content-Type': 'application/json',
+        'Content-Length': '1',
+      }
+
+      beforeEach(()=> {
+        fetchMock.get('/api/bar', {
+          status: 200,
+          body: { bar: barResponse },
+          headers: requiredHeaders,
+        })
       })
 
       it('should render the BarRoute after navigating to /bar', ()=> {

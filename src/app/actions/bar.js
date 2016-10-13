@@ -1,15 +1,11 @@
-import { fetch } from 'app/utils'
+import { request } from 'app/utils'
 
 export const API_FETCH = 'bar/API_FETCH'
 
 export const apiFetch = () => ({
   type: API_FETCH,
   payload: {
-    promise: fetchBar(),
+    promise: request.fetch('/api/bar'),
   },
 })
 
-const fetchBar = async () => {
-  const { data } = await fetch.get('/api/bar')
-  return data
-}
