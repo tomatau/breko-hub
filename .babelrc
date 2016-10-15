@@ -8,13 +8,8 @@
       "debug": "debug"
     }],
     "transform-decorators-legacy",
-    ["module-alias", [
-      { "src": "./src/app", "expose": "app" },
-      { "src": "./src/assets", "expose": "assets" },
-      { "src": "./src/config", "expose": "config" },
-      { "src": "./src/helpers", "expose": "helpers" },
-      { "src": "./src/server", "expose": "server" },
-      { "src": "./src/styles", "expose": "styles" }
-    ]]
+    ["module-resolver", {
+      "root": ["./src"]
+    }]
   ]
 }
