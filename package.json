@@ -164,6 +164,6 @@
     "skin-deep": "^0.16.0",
     "supertest": "^2.0.0",
     "supertest-as-promised": "^4.0.0",
-    "webpack-hot-middleware": "^2.13.0"
+    "webpack-hot-middleware": "^2.13.1"
   }
 }
