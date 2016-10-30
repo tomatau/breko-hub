@@ -1,11 +1,22 @@
 import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
+import { Provider } from 'react-redux'
+import { makeHtml } from 'server/utils'
+const log = debug('render-route-context')
 
-export default function(routes) {
-  return function *setRouteContext(next) {
+export default function(routes, assets) {
+  return function *renderReactApp() {
     try {
-      this.routeContext = yield getRouteContext(this, routes)
-      yield next
+      const routeContext = yield getRouteContext(this, routes)
+
+      log('setting body')
+      this.response.body = makeHtml(
+        this.store.getState(),
+        assets,
+        <Provider store={this.store}>
+          {routeContext}
+        </Provider>
+      )
     } catch (error) {
       if (error instanceof Error) throw error
     }
