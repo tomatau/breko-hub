@@ -70,7 +70,7 @@
     "babel-runtime": "^6.11.6",
     "chokidar": "^1.4.3",
     "clean-webpack-plugin": "^0.1.13",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.26.0",
     "css-modules-require-hook": "^4.0.5",
     "cssnano": "^3.7.7",
     "debug": "^2.2.0",
