@@ -123,7 +123,7 @@
     "tao-scss": "~0.4.1",
     "type-to-reducer": "^1.0.1",
     "url-loader": "~0.5.6",
-    "uuid": "^2.0.3",
+    "uuid": "^3.0.0",
     "webpack": "^1.13.2",
     "webpack-isomorphic-tools": "^2.6.3",
     "yargs": "^6.0.0"
