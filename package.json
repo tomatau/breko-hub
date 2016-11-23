@@ -95,7 +95,7 @@
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
     "ramda": "^0.22.1",
-    "react": "^15.3.2",
+    "react": "^15.4.1",
     "react-bem-helper": "^1.1.0",
     "react-document-meta": "^2.0.3",
     "react-dom": "^15.3.2",
