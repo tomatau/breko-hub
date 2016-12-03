@@ -4,8 +4,7 @@ import { compose } from 'server/utils'
 import { compact } from 'app/utils'
 import handleNotFound from 'server/middleware/handleNotFound'
 import setStore from 'server/middleware/setStore'
-import setRouteContext from 'server/middleware/setRouteContext'
-import renderRouteContext from 'server/middleware/renderRouteContext'
+import renderReactApp from 'server/middleware/renderReactApp'
 import flashMessages from 'server/middleware/flashMessages'
 import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
@@ -26,8 +25,7 @@ export function setRoutes(assets) {
     handleNotFound(assetMap.headStyles),
     setStore,
     flashMessages,
-    setRouteContext(routes.makeRoutes()),
-    renderRouteContext(assetMap)
+    renderReactApp(routes.makeRoutes(), assetMap)
   )
 
   rootRouter
