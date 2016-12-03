@@ -131,10 +131,13 @@ describe('Server Side Render', function() {
       .expect((res) => {
         const initStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
         const routingKeyPath = [ 'routing', 'locationBeforeTransitions', 'key' ]
-        const stripRoutingKey = R.assocPath(routingKeyPath, null)
-        const hasDifferentState = _.negate(R.eqBy(stripRoutingKey))
+        const routingStatePath = [ 'routing', 'locationBeforeTransitions', 'state' ]
+        const standardiseRoutingKeys = R.pipe(
+          R.assocPath(routingKeyPath, null),
+          R.assocPath(routingStatePath, null)
+        )
+        const hasDifferentState = _.negate(R.eqBy(standardiseRoutingKeys))
         syncHistoryWithStore(createMemoryHistory('/test'), testStore)
-
         const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)
         const storeState = testStore.getState()
 
