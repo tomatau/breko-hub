@@ -1,4 +1,4 @@
-import socket from 'app/services/socket'
+import socket from 'app/composition/socket'
 import 'app/main'
 /*
 

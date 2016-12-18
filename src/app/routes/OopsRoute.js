@@ -1,5 +1,5 @@
 
-class OopsRoute extends React.Component {
+export default class OopsRoute extends React.Component {
   render() {
     return (
       <section className='OopsRoute'>
@@ -8,5 +8,3 @@ class OopsRoute extends React.Component {
     )
   }
 }
-
-export default OopsRoute

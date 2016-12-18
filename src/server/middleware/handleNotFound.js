@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux'
-import App from 'app/components/App'
-import NotFoundRoute from 'app/components/routes/NotFoundRoute'
+import App from 'app/components/App/App'
+import NotFoundRoute from 'app/routes/NotFoundRoute'
 import { makeHtml } from 'server/utils'
 
 export default function(headStyles) {

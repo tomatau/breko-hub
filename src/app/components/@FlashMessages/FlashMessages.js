@@ -3,26 +3,9 @@ import { noop } from 'lodash'
 import { removeMessage } from 'app/actions/flash'
 import { Bem } from 'app/utils'
 import * as selectors from 'app/selectors'
-import styles from './FlashMessages.module.scss'
+import Msg from './Msg'
 
 const { PropTypes } = React
-
-export const Msg = ({ msg, className, ...props }) =>
-  <span {...props}
-    {...Msg.bem(null, msg.type, className)}>
-    {msg.message}
-    &nbsp;
-    <strong className={styles.close}>x</strong>
-  </span>
-
-Msg.bem = Bem(styles.msg)
-
-Msg.propTypes = {
-  msg: PropTypes.shape({
-    type: PropTypes.oneOf([ 'error', 'good', 'info' ]),
-    message: PropTypes.string,
-  }).isRequired,
-}
 
 @connect(state => ({
   messages: selectors.flashMessages(state),

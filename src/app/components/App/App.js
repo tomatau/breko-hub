@@ -1,6 +1,6 @@
 import DocumentMeta from 'react-document-meta'
-import HeadNavigation from 'app/components/HeadNavigation'
-import FlashMessages from 'app/components/containers/FlashMessages'
+import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
+import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 // example image import
 import avatarPath from 'assets/avatar.jpeg'
 // example s?css module import
@@ -22,7 +22,7 @@ const metaData = {
   },
 }
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     const { children } = this.props
     log('render')
@@ -40,5 +40,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App
