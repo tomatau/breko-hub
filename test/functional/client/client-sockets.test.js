@@ -1,16 +1,16 @@
-import socket from 'app/composition/socket'
-import 'app/main'
-/*
+import io from 'socket.io-client'
 
- */
 describe('Client Socket', function() {
-  afterEach(()=> {
-    socket.close()
+  const expectedConnection = `${global.location.protocol}//${global.location.hostname}:${global.location.port}`
+
+  it('connect to current host and port', () => {
+    expect(io.managers).to.have.property(expectedConnection)
   })
 
-  it('connect to current host and port', ()=> {
-    socket.open()
-    expect(socket.io.engine.hostname).to.eql(global.location.hostname)
-    expect(socket.io.engine.port).to.eql(global.location.port)
+  it('sets socket to reconnectionDelay alot with an auth query', () => {
+    expect(io.managers[expectedConnection].opts).to.shallowDeepEqual({
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 10000,
+    })
   })
 })
