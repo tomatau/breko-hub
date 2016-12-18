@@ -1,7 +1,7 @@
 import { addMessage, ADD_MESSAGE } from './flash'
 import uuid from 'uuid'
 
-describe('Bar Actions', ()=> {
+describe('Flash Actions', ()=> {
   describe('addMessage()', ()=> {
     beforeEach(()=> {
       sinon.stub(uuid, 'v1')
