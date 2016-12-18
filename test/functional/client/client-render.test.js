@@ -136,11 +136,11 @@ describe('Client Render', function() {
         expect(flashMsgs.text()).to.contain(privateMsg.message)
       })
 
-      it.skip('removes flash messages after 4 seconds', (done)=> {
+      it('removes flash messages after 4 seconds', (done)=> {
         history.push('/private')
         let flashMsgs = selectFlashMessages()
         expect(flashMsgs).to.have.length(1)
-        _.defer(() => {
+        defer(() => {
           const flashMsgs = selectFlashMessages()
           expect(flashMsgs).to.have.length(0)
           done()

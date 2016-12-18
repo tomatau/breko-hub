@@ -16,9 +16,10 @@ export function setRoutes(assets) {
 
   const assetMap = {
     headScripts: compact([ assets.javascript.head ]),
-    bodyScripts: compact([ assets.javascript.body ]),
     headStyles: compact([ assets.styles.body, assets.styles.head ]),
+    bodyScripts: compact([ assets.javascript.body ]),
     bodyStyles: [],
+    stringScripts: [],
   }
 
   const renderApp = compose(

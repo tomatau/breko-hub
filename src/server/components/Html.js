@@ -1,70 +1,82 @@
-import DocumentMeta from 'react-document-meta'
-import { hasWindow } from 'app/utils'
+import Helmet from 'react-helmet'
 
 const { PropTypes } = React
 
-export class Html extends React.Component {
+export default class Html extends React.Component {
 
   static propTypes = {
-    app: PropTypes.string,
-    initialState: PropTypes.object,
+    content: PropTypes.array,
     headScripts: PropTypes.array,
+    stringScripts: PropTypes.array,
     bodyScripts: PropTypes.array,
     headStyles: PropTypes.array,
+    otherLinks: PropTypes.array,
   };
 
   static defaultProps = {
+    content: [],
     headScripts: [],
+    stringScripts: [],
     bodyScripts: [],
     headStyles: [],
     bodyStyles: [],
+    otherLinks: [],
   };
+
+  getMetaData() {
+    const head = Helmet.rewind()
+    return {
+      meta: head.meta.toComponent(),
+      title: head.title.toComponent(),
+    }
+  }
 
   render() {
     const {
-      app,
-      initialState,
-      headStyles, headScripts,
-      bodyScripts, bodyStyles,
+      content,
+      otherLinks,
+      stringScripts,
+      headStyles,
+      headScripts,
+      bodyScripts,
+      bodyStyles,
     } = this.props
+    const { meta, title } = this.getMetaData()
     return (
       <html lang='en'>
         <head>
-          {hasWindow ? null : DocumentMeta.renderAsReact()}
-          <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+          {title}
+          {meta}
+          {otherLinks.map((props, i) =>
+            <link key={i} {...props} />
+          )}
           {headStyles.map((style, i) =>
             <link
-              href={style} key={i}
+              key={i}
+              href={style}
               type='text/css' rel='stylesheet' media='screen'
             />
           )}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__INITIAL_STATE__ = ${
-                JSON.stringify(initialState, null, 2)
-              };`,
-            }}
-          />
+          {stringScripts.map((script, i) =>
+            <script key={i} dangerouslySetInnerHTML={{
+              __html: script,
+            }} />
+          )}
           {headScripts.map((script, i) =>
             <script src={script} key={i} />
           )}
         </head>
         <body>
-          <div
-            id='application-root'
-            dangerouslySetInnerHTML={{
-              __html: app,
-            }}
-          />
-          <div id='debug-panel-root' />
+          {content.map((props, i) =>
+            <div key={i} {...props} />
+          )}
           {bodyScripts.map((script, i) =>
-            <script src={script} key={i} />
+            <script key={i} src={script} />
           )}
           {bodyStyles.map((style, i) =>
-            <script key={i}
-              dangerouslySetInnerHTML={{
-                __html: `loadCSS('${style}')`,
-              }} />
+            <script key={i} dangerouslySetInnerHTML={{
+              __html: `loadCSS('${style}')`,
+            }} />
           )}
           {bodyStyles.map((style, i) =>
             <noscript key={i} dangerouslySetInnerHTML={{

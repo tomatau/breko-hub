@@ -1,4 +1,3 @@
---reporter nyan
 --require babel-polyfill
 --require test/node-setup.js
 --require test/test-setup.js
