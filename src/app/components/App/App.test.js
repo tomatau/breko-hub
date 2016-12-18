@@ -1,6 +1,6 @@
 import DocumentMeta from 'react-document-meta'
-import HeadNavigation from 'app/components/HeadNavigation'
-import FlashMessages from 'app/components/containers/FlashMessages'
+import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
+import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import App from './App'
 import { shallow } from 'enzyme'
 import styles from './App.module.scss'

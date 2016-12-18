@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import { persistState } from 'redux-devtools'
 import { isBrowser } from 'app/utils'
-import DevTools from 'app/components/containers/DevTools'
+import DevTools from 'app/components/DevTools/DevTools'
 
 export const makeCreateStore = (middleware) => {
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]

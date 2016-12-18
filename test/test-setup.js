@@ -1,10 +1,11 @@
 import chai, { expect } from 'chai'
 import koa from 'koa'
 import sinon from 'sinon'
+import { shallow, mount, render } from 'enzyme'
 import lodash from 'lodash/index'
 import ramda from 'ramda/dist/ramda'
 import { isBrowser } from 'app/utils'
-import { makeCreateStore } from 'app/services/makeCreateStore'
+import { makeCreateStore } from 'app/composition/makeCreateStore'
 import rootReducer from 'app/reducers'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
@@ -27,6 +28,12 @@ const helpers = {
       promiseMiddleware(),
     ])(rootReducer, initialState)
   },
+  cleanup(wrapper) {
+    if (wrapper) {
+      wrapper.unmount()
+    }
+    sandbox.restore()
+  },
 }
 
 setGlobals(isBrowser ? window : GLOBAL)
@@ -35,6 +42,11 @@ function setGlobals(global) {
   global.global = global
   global.expect = expect
   global.sinon = sinon
+  global.shallow = shallow
+  global.mount = mount
+  global.render = render
+  global.defer = setTimeout
+  global.sandbox = sinon.sandbox.create()
   global._ = lodash
   global.R = ramda
   global.helpers = helpers

@@ -23,8 +23,8 @@ export default {
     publicPath: '/',
   },
   resolve: {
-    root: SRC,
-    modulesDirectories: [ 'node_modules', STYLES ],
+    root: [ SRC, STYLES ],
+    modulesDirectories: [ 'node_modules' ],
     extensions: [
       '', '.js', '.jsx', '.es', '.es6', '.scss',
     ],
@@ -77,7 +77,7 @@ export default {
 }
 
 export const babelLoaderConfig = {
-  test: /\.(es6?|jsx?)$/,
+  test: /\.jsx?$/,
   include: [ /src\/app/, /src\/config/, /src\/server/ ],
   loader: 'babel',
   query: {

@@ -1,5 +1,5 @@
 
-class NotFoundRoute extends React.Component {
+export default class NotFoundRoute extends React.Component {
   render() {
     return (
       <section className='NotFoundRoute'>
@@ -8,5 +8,3 @@ class NotFoundRoute extends React.Component {
     )
   }
 }
-
-export default NotFoundRoute

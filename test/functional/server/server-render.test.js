@@ -6,6 +6,7 @@ import { Route } from 'react-router'
 import supertest from 'supertest-as-promised'
 import { createMemoryHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import Helmet from 'react-helmet'
 import { TESTS } from 'config/paths'
 import { setRoutes, rootRouter } from 'server/router'
 import * as routes from 'app/routes'
@@ -58,6 +59,7 @@ describe('Server Side Render', function() {
   const app = helpers.cloneApp(server)
 
   before(()=> {
+    Helmet.canUseDOM = false
     // serve assets
     app.use(serve(TESTS + '/fixtures/assets'))
     // setup a broken route
@@ -75,6 +77,7 @@ describe('Server Side Render', function() {
   })
 
   after(()=> {
+    Helmet.canUseDOM = true
     routes.makeRoutes.restore()
   })
 

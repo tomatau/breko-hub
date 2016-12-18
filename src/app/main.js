@@ -4,11 +4,11 @@ import { compose } from 'ramda'
 import { Provider } from 'react-redux'
 import { trigger } from 'redial'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
-import { history } from 'app/services/history'
-import socket from 'app/services/socket'
-import { store, dispatch } from 'app/services/store'
+import { history } from 'app/composition/history'
+import socket from 'app/composition/socket'
+import { store, dispatch } from 'app/composition/store'
 import makeRoutes from 'app/routes'
-import DevTools from 'app/components/containers/DevTools'
+import DevTools from 'app/components/DevTools/DevTools'
 
 inClientViaSocketIO(socket, dispatch)
 

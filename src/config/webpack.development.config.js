@@ -32,7 +32,7 @@ export default {
       ],
     }, {
       test: /\.s?css$/,
-      include: [ /src\/app/, /src\/styles/ ],
+      include: [ /\/src\// ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract(
         'style', 'css!postcss!sass?outputStyle=expanded'

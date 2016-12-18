@@ -11,7 +11,7 @@ import { get } from 'app/utils'
 @connect(state => ({
   bar: get('bar.data')(state),
 }))
-class BarRoute extends React.Component {
+export default class BarRoute extends React.Component {
   render() {
     const { bar } = this.props
     return (
@@ -25,5 +25,3 @@ class BarRoute extends React.Component {
     )
   }
 }
-
-export default BarRoute

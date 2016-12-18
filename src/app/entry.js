@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
-import socket from 'app/services/socket'
-import { dispatch } from 'app/services/store'
+import socket from 'app/composition/socket'
+import { dispatch } from 'app/composition/store'
 import { Main, Dev } from 'app/main'
 
 debug.enable(process.env.DEBUG)

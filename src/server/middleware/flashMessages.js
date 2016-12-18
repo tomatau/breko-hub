@@ -1,4 +1,4 @@
-import { store as clientStore } from 'app/services/store'
+import { store as clientStore } from 'app/composition/store'
 import * as selectors from 'app/selectors'
 import { addMessage } from 'app/actions/flash'
 

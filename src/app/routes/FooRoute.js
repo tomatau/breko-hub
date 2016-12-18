@@ -13,7 +13,7 @@ import { get } from 'app/utils'
 @connect(state => ({
   foo: get('foo.data')(state),
 }))
-class FooRoute extends React.Component {
+export default class FooRoute extends React.Component {
   render() {
     const { foo } = this.props
     return (
@@ -24,5 +24,3 @@ class FooRoute extends React.Component {
     )
   }
 }
-
-export default FooRoute

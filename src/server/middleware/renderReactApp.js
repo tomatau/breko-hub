@@ -1,21 +1,36 @@
+import ReactDOMServer from 'react-dom/server'
 import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
 import { Provider } from 'react-redux'
 import { makeHtml } from 'server/utils'
-const log = debug('render-route-context')
 
 export default function(routes, assets) {
   return function *renderReactApp() {
     try {
       const routeContext = yield getRouteContext(this, routes)
 
-      log('setting body')
+      const appProps = {
+        id: 'app-container',
+        dangerouslySetInnerHTML: {
+          __html: ReactDOMServer.renderToString(
+            <Provider store={this.store}>
+              {routeContext}
+            </Provider>
+          ),
+        },
+      }
+
       this.response.body = makeHtml(
-        this.store.getState(),
-        assets,
-        <Provider store={this.store}>
-          {routeContext}
-        </Provider>
+        {
+          ...assets,
+          stringScripts: [
+            ...assets.stringScripts,
+            `window.__INITIAL_STATE__ = ${
+              JSON.stringify(this.store.getState(), null, 2)
+            };`,
+          ],
+        },
+        [ appProps, process.env.NODE_ENV && { id: 'debug-panel-root' } ]
       )
     } catch (error) {
       if (error instanceof Error) throw error
