@@ -1,6 +1,6 @@
 import { provideHooks } from 'redial'
 import { connect } from 'react-redux'
-import DocumentMeta from 'react-document-meta'
+import DocumentMeta from 'react-helmet'
 import { apiFetch } from 'app/actions/bar'
 import { get } from 'app/utils'
 
@@ -16,7 +16,7 @@ export default class BarRoute extends React.Component {
     const { bar } = this.props
     return (
       <section className='BarRoute'>
-        <DocumentMeta extend title='Breko Hub - Bar' />
+        <DocumentMeta title='Bar' />
         <h3>Bar</h3>
         {bar.map((item, i) =>
           <p key={i}>{item}</p>

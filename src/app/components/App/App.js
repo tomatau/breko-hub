@@ -1,4 +1,4 @@
-import DocumentMeta from 'react-document-meta'
+import DocumentMeta from 'react-helmet'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 // example image import
@@ -11,15 +11,19 @@ import './App.css'
 const log = debug('App.js')
 
 const metaData = {
-  title: 'Breko Hub',
-  description: 'Breko Hub, a minimal boilerplate'
-    + 'for building universal react applications',
-  meta: {
-    charSet: 'utf-8',
-    name: {
-      keywords: 'react,redux,react-router,koa,universal,babel,es7,hmr,webpack',
+  defaultTitle: 'Breko Hub',
+  titleTemplate: '%s | Breko Hub',
+  meta: [
+    { charset: 'utf-8' },
+    {
+      name: 'description',
+      content: 'Breko Hub, a minimal boilerplate for building universal react applications',
     },
-  },
+    {
+      name: 'keywords',
+      content: 'react,redux,react-router,koa,universal,babel,es7,hmr,webpack',
+    },
+  ],
 }
 
 export default class App extends React.Component {

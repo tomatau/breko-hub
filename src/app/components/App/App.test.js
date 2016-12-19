@@ -1,4 +1,4 @@
-import DocumentMeta from 'react-document-meta'
+import DocumentMeta from 'react-helmet'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import App from './App'

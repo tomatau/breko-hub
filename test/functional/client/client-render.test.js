@@ -68,7 +68,7 @@ describe('Client Render', function() {
 
       it('should update the page title', ()=> {
         history.push('/bar')
-        expect(document.title).to.eql('Breko Hub - Bar')
+        expect(document.title).to.eql('Bar | Breko Hub')
       })
 
       it('should render the response from /api/bar', (done)=> {
