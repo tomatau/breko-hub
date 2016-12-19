@@ -1,5 +1,5 @@
 import { jsdom } from 'jsdom'
-import { keys } from 'lodash'
+import { keys } from 'ramda'
 
 global.document = jsdom(
   '<html><body><div id="application-root"></div></body></html>'

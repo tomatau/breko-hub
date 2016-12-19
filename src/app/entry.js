@@ -1,19 +1,17 @@
 import ReactDOM from 'react-dom'
+import { isEnv } from 'app/utils'
 import socket from 'app/composition/socket'
 import { dispatch } from 'app/composition/store'
 import { Main, Dev } from 'app/main'
 
 debug.enable(process.env.DEBUG)
 
-const log = {
-  env: debug('environment'),
-  sock: debug('socket'),
-}
+const log = debug('entry')
 
-log.env(`Running in [${process.env.NODE_ENV}] environment`)
+log(`Running in [${process.env.NODE_ENV}] environment`)
 
 socket.on('connect', () => {
-  log.sock('Client connected to socket')
+  log('Client connected to socket')
   // example socket broadcast
   dispatch({
     type: 'NEW_SOCKET_SESSION',
@@ -26,11 +24,11 @@ socket.on('connect', () => {
 socket.open()
 
 ReactDOM.render(
-  Main, document.getElementById('application-root')
+  Main, document.getElementById('app-container')
 )
 
-if (process.env.NODE_ENV === 'development') {
+if (isEnv('development')) {
   ReactDOM.render(
-    Dev, document.getElementById('debug-panel-root')
+    Dev, document.getElementById('debug-panel-container')
   )
 }

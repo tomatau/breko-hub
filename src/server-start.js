@@ -1,18 +1,19 @@
 import 'config/environment'
 import 'helpers/cssModulesHook'
 import 'helpers/cleanAssetJson'
-import hotReload from 'helpers/hotReload'
-import { ROOT, SERVER, SOCKETS, STATIC } from 'config/paths'
 import { argv } from 'yargs'
 import http from 'http'
 import serve from 'koa-static'
 import open from 'open'
+import hotReload from 'helpers/hotReload'
+import { isEnv } from 'app/utils'
+import { ROOT, SERVER, SOCKETS, STATIC } from 'config/paths'
 import { isomorphicTools, isomorphicPlugin } from 'server/isomorphicTools'
 import app from 'server/index'
 
 const log = debug('app')
 
-if (process.env.NODE_ENV === 'development') {
+if (isEnv('development')) {
   isomorphicPlugin.development()
   hotReload(app)
 } else {
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 isomorphicTools.server(ROOT, () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (isEnv('development')) {
     app.use(function *() {
       const { rootRouter, setRoutes } = require(`${SERVER}/router`)
       setRoutes(isomorphicTools.assets())

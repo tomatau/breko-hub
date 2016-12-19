@@ -2,6 +2,7 @@ import ReactDOMServer from 'react-dom/server'
 import { RouterContext, match } from 'react-router'
 import { trigger } from 'redial'
 import { Provider } from 'react-redux'
+import { isEnv } from 'app/utils'
 import { makeHtml } from 'server/utils'
 
 export default function(routes, assets) {
@@ -9,29 +10,27 @@ export default function(routes, assets) {
     try {
       const routeContext = yield getRouteContext(this, routes)
 
-      const appProps = {
-        id: 'app-container',
-        dangerouslySetInnerHTML: {
-          __html: ReactDOMServer.renderToString(
-            <Provider store={this.store}>
-              {routeContext}
-            </Provider>
-          ),
-        },
-      }
-
-      this.response.body = makeHtml(
+      const contentArray = [
         {
-          ...assets,
-          stringScripts: [
-            ...assets.stringScripts,
-            `window.__INITIAL_STATE__ = ${
-              JSON.stringify(this.store.getState(), null, 2)
-            };`,
-          ],
+          id: 'app-container',
+          dangerouslySetInnerHTML: {
+            __html: ReactDOMServer.renderToString(
+              <Provider store={this.store}>
+                {routeContext}
+              </Provider>
+            ),
+          },
         },
-        [ appProps, process.env.NODE_ENV && { id: 'debug-panel-root' } ]
+        isEnv('development') && { id: 'debug-panel-container' },
+      ]
+
+      assets.stringScripts.push(
+        `window.__INITIAL_STATE__ = ${
+          JSON.stringify(this.store.getState(), null, 2)
+        };`
       )
+
+      this.response.body = makeHtml(assets, contentArray)
     } catch (error) {
       if (error instanceof Error) throw error
     }

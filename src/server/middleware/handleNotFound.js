@@ -8,18 +8,20 @@ export default function(headStyles) {
   return function *handleNotFound(next) {
     yield next
     if (this.response.status === 404) {
-      const notFoundProps = {
-        id: 'app-container',
-        dangerouslySetInnerHTML: {
-          __html: ReactDOMServer.renderToString(
-            <Provider store={this.store}>
-              <App>
-                <NotFoundRoute />
-              </App>
-            </Provider>
-          ),
+      const contentArray = [
+        {
+          id: 'app-container',
+          dangerouslySetInnerHTML: {
+            __html: ReactDOMServer.renderToString(
+              <Provider store={this.store}>
+                <App>
+                  <NotFoundRoute />
+                </App>
+              </Provider>
+            ),
+          },
         },
-      }
+      ]
 
       this.response.body = makeHtml(
         {
@@ -30,7 +32,7 @@ export default function(headStyles) {
             };`,
           ],
         },
-        [ notFoundProps ]
+        contentArray
       )
     }
   }

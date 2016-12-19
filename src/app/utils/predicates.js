@@ -1,4 +1,5 @@
 import is_promise from 'is-promise'
+import { contains } from 'ramda'
 
 export const isPromise = is_promise
 export const hasWindow = typeof window !== 'undefined'
@@ -14,3 +15,6 @@ export const isNodeInTree = (parent, child) => {
   }
   return false
 }
+
+export const isEnv = (...environmentStrings) =>
+  contains(process.env.NODE_ENV)(environmentStrings)
