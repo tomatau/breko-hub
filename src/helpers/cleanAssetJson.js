@@ -1,13 +1,13 @@
 import { ASSET_FILE } from 'config/paths'
+import { isEnv } from 'app/utils/predicates'
 import rimraf from 'rimraf'
 
-const log = {
-  clean: debug('clean-assets'),
-}
-if (process.env.NODE_ENV === 'development') {
+const log = debug('clean-assets')
+
+if (isEnv('development'))  {
   rimraf(ASSET_FILE, err => {
     if (err) {
-      log.clean(err)
+      log(err)
       process.exit(1)
     }
   })

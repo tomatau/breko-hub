@@ -4,11 +4,10 @@ import sass from 'node-sass'
 import loaderUtils from 'loader-utils'
 import autoprefixer from 'autoprefixer'
 
-const log = {
-  css: debug('css-hook'),
-}
+const log = debug('css-hook')
 
-log.css('Building CSS-modules for all .scss and .css files')
+log('Building CSS-modules for all .scss and .css files')
+
 cssModulesHook({
   extensions: [ '.scss', '.css' ],
   prepend: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],

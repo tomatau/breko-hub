@@ -4,9 +4,7 @@ import * as selectors from 'app/selectors'
 import { removeMessage, ADD_MESSAGE, REMOVE_MESSAGE } from 'app/actions/flash'
 
 const DAEMON = true
-const log = {
-  sagas: debug('sagas'),
-}
+const log = debug('sagas')
 
 export function * timeoutRemoveFlash(nextFlash) {
   if (nextFlash) {
@@ -26,7 +24,7 @@ export function * timeoutRemoveFlash(nextFlash) {
 export function * takeFlashMessages() {
   while (DAEMON) {
     const action = yield take(ADD_MESSAGE)
-    log.sagas('Flash added, saga will remove it automatically')
+    log('Flash added, saga will remove it automatically')
     yield fork(timeoutRemoveFlash, action.payload)
   }
 }

@@ -1,13 +1,13 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import { persistState } from 'redux-devtools'
-import { isBrowser } from 'app/utils'
+import { isBrowser, isEnv } from 'app/utils'
 import DevTools from 'app/components/DevTools/DevTools'
 
 export const makeCreateStore = (middleware) => {
   const topLevelMiddleware = [ applyMiddleware(...middleware) ]
 
   /* istanbul ignore if  */
-  if (process.env.NODE_ENV === 'development') {
+  if (isEnv('development')) {
     topLevelMiddleware.push(DevTools.instrument())
 
     if (isBrowser) {
