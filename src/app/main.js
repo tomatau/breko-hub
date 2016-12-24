@@ -20,9 +20,10 @@ function routeLocalsTrigger(event) {
 }
 
 const onRouteUpdate = compose(
-  routeLocalsTrigger('defer'),
-  // ignore first update, pre-fetched data already in server render
-  after(2, routeLocalsTrigger('prefetch'))
+  // ignore first defer call because of initial LOCATION_CHANGE event
+  after(2, routeLocalsTrigger('defer')),
+  // ignore first 2, pre-fetched data already in server render
+  after(3, routeLocalsTrigger('prefetch'))
 )
 
 export const Main = (
