@@ -12,7 +12,19 @@ import { setRoutes, rootRouter } from 'server/router'
 import * as routes from 'app/routes'
 
 const testStore = helpers.createStore()
-const AppRoute = ({ children }) => <div><h2>App</h2>{children}</div>
+const AppRoute = ({ children }) => (
+  <div>
+    <Helmet
+      title='test document title'
+      meta={ [
+        { 'name': 'description', 'content': 'test description, hello' },
+        { 'charset': 'utf-8' },
+      ]}
+    />
+    <h2>App</h2>
+    {children}
+  </div>
+)
 const TestRoute = () => <div>Test Route</div>
 const AnotherRoute = () => <div>Another Route</div>
 const RedirectRoute = () => <div>Never resolved</div>
@@ -81,27 +93,27 @@ describe('Server Side Render', function() {
     routes.makeRoutes.restore()
   })
 
-  it('should offer 404 when not found', ()=>
+  it('offers 404 when not found', ()=>
     supertest(app.callback())
       .get('/moo')
       .expect(404, /not found/i)
   )
 
-  it('should redirect to /oops when a server error', ()=>
+  it('redirects to /oops when a server error', ()=>
     supertest(app.callback())
       .get('/broken-route')
       .expect(302)
       .expect('location', '/oops')
   )
 
-  it('should redirect to /oops when a react error', ()=>
+  it('redirects to /oops when a react error', ()=>
     supertest(app.callback())
       .get('/error-route')
       .expect(302)
       .expect('location', '/oops')
   )
 
-  it('should render a html page with assets', ()=>
+  it('renders a html page with assets', ()=>
     supertest(app.callback())
       .get('/test')
       .expect(200)
@@ -111,7 +123,16 @@ describe('Server Side Render', function() {
       .expect(/<script src="\/test-asset.js">/)
   )
 
-  it('should render a react route', ()=>
+  it('renders document title and meta from helmet', ()=>
+    supertest(app.callback())
+      .get('/test')
+      .expect(200)
+      .expect(/<title data-react-helmet="true">test document title<\/title>/)
+      .expect(/<meta data-react-helmet="true" name="description" content="test description, hello"\/>/)
+      .expect(/<meta data-react-helmet="true" charset="utf-8"\/>/)
+  )
+
+  it('renders a react route', ()=>
     supertest(app.callback())
       .get('/test')
       .expect(200)
@@ -128,7 +149,7 @@ describe('Server Side Render', function() {
       })
   )
 
-  it('should render initial state from the store', ()=>
+  it('renders initial state from the store', ()=>
     supertest(app.callback())
       .get('/test')
       .expect((res) => {
@@ -169,21 +190,21 @@ describe('Server Side Render', function() {
       })
   )
 
-  it('should support react-route redirects', ()=>
+  it('supports react-route redirects', ()=>
     supertest(app.callback())
       .get('/redirect')
       .expect(302)
       .expect('location', '/test')
   )
 
-  it('should server the favicon.ico', ()=>
+  it('servers the favicon.ico', ()=>
     supertest(app.callback())
       .get('/favicon.ico')
       .expect(200)
       .expect('content-type', 'image/x-icon')
   )
 
-  it('should serve gziped assets', ()=>
+  it('serves gziped assets', ()=>
     supertest(app.callback())
       .get(assets.javascript.body)
       .expect(200)

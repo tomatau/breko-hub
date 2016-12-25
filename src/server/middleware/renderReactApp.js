@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import { isEnv } from 'app/utils'
 import { makeHtml } from 'server/utils'
 
+const log = debug('render-react-app')
+
 export default function(routes, assets) {
   return function *renderReactApp() {
     try {
@@ -30,8 +32,10 @@ export default function(routes, assets) {
         };`
       )
 
+      log('rendering react app')
       this.response.body = makeHtml(assets, contentArray)
     } catch (error) {
+      log(error)
       if (error instanceof Error) throw error
     }
   }
