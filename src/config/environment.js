@@ -4,6 +4,7 @@ import { ROOT } from 'config/paths'
 loadEnv(`${ROOT}/.env`, { raise: false })
 
 debug.enable(process.env.DEBUG)
+debug.log = console.info.bind(console) // eslint-disable-line no-console
 
 const log = debug('environment')
 
