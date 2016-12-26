@@ -109,9 +109,6 @@ describe('Client Render', function() {
         message: 'You may not view the private route!!',
       }
 
-      const selectFlashMessages = () =>
-        this.wrapper.findWhere(n => n.hasClass('FlashMessages__Msg'))
-
       before(()=> {
         this.clock = sinon.useFakeTimers()
       })
@@ -131,17 +128,17 @@ describe('Client Render', function() {
 
       it('adds a flash message', ()=> {
         history.push('/private')
-        const flashMsgs = selectFlashMessages()
+        const flashMsgs = this.wrapper.find('.FlashMessages__Msg')
         expect(flashMsgs).to.have.length(1)
         expect(flashMsgs.text()).to.contain(privateMsg.message)
       })
 
       it('removes flash messages after 4 seconds', (done)=> {
         history.push('/private')
-        let flashMsgs = selectFlashMessages()
+        let flashMsgs = this.wrapper.find('.FlashMessages__Msg')
         expect(flashMsgs).to.have.length(1)
         defer(() => {
-          const flashMsgs = selectFlashMessages()
+          const flashMsgs = this.wrapper.find('.FlashMessages__Msg')
           expect(flashMsgs).to.have.length(0)
           done()
         })
