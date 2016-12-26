@@ -33,7 +33,7 @@ export function setRoutes(assets) {
 
   rootRouter
     .use(apiRouter.routes())
-    /* dirty render of NotFoundRoute or JSON response for 404 */
+    /* dirty render of NotFoundRoute or JSON response for 404, no client app */
     .use(handleNotFound({ headStyles: assetMap.headStyles }))
     /* render error page when problem found */
     .get('error', ERROR_PATH, renderReactApp)

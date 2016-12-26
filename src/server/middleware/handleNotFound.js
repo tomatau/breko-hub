@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'http'
 import ReactDOMServer from 'react-dom/server'
 import { Provider } from 'react-redux'
 import App from 'app/components/App/App'
@@ -9,14 +10,15 @@ const log = debug('handle-not-found')
 export default function(assets) {
   return function *handleNotFound(next) {
     yield next
-    if (this.response.status === 404) {
+    const { status } = this.response
+    if (status === 404) {
       /*
         this is a back-up in-case their is no react route handling '*'
         or the API can't handle the route
        */
       log('route not found!')
       if (this.accepts([ 'json', 'html' ]) === 'json') {
-        this.response.body = { error: 'Not found' }
+        this.response.body = { error: STATUS_CODES[status] }
       } else {
         const contentArray = [
           {
