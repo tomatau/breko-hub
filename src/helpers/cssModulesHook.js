@@ -16,7 +16,7 @@ cssModulesHook({
       .replace(`${ROOT}/`, '')
       .replace(/^\//, '')
       .replace(/\.s?css$/, '')
-      .replace(/\/|\./g, '-')
+      .replace(/\/|\.|@/g, '-')
     return `${path}-${exportedName}`
   },
   preprocessCss(css, filename) {

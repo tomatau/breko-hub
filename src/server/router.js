@@ -1,6 +1,7 @@
 import router from 'koa-router'
 import { ERROR_PATH } from 'config/paths'
 import { compact } from 'app/utils'
+import { compose } from 'server/utils'
 import handleNotFound from 'server/middleware/handleNotFound'
 import setStore from 'server/middleware/setStore'
 import makeRenderReactApp from 'server/middleware/renderReactApp'
@@ -22,16 +23,18 @@ export function setRoutes(assets) {
   }
 
   /* build app from routes, set initial state and set response html */
-  const renderReactApp = makeRenderReactApp(routes.makeRoutes(), assetMap)
+  const renderReactApp = compose(
+    /* set a store for server side state rendering */
+    setStore,
+    /* wire up flashMessages from redirect to server store */
+    flashMessages,
+    makeRenderReactApp(routes.makeRoutes(), assetMap)
+  )
 
   rootRouter
     .use(apiRouter.routes())
     /* dirty render of NotFoundRoute or JSON response for 404 */
     .use(handleNotFound({ headStyles: assetMap.headStyles }))
-    /* set a store for server side state rendering */
-    .use(setStore)
-    /* wire up flashMessages from redirect to server store */
-    .use(flashMessages)
     /* render error page when problem found */
     .get('error', ERROR_PATH, renderReactApp)
     /* render react app for all other routes */
