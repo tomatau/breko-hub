@@ -1,6 +1,6 @@
-import server from 'server'
-import { setRoutes, rootRouter } from 'server/router'
 import supertest from 'supertest-as-promised'
+import server from 'server-instance'
+import { setRoutes, rootRouter } from 'server/router'
 
 describe('Server API', function() {
   // helpers available from test/test.setup.js

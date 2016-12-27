@@ -9,7 +9,7 @@ import hotReload from 'helpers/hotReload'
 import { isEnv } from 'app/utils'
 import { ROOT, SERVER, SOCKETS, STATIC } from 'config/paths'
 import { isomorphicTools, isomorphicPlugin } from 'server/isomorphicTools'
-import app from 'server/index'
+import app from 'server-instance'
 
 const log = debug('app')
 
