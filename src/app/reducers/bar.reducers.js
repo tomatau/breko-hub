@@ -1,7 +1,7 @@
 import { typeToReducer, get } from 'app/utils'
-import { API_FETCH } from 'app/actions/bar'
+import { API_FETCH } from 'app/actions/bar.actions'
 
-const getBar = get([ 'payload', 'bar' ])
+const getBar = get('payload.bar')
 
 const initialState = {
   isPending: false,

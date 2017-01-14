@@ -1,7 +1,7 @@
 import rootSaga, { timeoutRemoveFlash, takeFlashMessages } from './index'
 import { select, fork, take } from 'redux-saga/effects'
-import * as selectors from 'app/selectors'
-import { ADD_MESSAGE } from 'app/actions/flash'
+import * as flashSelectors from 'app/selectors/flash.selectors'
+import { ADD_MESSAGE } from 'app/actions/flash.actions'
 
 describe('Saga Tests', function() {
   describe('Root Saga', ()=> {
@@ -9,9 +9,9 @@ describe('Saga Tests', function() {
       this.saga = rootSaga()
     })
 
-    it('should call select with nextFlashMessage', ()=> {
+    it('should call select with getNextFlashMessage', ()=> {
       const nextFlash = { ret: 'value' }
-      expect(this.saga.next()).to.deep.yield(select(selectors.nextFlashMessage))
+      expect(this.saga.next()).to.deep.yield(select(flashSelectors.getNextMessage))
       expect(this.saga.next(nextFlash)).to.deep.yield(fork(timeoutRemoveFlash, nextFlash))
       expect(this.saga.next()).to.deep.yield(fork(takeFlashMessages))
     })

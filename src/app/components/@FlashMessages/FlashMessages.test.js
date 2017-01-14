@@ -2,7 +2,7 @@ import WrappedFlashMessages, { WrappedComponent as FlashMessages } from './Flash
 import Msg from './Msg'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import * as actions from 'app/actions/flash'
+import * as actions from 'app/actions/flash.actions'
 import styles from './Msg.module.scss'
 
 describe('FlashMessages Component', function() {

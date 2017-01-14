@@ -13,23 +13,37 @@ describe('Get', function() {
     }
   })
 
-  it('should return undefined when property doesnt exist', ()=> {
-    expect(get('missing')(this.object)).to.eql(undefined)
+  it('returns undefined called with nothing', () => {
+    const getDoesntExist = get('missing')
+    expect(getDoesntExist(undefined)).to.eql(undefined)
   })
 
-  it('should get a property from an object', ()=> {
-    expect(get('foo')(this.object)).to.eql(this.object.foo)
-  })
-
-  it('should get a deep property from an object by array syntax', ()=> {
+  it('returns undefined when property doesnt exist', ()=> {
+    const getDoesntExist = get('missing')
     expect(
-      get([ 'bar', 'deeply' ])(this.object)
-    ).to.eql(this.object.bar.deeply)
+      getDoesntExist(this.object)
+    ).to.eql(undefined)
   })
 
-  it('should get a deep property from an object by dot syntax', ()=> {
+  it('gets a property from an object', ()=> {
+    const getFoo = get('foo')
     expect(
-      get('bar.deeply.nested')(this.object)
+      getFoo(this.object)
+    ).to.eql(this.object.foo)
+  })
+
+  it('gets a deep property from an object by dot syntax', ()=> {
+    const getDeeplyNested = get('bar.deeply.nested')
+    expect(
+      getDeeplyNested(this.object)
     ).to.eql(this.object.bar.deeply.nested)
+  })
+
+  it('sets default as second argument when supplied', () => {
+    const or = { test: 'default value' }
+    const getDoesntExist = get('missing', or)
+    expect(
+      getDoesntExist(undefined)
+    ).to.eql(or)
   })
 })

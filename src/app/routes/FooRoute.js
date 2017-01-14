@@ -1,6 +1,6 @@
 import { provideHooks } from 'redial'
 import { connect } from 'react-redux'
-import { fooGet, fooGetClientOnly } from 'app/actions/foo'
+import { fooGet, fooGetClientOnly } from 'app/actions/foo.actions'
 import { get } from 'app/utils'
 
 // Example hooks

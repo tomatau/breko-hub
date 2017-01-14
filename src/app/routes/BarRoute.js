@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial'
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
-import { apiFetch } from 'app/actions/bar'
+import { apiFetch } from 'app/actions/bar.actions'
 import { get } from 'app/utils'
 
 @provideHooks({

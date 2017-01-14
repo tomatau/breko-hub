@@ -9,9 +9,9 @@ const makeFlash = (message, type='info') => ({
   id: uuid.v1(),
 })
 
-export const removeMessage = (flash_id) => ({
+export const removeMessage = (id) => ({
   type: REMOVE_MESSAGE,
-  payload: { flash_id },
+  payload: { id },
 })
 
 export const addMessage = (message, type='info') => ({

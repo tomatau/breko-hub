@@ -1,7 +1,7 @@
 import { typeToReducer, get } from 'app/utils'
-import { GET, GET_CLIENT_ONLY } from 'app/actions/foo'
+import { GET, GET_CLIENT_ONLY } from 'app/actions/foo.actions'
 
-const getFoo = get([ 'payload', 'foo' ])
+const getFoo = get('payload.foo')
 
 const initialState = {
   data: null,

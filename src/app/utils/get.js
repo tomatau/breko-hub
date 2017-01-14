@@ -1,9 +1,9 @@
-import { curry, view, lensPath } from 'ramda'
-import { isArray } from 'lodash'
+import { path, pathOr } from 'ramda'
 
-// get :: Array<string> | string -> Object -> any
-const get = curry((path, source) =>
-  view(lensPath(isArray(path) ? path : path.split('.')))(source)
-)
+// get :: Array<string> | string, (defaultValue) -> Object -> any
+const get = (location, or) =>
+  (or == null)
+    ? path(location.split('.'))
+    : pathOr(or, location.split('.'))
 
 export default get

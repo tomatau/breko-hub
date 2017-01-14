@@ -1,17 +1,12 @@
 import { isBrowser } from 'app/utils'
 import { makeCreateStore } from 'app/composition/makeCreateStore'
 import rootReducer from 'app/reducers'
-import { middleware, sagaMiddleware } from 'app/composition/middleware'
-import rootSaga from 'app/sagas'
+import { middleware } from 'app/composition/middleware'
 
 export const store = makeCreateStore(middleware)(
   rootReducer,
   isBrowser ? window.__INITIAL_STATE__ : {}
 )
-
-sagaMiddleware.run(rootSaga)
-
-export const { dispatch } = store
 
 /* istanbul ignore if  */
 if (module.hot) {

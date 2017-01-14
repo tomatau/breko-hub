@@ -8,7 +8,11 @@ export const makeCreateStore = (middleware) => {
 
   /* istanbul ignore if  */
   if (isEnv('development')) {
-    topLevelMiddleware.push(DevTools.instrument())
+    topLevelMiddleware.push(
+      (isBrowser && typeof window.devToolsExtension !== 'undefined')
+        ? window.devToolsExtension()
+        : DevTools.instrument()
+    )
 
     if (isBrowser) {
       topLevelMiddleware.push(persistState(

@@ -1,6 +1,6 @@
 import { store as clientStore } from 'app/composition/store'
-import * as selectors from 'app/selectors'
-import { addMessage } from 'app/actions/flash'
+import * as flashSelectors from 'app/selectors/flash.selectors'
+import { addMessage } from 'app/actions/flash.actions'
 
 export default function *flashMessages(next) {
   this.flash.map(({ message, type }) =>
@@ -14,7 +14,7 @@ export default function *flashMessages(next) {
 
 
 function transferFlashMessages(ctx) {
-  const nextFlashMessage = selectors.nextFlashMessage(
+  const nextFlashMessage = flashSelectors.getNextMessage(
     clientStore.getState()
   )
   if (nextFlashMessage) {

@@ -15,6 +15,7 @@ const metaData = {
   titleTemplate: '%s | Breko Hub',
   meta: [
     { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width,initial-scale=1.0' },
     {
       name: 'description',
       content: 'Breko Hub, a minimal boilerplate for building universal react applications',

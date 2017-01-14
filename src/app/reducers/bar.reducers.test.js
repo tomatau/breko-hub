@@ -1,70 +1,80 @@
 import { barReducers } from './bar.reducers'
-import { API_FETCH } from 'app/actions/bar'
+import { API_FETCH } from 'app/actions/bar.actions'
 
 describe('Bar Reducers', ()=> {
-  it('should return the initial state', ()=> {
-    expect(barReducers(undefined, {})).to.eql({
-      isPending: false,
-      error: false,
-      data: [],
+  const initialState = {
+    isPending: false,
+    error: false,
+    data: [],
+  }
+  const irrelevantAction = { type: 'IRRELEVANT_ACTION' }
+
+  it('returns the initialState when no state', () => {
+    expect(barReducers(undefined, irrelevantAction)).to.eql(initialState)
+  })
+
+  describe('API_FETCH_PENDING', ()=> {
+    const stateBeforeDispatch = {
+      data: 'test dirty data',
+      error: new Error('test previous state error'),
+      isPending: !initialState.isPending,
+    }
+
+    it('sets initialState with isPending=true', ()=> {
+      const apiFetchPendingAction = {
+        type: `${API_FETCH}_PENDING`,
+      }
+      expect(
+        barReducers(stateBeforeDispatch, apiFetchPendingAction)
+      ).to.eql({
+        ...initialState,
+        isPending: true,
+      })
     })
   })
 
-  context('Given Store has State', ()=> {
+  describe('API_FETCH_REJECTED', ()=> {
     const stateBeforeDispatch = {
-      data: 'some stuff',
-      error: new Error('an error'),
-      isPending: false,
+      data: 'test dirty data',
+      error: new Error('test previous state error'),
+      isPending: !initialState.isPending,
     }
 
-    describe('API_FETCH_PENDING', ()=> {
-      it('should set isPending=true', ()=> {
-        const apiFetchPendingAction = {
-          type: `${API_FETCH}_PENDING`,
-        }
-        expect(
-          barReducers(stateBeforeDispatch, apiFetchPendingAction)
-        ).to.eql({
-          isPending: true,
-          error: false,
-          data: [],
-        })
+    it('sets initialState with payload as error', ()=> {
+      const apiFetchRejectedAction = {
+        type: `${API_FETCH}_REJECTED`,
+        error: true,
+        payload: new Error('api_fetch error'),
+      }
+      expect(
+        barReducers(stateBeforeDispatch, apiFetchRejectedAction)
+      ).to.eql({
+        ...initialState,
+        error: apiFetchRejectedAction.payload,
       })
     })
+  })
 
-    describe('API_FETCH_REJECTED', ()=> {
-      it('should set error to the error', ()=> {
-        const apiFetchRejectedAction = {
-          type: `${API_FETCH}_REJECTED`,
-          error: true,
-          payload: new Error('api_fetch error'),
-        }
-        expect(
-          barReducers(stateBeforeDispatch, apiFetchRejectedAction)
-        ).to.eql({
-          isPending: false,
-          error: apiFetchRejectedAction.payload,
-          data: [],
-        })
-      })
-    })
+  describe('API_FETCH_FULFILLED', ()=> {
+    const stateBeforeDispatch = {
+      data: 'test dirty data',
+      error: new Error('test previous state error'),
+      isPending: !initialState.isPending,
+    }
 
-    describe('API_FETCH_FULFILLED', ()=> {
-      it('should set error to the error', ()=> {
-        const apiFetchFulfilledAction = {
-          type: `${API_FETCH}_FULFILLED`,
-          error: true,
-          payload: {
-            bar: [ 'some', 'test', 'data' ],
-          },
-        }
-        expect(
-          barReducers(stateBeforeDispatch, apiFetchFulfilledAction)
-        ).to.eql({
-          isPending: false,
-          data: apiFetchFulfilledAction.payload.bar,
-          error: false,
-        })
+    it('sets initialState with payload as data', ()=> {
+      const apiFetchFulfilledAction = {
+        type: `${API_FETCH}_FULFILLED`,
+        error: true,
+        payload: {
+          bar: [ 'some', 'test', 'data' ],
+        },
+      }
+      expect(
+        barReducers(stateBeforeDispatch, apiFetchFulfilledAction)
+      ).to.eql({
+        ...initialState,
+        data: apiFetchFulfilledAction.payload.bar,
       })
     })
   })

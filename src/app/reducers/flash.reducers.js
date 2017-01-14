@@ -1,9 +1,12 @@
 import { filter } from 'ramda'
 import { typeToReducer, get } from 'app/utils'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/flash'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/flash.actions'
 
-const getFlashId = get([ 'payload', 'flash_id' ])
-const initialState = { messages: [] }
+const getFlashId = get('payload.id')
+
+const initialState = {
+  messages: [],
+}
 
 export const flashReducers = typeToReducer({
 

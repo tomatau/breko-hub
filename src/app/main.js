@@ -6,16 +6,19 @@ import { trigger } from 'redial'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 import { history } from 'app/composition/history'
 import socket from 'app/composition/socket'
-import { store, dispatch } from 'app/composition/store'
+import { store } from 'app/composition/store'
 import makeRoutes from 'app/routes'
 import DevTools from 'app/components/DevTools/DevTools'
+import { sagaMiddleware } from 'app/composition/middleware'
+import rootSaga from 'app/sagas'
 
-inClientViaSocketIO(socket, dispatch)
+inClientViaSocketIO(socket, store.dispatch)
+sagaMiddleware.run(rootSaga)
 
 function routeLocalsTrigger(event) {
   return function() {
     const { components, location, params } = this.state
-    trigger(event, components, { dispatch, location, params })
+    trigger(event, components, { dispatch: store.dispatch, location, params })
   }
 }
 

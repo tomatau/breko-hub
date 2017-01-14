@@ -11,45 +11,88 @@ describe('App Component', function() {
     this.tree = shallow(<App />)
   })
 
-  it('renders a div tag with className', ()=> {
-    const div = this.tree.find('div').first()
-    expect(div).to.have.length(1)
-    expect(div.hasClass(styles.app)).to.eql(true)
+  it('renders a div tag with className at rootNode', ()=> {
+    expect(this.tree.hasClass(styles.app)).to.eql(true)
   })
 
-  it('renders a document meta', ()=> {
-    expect(this.tree.find(DocumentMeta)).to.have.length(1)
+  it('renders a Helmet document meta as firtChild', ()=> {
+    const firstChild = this.tree.childAt(0)
+    expect(firstChild).to.have.type(DocumentMeta)
   })
 
-  it('renders a head navigation component', ()=> {
-    expect(this.tree.find(HeadNavigation)).to.have.length(1)
+  it('renders HeadNavigation as second child', ()=> {
+    const secondChild = this.tree.childAt(1)
+    expect(secondChild).to.have.type(HeadNavigation)
   })
 
-  it('renders a flash messages component', ()=> {
-    expect(this.tree.find(FlashMessages)).to.have.length(1)
+  it('renders FlashMessages as third child', ()=> {
+    const thirdChild = this.tree.childAt(2)
+    expect(thirdChild).to.have.type(FlashMessages)
   })
 
-  it('renders an image with src alt and width', ()=> {
-    const img = this.tree.find('img')
-    expect(img).to.have.length(1)
-    expect(img.props()).to.shallowDeepEqual({
-      src: avatarPath,
-      alt: 'me',
-      width: 70,
+  it('renders an img as fourth child', ()=> {
+    const fourthChild = this.tree.childAt(3)
+    expect(fourthChild).to.have.type('img')
+  })
+
+  it('renders a h1 as fifth child', ()=> {
+    const fifthChild = this.tree.childAt(4)
+    expect(fifthChild).to.have.type('h1')
+  })
+
+  it('renders a main.content as sixth child', ()=> {
+    const sixthChild = this.tree.childAt(5)
+    expect(sixthChild).to.have.type('main')
+    expect(sixthChild).to.have.className(styles.content)
+  })
+
+  describe('DocumentMeta', () => {
+    it('sets the meta options', () => {
+      const metaData = {
+        defaultTitle: 'Breko Hub',
+        titleTemplate: '%s | Breko Hub',
+        meta: [
+          { charset: 'utf-8' },
+          { name: 'viewport', content: 'width=device-width,initial-scale=1.0' },
+          {
+            name: 'description',
+            content: 'Breko Hub, a minimal boilerplate for building universal react applications',
+          },
+          {
+            name: 'keywords',
+            content: 'react,redux,react-router,koa,universal,babel,es7,hmr,webpack',
+          },
+        ],
+      }
+      const docMeta = this.tree.find(DocumentMeta)
+      expect(docMeta.props()).to.shallowDeepEqual(metaData)
     })
   })
 
-  it('renders the title', ()=> {
-    const title = this.tree.find('h1')
-    expect(title).to.have.length(1)
-    expect(title.text()).to.contain('Breko Hub')
+  describe('Img', () => {
+    it('has avatar as src with alt=me and width=70', () => {
+      const img = this.tree.find('img')
+      expect(img.props()).to.shallowDeepEqual({
+        src: avatarPath,
+        alt: 'me',
+        width: '70',
+      })
+    })
   })
 
-  it('renders the children in a main', ()=> {
-    const children = <p><span>test</span><span>child</span></p>
-    const content = shallow(<App>{children}</App>).find(`.${styles.content}`)
+  describe('Title', () => {
+    it('should have "Breko Hub" as text child', () => {
+      const title = this.tree.find('h1')
+      expect(title.text()).to.contain('Breko Hub')
+    })
+  })
 
-    expect(content.type()).to.eql('main')
-    expect(content.containsMatchingElement(children)).to.eql(true)
+  describe('Main', () => {
+    it('renders the children in a main', ()=> {
+      const children = <p><span>test</span><span>child</span></p>
+      const content = shallow(<App>{children}</App>).find('main')
+
+      expect(content.containsMatchingElement(children)).to.eql(true)
+    })
   })
 })
