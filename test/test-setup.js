@@ -46,7 +46,7 @@ function setGlobals(global) {
   global.shallow = shallow
   global.mount = mount
   global.render = render
-  global.defer = setTimeout
+  global.defer = setImmediate
   global.sandbox = sinon.sandbox.create()
   global._ = lodash
   global.R = ramda

@@ -27,7 +27,7 @@ ReactDOM.render(
   Main, document.getElementById('app-container')
 )
 
-if (isEnv('development') && typeof window.devToolsExtension === 'undefined') {
+if (isEnv('development') && window.devToolsExtension == null) {
   ReactDOM.render(
     Dev, document.getElementById('debug-panel-container')
   )

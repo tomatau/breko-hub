@@ -1,9 +1,10 @@
-import { path, pathOr } from 'ramda'
+import { path, pathOr, split, tryCatch, always, compose } from 'ramda'
 
-// get :: Array<string> | string, (defaultValue) -> Object -> any
+// get :: string, (defaultValue) -> Object -> any
 const get = (location, or) =>
-  (or == null)
-    ? path(location.split('.'))
-    : pathOr(or, location.split('.'))
+  tryCatch(
+    compose((or == null ? path : pathOr(or)), split('.')),
+    always(null)
+  )(location)
 
 export default get

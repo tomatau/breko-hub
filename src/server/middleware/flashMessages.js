@@ -12,7 +12,6 @@ export default function *flashMessages(next) {
   }
 }
 
-
 function transferFlashMessages(ctx) {
   const nextFlashMessage = flashSelectors.getNextMessage(
     clientStore.getState()

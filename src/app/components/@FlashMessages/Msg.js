@@ -12,7 +12,7 @@ const Msg = ({ msg, className, ...props }) =>
     </strong>
   </span>
 
-Msg.bem = Bem(styles.msg)
+Msg.bem = new Bem(styles.msg)
 
 Msg.propTypes = {
   msg: PropTypes.shape({

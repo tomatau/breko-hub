@@ -21,7 +21,7 @@ export default class FlashMessages extends React.Component {
     removeMessage: noop,
   };
 
-  bem = new Bem('FlashMessages');
+  static bem = new Bem('FlashMessages');
 
   clickMessage(msg) {
     this.props.removeMessage(msg.id)
@@ -30,12 +30,12 @@ export default class FlashMessages extends React.Component {
   render() {
     const { messages } = this.props
     return (
-      <div {...this.bem()}>
+      <div {...FlashMessages.bem()}>
         {messages.map(msg =>
           <Msg key={msg.id}
             msg={msg}
             onClick={() => this.clickMessage(msg)}
-            {...this.bem('Msg')}
+            {...FlashMessages.bem('Msg')}
           />
         )}
       </div>
