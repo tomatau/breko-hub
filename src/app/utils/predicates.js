@@ -3,7 +3,7 @@ import { contains } from 'ramda'
 
 export const isPromise = is_promise
 export const hasWindow = typeof window !== 'undefined'
-export const isBrowser = typeof GLOBAL === 'undefined'
+export const isBrowser = typeof global === 'undefined'
 
 /* istanbul ignore next */
 export const isNodeInTree = (parent, child) => {
