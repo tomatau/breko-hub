@@ -163,7 +163,7 @@
     "sinon": "^2.0.0-pre.3",
     "sinon-chai": "^2.8.0",
     "skin-deep": "^0.16.0",
-    "supertest": "^2.0.0",
+    "supertest": "^3.0.0",
     "supertest-as-promised": "^4.0.0",
     "webpack-hot-middleware": "^2.13.1"
   }
