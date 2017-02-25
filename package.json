@@ -74,7 +74,7 @@
     "css-modules-require-hook": "^4.0.5",
     "cssnano": "^3.8.2",
     "debug": "^2.4.0",
-    "extract-text-webpack-plugin": "~1.0.1",
+    "extract-text-webpack-plugin": "~2.0.0",
     "file-loader": "^0.10.0",
     "glob": "^7.1.1",
     "is-promise": "~2.1.0",
