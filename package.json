@@ -125,7 +125,7 @@
     "url-loader": "~0.5.6",
     "uuid": "^3.0.0",
     "webpack": "^1.13.2",
-    "webpack-isomorphic-tools": "^2.6.3",
+    "webpack-isomorphic-tools": "^3.0.0",
     "yargs": "^6.0.0"
   },
   "devDependencies": {
