@@ -17,32 +17,36 @@ export default {
     ...webpackConfig.plugins,
   ],
   module: {
-    loaders: [ ...webpackConfig.module.loaders, {
+    rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,
       include: [ /\/src\// ],
       // not extracting css-modules in development for hot-reloading
-      loaders: [
-        'style',
-        'css' +
-          '?modules' +
-          '&localIdentName=[path][name]-[local]',
-        'postcss',
-        'sass' +
-          '?outputStyle=expanded',
+      use: [
+        { loader: 'style-loader' },
+        { loader: 'css-loader',
+          options: { modules: true, localIdentName: '[path][name]-[local]' } },
+        { loader: 'postcss-loader' },
+        { loader: 'sass-loader',
+          options: { outputStyle: 'expanded' } },
       ],
     }, {
       test: /\.s?css$/,
       include: [ /\/src\// ],
       exclude: /module\.s?css$/,
-      loader: ExtractTextPlugin.extract(
-        'style', 'css!postcss!sass?outputStyle=expanded'
-      ),
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+          'postcss-loader',
+          { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
+        ],
+      }),
     }, {
       ...babelLoaderConfig,
-      query: {
-        ...babelLoaderConfig.query,
-        'plugins': [
-          ...babelLoaderConfig.query.plugins,
+      options: {
+        ...babelLoaderConfig.options,
+        plugins: [
+          ...babelLoaderConfig.options.plugins,
           [ 'react-transform', {
             'transforms': [ {
               'transform': 'react-transform-hmr',

@@ -3,8 +3,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import { SRC, APP, STATIC, STYLES, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
-import autoprefixer from 'autoprefixer'
-import cssnano from 'cssnano'
 
 export default {
   entry: {
@@ -23,19 +21,14 @@ export default {
     publicPath: '/',
   },
   resolve: {
-    root: [ SRC, STYLES ],
-    modulesDirectories: [ 'node_modules' ],
+    modules: [ SRC, STYLES, 'node_modules' ],
     extensions: [
-      '', '.js', '.jsx', '.es', '.es6', '.scss',
+      '.js', '.jsx', '.es', '.es6', '.scss',
     ],
   },
-  postcss: [
-    autoprefixer({ browsers: [ 'last 2 versions' ] }),
-    cssnano(),
-  ],
   plugins: [
     isomorphicPlugin,
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new CleanPlugin([ 'src/static' ], {
       root: ROOT,
     }),
@@ -45,43 +38,50 @@ export default {
         'DEBUG': JSON.stringify(process.env.DEBUG),
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'head',
     }),
-    new ExtractTextPlugin('[name].[hash].css',{
+    new ExtractTextPlugin({
+      filename: '[name].[hash].css',
       allChunks: true,
     }),
   ],
   module: {
-    loaders: [ {
-      test: isomorphicPlugin.regular_expression('images'),
-      loader: 'url-loader?limit=10240',
-    }, {
-      test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/font-woff',
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream',
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file',
-    }, {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml',
-    }, {
-      test: /\.json$/i,
-      loader: 'json',
-    } ],
+    rules: [
+      {
+        test: isomorphicPlugin.regular_expression('images'),
+        loader: 'url-loader',
+        options: { limit: 10240 },
+      }, {
+        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader',
+        options: { limit: 10000, mimetype: 'application/font-woff' },
+      }, {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader',
+        options: { limit: 10000, mimetype: 'application/octet-stream' },
+      }, {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+      }, {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader',
+        options: { limit: 10000, mimetype: 'image/svg+xml' },
+      },
+    ],
   },
 }
 
 export const babelLoaderConfig = {
   test: /\.jsx?$/,
   include: [ /src\/app/, /src\/config/, /src\/server/ ],
-  loader: 'babel',
-  query: {
-    'presets': [ 'es2015', 'react', 'stage-0' ],
+  loader: 'babel-loader',
+  options: {
+    'presets': [
+      [ 'es2015', { modules: false } ],
+      'react',
+      'stage-0',
+    ],
     'plugins': [
       'add-module-exports',
       'lodash',
