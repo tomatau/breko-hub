@@ -1,13 +1,19 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
+  "presets": [
+    ["env", { "targets": { "node": true } }],
+    "react"
+  ],
   "plugins": [
+    "transform-export-extensions",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread",
     "add-module-exports",
     "babel-root-import",
     "react-require",
     ["provide-modules", {
       "debug": "debug"
     }],
-    "transform-decorators-legacy",
     ["module-resolver", {
       "root": ["./src"]
     }]

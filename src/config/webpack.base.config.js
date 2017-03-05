@@ -78,11 +78,17 @@ export const babelLoaderConfig = {
   loader: 'babel-loader',
   options: {
     'presets': [
-      [ 'es2015', { modules: false } ],
+      [ 'env', {
+        targets: { browsers: [ 'last 2 versions' ] },
+        modules: false,
+      } ],
       'react',
-      'stage-0',
     ],
     'plugins': [
+      'transform-export-extensions',
+      'transform-decorators-legacy',
+      'transform-class-properties',
+      'transform-object-rest-spread',
       'add-module-exports',
       'lodash',
       'ramda',
@@ -91,7 +97,6 @@ export const babelLoaderConfig = {
         'debug': 'debug',
       } ],
       'babel-root-import',
-      'transform-decorators-legacy',
     ],
   },
 }
