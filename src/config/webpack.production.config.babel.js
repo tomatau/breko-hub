@@ -9,6 +9,9 @@ export default {
   devtool: false,
   plugins: [
     ...webpackConfig.plugins,
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,
