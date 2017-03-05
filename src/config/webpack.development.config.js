@@ -8,7 +8,7 @@ export default {
     ...webpackConfig.entry,
     head: [
       ...webpackConfig.entry.head,
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client?path=/__OMG_UPDATE',
     ],
   },
   devtool: '#cheap-module-eval-source-map',

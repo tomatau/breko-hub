@@ -6,9 +6,12 @@ import { middleware } from 'app/composition/middleware'
 
 const log = debug('set-store')
 
-export default function *setStore(next) {
+export default async function setStore(ctx, next) {
   log('setting server store')
-  this.store = makeCreateStore(middleware)(rootReducer, {})
-  syncHistoryWithStore(createMemoryHistory(this.request.url), this.store)
-  yield next
+  ctx.store = makeCreateStore(middleware)(rootReducer, {})
+  syncHistoryWithStore(
+    createMemoryHistory(ctx.request.url),
+    ctx.store
+  )
+  await next()
 }
