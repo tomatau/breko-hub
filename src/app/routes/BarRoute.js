@@ -1,12 +1,12 @@
 import { provideHooks } from 'redial'
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
-import { apiFetch } from 'app/actions/bar.actions'
+import * as barActions from 'app/actions/bar.actions'
 import { get } from 'app/utils'
 
 @provideHooks({
   // return the promise for server side trigger
-  defer: ({ dispatch }) => dispatch(apiFetch()),
+  defer: ({ dispatch }) => dispatch(barActions.apiFetch()),
 })
 @connect(state => ({
   bar: get('bar.data')(state),

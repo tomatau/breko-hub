@@ -1,14 +1,14 @@
 import { provideHooks } from 'redial'
 import { connect } from 'react-redux'
-import { fooGet, fooGetClientOnly } from 'app/actions/foo.actions'
+import * as fooActions from 'app/actions/foo.actions'
 import { get } from 'app/utils'
 
 // Example hooks
 @provideHooks({
   // prefetch both for server side and client side render
-  prefetch: ({ dispatch }) => dispatch(fooGet()),
+  prefetch: ({ dispatch }) => dispatch(fooActions.fooGet()),
   // defer hook only on client
-  defer: ({ dispatch }) => dispatch(fooGetClientOnly()),
+  defer: ({ dispatch }) => dispatch(fooActions.fooGetClientOnly()),
 })
 @connect(state => ({
   foo: get('foo.data')(state),
