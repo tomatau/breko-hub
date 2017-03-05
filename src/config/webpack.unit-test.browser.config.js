@@ -12,12 +12,12 @@ export default {
   devtool: '#cheap-module-eval-source-map',
   entry: {
     main: [
-      'babel-polyfill',
       // HMR seems to ignore tests that aren't replaced on a replacement
       // refresh page works fine though
-      `mocha!${TESTS}/test-setup.js`,
+      'babel-polyfill',
+      `mocha-loader!${TESTS}/test-setup.js`,
       ...glob.sync('./src/**/*.test.js').map(file =>
-        `mocha!${path.join(ROOT, file)}`
+        `mocha-loader!${path.join(ROOT, file)}`
       ),
       'webpack-hot-middleware/client',
     ],
@@ -43,28 +43,33 @@ export default {
     },
   },
   module: {
-    loaders: [ ...webpackConfig.module.loaders, {
+    rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,
       include: [ /src\/app/, /src\/styles/ ],
-      loaders: [
-        'style',
-        'css?modules&localIdentName=[path][name]-[local]',
-        'sass',
+      use: [
+        { loader: 'style-loader' },
+        { loader: 'css-loader',
+          options: { modules: true, localIdentName: '[path][name]-[local]' } },
+        { loader: 'sass-loader' },
       ],
     }, {
       test: /\.s?css$/,
       include: [ /src\/app/, /src\/styles/ ],
       exclude: /module\.s?css$/,
-      loader: ExtractTextPlugin.extract(
-        'style', 'css!sass'
-      ),
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          'css-loader',
+          'sass-loader',
+        ],
+      }),
     }, {
       ...babelLoaderConfig,
       include: [ /src/, /test/ ],
-      query: {
-        ...babelLoaderConfig.query,
+      options: {
+        ...babelLoaderConfig.options,
         'plugins': [
-          ...babelLoaderConfig.query.plugins,
+          ...babelLoaderConfig.options.plugins,
           [ 'react-transform', {
             'transforms': [ {
               'transform': 'react-transform-hmr',
