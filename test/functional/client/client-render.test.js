@@ -9,10 +9,17 @@ describe('Client Render', function() {
     history.push('/')
   })
 
-  after(()=> {
-  })
+  const barResponse = [ 'some', 'test', 'response', 'data' ]
 
   beforeEach(()=> {
+    fetchMock.get('/api/bar', {
+      status: 200,
+      body: { bar: barResponse },
+      headers:  {
+        'Content-Type': 'application/json',
+        'Content-Length': '1',
+      },
+    })
     this.wrapper = mount(Main)
   })
 
@@ -46,20 +53,6 @@ describe('Client Render', function() {
     })
 
     describe('/bar', ()=> {
-      const barResponse = [ 'some', 'test', 'response', 'data' ]
-      const requiredHeaders = {
-        'Content-Type': 'application/json',
-        'Content-Length': '1',
-      }
-
-      beforeEach(()=> {
-        fetchMock.get('/api/bar', {
-          status: 200,
-          body: { bar: barResponse },
-          headers: requiredHeaders,
-        })
-      })
-
       it('should render the BarRoute after navigating to /bar', ()=> {
         expect(this.wrapper.find('.BarRoute')).to.have.length(0)
         history.push('/bar')
@@ -73,7 +66,7 @@ describe('Client Render', function() {
 
       it('should render the response from /api/bar', (done)=> {
         history.push('/bar')
-        _.defer(() => { // defer until after promises resolve
+        defer(() => { // defer until after promises resolve
           barResponse.forEach(item => {
             const barItem = this.wrapper.find({ children: item })
             expect(barItem).to.have.length(1)
