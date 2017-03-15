@@ -81,7 +81,7 @@
     "glob": "^7.1.1",
     "is-promise": "~2.1.0",
     "isomorphic-fetch": "^2.2.1",
-    "koa": "^1.2.4",
+    "koa": "^2.0.1",
     "koa-body": "^1.6.0",
     "koa-compress": "^1.0.9",
     "koa-favicon": "^1.2.1",
