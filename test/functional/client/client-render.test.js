@@ -1,5 +1,4 @@
 import { Main } from 'app/main'
-import { mount } from 'enzyme'
 import { history } from 'app/composition/history'
 import App from 'app/components/App/App'
 import fetchMock from 'fetch-mock'

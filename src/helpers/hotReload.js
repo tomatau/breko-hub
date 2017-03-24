@@ -33,7 +33,6 @@ export default function hotReload(app) {
     },
     hot: {
       log: log.koaWebpack,
-      path: '/__OMG_UPDATE',
     },
   }))
 
