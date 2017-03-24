@@ -13,8 +13,9 @@ export default {
   },
   devtool: '#cheap-module-eval-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     ...webpackConfig.plugins,
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [ ...webpackConfig.module.rules, {

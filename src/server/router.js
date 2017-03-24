@@ -9,9 +9,11 @@ import flashMessages from 'server/middleware/flashMessages'
 import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
 
+const log = debug('server-router')
 export const rootRouter = router()
 
 export function setRoutes(assets) {
+  log('rebuilding route middleware')
   rootRouter.stack.length = 0
 
   const assetMap = {
