@@ -9,7 +9,7 @@ describe('Head Navigation Component', function() {
   })
 
   it('renders a nav element with styles.nav className', ()=> {
-    const nav = this.tree.findNode('nav')
+    const nav = this.tree.subTree('nav')
     expect(nav.props).to.have.property('className', styles.nav)
   })
 
@@ -33,7 +33,7 @@ describe('Head Navigation Component', function() {
     })
 
     it('renders an IndexLink', ()=> {
-      const indexLink = this.tree.findNode(IndexLink.displayName)
+      const indexLink = this.tree.subTree(IndexLink.displayName)
       expect(indexLink.type).to.eql(IndexLink)
       expect(indexLink.props).to.eql({
         children: 'Home',
@@ -44,7 +44,7 @@ describe('Head Navigation Component', function() {
 
     links.forEach(link =>
       it(`renders the ${link.content} link`, ()=> {
-        const node = this.tree.findComponentLike(
+        const node = this.tree.subTree(
           Link.displayName, { to: link.to }
         )
         expect(node.type).to.eql(Link)

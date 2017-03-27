@@ -1,16 +1,16 @@
 
 export default function(key='flash') {
-  return function *sessionFlashArray(next) {
-    this.flash = this.session[key] || []
-    this.nextFlash = []
-    this.addFlash = (message, type) => {
-      this.nextFlash.push({ message, type })
+  return async function sessionFlashArray(ctx, next) {
+    ctx.flash = ctx.session[key] || []
+    ctx.nextFlash = []
+    ctx.addFlash = (message, type) => {
+      ctx.nextFlash.push({ message, type })
     }
-    yield* next
-    if (this.status == 302 && this.session) {
-      this.session[key] = this.nextFlash
+    await next()
+    if (ctx.status == 302 && ctx.session) {
+      ctx.session[key] = ctx.nextFlash
     } else {
-      delete this.session[key]
+      delete ctx.session[key]
     }
   }
 }

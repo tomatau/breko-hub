@@ -1,11 +1,11 @@
-import koa from 'koa'
+import Koa from 'koa'
 import mockHTTP from 'node-mocks-http'
 import handleError from './handleError'
 
 const sessionState = {}
-const fakeSession = function *(next) {
-  this.session = sessionState
-  yield next
+const fakeSession = async (ctx, next) => {
+  ctx.session = sessionState
+  await next()
 }
 
 const fakeARequest = (
@@ -19,9 +19,9 @@ const fakeARequest = (
 
 describe('Handle Error Middleware', ()=> {
   it('should work without session', (done)=> {
-    const app = koa()
-    app.use(function *(next) {
-      yield next
+    const app = new Koa()
+    app.use(async (ctx, next) => {
+      await next()
       expect('everything').to.be.ok
       done()
     })
@@ -30,11 +30,11 @@ describe('Handle Error Middleware', ()=> {
   })
 
   it('should clear any session state', (done)=> {
-    const app = koa()
+    const app = new Koa()
     app.use(fakeSession)
-    app.use(function *(next) {
-      yield next
-      expect(this.session.state).to.not.exist
+    app.use(async (ctx, next) => {
+      await next()
+      expect(ctx.session.state).to.not.exist
       done()
     })
     app.use(handleError)

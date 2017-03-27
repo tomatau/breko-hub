@@ -1,4 +1,4 @@
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
 import { hasWindow } from 'app/utils'

@@ -2,13 +2,13 @@ import { store as clientStore } from 'app/composition/store'
 import * as flashSelectors from 'app/selectors/flash.selectors'
 import { addMessage } from 'app/actions/flash.actions'
 
-export default function *flashMessages(next) {
-  this.flash.map(({ message, type }) =>
-    this.store.dispatch(addMessage(message, type))
+export default async function flashMessages(ctx, next) {
+  ctx.flash.map(({ message, type }) =>
+    ctx.store.dispatch(addMessage(message, type))
   )
-  yield next
-  if (this.response.status === 302) {
-    transferFlashMessages(this)
+  await next()
+  if (ctx.response.status === 302) {
+    transferFlashMessages(ctx)
   }
 }
 

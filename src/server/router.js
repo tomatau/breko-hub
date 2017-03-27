@@ -1,7 +1,7 @@
 import router from 'koa-router'
 import { ERROR_PATH } from 'config/paths'
 import { compact } from 'app/utils'
-import { compose } from 'server/utils'
+import compose from 'koa-compose'
 import handleNotFound from 'server/middleware/handleNotFound'
 import setStore from 'server/middleware/setStore'
 import makeRenderReactApp from 'server/middleware/renderReactApp'
@@ -9,9 +9,11 @@ import flashMessages from 'server/middleware/flashMessages'
 import * as routes from 'app/routes'
 import apiRouter from 'server/routes'
 
+const log = debug('server-router')
 export const rootRouter = router()
 
 export function setRoutes(assets) {
+  log('rebuilding route middleware')
   rootRouter.stack.length = 0
 
   const assetMap = {
@@ -23,13 +25,13 @@ export function setRoutes(assets) {
   }
 
   /* build app from routes, set initial state and set response html */
-  const renderReactApp = compose(
+  const renderReactApp = compose([
     /* set a store for server side state rendering */
     setStore,
     /* wire up flashMessages from redirect to server store */
     flashMessages,
-    makeRenderReactApp(routes.makeRoutes(), assetMap)
-  )
+    makeRenderReactApp(routes.makeRoutes(), assetMap),
+  ])
 
   rootRouter
     .use(apiRouter.routes())

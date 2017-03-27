@@ -75,14 +75,14 @@ describe('Server Side Render', function() {
     // serve assets
     app.use(serve(TESTS + '/fixtures/assets'))
     // setup a broken route
-    testRouter.get('/broken-route', function *() {
+    testRouter.get('/broken-route', async () => {
       throw new Error('I am broken')
     })
     app.use(testRouter.routes())
     // add rootRouer routes
-    app.use(function *() {
+    app.use(async (ctx, next) => {
       setRoutes(assets)
-      yield rootRouter.routes()
+      await rootRouter.routes()(ctx, next)
     })
     // set makeRoutes to use stubs
     sinon.stub(routes, 'makeRoutes').returns(ReactRoutes)

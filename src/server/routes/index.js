@@ -5,11 +5,11 @@ const parseBody = koaBody()
 const apiRouter = router({ prefix: '/api' })
 
 apiRouter
-  .all('ping', '/ping', parseBody, function *() {
-    this.response.body = { pong: this.request.body }
+  .all('ping', '/ping', parseBody, (ctx) => {
+    ctx.response.body = { pong: ctx.request.body }
   })
-  .get('bar', '/bar', function *() {
-    this.response.body = { bar: [ 'bruce', 'willis', 'wet', 'himself' ] }
+  .get('bar', '/bar', (ctx) => {
+    ctx.response.body = { bar: [ 'bruce', 'willis', 'wet', 'himself' ] }
   })
 
 export default apiRouter
