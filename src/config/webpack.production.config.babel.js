@@ -3,6 +3,7 @@ import 'helpers/cleanAssetJson'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
+import { APP, STYLES } from 'config/paths'
 
 export default {
   ...webpackConfig,
@@ -22,7 +23,7 @@ export default {
   module: {
     rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,
-      include: [ /src\/app/, /src\/styles/ ],
+      include: [ APP, STYLES ],
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [
@@ -36,7 +37,7 @@ export default {
       }),
     }, {
       test: /\.s?css$/,
-      include: [ /src\/app/, /src\/styles/ ],
+      include: [ APP, STYLES ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',

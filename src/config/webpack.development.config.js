@@ -1,6 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
+import { SRC } from 'config/paths'
 
 export default {
   ...webpackConfig,
@@ -20,7 +21,7 @@ export default {
   module: {
     rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,
-      include: [ /\/src\// ],
+      include: [ SRC ],
       // not extracting css-modules in development for hot-reloading
       use: [
         { loader: 'style-loader' },
@@ -32,7 +33,7 @@ export default {
       ],
     }, {
       test: /\.s?css$/,
-      include: [ /\/src\// ],
+      include: [ SRC ],
       exclude: /module\.s?css$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',

@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
-import { SRC, APP, STATIC, STYLES, ROOT } from 'config/paths'
+import { SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT } from 'config/paths'
 import { isomorphicPlugin } from 'server/isomorphicTools'
 
 export default {
@@ -75,7 +75,7 @@ export default {
 
 export const babelLoaderConfig = {
   test: /\.jsx?$/,
-  include: [ /src\/app/, /src\/config/, /src\/server/ ],
+  include: [ APP, CONFIG, SERVER ],
   loader: 'babel-loader',
   options: {
     'presets': [
