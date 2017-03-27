@@ -7,12 +7,12 @@ describe('Server API', function() {
   const app = helpers.cloneApp(server)
 
   before(()=> {
-    app.use(function *() {
+    app.use(async (ctx, next) => {
       setRoutes({
         javascript: {},
         styles: {},
       })
-      yield rootRouter.routes()
+      await rootRouter.routes()(ctx, next)
     })
   })
 

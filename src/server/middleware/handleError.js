@@ -3,12 +3,12 @@ import { ERROR_PATH } from 'config/paths'
 
 const log = debug('handle-error')
 
-export default function *handleError(next) {
+export default async function handleError(ctx, next) {
   try {
-    yield next
-    set(this, 'session.state', null)
+    await next()
+    set(ctx, 'session.state', null)
   } catch (err) {
     log(err)
-    this.redirect(ERROR_PATH)
+    ctx.redirect(ERROR_PATH)
   }
 }

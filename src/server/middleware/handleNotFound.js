@@ -8,24 +8,24 @@ import { makeHtml } from 'server/utils'
 const log = debug('handle-not-found')
 
 export default function(assets) {
-  return function *handleNotFound(next) {
-    yield next
-    const { status } = this.response
+  return async function handleNotFound(ctx, next) {
+    await next()
+    const { status } = ctx.response
     if (status === 404) {
       /*
-        this is a back-up in-case their is no react route handling '*'
+        ctx is a back-up in-case their is no react route handling '*'
         or the API can't handle the route
        */
       log('route not found!')
-      if (this.accepts([ 'json', 'html' ]) === 'json') {
-        this.response.body = { error: STATUS_CODES[status] }
+      if (ctx.accepts([ 'json', 'html' ]) === 'json') {
+        ctx.response.body = { error: STATUS_CODES[status] }
       } else {
         const contentArray = [
           {
             id: 'app-container',
             dangerouslySetInnerHTML: {
               __html: ReactDOMServer.renderToString(
-                <Provider store={this.store}>
+                <Provider store={ctx.store}>
                   <App>
                     <NotFoundRoute />
                   </App>
@@ -35,11 +35,11 @@ export default function(assets) {
           },
         ]
 
-        this.response.body = makeHtml({
+        ctx.response.body = makeHtml({
           ...assets,
           stringScripts: [
             `window.__INITIAL_STATE__ = ${
-              JSON.stringify(this.store.getState(), null, 2)
+              JSON.stringify(ctx.store.getState(), null, 2)
             };`,
           ],
         }, contentArray)
