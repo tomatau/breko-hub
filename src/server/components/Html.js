@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 const { PropTypes } = React
 
 export default class Html extends React.Component {
-
   static propTypes = {
     content: PropTypes.array,
     headScripts: PropTypes.array,
@@ -23,14 +22,6 @@ export default class Html extends React.Component {
     otherLinks: [],
   };
 
-  getMetaData() {
-    const head = Helmet.rewind()
-    return {
-      meta: head.meta.toComponent(),
-      title: head.title.toComponent(),
-    }
-  }
-
   render() {
     const {
       content,
@@ -41,12 +32,14 @@ export default class Html extends React.Component {
       bodyScripts,
       bodyStyles,
     } = this.props
-    const { meta, title } = this.getMetaData()
+    const helmet = Helmet.renderStatic()
+
     return (
-      <html lang='en'>
+      <html {...helmet.htmlAttributes.toComponent()}>
         <head>
-          {title}
-          {meta}
+          {helmet.title.toComponent()}
+          {helmet.meta.toComponent()}
+          {helmet.link.toComponent()}
           {otherLinks.map((props, i) =>
             <link key={i} {...props} />
           )}
@@ -66,7 +59,7 @@ export default class Html extends React.Component {
             <script src={script} key={i} />
           )}
         </head>
-        <body>
+        <body {...helmet.bodyAttributes.toComponent()}>
           {content.map((props, i) =>
             <div key={i} {...props} />
           )}

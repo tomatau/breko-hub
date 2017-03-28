@@ -23,6 +23,10 @@ Breko hub is a github repository that helps anyone create new JavaScript applica
 - A pretty console output
 - Useful debugging tools
 
+### Prerequsits
+
+Breko-hub will only work on node version 6 and above as it is making use of Koa v2 along with polyfills for async/await syntax. To make it work on a lower version of node, the runtime compilation would need to be applied to koa and other node_modules.
+
 ### Quick Start
 
 Use the following commands to get started on your new app using breko-hub.
@@ -69,7 +73,7 @@ Breko hub uses the following libraries at its core:
 - [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) - A redux middleware for creating asynchronous actions.
 
 ##### Utility
-- [lodash](http://lodash.com/) - A popular modular utility library. 
+- [lodash](http://lodash.com/) - A popular modular utility library.
 - [ramda](http://ramdajs.com/) - A modular utility library focused on functional programming.
 
 ##### Styling

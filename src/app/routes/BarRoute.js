@@ -16,7 +16,9 @@ export default class BarRoute extends React.Component {
     const { bar } = this.props
     return (
       <section className='BarRoute'>
-        <DocumentMeta title='Bar' />
+        <DocumentMeta>
+          <title>Bar</title>
+        </DocumentMeta>
         <h3>Bar</h3>
         {bar.map((item, i) =>
           <p key={i}>{item}</p>
