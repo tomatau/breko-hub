@@ -1,6 +1,4 @@
-import { Main } from 'app/main'
-import { history } from 'app/composition/history'
-import App from 'app/components/App/App'
+import { Main, history } from 'app/main'
 import fetchMock from 'fetch-mock'
 
 describe('Client Render', function() {
@@ -28,10 +26,6 @@ describe('Client Render', function() {
     fetchMock.restore()
   })
 
-  it('should render the app', ()=> {
-    expect(this.wrapper.find(App)).to.have.length(1)
-  })
-
   it('should set the page title', ()=> {
     expect(document.title).to.eql('Breko Hub')
   })
@@ -44,6 +38,13 @@ describe('Client Render', function() {
   })
 
   describe('Routes', ()=> {
+    describe('404', ()=> {
+      it('should render the 404 route when no match found', ()=> {
+        history.push('/no-match-found')
+        expect(this.wrapper.find('.NotFoundRoute')).to.have.length(1)
+      })
+    })
+
     describe('/oops', ()=> {
       it('should render the OopsRoute after navigating to /oops', ()=> {
         expect(this.wrapper.find('.OopsRoute')).to.have.length(0)
@@ -77,26 +78,6 @@ describe('Client Render', function() {
       })
     })
 
-    describe('404', ()=> {
-      it('should render the 404 route when no match found', ()=> {
-        history.push('/no-match-found')
-        expect(this.wrapper.find('.NotFoundRoute')).to.have.length(1)
-      })
-    })
-
-    describe('/foo', ()=> {
-      it('should render the FooRoute after navigating to /foo', ()=> {
-        expect(this.wrapper.find('.FooRoute')).to.have.length(0)
-        history.push('/foo')
-        expect(this.wrapper.find('.FooRoute')).to.have.length(1)
-      })
-
-      it('should render the clientOnly data', ()=> {
-        history.push('/foo')
-        expect(this.wrapper.text()).to.contain('Client Only Data')
-      })
-    })
-
     describe('/private', ()=> {
       const privateMsg = {
         message: 'You may not view the private route!!',
@@ -114,9 +95,9 @@ describe('Client Render', function() {
         this.clock.tick(4000)
       })
 
-      it('redirect to /foo', ()=> {
+      it('redirect to /', ()=> {
         history.push('/private')
-        expect(this.wrapper.find('.FooRoute')).to.have.length(1)
+        expect(this.wrapper.find('.HomeRoute')).to.have.length(1)
       })
 
       it('adds a flash message', ()=> {

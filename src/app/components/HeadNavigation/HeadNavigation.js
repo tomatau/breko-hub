@@ -1,4 +1,4 @@
-import { IndexLink, Link } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import styles from './HeadNavigation.module.scss'
 
 // Putting this inside a connect will break activeClassName
@@ -8,18 +8,15 @@ export default class HeadNavigation extends React.Component {
     const { ...props } = this.props
     return (
       <nav className={styles.nav} {...props}>
-        <IndexLink activeClassName={styles.active} to='/'>
+        <NavLink exact activeClassName={styles.active} to='/'>
           Home
-        </IndexLink>
-        <Link activeClassName={styles.active} to='/foo'>
-          Foo
-        </Link>
-        <Link activeClassName={styles.active} to='/bar'>
+        </NavLink>
+        <NavLink activeClassName={styles.active} to='/bar'>
           Bar
-        </Link>
-        <Link activeClassName={styles.active} to='/private'>
+        </NavLink>
+        <NavLink activeClassName={styles.active} to='/private'>
           Private
-        </Link>
+        </NavLink>
       </nav>
     )
   }

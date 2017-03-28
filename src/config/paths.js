@@ -11,4 +11,3 @@ export const STATIC = path.join(SRC, 'static')
 export const ASSETS = path.join(SRC, 'assets')
 export const STYLES = path.join(SRC, 'styles')
 export const ASSET_FILE = `${SERVER}/webpack-assets.json`
-export const ERROR_PATH = '/oops'
