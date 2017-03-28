@@ -48,24 +48,17 @@ describe('App Component', function() {
 
   describe('DocumentMeta', () => {
     it('sets the meta options', () => {
-      const metaData = {
-        defaultTitle: 'Breko Hub',
-        titleTemplate: '%s | Breko Hub',
-        meta: [
-          { charset: 'utf-8' },
-          { name: 'viewport', content: 'width=device-width,initial-scale=1.0' },
-          {
-            name: 'description',
-            content: 'Breko Hub, a minimal boilerplate for building universal react applications',
-          },
-          {
-            name: 'keywords',
-            content: 'react,redux,react-router,koa,universal,babel,es7,hmr,webpack',
-          },
-        ],
-      }
-      const docMeta = this.tree.find(DocumentMeta)
-      expect(docMeta.props()).to.shallowDeepEqual(metaData)
+      expect(this.tree.find(DocumentMeta).node).to.eql(
+        <DocumentMeta
+          defaultTitle='Breko Hub'
+          titleTemplate='%s | Breko Hub'>
+          <html lang='en' />
+          <meta charSet='utf-8' />
+          <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+          <meta name='description' content='Breko Hub, a minimal boilerplate for building universal react applications' />
+          <meta name='keywords' content='react,redux,react-router,koa,universal,babel,es7,hmr,webpack' />
+        </DocumentMeta>
+      )
     })
   })
 

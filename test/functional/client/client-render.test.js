@@ -10,7 +10,7 @@ describe('Client Render', function() {
 
   const barResponse = [ 'some', 'test', 'response', 'data' ]
 
-  beforeEach(()=> {
+  beforeEach((done) => {
     fetchMock.get('/api/bar', {
       status: 200,
       body: { bar: barResponse },
@@ -20,6 +20,7 @@ describe('Client Render', function() {
       },
     })
     this.wrapper = mount(Main)
+    defer(done)
   })
 
   afterEach(()=> {
@@ -35,7 +36,7 @@ describe('Client Render', function() {
     expect(document.title).to.eql('Breko Hub')
   })
 
-  it('should set the meta description and chartset', ()=> {
+  it('should set the meta description and chartset', () => {
     const metaCharset = document.querySelector('meta[charset]')
     expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
     const metaDesc = document.querySelector('meta[name=description]')

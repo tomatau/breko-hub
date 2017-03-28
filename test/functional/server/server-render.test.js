@@ -19,8 +19,9 @@ const AppRoute = ({ children }) => (
       meta={ [
         { 'name': 'description', 'content': 'test description, hello' },
         { 'charset': 'utf-8' },
-      ]}
-    />
+      ]}>
+      <html lang='en' />
+    </Helmet>
     <h2>App</h2>
     {children}
   </div>
