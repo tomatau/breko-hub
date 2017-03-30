@@ -76,7 +76,7 @@
     "chokidar": "^1.6.1",
     "clean-webpack-plugin": "^0.1.16",
     "compressible": "^2.0.10",
-    "css-loader": "^0.27.3",
+    "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.6",
     "cssnano": "^3.10.0",
     "debug": "^2.6.3",
