@@ -93,7 +93,7 @@
     "koa-favicon": "^2.0.0",
     "koa-logger": "^2.0.1",
     "koa-mount": "^2.0.0",
-    "koa-router": "7.1.0",
+    "koa-router": "7.1.1",
     "koa-session-store": "^2.0.0",
     "koa-static": "^3.0.0",
     "koa-webpack": "^0.3.1",
