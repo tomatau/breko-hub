@@ -24,6 +24,6 @@ exports[`BarRoute Component matches snapshot 1`] = `
     And then navigate away and back to this route, you\'ll see the changes immediately
   </p>
   <div
-    className="src-app-routes-BarRoute-module-block" />
+    className="src-app-routes-BarRoute-BarRoute-module-block" />
 </section>
 `;
