@@ -1,0 +1,6 @@
+exports[`NotFoundRoute Component matches snapshot 1`] = `
+<section
+  className="NotFoundRoute">
+  404, page not found
+</section>
+`;

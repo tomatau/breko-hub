@@ -1,0 +1,6 @@
+exports[`OopsRoute Component matches snapshot 1`] = `
+<section
+  className="OopsRoute">
+  PROBLEM
+</section>
+`;

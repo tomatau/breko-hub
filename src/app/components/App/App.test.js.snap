@@ -1,0 +1,22 @@
+exports[`App Component Main renders routes inside Main 1`] = `
+<main
+  className="src-app-components-App-App-module-content">
+  <Switch>
+    <Route
+      component={[Function HomeRoute]}
+      exact={true}
+      path="/" />
+    <Route
+      component={[Function Connect]}
+      path="/bar" />
+    <Route
+      component={[Function Connect]}
+      path="/private" />
+    <Route
+      component={[Function OopsRoute]}
+      path="/oops" />
+    <Route
+      component={[Function NotFoundRoute]} />
+  </Switch>
+</main>
+`;

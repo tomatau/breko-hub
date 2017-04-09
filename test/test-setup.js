@@ -1,46 +1,18 @@
 import chai, { expect } from 'chai'
-import Koa from 'koa'
 import sinon from 'sinon'
 import { shallow, mount, render } from 'enzyme'
 import lodash from 'lodash/index'
 import ramda from 'ramda/dist/ramda'
+import snap from 'enzyme-to-json'
 import { isBrowser } from 'app/utils'
-import { makeCreateStore } from 'app/composition/makeCreateStore'
-import createStaticHistory from 'server/utils/createStaticHistory'
-import rootReducer from 'app/reducers'
-import promiseMiddleware from 'redux-promise-middleware'
-import thunkMiddleware from 'redux-thunk'
+import helpers from './test-helpers'
 
 chai.use(require('chai-shallow-deep-equal'))
 chai.use(require('chai-as-promised'))
 chai.use(require('chai-enzyme')())
 chai.use(require('sinon-chai'))
 chai.use(require('chai-generator'))
-
-const helpers = {
-  cloneApp(app) {
-    const clone = new Koa()
-    clone.keys = lodash.clone(app.keys)
-    clone.middleware = lodash.clone(app.middleware)
-    return clone
-  },
-  createStore(initialState={}, middleware=[]) {
-    return makeCreateStore([
-      thunkMiddleware,
-      promiseMiddleware(),
-      ...middleware,
-    ])(rootReducer, initialState)
-  },
-  createHistory(path) {
-    return createStaticHistory(path)
-  },
-  cleanup(wrapper) {
-    if (wrapper) {
-      wrapper.unmount()
-    }
-    sandbox.restore()
-  },
-}
+chai.use(require('chai-jest-snapshot'))
 
 setGlobals(isBrowser ? window : global)
 
@@ -51,6 +23,7 @@ function setGlobals(global) {
   global.shallow = shallow
   global.mount = mount
   global.render = render
+  global.snap = snap
   global.defer = setImmediate
   global.sandbox = sinon.sandbox.create()
   global._ = lodash
