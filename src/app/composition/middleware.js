@@ -1,10 +1,10 @@
 import { createLogger } from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
-import { hasWindow } from 'app/utils'
-import { outClientViaSocketIO } from 'redux-via-socket.io'
 import createSagaMiddleware from 'redux-saga'
+import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { pipe, tap } from 'ramda'
+import { hasWindow } from 'app/utils'
 
 const log = debug('DISPATCH:')
 
@@ -25,7 +25,7 @@ if (hasWindow) {
     })
   )
 } else {
-  middleware.push(
+  middleware.unshift(
     () => next => pipe(tap(log), next)
   )
 }

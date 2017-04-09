@@ -6,6 +6,7 @@ import lodash from 'lodash/index'
 import ramda from 'ramda/dist/ramda'
 import { isBrowser } from 'app/utils'
 import { makeCreateStore } from 'app/composition/makeCreateStore'
+import createStaticHistory from 'server/utils/createStaticHistory'
 import rootReducer from 'app/reducers'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
@@ -23,11 +24,15 @@ const helpers = {
     clone.middleware = lodash.clone(app.middleware)
     return clone
   },
-  createStore(initialState={}) {
+  createStore(initialState={}, middleware=[]) {
     return makeCreateStore([
       thunkMiddleware,
       promiseMiddleware(),
+      ...middleware,
     ])(rootReducer, initialState)
+  },
+  createHistory(path) {
+    return createStaticHistory(path)
   },
   cleanup(wrapper) {
     if (wrapper) {

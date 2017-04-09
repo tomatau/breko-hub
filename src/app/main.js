@@ -1,44 +1,42 @@
-import { Router } from 'react-router'
-import { after } from 'lodash'
-import { compose } from 'ramda'
+import { createBrowserHistory, createMemoryHistory } from 'history'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import { Provider } from 'react-redux'
-import { trigger } from 'redial'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
-import { history } from 'app/composition/history'
+
+import { middleware, sagaMiddleware } from 'app/composition/middleware'
+import { makeCreateStore } from 'app/composition/makeCreateStore'
 import socket from 'app/composition/socket'
-import { store } from 'app/composition/store'
-import makeRoutes from 'app/routes'
-import DevTools from 'app/components/DevTools/DevTools'
-import { sagaMiddleware } from 'app/composition/middleware'
+
 import rootSaga from 'app/sagas'
+import { isBrowser } from 'app/utils'
+import rootReducer from 'app/reducers'
+import * as app from 'app'
+
+// client store and history
+// can go out of sync with server store and server history...
+// avoid using directly!
+export const history = isBrowser ? createBrowserHistory() : createMemoryHistory()
+
+export const store = makeCreateStore(
+  [ ...middleware, routerMiddleware(history) ]
+)(rootReducer, isBrowser ? window.__INITIAL_STATE__ : {})
 
 inClientViaSocketIO(socket, store.dispatch)
+
 sagaMiddleware.run(rootSaga)
-
-function routeLocalsTrigger(event) {
-  return function() {
-    const { components, location, params } = this.state
-    trigger(event, components, { dispatch: store.dispatch, location, params })
-  }
-}
-
-const onRouteUpdate = compose(
-  // ignore first defer call because of initial LOCATION_CHANGE event
-  after(2, routeLocalsTrigger('defer')),
-  // ignore first 2, pre-fetched data already in server render
-  after(3, routeLocalsTrigger('prefetch'))
-)
 
 export const Main = (
   <Provider store={store}>
-    <Router history={history} onUpdate={onRouteUpdate}>
-      {makeRoutes()}
-    </Router>
+    <ConnectedRouter history={history}>
+      {app.createAppInstance()}
+    </ConnectedRouter>
   </Provider>
 )
 
-export const Dev = (
-  <Provider store={store}>
-    <DevTools />
-  </Provider>
-)
+/* istanbul ignore if  */
+if (module.hot) {
+  /* istanbul ignore next */
+  module.hot.accept('app/reducers', () => {
+    store.replaceReducer(require('app/reducers'))
+  })
+}

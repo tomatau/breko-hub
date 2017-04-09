@@ -1,8 +1,6 @@
 import ReactDOM from 'react-dom'
-import { isEnv } from 'app/utils'
 import socket from 'app/composition/socket'
-import { store } from 'app/composition/store'
-import { Main, Dev } from 'app/main'
+import { store, Main } from 'app/main'
 
 debug.enable(process.env.DEBUG)
 
@@ -27,9 +25,3 @@ socket.open()
 ReactDOM.render(
   Main, document.getElementById('app-container')
 )
-
-if (isEnv('development') && window.__REDUX_DEVTOOLS_EXTENSION__ == null) {
-  ReactDOM.render(
-    Dev, document.getElementById('debug-panel-container')
-  )
-}

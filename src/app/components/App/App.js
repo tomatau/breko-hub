@@ -1,18 +1,21 @@
 import DocumentMeta from 'react-helmet'
+import { Switch, Route } from 'react-router'
+import BarRoute from 'app/routes/BarRoute'
+import OopsRoute from 'app/routes/OopsRoute'
+import PrivateRoute from 'app/routes/PrivateRoute'
+import NotFoundRoute from 'app/routes/NotFoundRoute'
+import HomeRoute from 'app/routes/HomeRoute'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 // example image import
 import avatarPath from 'assets/avatar.jpeg'
 // example s?css module import
 import style from './App.module.scss'
-// example s?css import (no module)
-import './App.css'
 
 const log = debug('App.js')
 
 export default class App extends React.Component {
   render() {
-    const { children } = this.props
     log('render')
     return (
       <div className={style.app}>
@@ -30,7 +33,13 @@ export default class App extends React.Component {
         <img src={avatarPath} alt='me' width='70' />
         <h1>Breko Hub</h1>
         <main className={style.content}>
-          {children}
+          <Switch>
+            <Route exact path='/' component={HomeRoute} />
+            <Route path='/bar' component={BarRoute} />
+            <Route path='/private' component={PrivateRoute} />
+            <Route path='/oops' component={OopsRoute} />
+            <Route component={NotFoundRoute} />
+          </Switch>
         </main>
       </div>
     )
