@@ -8,6 +8,10 @@ import style from './BarRoute.module.scss'
   bar: get('bar.data')(state),
 }), barActions)
 export default class BarRoute extends React.Component {
+  static defaultProps = {
+    bar: [],
+  };
+
   componentDidMount() {
     this.props.apiFetch()
   }

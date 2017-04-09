@@ -7,40 +7,42 @@ import styles from './App.module.scss'
 import avatarPath from 'assets/avatar.jpeg'
 
 describe('App Component', function() {
-  beforeEach(()=> {
+  helpers.setupSnapshots(__filename)
+
+  beforeEach(() => {
     this.tree = shallow(<App />)
   })
 
-  it('renders a div tag with className at rootNode', ()=> {
+  it('renders a div tag with className at rootNode', () => {
     expect(this.tree.hasClass(styles.app)).to.eql(true)
   })
 
-  it('renders a Helmet document meta as firtChild', ()=> {
+  it('renders a Helmet document meta as firtChild', () => {
     const firstChild = this.tree.childAt(0)
     expect(firstChild).to.have.type(DocumentMeta)
   })
 
-  it('renders HeadNavigation as second child', ()=> {
+  it('renders HeadNavigation as second child', () => {
     const secondChild = this.tree.childAt(1)
     expect(secondChild).to.have.type(HeadNavigation)
   })
 
-  it('renders FlashMessages as third child', ()=> {
+  it('renders FlashMessages as third child', () => {
     const thirdChild = this.tree.childAt(2)
     expect(thirdChild).to.have.type(FlashMessages)
   })
 
-  it('renders an img as fourth child', ()=> {
+  it('renders an img as fourth child', () => {
     const fourthChild = this.tree.childAt(3)
     expect(fourthChild).to.have.type('img')
   })
 
-  it('renders a h1 as fifth child', ()=> {
+  it('renders a h1 as fifth child', () => {
     const fifthChild = this.tree.childAt(4)
     expect(fifthChild).to.have.type('h1')
   })
 
-  it('renders a main.content as sixth child', ()=> {
+  it('renders a main.content as sixth child', () => {
     const sixthChild = this.tree.childAt(5)
     expect(sixthChild).to.have.type('main')
     expect(sixthChild).to.have.className(styles.content)
@@ -81,12 +83,10 @@ describe('App Component', function() {
   })
 
   describe('Main', () => {
-    // TODO: snapshot tests
-    it.skip('renders routes inside Main', ()=> {
-      const children = <p><span>test</span><span>child</span></p>
-      const content = shallow(<App>{children}</App>).find('main')
-
-      expect(content.containsMatchingElement(children)).to.eql(true)
+    it('renders routes inside Main', () => {
+      expect(
+        snap(this.tree.find('main'))
+      ).to.matchSnapshot()
     })
   })
 })
