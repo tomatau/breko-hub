@@ -1,9 +1,14 @@
+/* @flow */
 import { Bem } from 'app/utils'
 import styles from './Msg.module.scss'
+import type { Message } from './types'
 
-const { PropTypes } = React
+type Props = {
+  msg: Message,
+  className: string,
+};
 
-const Msg = ({ msg, className, ...props }) =>
+const Msg = ({ msg, className, ...props }: Props) =>
   <span {...props} {...Msg.bem(null, msg.type, className)}>
     {msg.message}
     &nbsp;
@@ -13,12 +18,5 @@ const Msg = ({ msg, className, ...props }) =>
   </span>
 
 Msg.bem = new Bem(styles.msg)
-
-Msg.propTypes = {
-  msg: PropTypes.shape({
-    type: PropTypes.oneOf([ 'error', 'good', 'info' ]),
-    message: PropTypes.string,
-  }).isRequired,
-}
 
 export default Msg

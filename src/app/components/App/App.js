@@ -1,3 +1,4 @@
+/* @flow */
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router'
 import BarRoute from 'app/routes/BarRoute/BarRoute'
@@ -29,7 +30,7 @@ export default class App extends React.Component {
           <meta name='keywords' content='react,redux,react-router,koa,universal,babel,es7,hmr,webpack' />
         </DocumentMeta>
         <HeadNavigation />
-        <FlashMessages />
+        <FlashMessages SHOULD='BREAK' />
         <img src={avatarPath} alt='me' width='70' />
         <h1>Breko Hub</h1>
         <main className={style.content}>
