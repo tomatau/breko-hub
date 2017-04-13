@@ -1,0 +1,15 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+
+[options]
+emoji=true
+module.name_mapper='.+.scss$' -> 'CSSModule'
+module.name_mapper='.+.jpeg$' -> 'JPEG'
+module.system=haste
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
+esproposal.decorators=ignore

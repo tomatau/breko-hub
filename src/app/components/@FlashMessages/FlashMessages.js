@@ -1,19 +1,20 @@
+/* @flow */
 import { connect } from 'react-redux'
 import { noop } from 'lodash'
 import { removeMessage } from 'app/actions/flash.actions'
 import { Bem } from 'app/utils'
 import * as flashSelectors from 'app/selectors/flash.selectors'
 import Msg from './Msg'
-
-const { PropTypes } = React
+import type { Message } from './types'
 
 @connect(state => ({
   messages: flashSelectors.getMessages(state),
 }), { removeMessage })
 export default class FlashMessages extends React.Component {
-  static propTypes = {
-    messages: PropTypes.array,
-    removeMessage: PropTypes.func,
+  props: {
+    messages: Array<Message>,
+    removeMessage: Function,
+    SHOULD: bool,
   };
 
   static defaultProps = {
@@ -23,7 +24,7 @@ export default class FlashMessages extends React.Component {
 
   static bem = new Bem('FlashMessages');
 
-  clickMessage(msg) {
+  clickMessage(msg: Message) {
     this.props.removeMessage(msg.id)
   }
 
