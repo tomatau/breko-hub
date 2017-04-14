@@ -127,7 +127,7 @@
     "type-to-reducer": "^1.0.3",
     "url-loader": "~0.5.8",
     "uuid": "^3.0.1",
-    "webpack": "2.3.3",
+    "webpack": "2.4.0",
     "webpack-isomorphic-tools": "^3.0.2",
     "yargs": "^7.0.2"
   },
