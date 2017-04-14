@@ -1,7 +1,6 @@
 import { Bem } from 'app/utils'
 import styles from './Msg.module.scss'
-
-const { PropTypes } = React
+import PropTypes from 'prop-types'
 
 const Msg = ({ msg, className, ...props }) =>
   <span {...props} {...Msg.bem(null, msg.type, className)}>

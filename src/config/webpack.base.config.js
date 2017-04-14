@@ -86,6 +86,7 @@ export const babelLoaderConfig = {
       'react',
     ],
     'plugins': [
+      'dynamic-import-webpack',
       'transform-export-extensions',
       'transform-decorators-legacy',
       'transform-class-properties',

@@ -1,6 +1,5 @@
 import { request } from 'app/utils'
-
-export const API_FETCH = 'bar/API_FETCH'
+import { API_FETCH } from 'app/actions/types'
 
 export const apiFetch = () => ({
   type: API_FETCH,
@@ -8,4 +7,3 @@ export const apiFetch = () => ({
     promise: request.fetch('/api/bar'),
   },
 })
-

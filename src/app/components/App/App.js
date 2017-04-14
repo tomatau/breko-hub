@@ -1,12 +1,9 @@
 import DocumentMeta from 'react-helmet'
-import { Switch, Route } from 'react-router'
-import BarRoute from 'app/routes/BarRoute/BarRoute'
-import OopsRoute from 'app/routes/OopsRoute/OopsRoute'
-import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
-import NotFoundRoute from 'app/routes/NotFoundRoute/NotFoundRoute'
-import HomeRoute from 'app/routes/HomeRoute/HomeRoute'
+import { Switch, Route } from 'react-router-dom'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
+
+import CodeSplit from 'app/components/CodeSplit'
 // example image import
 import avatarPath from 'assets/avatar.jpeg'
 // example s?css module import
@@ -34,14 +31,38 @@ export default class App extends React.Component {
         <h1>Breko Hub</h1>
         <main className={style.content}>
           <Switch>
-            <Route exact path='/' component={HomeRoute} />
-            <Route path='/bar' component={BarRoute} />
-            <Route path='/private' component={PrivateRoute} />
-            <Route path='/oops' component={OopsRoute} />
-            <Route component={NotFoundRoute} />
+            <CodeSplitRoute
+              exact
+              path='/'
+              load={() => import('app/routes/HomeRoute/HomeRoute')}
+            />
+            <CodeSplitRoute
+              path='/bar'
+              load={() => import('app/routes/BarRoute/BarRoute')}
+            />
+            <CodeSplitRoute
+              path='/oops'
+              load={() => import('app/routes/OopsRoute/OopsRoute')}
+            />
+            <CodeSplitRoute
+              path='/private'
+              load={() => import('app/routes/PrivateRoute/PrivateRoute')}
+            />
+            <CodeSplitRoute
+              load={() => import('app/routes/NotFoundRoute/NotFoundRoute')}
+            />
           </Switch>
         </main>
       </div>
     )
   }
 }
+
+const CodeSplitRoute = ({ load, ...props }) =>
+  <Route {...props}
+    render={() => (
+      <CodeSplit load={load}>
+        {(Comp) => Comp && <Comp />}
+      </CodeSplit>
+    )}
+  />

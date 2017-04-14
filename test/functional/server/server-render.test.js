@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/server'
 import serve from 'koa-static'
 import Router from 'koa-router'
-import { Switch, Route, Redirect } from 'react-router'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import supertest from 'supertest-as-promised'
 import { createMemoryHistory } from 'history'
 import { routerMiddleware } from 'react-router-redux'

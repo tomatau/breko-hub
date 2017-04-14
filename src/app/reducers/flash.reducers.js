@@ -1,6 +1,6 @@
 import { filter } from 'ramda'
 import { typeToReducer, get } from 'app/utils'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/flash.actions'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 
 const getFlashId = get('payload.id')
 

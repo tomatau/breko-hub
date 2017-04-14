@@ -1,7 +1,5 @@
 import uuid from 'uuid'
-
-export const REMOVE_MESSAGE = 'flash/REMOVE_MESSAGE'
-export const ADD_MESSAGE = 'flash/ADD_MESSAGE'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 
 const makeFlash = (message, type='info') => ({
   type,

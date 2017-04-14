@@ -1,6 +1,5 @@
 import Helmet from 'react-helmet'
-
-const { PropTypes } = React
+import PropTypes from 'prop-types'
 
 export default class Html extends React.Component {
   static propTypes = {

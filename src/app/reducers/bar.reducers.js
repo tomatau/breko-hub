@@ -1,5 +1,5 @@
 import { typeToReducer, get } from 'app/utils'
-import { API_FETCH } from 'app/actions/bar.actions'
+import { API_FETCH } from 'app/actions/types'
 
 const getBar = get('payload.bar')
 

@@ -1,5 +1,6 @@
 import * as actions from './flash.actions'
 import uuid from 'uuid'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 
 describe('Flash Actions', ()=> {
   describe('addMessage()', ()=> {
@@ -12,7 +13,7 @@ describe('Flash Actions', ()=> {
     })
 
     it('returns an action with type ADD_MESSAGE', () => {
-      expect(actions.addMessage()).to.have.property('type', actions.ADD_MESSAGE)
+      expect(actions.addMessage()).to.have.property('type', ADD_MESSAGE)
     })
 
     it('returns an action with flash msg and a default type', ()=> {
@@ -36,7 +37,7 @@ describe('Flash Actions', ()=> {
 
   describe('removeMessage()', () => {
     it('returns an action with type REMOVE_MESSAGE', () => {
-      expect(actions.removeMessage()).to.have.property('type', actions.REMOVE_MESSAGE)
+      expect(actions.removeMessage()).to.have.property('type', REMOVE_MESSAGE)
     })
 
     it('sets payload with id from arguments', () => {
