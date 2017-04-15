@@ -1,5 +1,5 @@
 import { flashReducers } from './flash.reducers'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/flash.actions'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 
 describe('Flash Reducers', ()=> {
   const initialState = {

@@ -1,5 +1,6 @@
-import { apiFetch, API_FETCH } from './bar.actions'
+import { API_FETCH } from 'app/actions/types'
 import { request } from 'app/utils'
+import { apiFetch } from './bar.actions'
 
 describe('Bar Actions', ()=> {
   describe('apiFetch()', ()=> {

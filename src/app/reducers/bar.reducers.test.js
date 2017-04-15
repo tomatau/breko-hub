@@ -1,5 +1,5 @@
 import { barReducers } from './bar.reducers'
-import { API_FETCH } from 'app/actions/bar.actions'
+import { API_FETCH } from 'app/actions/types'
 
 describe('Bar Reducers', ()=> {
   const initialState = {

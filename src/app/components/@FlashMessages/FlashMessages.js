@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
 import { noop } from 'lodash'
+import PropTypes from 'prop-types'
 import { removeMessage } from 'app/actions/flash.actions'
 import { Bem } from 'app/utils'
 import * as flashSelectors from 'app/selectors/flash.selectors'
 import Msg from './Msg'
-
-const { PropTypes } = React
 
 @connect(state => ({
   messages: flashSelectors.getMessages(state),

@@ -1,7 +1,7 @@
 import rootSaga, { timeoutRemoveFlash, takeFlashMessages } from './index'
 import { select, fork, take } from 'redux-saga/effects'
 import * as flashSelectors from 'app/selectors/flash.selectors'
-import { ADD_MESSAGE } from 'app/actions/flash.actions'
+import { ADD_MESSAGE } from 'app/actions/types'
 
 describe('Saga Tests', function() {
   describe('Root Saga', ()=> {

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import { Router } from 'react-router'
+import PropTypes from 'prop-types'
+import { Router } from 'react-router-dom'
 import createStaticHistory from 'server/utils/createStaticHistory'
 
 class StaticRouter extends React.Component {
