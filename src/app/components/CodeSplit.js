@@ -1,4 +1,5 @@
 import React from 'react'
+import { hasWindow } from 'app/utils'
 import PropTypes from 'prop-types'
 
 export default class CodeSplit extends React.Component {
@@ -11,7 +12,7 @@ export default class CodeSplit extends React.Component {
   };
 
   componentWillMount() {
-    this.callLoad(this.props.load)
+    if (hasWindow) this.callLoad(this.props.load)
   }
 
   componentWillReceiveProps(nextProps) {
