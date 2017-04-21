@@ -56,7 +56,7 @@
   "dependencies": {
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.1",
-    "babel-loader": "^6.4.1",
+    "babel-loader": "^7.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-dynamic-import-node": "^1.0.1",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
