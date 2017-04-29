@@ -4,6 +4,8 @@
 
 ## Breko Hub
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tomatau/breko-hub.svg)](https://greenkeeper.io/)
+
 Breko hub is a github repository that helps anyone create new JavaScript applications. Giving you a technically sound and well tested starting point for your application.
 
 ### Documentation
