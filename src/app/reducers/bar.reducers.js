@@ -1,3 +1,4 @@
+import { PENDING, REJECTED, FULFILLED } from 'redux-promise-middleware'
 import { typeToReducer, get } from 'app/utils'
 import { API_FETCH } from 'app/actions/types'
 
@@ -12,15 +13,15 @@ const initialState = {
 export const barReducers = typeToReducer({
 
   [ API_FETCH ]: {
-    PENDING: () => ({
+    [ PENDING ]: () => ({
       ...initialState,
       isPending: true,
     }),
-    REJECTED: (state, action) => ({
+    [ REJECTED ]: (state, action) => ({
       ...initialState,
       error: action.payload,
     }),
-    FULFILLED: (state, action) => ({
+    [ FULFILLED ]: (state, action) => ({
       ...initialState,
       data: getBar(action),
     }),

@@ -1,3 +1,4 @@
+import { PENDING, REJECTED, FULFILLED } from 'redux-promise-middleware'
 import { barReducers } from './bar.reducers'
 import { API_FETCH } from 'app/actions/types'
 
@@ -22,7 +23,7 @@ describe('Bar Reducers', ()=> {
 
     it('sets initialState with isPending=true', ()=> {
       const apiFetchPendingAction = {
-        type: `${API_FETCH}_PENDING`,
+        type: `${API_FETCH}_${PENDING}`,
       }
       expect(
         barReducers(stateBeforeDispatch, apiFetchPendingAction)
@@ -42,7 +43,7 @@ describe('Bar Reducers', ()=> {
 
     it('sets initialState with payload as error', ()=> {
       const apiFetchRejectedAction = {
-        type: `${API_FETCH}_REJECTED`,
+        type: `${API_FETCH}_${REJECTED}`,
         error: true,
         payload: new Error('api_fetch error'),
       }
@@ -64,7 +65,7 @@ describe('Bar Reducers', ()=> {
 
     it('sets initialState with payload as data', ()=> {
       const apiFetchFulfilledAction = {
-        type: `${API_FETCH}_FULFILLED`,
+        type: `${API_FETCH}_${FULFILLED}`,
         error: true,
         payload: {
           bar: [ 'some', 'test', 'data' ],
