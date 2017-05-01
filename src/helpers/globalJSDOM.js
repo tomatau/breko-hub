@@ -1,13 +1,15 @@
-import { jsdom } from 'jsdom'
+import { JSDOM } from 'jsdom'
 import { keys } from 'ramda'
 
-global.document = jsdom(
-  '<html><head></head><body><div id="application-root"></div></body></html>'
+const { window } = new JSDOM(
+  '<!DOCTYPE html><html><head></head><body><div id="application-root"></div></body></html>'
 )
-global.window = document.defaultView
-keys(document.defaultView).forEach(property => {
+const { document } = window
+global.window = window
+global.document = document
+keys(document).forEach(property => {
   if (typeof global[property] === 'undefined') {
-    global[property] = document.defaultView[property]
+    global[property] = document[property]
   }
 })
 
