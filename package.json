@@ -133,7 +133,7 @@
     "uuid": "^3.0.1",
     "webpack": "^2.4.1",
     "webpack-isomorphic-tools": "^3.0.2",
-    "yargs": "^7.1.0"
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
