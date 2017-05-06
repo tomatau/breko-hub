@@ -2,7 +2,7 @@ import { Bem } from 'app/utils'
 import styles from './Msg.module.scss'
 import PropTypes from 'prop-types'
 
-const Msg = ({ msg, className, ...props }) =>
+const Msg = ({ msg, className, ...props }) => (
   <span {...props} {...Msg.bem(null, msg.type, className)}>
     {msg.message}
     &nbsp;
@@ -10,6 +10,7 @@ const Msg = ({ msg, className, ...props }) =>
       x
     </strong>
   </span>
+)
 
 Msg.bem = new Bem(styles.msg)
 
