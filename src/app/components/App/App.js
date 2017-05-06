@@ -58,7 +58,7 @@ export default class App extends React.Component {
   }
 }
 
-const CodeSplitRoute = ({ load, ...props }) =>
+const CodeSplitRoute = ({ load, ...props }) => (
   <Route {...props}
     render={() => (
       <CodeSplit load={load}>
@@ -66,3 +66,4 @@ const CodeSplitRoute = ({ load, ...props }) =>
       </CodeSplit>
     )}
   />
+)

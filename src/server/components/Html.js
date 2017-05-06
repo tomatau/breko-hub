@@ -39,42 +39,42 @@ export default class Html extends React.Component {
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
-          {otherLinks.map((props, i) =>
+          {otherLinks.map((props, i) => (
             <link key={i} {...props} />
-          )}
-          {headStyles.map((style, i) =>
+          ))}
+          {headStyles.map((style, i) => (
             <link
               key={i}
               href={style}
               type='text/css' rel='stylesheet' media='screen'
             />
-          )}
-          {stringScripts.map((script, i) =>
+          ))}
+          {stringScripts.map((script, i) => (
             <script key={i} dangerouslySetInnerHTML={{
               __html: script,
             }} />
-          )}
-          {headScripts.map((script, i) =>
+          ))}
+          {headScripts.map((script, i) => (
             <script src={script} key={i} />
-          )}
+          ))}
         </head>
         <body {...helmet.bodyAttributes.toComponent()}>
-          {content.map((props, i) =>
+          {content.map((props, i) => (
             <div key={i} {...props} />
-          )}
-          {bodyScripts.map((script, i) =>
+          ))}
+          {bodyScripts.map((script, i) => (
             <script key={i} src={script} />
-          )}
-          {bodyStyles.map((style, i) =>
+          ))}
+          {bodyStyles.map((style, i) => (
             <script key={i} dangerouslySetInnerHTML={{
               __html: `loadCSS('${style}')`,
             }} />
-          )}
-          {bodyStyles.map((style, i) =>
+          ))}
+          {bodyStyles.map((style, i) => (
             <noscript key={i} dangerouslySetInnerHTML={{
               __html: `<link href="${style}" rel="stylesheet" />`,
             }} />
-          )}
+          ))}
         </body>
       </html>
     )

@@ -30,13 +30,13 @@ export default class FlashMessages extends React.Component {
     const { messages } = this.props
     return (
       <div {...FlashMessages.bem()}>
-        {messages.map(msg =>
+        {messages.map(msg => (
           <Msg key={msg.id}
             msg={msg}
             onClick={() => this.clickMessage(msg)}
             {...FlashMessages.bem('Msg')}
           />
-        )}
+        ))}
       </div>
     )
   }
