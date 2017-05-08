@@ -124,7 +124,7 @@
     "reselect": "3.0.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
-    "socket.io": "^1.7.3",
+    "socket.io": "^2.0.1",
     "socket.io-client": "^1.7.3",
     "style-loader": "^0.17.0",
     "tao-scss": "~0.4.1",
