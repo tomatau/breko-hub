@@ -121,7 +121,7 @@
     "redux-saga": "^0.15.0",
     "redux-thunk": "^2.2.0",
     "redux-via-socket.io": "~0.3.0",
-    "reselect": "3.0.0",
+    "reselect": "3.0.1",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "socket.io": "^1.7.3",
