@@ -142,7 +142,7 @@
     "babel-plugin-react-transform": "^2.0.2",
     "chai": "~3.5.0",
     "chai-as-promised": "^6.0.0",
-    "chai-enzyme": "^0.6.1",
+    "chai-enzyme": "^0.7.0",
     "chai-generator": "^2.1.0",
     "chai-jest-snapshot": "^0.3.0",
     "chai-shallow-deep-equal": "^1.4.6",
