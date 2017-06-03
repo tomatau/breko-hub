@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`HomeRoute Component matches snapshot 1`] = `
 <section
-  className="HomeRoute">
+  className="HomeRoute"
+>
   <p>
     Welcome to breko-hub
   </p>

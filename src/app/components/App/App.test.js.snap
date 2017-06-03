@@ -1,22 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`App Component Main renders routes inside Main 1`] = `
 <main
-  className="src-app-components-App-App-module-content">
+  className="src-app-components-App-App-module-content"
+>
   <Switch>
     <CodeSplitRoute
       exact={true}
-      load={[Function load]}
-      path="/" />
+      load={[Function]}
+      path="/"
+    />
     <CodeSplitRoute
-      load={[Function load]}
-      path="/bar" />
+      load={[Function]}
+      path="/bar"
+    />
     <CodeSplitRoute
-      load={[Function load]}
-      path="/oops" />
+      load={[Function]}
+      path="/oops"
+    />
     <CodeSplitRoute
-      load={[Function load]}
-      path="/private" />
+      load={[Function]}
+      path="/private"
+    />
     <CodeSplitRoute
-      load={[Function load]} />
+      load={[Function]}
+    />
   </Switch>
 </main>
 `;

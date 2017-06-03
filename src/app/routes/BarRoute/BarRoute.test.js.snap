@@ -1,8 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`BarRoute Component matches snapshot 1`] = `
 <section
-  className="BarRoute">
+  className="BarRoute"
+>
   <HelmetWrapper
-    encodeSpecialCharacters={true}>
+    encodeSpecialCharacters={true}
+  >
     <title>
       Bar
     </title>
@@ -21,9 +25,10 @@ exports[`BarRoute Component matches snapshot 1`] = `
      endpoint
   </p>
   <p>
-    And then navigate away and back to this route, you\'ll see the changes immediately
+    And then navigate away and back to this route, you'll see the changes immediately
   </p>
   <div
-    className="src-app-routes-BarRoute-BarRoute-module-block" />
+    className="src-app-routes-BarRoute-BarRoute-module-block"
+  />
 </section>
 `;

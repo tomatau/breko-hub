@@ -31,7 +31,7 @@ describe('Flash Actions', ()=> {
     it('allows overwriting of the message type', ()=> {
       const type = 'test type'
       expect(actions.addMessage(null, type))
-        .to.have.deep.property('payload.type', type)
+        .to.have.nested.property('payload.type', type)
     })
   })
 

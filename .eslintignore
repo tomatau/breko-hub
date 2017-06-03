@@ -1,3 +1,4 @@
 src/static/*
 /node_modules/**
+**/*.snap
 **/loadCSS.js

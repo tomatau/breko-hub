@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`NotFoundRoute Component matches snapshot 1`] = `
 <section
-  className="NotFoundRoute">
+  className="NotFoundRoute"
+>
   404, page not found
 </section>
 `;
