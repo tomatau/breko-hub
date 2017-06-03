@@ -144,7 +144,7 @@
     "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.7.0",
     "chai-generator": "^2.1.0",
-    "chai-jest-snapshot": "^0.3.0",
+    "chai-jest-snapshot": "^0.4.0",
     "chai-shallow-deep-equal": "^1.4.6",
     "cheerio": "^0.22.0",
     "co": "~4.6.0",
