@@ -142,7 +142,7 @@
     "babel-istanbul": "^0.12.2",
     "babel-plugin-react-transform": "^2.0.2",
     "chai": "^4.0.1",
-    "chai-as-promised": "^6.0.0",
+    "chai-as-promised": "^7.0.0",
     "chai-enzyme": "^0.7.0",
     "chai-generator": "^2.1.0",
     "chai-jest-snapshot": "^1.0.0",
