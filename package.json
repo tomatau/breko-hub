@@ -147,7 +147,7 @@
     "chai-generator": "^2.1.0",
     "chai-jest-snapshot": "^1.0.0",
     "chai-shallow-deep-equal": "^1.4.6",
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.2",
     "co": "~4.6.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
