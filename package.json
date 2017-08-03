@@ -170,7 +170,7 @@
     "redbox-react": "^1.4.0",
     "sass-lint": "^1.10.2",
     "scripty": "^1.7.1",
-    "sinon": "^2.3.2",
+    "sinon": "^3.0.0",
     "sinon-chai": "^2.10.0",
     "skin-deep": "^1.0.0",
     "supertest": "^3.0.0",
