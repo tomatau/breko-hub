@@ -83,7 +83,7 @@
     "css-loader": "^0.28.4",
     "css-modules-require-hook": "^4.0.6",
     "cssnano": "^3.10.0",
-    "debug": "^2.6.8",
+    "debug": "^3.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.0.0-rc.0",
     "glob": "^7.1.2",
