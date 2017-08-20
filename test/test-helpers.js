@@ -30,11 +30,35 @@ const helpers = {
   createHistory(path) {
     return createStaticHistory(path)
   },
+  createStorage() {
+    return {
+      length: 1,
+      state: {},
+      getItem(key) {
+        return this.state[key] || null
+      },
+      setItem(key, value) {
+        this.state[key] = typeof value === 'string'
+          ? value
+          : JSON.stringify(value)
+      },
+      removeItem(key) {
+        delete this.state[key]
+      },
+      clear() {
+        for (const key in this.state) {
+          this.removeItem(key)
+        }
+      },
+    }
+  },
   cleanup(wrapper) {
     if (wrapper) {
       wrapper.unmount()
     }
     sandbox.restore()
+    sessionStorage.clear()
+    localStorage.clear()
   },
 }
 

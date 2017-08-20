@@ -1,8 +1,22 @@
 // This file ensures JSDOM is loaded before React is included
-import 'helpers/cssModulesHook'
-import 'helpers/globalJSDOM'
-import nodeHookFilename from 'node-hook-filename'
 
-process.env.DEBUG = false
+const path = require('path')
 
-nodeHookFilename([ '.jpeg' ])
+delete process.env.DEBUG
+process.env.NODE_ENV = 'test'
+
+require('babel-core/register')({
+  only: [
+    /\/src\//,
+    /\/test\//,
+  ],
+})
+
+require('../src/helpers/cssModulesHook')
+require('../src/helpers/globalJSDOM')
+require('node-hook-filename')(
+  [ '.svg', '.jpg', '.jpeg' ],
+  (request, parent) =>
+    // normalise paths
+    path.resolve(parent.id, '..', request).replace(/.*(?=\/breko-hub)/, '')
+)

@@ -6,11 +6,11 @@ import supertest from 'supertest-as-promised'
 import { createMemoryHistory } from 'history'
 import { routerMiddleware } from 'react-router-redux'
 import Helmet from 'react-helmet'
+import { TESTS } from 'config/paths'
 import server from 'server-instance'
 import StaticRouter from 'server/components/StaticRouter'
-import { TESTS } from 'config/paths'
 import { setRoutes, rootRouter } from 'server/router'
-import * as clientApp from 'app'
+import clientApp from 'app'
 
 const TestRoute = () => <div>Test Route</div>
 const AnotherRoute = () => <div>Another Route</div>
@@ -39,19 +39,6 @@ const ReactApp = (
 /*
 ## This file tests functionality around Server Side rendering
 Routes have been stubbed out to avoid complexities of testing the full app.
-
-These tests cover:
-  - 404 and redirects
-  - that the page renders a doctype and assets
-  - that the page renders the route
-    - using regex on content to avoid checksum parsing
-  - that the page renders initial state from the store
-  - that gzip works
-  - that the favicon works
-  - that the headers contain a sessions cookie array
-
-The tests don't cover:
-  - flash messages, needs complete session inspection
  */
 describe('Server Side Render', function() {
   const testRouter = Router()
@@ -76,40 +63,41 @@ describe('Server Side Render', function() {
     })
     app.use(testRouter.routes())
     // add rootRouer routes
-    app.use(async (ctx, next) => {
+    app.use(async(ctx, next) => {
       setRoutes(assets)
       await rootRouter.routes()(ctx, next)
     })
     // set createAppInstance to use stubs
-    sinon.stub(clientApp, 'createAppInstance').returns(ReactApp)
+    sandbox.stub(clientApp, 'createAppInstance').returns(ReactApp)
   })
 
   after(() => {
     Helmet.canUseDOM = true
-    clientApp.createAppInstance.restore()
+    sandbox.restore()
   })
 
-  it('still renders the app when not found', () =>
+  it(`still renders the app when not found`, () =>
     supertest(app.callback())
       .get('/moo')
       .expect(200, /Test App/i)
   )
 
-  it('redirects to /oops when a server error', () =>
+  it(`redirects to /oops when a server error`, () =>
     supertest(app.callback())
       .get('/broken-route')
       .expect(302)
       .expect('location', '/oops')
   )
 
-  it('redirects to /oops when a react error', () =>
+  // TODO: this is a pain, just display oops page with current URI
+  it.skip(`redirects to /oops when a react error`, () =>
     supertest(app.callback())
       .get('/error-route')
       .expect(302)
       .expect('location', '/oops')
   )
 
-  it('renders a html page with assets', () =>
+  it(`renders a html page with assets`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
@@ -119,7 +107,7 @@ describe('Server Side Render', function() {
       .expect(/<script src="\/test-asset.js">/)
   )
 
-  it('renders document title and meta from helmet', () =>
+  it(`renders document title and meta from helmet`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
@@ -128,7 +116,7 @@ describe('Server Side Render', function() {
       .expect(/<meta data-react-helmet="true" charset="utf-8"\/>/)
   )
 
-  it('renders a react route', () =>
+  it(`renders a react route`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
@@ -146,24 +134,31 @@ describe('Server Side Render', function() {
       })
   )
 
-  it('renders initial state from the store', () =>
+  it(`renders initial state from the store`, () =>
     supertest(app.callback())
       .get('/test')
       .expect((res) => {
         // make testStore with path we expect the route state for
-        const expectedState = helpers.createStore({}, [
-          routerMiddleware(createMemoryHistory('/test')),
-        ]).getState()
+        const testHistory = createMemoryHistory('/test')
+        const testStore = helpers.createStore({}, [
+          routerMiddleware(testHistory),
+        ])
+        // Maybe dispatch a LOCATION update
+        // testStore.dispatch({
+        //   type: LOCATION_CHANGE,
+        //   payload: testHistory.location,
+        // })
         // get the server rendered state
-        const initStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([\{\},/$ \w\n\r":\[\]]+);<\/script>/
+        const initStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([{},/$ \w\n\r":[\]-]+);<\/script>/
         const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)
-        if (!R.equals(renderedState, expectedState)) {
+
+        if (!R.equals(renderedState, testStore.getState())) {
           throw new Error('should render initial state')
         }
       })
   )
 
-  it('wires up session cookie', () =>
+  it(`wires up session cookie`, () =>
     supertest(app.callback())
       .get('/')
       .expect(200)
@@ -182,24 +177,27 @@ describe('Server Side Render', function() {
       })
   )
 
-  it('supports react-route redirects', () =>
+  it(`supports react-route redirects`, () =>
     supertest(app.callback())
       .get('/redirect')
       .expect(302)
       .expect('location', '/test')
   )
 
-  it('servers the favicon.ico', () =>
+  it(`serves the favicon.ico`, () =>
     supertest(app.callback())
       .get('/favicon.ico')
       .expect(200)
       .expect('content-type', 'image/x-icon')
   )
 
-  it('serves gziped assets', () =>
+  it(`serves gziped assets`, () =>
     supertest(app.callback())
       .get(assets.javascript.body)
       .expect(200)
       .expect('content-encoding', 'gzip')
   )
+
+  // TODO: needs complete session inspection
+  it(`supports server side flash messages`)
 })

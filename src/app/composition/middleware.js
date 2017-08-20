@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { pipe, tap } from 'ramda'
-import { hasWindow } from 'app/utils'
+import { isBrowser } from 'app/utils'
 
 const log = debug('DISPATCH:')
 
@@ -16,7 +16,7 @@ export const middleware = [
 ]
 
 /* istanbul ignore else  */
-if (hasWindow) {
+if (isBrowser) {
   middleware.push(
     outClientViaSocketIO(require('./socket')),
     createLogger({

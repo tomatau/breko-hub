@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import StaticRouter from 'server/components/StaticRouter'
 import Html from 'server/components/Html'
 import { compact } from 'app/utils'
-import * as app from 'app'
+import app from 'app'
 
 const log = debug('renderApp')
 

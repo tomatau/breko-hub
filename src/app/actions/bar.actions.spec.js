@@ -2,13 +2,13 @@ import { API_FETCH } from 'app/actions/types'
 import { request } from 'app/utils'
 import { apiFetch } from './bar.actions'
 
-describe('Bar Actions', ()=> {
-  describe('apiFetch()', ()=> {
-    beforeEach(()=> {
+describe('Bar Actions', function() {
+  describe('apiFetch()', () => {
+    beforeEach(() => {
       sinon.stub(request, 'fetch')
     })
 
-    afterEach(()=> {
+    afterEach(() => {
       request.fetch.restore()
     })
 
@@ -21,7 +21,7 @@ describe('Bar Actions', ()=> {
       expect(request.fetch).to.have.been.calledWith('/api/bar')
     })
 
-    it('resolves the promise from fetching /api/bar', async () => {
+    it('resolves the promise from fetching /api/bar', async() => {
       const requestResolve = { some: 'data' }
       request.fetch.returns(Promise.resolve(requestResolve))
 

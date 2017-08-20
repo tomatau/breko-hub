@@ -18,23 +18,31 @@ setGlobals(isBrowser ? window : global)
 
 function setGlobals(global) {
   global.global = global
+
   global.expect = expect
   global.sinon = sinon
+
+  global.snap = snap
+
   global.shallow = shallow
   global.mount = mount
   global.render = render
-  global.snap = snap
+
   global.defer = setImmediate
   global.sandbox = sinon.sandbox.create()
+
   global._ = lodash
   global.R = ramda
   global.helpers = helpers
-  if (!global.location.port) {
-    global.location = {
-      protocol: 'http:',
-      host: 'localhost:3210',
-      hostname: 'localhost',
-      port: '3210',
-    }
+
+  global.HELLIP = '\u2026'
+  global.NBSP = '\u00A0'
+
+  if (!global.sessionStorage) {
+    global.sessionStorage = helpers.createStorage()
+  }
+
+  if (!global.localStorage) {
+    global.localStorage = helpers.createStorage()
   }
 }

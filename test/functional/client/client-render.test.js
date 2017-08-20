@@ -1,8 +1,8 @@
 import { Main, history } from 'app/main'
 import fetchMock from 'fetch-mock'
 
-describe('Client Render', function() {
-  before(()=> {
+describe(`Client Render`, function() {
+  before(() => {
     history.push('/')
   })
 
@@ -21,16 +21,16 @@ describe('Client Render', function() {
     defer(done)
   })
 
-  afterEach(()=> {
+  afterEach(() => {
     this.wrapper.unmount()
     fetchMock.restore()
   })
 
-  it('should set the page title', ()=> {
+  it(`sets the page title`, () => {
     expect(document.title).to.eql('Breko Hub')
   })
 
-  it('should set the meta description and chartset', () => {
+  it(`sets the meta description and chartset`, () => {
     const metaCharset = document.querySelector('meta[charset]')
     expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
     const metaDesc = document.querySelector('meta[name=description]')
@@ -45,62 +45,62 @@ describe('Client Render', function() {
     expect(this.wrapper.find('.PrivateRoute')).not.to.be.present()
   })
 
-  describe('Routes', ()=> {
-    describe('404', ()=> {
+  describe(`Routes`, () => {
+    describe(`404`, () => {
       beforeEach((done) => {
         history.push('/no-match-found')
         defer(done)
       })
 
-      it('should render the 404 route when no match found', ()=> {
-        expect(this.wrapper.find('.NotFoundRoute')).to.have.length(1)
+      it(`renders the 404 route when no match found`, () => {
+        expect(this.wrapper.find('.NotFoundRoute')).to.be.present()
       })
     })
 
-    describe('/oops', ()=> {
+    describe(`/oops`, () => {
       beforeEach((done) => {
         history.push('/oops')
         defer(done)
       })
 
-      it('should render the .OopsRoute', ()=> {
-        expect(this.wrapper.find('.OopsRoute')).to.have.length(1)
+      it(`renders the .OopsRoute`, () => {
+        expect(this.wrapper.find('.OopsRoute')).to.be.present()
       })
     })
 
-    describe('/bar', ()=> {
+    describe(`/bar`, () => {
       beforeEach((done) => {
         history.push('/bar')
         defer(done)
       })
 
-      it('should render the .BarRoute', ()=> {
-        expect(this.wrapper.find('.BarRoute')).to.have.length(1)
-      })
-
-      it('should update the page title', ()=> {
+      it(`updates the page title`, () => {
         expect(document.title).to.eql('Bar | Breko Hub')
       })
 
-      it('should render the response from /api/bar', ()=> {
+      it(`renders the .BarRoute`, () => {
+        expect(this.wrapper.find('.BarRoute')).to.be.present()
+      })
+
+      it(`renders the response from /api/bar`, () => {
         barResponse.forEach(item => {
           const barItem = this.wrapper.find({ children: item })
-          expect(barItem).to.have.length(1)
+          expect(barItem).to.be.present()
           expect(barItem.type()).to.eql('p')
         })
       })
     })
 
-    describe('/private', ()=> {
+    describe(`/private`, () => {
       const privateMsg = {
         message: 'You may not view the private route!!',
       }
 
-      before(()=> {
+      before(() => {
         this.clock = sinon.useFakeTimers()
       })
 
-      after(()=> {
+      after(() => {
         this.clock.restore()
       })
 
@@ -109,24 +109,24 @@ describe('Client Render', function() {
         defer(done)
       })
 
-      afterEach(()=> {
+      afterEach(() => {
         this.clock.tick(4000)
       })
 
-      it('redirects to /', ()=> {
-        expect(this.wrapper.find('.HomeRoute')).to.have.length(1)
+      it(`redirects to /`, () => {
+        expect(this.wrapper.find('.HomeRoute')).to.be.present()
       })
 
-      it('adds a flash message', ()=> {
+      it(`adds a flash message`, () => {
         const flashMsgs = this.wrapper.find('.FlashMessages__Msg')
-        expect(flashMsgs).to.have.length(1)
+        expect(flashMsgs).to.be.present()
         expect(flashMsgs.text()).to.contain(privateMsg.message)
       })
 
-      it('removes flash messages after 4 seconds', (done)=> {
+      it(`removes flash messages after 4 seconds`, (done) => {
         expect(
           this.wrapper.find('.FlashMessages__Msg')
-        ).to.have.length(1)
+        ).to.be.present()
         this.clock.tick(4000)
         defer(() => {
           expect(

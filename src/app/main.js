@@ -10,7 +10,7 @@ import socket from 'app/composition/socket'
 import rootSaga from 'app/sagas'
 import { isBrowser } from 'app/utils'
 import rootReducer from 'app/reducers'
-import * as app from 'app'
+import app from 'app'
 
 // client store and history
 // can go out of sync with server store and server history...

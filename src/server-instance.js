@@ -14,7 +14,7 @@ const app = new Koa()
 app.keys = [ 'd0n7', '7311', '4ny0n3' ]
 
 app.use(compress({
-  filter: type => !(/event\-stream/i.test(type)) && compressible(type),
+  filter: type => !(/event-stream/i.test(type)) && compressible(type),
 }))
 app.use(favicon(`${ASSETS}/favicon.ico`))
 app.use(convert(session()))
