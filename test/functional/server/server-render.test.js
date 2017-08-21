@@ -4,7 +4,7 @@ import Router from 'koa-router'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import supertest from 'supertest-as-promised'
 import { createMemoryHistory } from 'history'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware, LOCATION_CHANGE } from 'react-router-redux'
 import Helmet from 'react-helmet'
 import { TESTS } from 'config/paths'
 import server from 'server-instance'
@@ -59,7 +59,7 @@ describe('Server Side Render', function() {
     app.use(serve(TESTS + '/fixtures/assets'))
     // setup a broken route
     testRouter.get('/broken-route', () => {
-      throw new Error('I am broken')
+      throw new Error('I am a broken server route')
     })
     app.use(testRouter.routes())
     // add rootRouer routes
@@ -82,19 +82,16 @@ describe('Server Side Render', function() {
       .expect(200, /Test App/i)
   )
 
-  it(`redirects to /oops when a server error`, () =>
+  it(`returns a 500 when a server error`, () =>
     supertest(app.callback())
       .get('/broken-route')
-      .expect(302)
-      .expect('location', '/oops')
+      .expect(500)
   )
 
-  // TODO: this is a pain, just display oops page with current URI
-  it.skip(`redirects to /oops when a react error`, () =>
+  it(`returns a 500 when a react error`, () =>
     supertest(app.callback())
       .get('/error-route')
-      .expect(302)
-      .expect('location', '/oops')
+      .expect(500)
   )
 
   it(`renders a html page with assets`, () =>
@@ -134,29 +131,34 @@ describe('Server Side Render', function() {
       })
   )
 
-  it(`renders initial state from the store`, () =>
-    supertest(app.callback())
+  it(`renders initial state from the store`, () => {
+    const cleanupState = R.compose(
+      R.dissocPath([ 'routing', 'location', 'key' ]),
+      R.dissocPath([ 'routing', 'location', 'state' ]),
+    )
+    const initialStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([{},/$ \w\n\r":[\]-]+);<\/script>/
+
+    return supertest(app.callback())
       .get('/test')
       .expect((res) => {
-        // make testStore with path we expect the route state for
-        const testHistory = createMemoryHistory('/test')
-        const testStore = helpers.createStore({}, [
-          routerMiddleware(testHistory),
+        const stubHistory = createMemoryHistory({ initialEntries: [ '/test' ] })
+        const stubStore = helpers.createStore({}, [
+          routerMiddleware(stubHistory),
         ])
-        // Maybe dispatch a LOCATION update
-        // testStore.dispatch({
-        //   type: LOCATION_CHANGE,
-        //   payload: testHistory.location,
-        // })
-        // get the server rendered state
-        const initStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([{},/$ \w\n\r":[\]-]+);<\/script>/
-        const renderedState = JSON.parse(initStateRegex.exec(res.text)[1] || null)
 
-        if (!R.equals(renderedState, testStore.getState())) {
+        stubStore.dispatch({
+          type: LOCATION_CHANGE,
+          payload: stubHistory.location,
+        })
+
+        const expectedState = cleanupState(stubStore.getState())
+        const renderedState = JSON.parse(initialStateRegex.exec(res.text)[1] || null)
+
+        if (!R.equals(renderedState, expectedState)) {
           throw new Error('should render initial state')
         }
       })
-  )
+  })
 
   it(`wires up session cookie`, () =>
     supertest(app.callback())

@@ -167,7 +167,7 @@
     "react-test-renderer": "^15.5.4",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
-    "redbox-react": "^1.4.0",
+    "redbox-react": "^1.5.0",
     "sass-lint": "^1.10.2",
     "scripty": "^1.7.1",
     "sinon": "^3.0.0",

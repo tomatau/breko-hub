@@ -20,7 +20,7 @@ if (isBrowser) {
   middleware.push(
     outClientViaSocketIO(require('./socket')),
     createLogger({
-      predicate: () => debug.enabled(),
+      predicate: () => debug.enabled,
       collapsed: true,
     })
   )

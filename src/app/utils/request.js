@@ -11,7 +11,8 @@ export const fetch = async(endpoint, options) => {
     throw new Error(`Response error: ${endpoint}`)
   }
 
-  if (Number(response.headers.get('content-length')) <= 0) {
+  if (response.headers.has('content-length')
+    && Number(response.headers.get('content-length')) <= 0) {
     return null
   }
 
