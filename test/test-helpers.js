@@ -1,7 +1,7 @@
 import Koa from 'koa'
 import lodash from 'lodash/index'
 import { makeCreateStore } from 'app/composition/makeCreateStore'
-import createStaticHistory from 'server/utils/createStaticHistory'
+import { createMemoryHistory } from 'history'
 import rootReducer from 'app/reducers'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
@@ -28,7 +28,9 @@ const helpers = {
     ])(rootReducer, initialState)
   },
   createHistory(path) {
-    return createStaticHistory(path)
+    return createMemoryHistory({
+      initialEntries: [ path ],
+    })
   },
   createStorage() {
     return {
