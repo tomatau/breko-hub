@@ -18,8 +18,8 @@ exports[`App Component Main renders routes inside Main 1`] = `
       load={[Function]}
       path="/oops"
     />
-    <CodeSplitRoute
-      load={[Function]}
+    <Route
+      component={[Function]}
       path="/private"
     />
     <CodeSplitRoute

@@ -151,9 +151,9 @@ describe('Server Side Render', function() {
           payload: stubHistory.location,
         })
 
-        const expectedState = cleanupState(stubStore.getState())
-        const renderedState = JSON.parse(initialStateRegex.exec(res.text)[1] || null)
 
+        const expectedState = cleanupState(stubStore.getState())
+        const renderedState = cleanupState(JSON.parse(initialStateRegex.exec(res.text)[1] || null))
         if (!R.equals(renderedState, expectedState)) {
           throw new Error('should render initial state')
         }

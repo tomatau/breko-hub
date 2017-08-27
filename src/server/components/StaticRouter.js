@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Router } from 'react-router-dom'
-import createStaticHistory from 'server/utils/createStaticHistory'
+import { createMemoryHistory } from 'history'
 
 class StaticRouter extends React.Component {
   static propTypes = {
@@ -8,7 +8,7 @@ class StaticRouter extends React.Component {
   }
 
   static defaultProps = {
-    history: createStaticHistory(),
+    history: createMemoryHistory(),
   }
 
   static childContextTypes = {
@@ -18,7 +18,7 @@ class StaticRouter extends React.Component {
   getChildContext() {
     return {
       router: {
-        staticContext: this.props.history.context,
+        staticContext: this.props.history,
       },
     }
   }

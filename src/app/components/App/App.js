@@ -2,7 +2,7 @@ import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
-
+import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 import CodeSplit from 'app/components/CodeSplit'
 // example image import
 import avatarPath from 'assets/avatar.jpeg'
@@ -44,9 +44,10 @@ export default class App extends React.Component {
               path='/oops'
               load={() => import('app/routes/OopsRoute/OopsRoute')}
             />
-            <CodeSplitRoute
+            <Route
               path='/private'
-              load={() => import('app/routes/PrivateRoute/PrivateRoute')}
+              // no dynamic import when server side redirect
+              component={PrivateRoute}
             />
             <CodeSplitRoute
               load={() => import('app/routes/NotFoundRoute/NotFoundRoute')}

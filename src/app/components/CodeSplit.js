@@ -1,5 +1,5 @@
 import React from 'react'
-import { hasWindow } from 'app/utils'
+import { hasWindow, noop } from 'app/utils'
 import PropTypes from 'prop-types'
 
 export default class CodeSplit extends React.Component {
@@ -7,8 +7,12 @@ export default class CodeSplit extends React.Component {
     load: PropTypes.func,
   };
 
+  static defaultProps = {
+    load: noop,
+  };
+
   state = {
-    mod: null,
+    module: null,
   };
 
   componentWillMount() {
@@ -22,13 +26,15 @@ export default class CodeSplit extends React.Component {
   }
 
   callLoad(load) {
-    this.setState({ mod: null })
-    load().then(mod => {
-      this.setState({ mod })
+    this.setState({ module: null })
+    load().then(module => {
+      this.setState({ module })
     })
   }
 
   render() {
-    return this.props.children(this.state.mod)
+    const { children } = this.props
+    const { module } = this.state
+    return children(module)
   }
 }
