@@ -1,8 +1,9 @@
 import 'isomorphic-fetch'
 import debug from 'debug'
+
 const log = debug('utils.request')
 
-export const fetch = async(endpoint, options) => {
+export const fetch = async (endpoint, options) => {
   log('requesting', endpoint)
   const response = await (global || window).fetch(endpoint, options)
   log('respsonse', { endpoint, status: response.status })

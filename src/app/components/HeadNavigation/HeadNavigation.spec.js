@@ -3,7 +3,7 @@ import sd from 'skin-deep'
 import { NavLink } from 'react-router-dom'
 import styles from './HeadNavigation.module.scss'
 
-describe('Head Navigation Component', function() {
+describe('Head Navigation Component', function () {
   beforeEach(()=> {
     this.tree = sd.shallowRender(<HeadNavigation />)
   })
@@ -21,8 +21,8 @@ describe('Head Navigation Component', function() {
 
   describe('NavLinks', ()=> {
     const links = [
-      { to: '/',        content: 'Home' },
-      { to: '/bar',     content: 'Bar' },
+      { to: '/', content: 'Home' },
+      { to: '/bar', content: 'Bar' },
       { to: '/private', content: 'Private' },
     ]
 

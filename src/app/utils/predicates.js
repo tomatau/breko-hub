@@ -7,10 +7,10 @@ export const isBrowser = process.env.APP_ENV === 'browser'
 
 /* istanbul ignore next */
 export const isNodeInTree = (parent, child) => {
-  if (parent == child) return true
+  if (parent === child) return true
   let node = child.parentNode
   while (node != null) {
-    if (node == parent) return true
+    if (node === parent) return true
     node = node.parentNode
   }
   return false

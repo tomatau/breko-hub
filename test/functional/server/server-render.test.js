@@ -40,7 +40,7 @@ const ReactApp = (
 ## This file tests functionality around Server Side rendering
 Routes have been stubbed out to avoid complexities of testing the full app.
  */
-describe('Server Side Render', function() {
+describe('Server Side Render', function () {
   const testRouter = Router()
   const assets = {
     javascript: {
@@ -63,7 +63,7 @@ describe('Server Side Render', function() {
     })
     app.use(testRouter.routes())
     // add rootRouer routes
-    app.use(async(ctx, next) => {
+    app.use(async (ctx, next) => {
       setRoutes(assets)
       await rootRouter.routes()(ctx, next)
     })

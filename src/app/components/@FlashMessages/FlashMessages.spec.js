@@ -5,27 +5,27 @@ import { Provider } from 'react-redux'
 import * as actions from 'app/actions/flash.actions'
 import styles from './Msg.module.scss'
 
-describe('FlashMessages Component', function() {
-  beforeEach(()=> {
+describe('FlashMessages Component', function () {
+  beforeEach(() => {
     this.messages = makeMessages()
     this.tree = shallow(<FlashMessages />)
   })
 
-  it('renders a div with className as its root element', ()=> {
+  it('renders a div with className as its root element', () => {
     expect(this.tree.at(0).type()).to.eql('div')
     expect(this.tree.at(0).props()).to.have.property(
       'className', 'FlashMessages'
     )
   })
 
-  it('renders an empty div when no messages', ()=> {
+  it('renders an empty div when no messages', () => {
     expect(this.tree.children()).to.have.length(0)
   })
 
-  context('Given Messages', ()=> {
+  context('Given Messages', () => {
     const clickHandler = sinon.spy()
 
-    beforeEach(()=> {
+    beforeEach(() => {
       clickHandler.reset()
       this.tree = shallow(
         <FlashMessages
@@ -35,7 +35,7 @@ describe('FlashMessages Component', function() {
       )
     })
 
-    it('renders a Msg component for each message in props', ()=> {
+    it('renders a Msg component for each message in props', () => {
       expect(this.tree.find(Msg)).to.have.length(this.messages.length)
       this.messages.forEach(msg => {
         const item = this.tree.find({ msg })
@@ -44,7 +44,7 @@ describe('FlashMessages Component', function() {
       })
     })
 
-    it('dispatches a removeMsg with the msg id when clicked', ()=> {
+    it('dispatches a removeMsg with the msg id when clicked', () => {
       this.messages.forEach(msg => {
         const item = this.tree.find({ msg })
         item.simulate('click')
@@ -55,8 +55,8 @@ describe('FlashMessages Component', function() {
   })
 })
 
-describe('Connected FlashMessages', function() {
-  beforeEach(()=> {
+describe('Connected FlashMessages', function () {
+  beforeEach(() => {
     this.messages = makeMessages()
     this.store = helpers.createStore({
       flash: { messages: this.messages },
@@ -69,7 +69,7 @@ describe('Connected FlashMessages', function() {
     )
   })
 
-  it('should render messages from store', ()=> {
+  it('should render messages from store', () => {
     const flashMessages = this.tree.find(`.${styles.msg}`)
     expect(flashMessages).to.have.length(this.messages.length)
     flashMessages.forEach((node, i) => {
@@ -77,7 +77,7 @@ describe('Connected FlashMessages', function() {
     })
   })
 
-  it('should be connected to removeMessage action creator',()=> {
+  it('should be connected to removeMessage action creator', () => {
     const flashMessage = this.tree.find(FlashMessages)
     flashMessage.prop('removeMessage')('123')
     expect(

@@ -1,6 +1,6 @@
 import * as flashSelectors from './flash.selectors'
 
-describe('Flash Selectors', function() {
+describe('Flash Selectors', function () {
   describe('getMessages()', () => {
     it('returns an empty array by default', () => {
       expect(

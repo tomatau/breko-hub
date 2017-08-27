@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 babel-node \
   `npm bin`/babel-istanbul cover \

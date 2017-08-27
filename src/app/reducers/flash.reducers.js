@@ -9,18 +9,15 @@ const initialState = {
 }
 
 export const flashReducers = typeToReducer({
-
-  [ REMOVE_MESSAGE ]: (state, action) => ({
+  [REMOVE_MESSAGE]: (state, action) => ({
     ...state,
     messages: filter(
       flash => flash.id !== getFlashId(action),
       state.messages
     ),
   }),
-
-  [ ADD_MESSAGE ]: (state, action) => ({
+  [ADD_MESSAGE]: (state, action) => ({
     ...state,
     messages: [ ...state.messages, action.payload ],
   }),
-
 }, initialState)

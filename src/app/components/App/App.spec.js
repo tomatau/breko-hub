@@ -6,7 +6,7 @@ import { shallow } from 'enzyme'
 import styles from './App.module.scss'
 import avatarPath from 'assets/avatar.jpeg'
 
-describe('App Component', function() {
+describe('App Component', function () {
   helpers.setupSnapshots(__filename)
 
   beforeEach(() => {

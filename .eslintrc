@@ -1,24 +1,63 @@
 {
-  "extends": "rackt",
   "env": {
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
   },
   "rules": {
-    "react/jsx-uses-react": 1,
+    "array-bracket-spacing": [2, "always"],
+    "comma-dangle": [1, "always-multiline"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "computed-property-spacing": ["error", "never"],
+    "dot-location": [2, "property"],
+    "eol-last": 2,
+    "eqeqeq": [2, "allow-null"],
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "indent": ["error", 2, { "MemberExpression": 1, "SwitchCase": 1 }],
+    "jsx-quotes": [2, "prefer-single"],
+    "keyword-spacing": 2,
+    "max-params": 2,
+    "mocha/no-exclusive-tests": "error",
+    "mocha/no-identical-title": "error",
+    "no-lonely-if": 2,
+    "no-mixed-operators": 2,
+    "no-multi-spaces": 2,
+    "no-multiple-empty-lines": 2,
+    "no-return-await": 2,
+    "no-template-curly-in-string": 2,
+    "no-undef": 2,
+    "no-unexpected-multiline": 2,
+    "no-unsafe-negation": 2,
+    "no-unused-vars": 2,
+    "object-curly-spacing": [2, "always"],
+    "operator-linebreak": ["error", "before"],
+    "padded-blocks": ["error", "never"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "react/jsx-no-undef": 2,
+    "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 2,
     "react/jsx-wrap-multilines": 2,
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-    "jsx-quotes": [2, "prefer-single"],
-    "comma-dangle": [1, "always-multiline"],
-    "no-unexpected-multiline": 2,
-    "space-before-function-paren": [1, "never"],
-    "require-yield": 0
+    "require-yield": 0,
+    "semi": [2, "never"],
+    "space-before-blocks": [2, "always"],
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "strict": 0
   },
   "plugins": [
-    "react"
+    "react",
+    "jsx-a11y",
+    "mocha",
+    "import"
   ],
   "globals": {
     "expect": true,
@@ -27,6 +66,7 @@
     "sinon": true,
     "debug": true,
     "React": true,
+    "PropTypes": true,
     "shallow": true,
     "mount": true,
     "render": true,
@@ -34,6 +74,8 @@
     "_": true,
     "R": true,
     "Ø": true,
+    "HELLIP": true,
+    "NBSP": true,
     "sandbox": true,
     "helpers": true,
     "defer": true

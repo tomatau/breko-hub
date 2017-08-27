@@ -1,7 +1,7 @@
 import { Main, history } from 'app/main'
 import fetchMock from 'fetch-mock'
 
-describe(`Client Render`, function() {
+describe(`Client Render`, function () {
   before(() => {
     history.push('/')
   })

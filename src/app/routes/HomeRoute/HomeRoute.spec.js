@@ -1,6 +1,6 @@
 import HomeRoute from './HomeRoute'
 
-describe('HomeRoute Component', function() {
+describe('HomeRoute Component', function () {
   helpers.setupSnapshots(__filename)
 
   it('matches snapshot', () => {

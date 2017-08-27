@@ -4,7 +4,7 @@ import rimraf from 'rimraf'
 
 const log = debug('clean-assets')
 
-if (isEnv('development'))  {
+if (isEnv('development')) {
   rimraf(ASSET_FILE, err => {
     if (err) {
       log(err)
