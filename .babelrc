@@ -18,6 +18,8 @@
     ["module-resolver", {
       "root": ["./src"]
     }],
-    ["jsx-fragment", { "tagName": "Ø" }]
+    ["jsx-fragment", {
+      "tagName": "Ø"
+    }]
   ]
 }

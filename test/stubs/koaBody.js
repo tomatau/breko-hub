@@ -2,6 +2,6 @@ export const generator = function *(next) {
   yield next
 }
 
-export default function() {
+export default function () {
   return generator
 }

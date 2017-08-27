@@ -9,7 +9,7 @@ import app from 'app'
 const log = debug('renderApp')
 const isClientRedirect = isOneOf([ 'PUSH', 'REPLACE' ])
 
-export default function(assets) {
+export default function (assets) {
   return function renderApp(ctx) {
     ctx.store.dispatch({
       type: LOCATION_CHANGE,

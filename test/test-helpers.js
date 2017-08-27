@@ -9,7 +9,7 @@ import chaiJestSnapshot from 'chai-jest-snapshot'
 
 const helpers = {
   setupSnapshots(filename) {
-    beforeEach(function() {
+    beforeEach(function () {
       chaiJestSnapshot.setFilename(filename + '.snap')
       chaiJestSnapshot.setTestName(this.currentTest.fullTitle())
     })

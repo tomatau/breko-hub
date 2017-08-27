@@ -2,8 +2,10 @@ import { Bem } from 'app/utils'
 import styles from './Msg.module.scss'
 import PropTypes from 'prop-types'
 
+const bem = new Bem(styles.msg)
+
 const Msg = ({ msg, className, ...props }) => (
-  <span {...props} {...Msg.bem(null, msg.type, className)}>
+  <span {...props} {...bem(null, msg.type, className)}>
     {msg.message}
     &nbsp;
     <strong className={styles.close}>
@@ -11,8 +13,6 @@ const Msg = ({ msg, className, ...props }) => (
     </strong>
   </span>
 )
-
-Msg.bem = new Bem(styles.msg)
 
 Msg.propTypes = {
   msg: PropTypes.shape({

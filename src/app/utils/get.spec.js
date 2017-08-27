@@ -1,6 +1,6 @@
 import get from './get'
 
-describe('Get', function() {
+describe('Get', function () {
   beforeEach(()=> {
     this.object = {
       foo: 'bar',

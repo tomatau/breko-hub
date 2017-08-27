@@ -6,6 +6,8 @@ import { Bem } from 'app/utils'
 import * as flashSelectors from 'app/selectors/flash.selectors'
 import Msg from './Msg'
 
+const bem = new Bem('FlashMessages')
+
 @connect(state => ({
   messages: flashSelectors.getMessages(state),
 }), { removeMessage })
@@ -20,8 +22,6 @@ export default class FlashMessages extends React.Component {
     removeMessage: noop,
   };
 
-  static bem = new Bem('FlashMessages');
-
   clickMessage(msg) {
     this.props.removeMessage(msg.id)
   }
@@ -29,12 +29,12 @@ export default class FlashMessages extends React.Component {
   render() {
     const { messages } = this.props
     return (
-      <div {...FlashMessages.bem()}>
+      <div {...bem()}>
         {messages.map(msg => (
           <Msg key={msg.id}
             msg={msg}
             onClick={() => this.clickMessage(msg)}
-            {...FlashMessages.bem('Msg')}
+            {...bem('Msg')}
           />
         ))}
       </div>

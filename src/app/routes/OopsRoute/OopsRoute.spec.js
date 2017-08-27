@@ -1,6 +1,6 @@
 import OopsRoute from './OopsRoute'
 
-describe('OopsRoute Component', function() {
+describe('OopsRoute Component', function () {
   helpers.setupSnapshots(__filename)
 
   it('matches snapshot', () => {

@@ -2,7 +2,7 @@ import Msg from './Msg'
 import { shallow } from 'enzyme'
 import styles from './Msg.module.scss'
 
-describe('Msg Component', function() {
+describe('Msg Component', function () {
   beforeEach(()=> {
     this.messages = makeMessages()
     this.msg = _.sample(this.messages)

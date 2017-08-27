@@ -1,9 +1,16 @@
 coverage
 .idea
 .env
+.DS_Store
 node_modules
 src/static
+dist
+temp
+.sass-cache
+*.css.map
 webpack-assets.json
+webpack-stats.json
+logs
 *.log
 *.sublime-workspace
-untracked*
+*untracked*

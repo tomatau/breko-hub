@@ -1,6 +1,6 @@
 import { compact } from './helpers'
 
-describe('compact()', function() {
+describe('compact()', function () {
   it('removes falsey values from an array', () => {
     const messyArray = [
       true,

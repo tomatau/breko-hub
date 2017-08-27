@@ -11,20 +11,18 @@ const initialState = {
 }
 
 export const barReducers = typeToReducer({
-
-  [ API_FETCH ]: {
-    [ PENDING ]: () => ({
+  [API_FETCH]: {
+    [PENDING]: () => ({
       ...initialState,
       isPending: true,
     }),
-    [ REJECTED ]: (state, action) => ({
+    [REJECTED]: (state, action) => ({
       ...initialState,
       error: action.payload,
     }),
-    [ FULFILLED ]: (state, action) => ({
+    [FULFILLED]: (state, action) => ({
       ...initialState,
       data: getBar(action),
     }),
   },
-
 }, initialState)

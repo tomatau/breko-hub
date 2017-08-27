@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-describe(`Client Socket`, function() {
+describe(`Client Socket`, function () {
   const expectedConnection = `${global.location.protocol}//${global.location.hostname}:${global.location.port}`
 
   it(`connect to current host and port`, () => {
