@@ -14,8 +14,8 @@ compiler.plugin('compilation', () => log('Webpack compiling...'))
 app.use(koaWebpack({
   compiler,
   dev: {
-    quiet: true,
-    noInfo: true,
+    quiet: false,
+    noInfo: false,
     stats: {
       colors: true,
       reasons: true,
