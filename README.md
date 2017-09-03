@@ -34,7 +34,7 @@ Breko-hub will only work on node version 6 and above as it is making use of Koa 
 Use the following commands to get started on your new app using breko-hub.
 
 ```
-git clone git@github.com:tomatau/breko-hub.git <directory-name>
+git clone --depth=1 git@github.com:tomatau/breko-hub.git <directory-name>
 cd <directory-name>
 npm i
 mv example.env .env
