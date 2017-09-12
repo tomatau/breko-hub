@@ -138,7 +138,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.0.0",
     "babel-istanbul": "^0.12.2",
     "babel-plugin-react-transform": "^2.0.2",
     "chai": "^4.0.1",
