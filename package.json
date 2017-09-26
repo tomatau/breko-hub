@@ -149,7 +149,7 @@
     "chai-shallow-deep-equal": "^1.4.6",
     "cheerio": "^1.0.0-rc.2",
     "co": "~4.6.0",
-    "enzyme": "^2.8.2",
+    "enzyme": "^3.0.0",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^4.0.0",
     "eslint-plugin-import": "^2.7.0",
