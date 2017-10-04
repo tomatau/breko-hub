@@ -130,7 +130,7 @@
     "style-loader": "^0.19.0",
     "tao-scss": "~0.4.1",
     "type-to-reducer": "^1.0.3",
-    "url-loader": "~0.5.8",
+    "url-loader": "~0.6.1",
     "uuid": "^3.0.1",
     "webpack": "^3.0.0",
     "webpack-isomorphic-tools": "^3.0.2",
