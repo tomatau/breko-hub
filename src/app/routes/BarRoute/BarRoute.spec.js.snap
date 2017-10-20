@@ -5,6 +5,7 @@ exports[`BarRoute Component matches snapshot 1`] = `
   className="BarRoute"
 >
   <HelmetWrapper
+    defer={true}
     encodeSpecialCharacters={true}
   >
     <title>

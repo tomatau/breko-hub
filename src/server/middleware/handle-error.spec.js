@@ -1,6 +1,6 @@
 import Koa from 'koa'
 import mockHTTP from 'node-mocks-http'
-import handleError from './handleError'
+import handleError from './handle-error'
 
 const sessionState = {}
 const fakeSession = async (ctx, next) => {

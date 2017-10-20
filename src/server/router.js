@@ -1,8 +1,8 @@
 import router from 'koa-router'
 import compose from 'koa-compose'
-import setStore from 'server/middleware/setStore'
-import flashMessages from 'server/middleware/flashMessages'
-import renderApp from 'server/middleware/renderApp'
+import setStore from 'server/middleware/set-store'
+import flashMessages from 'server/middleware/flash-messages'
+import renderApp from 'server/middleware/render-app'
 import apiRouter from 'server/api'
 
 const log = debug('server-router')

@@ -2,7 +2,7 @@ import chokidar from 'chokidar'
 import webpack from 'webpack'
 import R from 'ramda'
 import webpackDevelopmentConfig from 'config/webpack.development.config'
-import { isomorphicTools } from 'server/isomorphicTools'
+import { isomorphicTools } from 'server/isomorphic-tools'
 import koaWebpack from 'koa-webpack'
 import { SERVER } from 'config/paths'
 

@@ -1,8 +1,7 @@
 import Koa from 'koa'
 import lodash from 'lodash/index'
-import { makeCreateStore } from 'app/composition/makeCreateStore'
+import createStore from 'app/composition/create-store'
 import { createMemoryHistory } from 'history'
-import rootReducer from 'app/reducers'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
 import chaiJestSnapshot from 'chai-jest-snapshot'
@@ -21,11 +20,14 @@ const helpers = {
     return clone
   },
   createStore(initialState={}, middleware=[]) {
-    return makeCreateStore([
-      thunkMiddleware,
-      promiseMiddleware(),
-      ...middleware,
-    ])(rootReducer, initialState)
+    return createStore(
+      [
+        thunkMiddleware,
+        promiseMiddleware(),
+        ...middleware,
+      ],
+      initialState
+    )
   },
   createHistory(path) {
     return createMemoryHistory({

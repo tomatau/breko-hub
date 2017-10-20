@@ -4,12 +4,11 @@ import { Provider } from 'react-redux'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 
 import { middleware, sagaMiddleware } from 'app/composition/middleware'
-import { makeCreateStore } from 'app/composition/makeCreateStore'
+import createStore from 'app/composition/create-store'
 import socket from 'app/composition/socket'
 
 import rootSaga from 'app/sagas'
 import { isBrowser } from 'app/utils'
-import rootReducer from 'app/reducers'
 import app from 'app'
 
 // client store and history
@@ -17,9 +16,10 @@ import app from 'app'
 // avoid using directly!
 export const history = isBrowser ? createBrowserHistory() : createMemoryHistory()
 
-export const store = makeCreateStore(
-  [ ...middleware, routerMiddleware(history) ]
-)(rootReducer, isBrowser ? window.__INITIAL_STATE__ : {})
+export const store = createStore(
+  [ ...middleware, routerMiddleware(history) ],
+  window.__INITIAL_STATE__ || {}
+)
 
 inClientViaSocketIO(socket, store.dispatch)
 
@@ -32,11 +32,3 @@ export const Main = (
     </ConnectedRouter>
   </Provider>
 )
-
-/* istanbul ignore if  */
-if (module.hot) {
-  /* istanbul ignore next */
-  module.hot.accept('app/reducers', () => {
-    store.replaceReducer(require('app/reducers'))
-  })
-}

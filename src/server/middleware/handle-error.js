@@ -2,7 +2,7 @@ import { RedBoxError } from 'redbox-react'
 import ReactDOMServer from 'react-dom/server'
 import { set } from 'lodash'
 import { isEnv } from 'app/utils'
-import makeHtmlBody from 'server/utils/makeHtmlBody'
+import makeHtmlBody from 'server/utils/make-html-body'
 
 const log = debug('handle-error')
 

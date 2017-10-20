@@ -38,6 +38,7 @@ describe(`Client Render`, function () {
   })
 
   it(`only renders the HomeRoute`, () => {
+    this.wrapper.update()
     expect(this.wrapper.find('.HomeRoute')).to.be.present()
     expect(this.wrapper.find('.OopsRoute')).not.to.be.present()
     expect(this.wrapper.find('.NotFoundRoute')).not.to.be.present()
@@ -53,6 +54,7 @@ describe(`Client Render`, function () {
       })
 
       it(`renders the 404 route when no match found`, () => {
+        this.wrapper.update()
         expect(this.wrapper.find('.NotFoundRoute')).to.be.present()
       })
     })
@@ -64,6 +66,7 @@ describe(`Client Render`, function () {
       })
 
       it(`renders the .OopsRoute`, () => {
+        this.wrapper.update()
         expect(this.wrapper.find('.OopsRoute')).to.be.present()
       })
     })
@@ -74,15 +77,21 @@ describe(`Client Render`, function () {
         defer(done)
       })
 
-      it(`updates the page title`, () => {
-        expect(document.title).to.eql('Bar | Breko Hub')
+      it(`updates the page title`, done => {
+        this.wrapper.update()
+        defer(() => {
+          expect(document.title).to.eql('Bar | Breko Hub')
+          done()
+        })
       })
 
       it(`renders the .BarRoute`, () => {
+        this.wrapper.update()
         expect(this.wrapper.find('.BarRoute')).to.be.present()
       })
 
       it(`renders the response from /api/bar`, () => {
+        this.wrapper.update()
         barResponse.forEach(item => {
           const barItem = this.wrapper.find({ children: item })
           expect(barItem).to.be.present()
@@ -114,21 +123,25 @@ describe(`Client Render`, function () {
       })
 
       it(`redirects to /`, () => {
+        this.wrapper.update()
         expect(this.wrapper.find('.HomeRoute')).to.be.present()
       })
 
       it(`adds a flash message`, () => {
-        const flashMsgs = this.wrapper.find('.FlashMessages__Msg')
+        this.wrapper.update()
+        const flashMsgs = this.wrapper.find('span.FlashMessages__Msg')
         expect(flashMsgs).to.be.present()
         expect(flashMsgs.text()).to.contain(privateMsg.message)
       })
 
       it(`removes flash messages after 4 seconds`, (done) => {
+        this.wrapper.update()
         expect(
           this.wrapper.find('.FlashMessages__Msg')
         ).to.be.present()
         this.clock.tick(4000)
         defer(() => {
+          this.wrapper.update()
           expect(
             this.wrapper.find('.FlashMessages__Msg')
           ).to.have.length(0)

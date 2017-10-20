@@ -2,7 +2,7 @@ import ReactDOMServer from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { compact, isOneOf } from 'app/utils'
-import makeHtmlBody from 'server/utils/makeHtmlBody'
+import makeHtmlBody from 'server/utils/make-html-body'
 import StaticRouter from 'server/components/StaticRouter'
 import app from 'app'
 

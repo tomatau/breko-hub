@@ -1,6 +1,6 @@
 export get from './get'
 export typeToReducer from 'type-to-reducer'
 export * as request from './request'
-export { isNodeInTree, isPromise, hasWindow, isBrowser, isEnv } from './predicates'
-export { compact, noop, filterNil, isOneOf } from './helpers'
+export * from './predicates'
+export * from './helpers'
 export Bem from 'react-bem-helper'

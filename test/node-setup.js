@@ -11,7 +11,7 @@ require('babel-core/register')({
   ],
 })
 
-require('../src/helpers/cssModulesHook')
-require('../src/helpers/globalJSDOM')
+require('../src/helpers/css-modules-hook')
+require('../src/helpers/global-jsdom')
 
 nhf([ /\.svg/, /\.jpg/, /\.jpeg/ ], nhf.normalize)

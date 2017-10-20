@@ -5,8 +5,8 @@ import session from 'koa-session-store'
 import logger from 'koa-logger'
 import favicon from 'koa-favicon'
 import { ASSETS } from 'config/paths'
-import sessionFlashArray from 'server/middleware/sessionFlashArray'
-import handleError from 'server/middleware/handleError'
+import sessionFlashArray from 'server/middleware/session-flash-array'
+import handleError from 'server/middleware/handle-error'
 import compressible from 'compressible'
 
 const app = new Koa()

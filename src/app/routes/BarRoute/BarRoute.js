@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
 import * as barActions from 'app/actions/bar.actions'
-import { get } from 'app/utils'
+import { get, noop } from 'app/utils'
 import style from './BarRoute.module.scss'
 
 @connect(state => ({
@@ -10,6 +10,7 @@ import style from './BarRoute.module.scss'
 export default class BarRoute extends React.Component {
   static defaultProps = {
     bar: [],
+    apiFetch: noop,
   };
 
   componentDidMount() {

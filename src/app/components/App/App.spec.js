@@ -50,7 +50,7 @@ describe('App Component', function () {
 
   describe('DocumentMeta', () => {
     it('sets the meta options', () => {
-      expect(this.tree.find(DocumentMeta).node).to.eql(
+      expect(this.tree.find(DocumentMeta).getElement()).to.eql(
         <DocumentMeta
           defaultTitle='Breko Hub'
           titleTemplate='%s | Breko Hub'>

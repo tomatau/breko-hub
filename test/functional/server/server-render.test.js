@@ -110,7 +110,7 @@ describe('Server Side Render', function () {
       .expect(200)
       .expect(/<title data-react-helmet="true">test document title<\/title>/)
       .expect(/<meta data-react-helmet="true" name="description" content="test description, hello"\/>/)
-      .expect(/<meta data-react-helmet="true" charset="utf-8"\/>/)
+      .expect(/<meta data-react-helmet="true" charSet="utf-8"\/>/)
   )
 
   it(`renders a react route`, () =>
@@ -142,15 +142,15 @@ describe('Server Side Render', function () {
       .get('/test')
       .expect((res) => {
         const stubHistory = createMemoryHistory({ initialEntries: [ '/test' ] })
-        const stubStore = helpers.createStore({}, [
-          routerMiddleware(stubHistory),
-        ])
+        const stubStore = helpers.createStore(
+          {},
+          [ routerMiddleware(stubHistory) ]
+        )
 
         stubStore.dispatch({
           type: LOCATION_CHANGE,
           payload: stubHistory.location,
         })
-
 
         const expectedState = cleanupState(stubStore.getState())
         const renderedState = cleanupState(JSON.parse(initialStateRegex.exec(res.text)[1] || null))

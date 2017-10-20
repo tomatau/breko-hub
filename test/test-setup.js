@@ -1,11 +1,14 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
-import { shallow, mount, render } from 'enzyme'
+import ReactSixteenAdapter from 'enzyme-adapter-react-16'
+import { configure, shallow, mount, render } from 'enzyme'
 import lodash from 'lodash/index'
-import ramda from 'ramda/dist/ramda'
+import ramda from 'ramda/src/index'
 import snap from 'enzyme-to-json'
 import { isBrowser } from 'app/utils'
 import helpers from './test-helpers'
+
+configure({ adapter: new ReactSixteenAdapter() })
 
 chai.use(require('chai-shallow-deep-equal'))
 chai.use(require('chai-as-promised'))
