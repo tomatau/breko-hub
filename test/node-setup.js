@@ -6,7 +6,10 @@ process.env.NODE_ENV = 'test'
 
 require('babel-core/register')({
   only: [
-    /\/src\//,
+    /\/src\/app/,
+    /\/src\/config/,
+    /\/src\/helpers/,
+    /\/src\/server/,
     /\/test\//,
   ],
 })

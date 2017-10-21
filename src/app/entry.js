@@ -22,6 +22,6 @@ socket.on('connect', () => {
 
 socket.open()
 
-ReactDOM.render(
+ReactDOM.hydrate(
   Main, document.getElementById('app-container')
 )
