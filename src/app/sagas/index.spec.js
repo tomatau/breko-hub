@@ -1,15 +1,15 @@
-import rootSaga, { timeoutRemoveFlash, takeFlashMessages } from './index'
 import { select, fork, take } from 'redux-saga/effects'
-import * as flashSelectors from 'app/selectors/flash.selectors'
-import { ADD_MESSAGE } from 'app/actions/types'
+import * as flashSelectors from 'app/modules/flash/flash.selectors'
+import { ADD_MESSAGE } from 'app/modules/flash/flash.constants'
+import rootSaga, { timeoutRemoveFlash, takeFlashMessages } from './index'
 
 describe('Saga Tests', function () {
-  describe('Root Saga', ()=> {
-    beforeEach(()=> {
+  describe('Root Saga', () => {
+    beforeEach(() => {
       this.saga = rootSaga()
     })
 
-    it('should call select with getNextFlashMessage', ()=> {
+    it('should call select with getNextFlashMessage', () => {
       const nextFlash = { ret: 'value' }
       expect(this.saga.next()).to.deep.yield(select(flashSelectors.getNextMessage))
       expect(this.saga.next(nextFlash)).to.deep.yield(fork(timeoutRemoveFlash, nextFlash))
@@ -17,12 +17,12 @@ describe('Saga Tests', function () {
     })
   })
 
-  describe('takeFlashMessages', ()=> {
-    beforeEach(()=> {
+  describe('takeFlashMessages', () => {
+    beforeEach(() => {
       this.saga = takeFlashMessages()
     })
 
-    it('should call take with an add_message', ()=> {
+    it('should call take with an add_message', () => {
       const takeReturn = { payload: { fake: 'stuff' } }
       expect(this.saga.next()).to.deep.yield(take(ADD_MESSAGE))
       expect(this.saga.next(takeReturn)).to.deep.yield(fork(timeoutRemoveFlash, takeReturn.payload))
@@ -30,8 +30,8 @@ describe('Saga Tests', function () {
     })
   })
 
-  describe.skip('timeoutRemoveFlash', ()=> {
-    beforeEach(()=> {
+  describe.skip('timeoutRemoveFlash', () => {
+    beforeEach(() => {
       this.saga = timeoutRemoveFlash()
     })
   })

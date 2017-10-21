@@ -1,6 +1,6 @@
 import React from 'react'
-import { hasWindow, noop } from 'app/utils'
 import PropTypes from 'prop-types'
+import { hasWindow, noop } from 'app/utils'
 
 export default class CodeSplit extends React.Component {
   static propTypes = {

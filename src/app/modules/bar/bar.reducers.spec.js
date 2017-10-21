@@ -1,8 +1,8 @@
 import { PENDING, REJECTED, FULFILLED } from 'redux-promise-middleware'
 import { barReducers } from './bar.reducers'
-import { API_FETCH } from 'app/actions/types'
+import { API_FETCH } from './bar.constants'
 
-describe('Bar Reducers', ()=> {
+describe('Bar Reducers', () => {
   const initialState = {
     isPending: false,
     error: false,
@@ -14,14 +14,14 @@ describe('Bar Reducers', ()=> {
     expect(barReducers(undefined, irrelevantAction)).to.eql(initialState)
   })
 
-  describe('API_FETCH_PENDING', ()=> {
+  describe('API_FETCH_PENDING', () => {
     const stateBeforeDispatch = {
       data: 'test dirty data',
       error: new Error('test previous state error'),
       isPending: !initialState.isPending,
     }
 
-    it('sets initialState with isPending=true', ()=> {
+    it('sets initialState with isPending=true', () => {
       const apiFetchPendingAction = {
         type: `${API_FETCH}_${PENDING}`,
       }
@@ -34,14 +34,14 @@ describe('Bar Reducers', ()=> {
     })
   })
 
-  describe('API_FETCH_REJECTED', ()=> {
+  describe('API_FETCH_REJECTED', () => {
     const stateBeforeDispatch = {
       data: 'test dirty data',
       error: new Error('test previous state error'),
       isPending: !initialState.isPending,
     }
 
-    it('sets initialState with payload as error', ()=> {
+    it('sets initialState with payload as error', () => {
       const apiFetchRejectedAction = {
         type: `${API_FETCH}_${REJECTED}`,
         error: true,
@@ -56,14 +56,14 @@ describe('Bar Reducers', ()=> {
     })
   })
 
-  describe('API_FETCH_FULFILLED', ()=> {
+  describe('API_FETCH_FULFILLED', () => {
     const stateBeforeDispatch = {
       data: 'test dirty data',
       error: new Error('test previous state error'),
       isPending: !initialState.isPending,
     }
 
-    it('sets initialState with payload as data', ()=> {
+    it('sets initialState with payload as data', () => {
       const apiFetchFulfilledAction = {
         type: `${API_FETCH}_${FULFILLED}`,
         error: true,

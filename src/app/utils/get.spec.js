@@ -1,7 +1,7 @@
 import get from './get'
 
 describe('Get', function () {
-  beforeEach(()=> {
+  beforeEach(() => {
     this.object = {
       foo: 'bar',
       bar: {
@@ -18,21 +18,21 @@ describe('Get', function () {
     expect(getDoesntExist(undefined)).to.eql(undefined)
   })
 
-  it('returns undefined when property doesnt exist', ()=> {
+  it('returns undefined when property doesnt exist', () => {
     const getDoesntExist = get('missing')
     expect(
       getDoesntExist(this.object)
     ).to.eql(undefined)
   })
 
-  it('gets a property from an object', ()=> {
+  it('gets a property from an object', () => {
     const getFoo = get('foo')
     expect(
       getFoo(this.object)
     ).to.eql(this.object.foo)
   })
 
-  it('gets a deep property from an object by dot syntax', ()=> {
+  it('gets a deep property from an object by dot syntax', () => {
     const getDeeplyNested = get('bar.deeply.nested')
     expect(
       getDeeplyNested(this.object)

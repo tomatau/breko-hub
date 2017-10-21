@@ -159,13 +159,13 @@ index 25d9f48..0000000
 -import uuid from 'uuid'
 -import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 -
--describe('Flash Actions', ()=> {
--  describe('addMessage()', ()=> {
--    beforeEach(()=> {
+-describe('Flash Actions', () => {
+-  describe('addMessage()', () => {
+-    beforeEach(() => {
 -      sinon.stub(uuid, 'v1')
 -    })
 -
--    afterEach(()=> {
+-    afterEach(() => {
 -      uuid.v1.restore()
 -    })
 -
@@ -173,7 +173,7 @@ index 25d9f48..0000000
 -      expect(actions.addMessage()).to.have.property('type', ADD_MESSAGE)
 -    })
 -
--    it('returns an action with flash msg and a default type', ()=> {
+-    it('returns an action with flash msg and a default type', () => {
 -      const uuidReturn = { data: { some: 'data' } }
 -      const message = 'test message'
 -      uuid.v1.returns(uuidReturn)
@@ -185,7 +185,7 @@ index 25d9f48..0000000
 -        })
 -    })
 -
--    it('allows overwriting of the message type', ()=> {
+-    it('allows overwriting of the message type', () => {
 -      const type = 'test type'
 -      expect(actions.addMessage(null, type))
 -        .to.have.nested.property('payload.type', type)
@@ -448,21 +448,21 @@ index bbedf74..0000000
 -import styles from './Msg.module.scss'
 -
 -describe('Msg Component', function () {
--  beforeEach(()=> {
+-  beforeEach(() => {
 -    this.messages = makeMessages()
 -    this.msg = _.sample(this.messages)
 -    this.tree = shallow(<Msg msg={this.msg} />)
 -  })
 -
--  it('should have the className from styles', ()=> {
+-  it('should have the className from styles', () => {
 -    expect(this.tree.hasClass(styles.msg)).to.eql(true)
 -  })
 -
--  it('should render the message', ()=> {
+-  it('should render the message', () => {
 -    expect(this.tree.text()).to.contain(this.msg.message)
 -  })
 -
--  it('have the bem-modifier according to the msg.type', ()=> {
+-  it('have the bem-modifier according to the msg.type', () => {
 -    this.messages.forEach(msg => {
 -      this.tree = shallow(<Msg msg={msg} />)
 -      const modifierClass = `${styles.msg}--${msg.type}`
@@ -470,13 +470,13 @@ index bbedf74..0000000
 -    })
 -  })
 -
--  it('should transfer props to the root element', ()=> {
+-  it('should transfer props to the root element', () => {
 -    const otherProps = { id: 'bar', 'data-other': 'prop' }
 -    this.tree = shallow(<Msg msg={this.msg} {...otherProps} />)
 -    expect(this.tree.props()).to.shallowDeepEqual(otherProps)
 -  })
 -
--  it('should render a close button with close className', ()=> {
+-  it('should render a close button with close className', () => {
 -    expect(this.tree.find({ className: styles.close })).to.have.length(1)
 -  })
 -})
@@ -650,14 +650,14 @@ index a289b21..dd6e2af 100644
 --- a/src/app/components/HeadNavigation/HeadNavigation.spec.js
 +++ b/src/app/components/HeadNavigation/HeadNavigation.spec.js
 @@ -22,8 +22,6 @@ describe('Head Navigation Component', function () {
-   describe('NavLinks', ()=> {
+   describe('NavLinks', () => {
      const links = [
        { to: '/', content: 'Home' },
 -      { to: '/bar', content: 'Bar' },
 -      { to: '/private', content: 'Private' },
      ]
  
-     it('only renders the necessary links', ()=> {
+     it('only renders the necessary links', () => {
 diff --git a/src/app/reducers/bar.reducers.js b/src/app/reducers/bar.reducers.js
 deleted file mode 100644
 index 25a7d59..0000000
@@ -702,7 +702,7 @@ index 1175aa1..0000000
 -import { barReducers } from './bar.reducers'
 -import { API_FETCH } from 'app/actions/types'
 -
--describe('Bar Reducers', ()=> {
+-describe('Bar Reducers', () => {
 -  const initialState = {
 -    isPending: false,
 -    error: false,
@@ -714,14 +714,14 @@ index 1175aa1..0000000
 -    expect(barReducers(undefined, irrelevantAction)).to.eql(initialState)
 -  })
 -
--  describe('API_FETCH_PENDING', ()=> {
+-  describe('API_FETCH_PENDING', () => {
 -    const stateBeforeDispatch = {
 -      data: 'test dirty data',
 -      error: new Error('test previous state error'),
 -      isPending: !initialState.isPending,
 -    }
 -
--    it('sets initialState with isPending=true', ()=> {
+-    it('sets initialState with isPending=true', () => {
 -      const apiFetchPendingAction = {
 -        type: `${API_FETCH}_${PENDING}`,
 -      }
@@ -734,14 +734,14 @@ index 1175aa1..0000000
 -    })
 -  })
 -
--  describe('API_FETCH_REJECTED', ()=> {
+-  describe('API_FETCH_REJECTED', () => {
 -    const stateBeforeDispatch = {
 -      data: 'test dirty data',
 -      error: new Error('test previous state error'),
 -      isPending: !initialState.isPending,
 -    }
 -
--    it('sets initialState with payload as error', ()=> {
+-    it('sets initialState with payload as error', () => {
 -      const apiFetchRejectedAction = {
 -        type: `${API_FETCH}_${REJECTED}`,
 -        error: true,
@@ -756,14 +756,14 @@ index 1175aa1..0000000
 -    })
 -  })
 -
--  describe('API_FETCH_FULFILLED', ()=> {
+-  describe('API_FETCH_FULFILLED', () => {
 -    const stateBeforeDispatch = {
 -      data: 'test dirty data',
 -      error: new Error('test previous state error'),
 -      isPending: !initialState.isPending,
 -    }
 -
--    it('sets initialState with payload as data', ()=> {
+-    it('sets initialState with payload as data', () => {
 -      const apiFetchFulfilledAction = {
 -        type: `${API_FETCH}_${FULFILLED}`,
 -        error: true,
@@ -818,17 +818,17 @@ index d33a8a8..0000000
 -import { flashReducers } from './flash.reducers'
 -import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
 -
--describe('Flash Reducers', ()=> {
+-describe('Flash Reducers', () => {
 -  const initialState = {
 -    messages: [],
 -  }
 -  const irrelevantAction = { type: 'IRRELEVANT_ACTION' }
 -
--  it('should return the initial state', ()=> {
+-  it('should return the initial state', () => {
 -    expect(flashReducers(undefined, irrelevantAction)).to.eql(initialState)
 -  })
 -
--  describe('REMOVE_FLASH', ()=> {
+-  describe('REMOVE_FLASH', () => {
 -    const messages = [
 -      { id: 'test 1' },
 -      { id: 'test 2' },
@@ -847,7 +847,7 @@ index d33a8a8..0000000
 -      },
 -    }
 -
--    it('does nothing when the id isn\'t contained', ()=> {
+-    it('does nothing when the id isn\'t contained', () => {
 -      function assertStateUnchanged(state, id) {
 -        removeFlashAction.payload.id = id
 -        expect(
@@ -861,7 +861,7 @@ index d33a8a8..0000000
 -      assertStateUnchanged(previousState, '')
 -    })
 -
--    it('removes a message by id', ()=> {
+-    it('removes a message by id', () => {
 -      _.map(messages, ({ id }) => {
 -        removeFlashAction.payload.id = id
 -        const actual = flashReducers(previousState, removeFlashAction)
@@ -1155,12 +1155,12 @@ index e95c2b8..e69de29 100644
 -import { ADD_MESSAGE } from 'app/actions/types'
 -
 -describe('Saga Tests', function () {
--  describe('Root Saga', ()=> {
--    beforeEach(()=> {
+-  describe('Root Saga', () => {
+-    beforeEach(() => {
 -      this.saga = rootSaga()
 -    })
 -
--    it('should call select with getNextFlashMessage', ()=> {
+-    it('should call select with getNextFlashMessage', () => {
 -      const nextFlash = { ret: 'value' }
 -      expect(this.saga.next()).to.deep.yield(select(flashSelectors.getNextMessage))
 -      expect(this.saga.next(nextFlash)).to.deep.yield(fork(timeoutRemoveFlash, nextFlash))
@@ -1168,12 +1168,12 @@ index e95c2b8..e69de29 100644
 -    })
 -  })
 -
--  describe('takeFlashMessages', ()=> {
--    beforeEach(()=> {
+-  describe('takeFlashMessages', () => {
+-    beforeEach(() => {
 -      this.saga = takeFlashMessages()
 -    })
 -
--    it('should call take with an add_message', ()=> {
+-    it('should call take with an add_message', () => {
 -      const takeReturn = { payload: { fake: 'stuff' } }
 -      expect(this.saga.next()).to.deep.yield(take(ADD_MESSAGE))
 -      expect(this.saga.next(takeReturn)).to.deep.yield(fork(timeoutRemoveFlash, takeReturn.payload))
@@ -1181,8 +1181,8 @@ index e95c2b8..e69de29 100644
 -    })
 -  })
 -
--  describe.skip('timeoutRemoveFlash', ()=> {
--    beforeEach(()=> {
+-  describe.skip('timeoutRemoveFlash', () => {
+-    beforeEach(() => {
 -      this.saga = timeoutRemoveFlash()
 -    })
 -  })

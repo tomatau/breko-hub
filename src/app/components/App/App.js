@@ -2,8 +2,8 @@ import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
-import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 import CodeSplit from 'app/components/CodeSplit'
+import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 // example image import
 import avatarPath from 'assets/avatar.jpeg'
 // example s?css module import

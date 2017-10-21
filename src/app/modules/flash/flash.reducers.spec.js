@@ -1,17 +1,17 @@
 import { flashReducers } from './flash.reducers'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
-describe('Flash Reducers', ()=> {
+describe('Flash Reducers', () => {
   const initialState = {
     messages: [],
   }
   const irrelevantAction = { type: 'IRRELEVANT_ACTION' }
 
-  it('should return the initial state', ()=> {
+  it('should return the initial state', () => {
     expect(flashReducers(undefined, irrelevantAction)).to.eql(initialState)
   })
 
-  describe('REMOVE_FLASH', ()=> {
+  describe('REMOVE_FLASH', () => {
     const messages = [
       { id: 'test 1' },
       { id: 'test 2' },
@@ -30,7 +30,7 @@ describe('Flash Reducers', ()=> {
       },
     }
 
-    it('does nothing when the id isn\'t contained', ()=> {
+    it('does nothing when the id isn\'t contained', () => {
       function assertStateUnchanged(state, id) {
         removeFlashAction.payload.id = id
         expect(
@@ -44,7 +44,7 @@ describe('Flash Reducers', ()=> {
       assertStateUnchanged(previousState, '')
     })
 
-    it('removes a message by id', ()=> {
+    it('removes a message by id', () => {
       _.map(messages, ({ id }) => {
         removeFlashAction.payload.id = id
         const actual = flashReducers(previousState, removeFlashAction)

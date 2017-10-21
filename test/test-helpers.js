@@ -1,10 +1,10 @@
 import Koa from 'koa'
 import lodash from 'lodash/index'
-import createStore from 'app/composition/create-store'
 import { createMemoryHistory } from 'history'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
 import chaiJestSnapshot from 'chai-jest-snapshot'
+import createStore from 'app/composition/create-store'
 
 const helpers = {
   setupSnapshots(filename) {

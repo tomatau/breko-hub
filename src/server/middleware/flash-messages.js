@@ -1,5 +1,5 @@
-import * as flashSelectors from 'app/selectors/flash.selectors'
-import { addMessage } from 'app/actions/flash.actions'
+import * as flashSelectors from 'app/modules/flash/flash.selectors'
+import { addMessage } from 'app/modules/flash/flash.actions'
 
 export default async function flashMessages(ctx, next) {
   ctx.flash.map(({ message, type }) =>

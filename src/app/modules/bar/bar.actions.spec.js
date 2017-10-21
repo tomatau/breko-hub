@@ -1,5 +1,5 @@
-import { API_FETCH } from 'app/actions/types'
 import { request } from 'app/utils'
+import { API_FETCH } from './bar.constants'
 import { apiFetch } from './bar.actions'
 
 describe('Bar Actions', function () {

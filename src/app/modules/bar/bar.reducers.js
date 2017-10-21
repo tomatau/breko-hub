@@ -1,6 +1,6 @@
 import { PENDING, REJECTED, FULFILLED } from 'redux-promise-middleware'
 import { typeToReducer, get } from 'app/utils'
-import { API_FETCH } from 'app/actions/types'
+import { API_FETCH } from './bar.constants'
 
 const getBar = get('payload.bar')
 

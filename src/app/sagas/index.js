@@ -1,8 +1,8 @@
 import { put, fork, take, race, select } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-import * as flashSelectors from 'app/selectors/flash.selectors'
-import * as flashActions from 'app/actions/flash.actions'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
+import * as flashSelectors from 'app/modules/flash/flash.selectors'
+import * as flashActions from 'app/modules/flash/flash.actions'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/modules/flash/flash.constants'
 
 const DAEMON = true
 const log = debug('sagas')

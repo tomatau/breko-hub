@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
-import * as barActions from 'app/actions/bar.actions'
 import { get, noop } from 'app/utils'
+import * as barActions from 'app/modules/bar/bar.actions'
 import style from './BarRoute.module.scss'
 
 @connect(state => ({

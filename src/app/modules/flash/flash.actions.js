@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
 const makeFlash = (message, type='info') => ({
   type,

@@ -1,23 +1,23 @@
-import Msg from './Msg'
 import { shallow } from 'enzyme'
+import Msg from './Msg'
 import styles from './Msg.module.scss'
 
 describe('Msg Component', function () {
-  beforeEach(()=> {
+  beforeEach(() => {
     this.messages = makeMessages()
     this.msg = _.sample(this.messages)
     this.tree = shallow(<Msg msg={this.msg} />)
   })
 
-  it('should have the className from styles', ()=> {
+  it('should have the className from styles', () => {
     expect(this.tree.hasClass(styles.msg)).to.eql(true)
   })
 
-  it('should render the message', ()=> {
+  it('should render the message', () => {
     expect(this.tree.text()).to.contain(this.msg.message)
   })
 
-  it('have the bem-modifier according to the msg.type', ()=> {
+  it('have the bem-modifier according to the msg.type', () => {
     this.messages.forEach(msg => {
       this.tree = shallow(<Msg msg={msg} />)
       const modifierClass = `${styles.msg}--${msg.type}`
@@ -25,13 +25,13 @@ describe('Msg Component', function () {
     })
   })
 
-  it('should transfer props to the root element', ()=> {
+  it('should transfer props to the root element', () => {
     const otherProps = { id: 'bar', 'data-other': 'prop' }
     this.tree = shallow(<Msg msg={this.msg} {...otherProps} />)
     expect(this.tree.props()).to.shallowDeepEqual(otherProps)
   })
 
-  it('should render a close button with close className', ()=> {
+  it('should render a close button with close className', () => {
     expect(this.tree.find({ className: styles.close })).to.have.length(1)
   })
 })

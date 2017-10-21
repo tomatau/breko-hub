@@ -1,8 +1,8 @@
 import DocumentMeta from 'react-helmet'
+import { shallow } from 'enzyme'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import App from './App'
-import { shallow } from 'enzyme'
 import styles from './App.module.scss'
 import avatarPath from 'assets/avatar.jpeg'
 

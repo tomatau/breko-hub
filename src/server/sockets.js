@@ -16,7 +16,7 @@ export default function sockets(server) {
 
   socketServer.on('connection', socket => {
     log('New connection made with id', socket.id)
-    socket.on('disconnect', ()=> {
+    socket.on('disconnect', () => {
       log('Disconnected', socket.id)
     })
   })

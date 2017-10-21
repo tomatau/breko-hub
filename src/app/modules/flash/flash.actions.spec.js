@@ -1,14 +1,14 @@
-import * as actions from './flash.actions'
 import uuid from 'uuid'
-import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/actions/types'
+import * as actions from './flash.actions'
+import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
-describe('Flash Actions', ()=> {
-  describe('addMessage()', ()=> {
-    beforeEach(()=> {
+describe('Flash Actions', () => {
+  describe('addMessage()', () => {
+    beforeEach(() => {
       sinon.stub(uuid, 'v1')
     })
 
-    afterEach(()=> {
+    afterEach(() => {
       uuid.v1.restore()
     })
 
@@ -16,7 +16,7 @@ describe('Flash Actions', ()=> {
       expect(actions.addMessage()).to.have.property('type', ADD_MESSAGE)
     })
 
-    it('returns an action with flash msg and a default type', ()=> {
+    it('returns an action with flash msg and a default type', () => {
       const uuidReturn = { data: { some: 'data' } }
       const message = 'test message'
       uuid.v1.returns(uuidReturn)
@@ -28,7 +28,7 @@ describe('Flash Actions', ()=> {
         })
     })
 
-    it('allows overwriting of the message type', ()=> {
+    it('allows overwriting of the message type', () => {
       const type = 'test type'
       expect(actions.addMessage(null, type))
         .to.have.nested.property('payload.type', type)

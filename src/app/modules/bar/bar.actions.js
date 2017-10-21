@@ -1,5 +1,5 @@
 import { request } from 'app/utils'
-import { API_FETCH } from 'app/actions/types'
+import { API_FETCH } from './bar.constants'
 
 export const apiFetch = () => ({
   type: API_FETCH,

@@ -17,7 +17,7 @@ const fakeARequest = (
   app.callback()(req, res)
 }
 
-describe('Handle Error Middleware', ()=> {
+describe('Handle Error Middleware', () => {
   it('should work without session', (done)=> {
     const app = new Koa()
     app.use(async (ctx, next) => {

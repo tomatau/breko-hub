@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import { Bem } from 'app/utils'
 import styles from './Msg.module.scss'
-import PropTypes from 'prop-types'
 
 const bem = new Bem(styles.msg)
 

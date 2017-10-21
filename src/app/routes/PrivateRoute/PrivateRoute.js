@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { replace } from 'react-router-redux'
-import { addMessage } from 'app/actions/flash.actions'
+import { addMessage } from 'app/modules/flash/flash.actions'
 
 
 @connect(null, { replace, addMessage })

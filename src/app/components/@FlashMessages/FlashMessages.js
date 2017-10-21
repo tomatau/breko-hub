@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { noop } from 'lodash'
 import PropTypes from 'prop-types'
-import { removeMessage } from 'app/actions/flash.actions'
 import { Bem } from 'app/utils'
-import * as flashSelectors from 'app/selectors/flash.selectors'
+import { removeMessage } from 'app/modules/flash/flash.actions'
+import * as flashSelectors from 'app/modules/flash/flash.selectors'
 import Msg from './Msg'
 
 const bem = new Bem('FlashMessages')
