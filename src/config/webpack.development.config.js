@@ -11,6 +11,10 @@ export default {
       ...webpackConfig.entry.head,
       'webpack-hot-middleware/client',
     ],
+    body: [
+      'react-hot-loader/patch',
+      ...webpackConfig.entry.body,
+    ],
   },
   devtool: '#cheap-module-eval-source-map',
   plugins: [
@@ -45,22 +49,10 @@ export default {
       }),
     }, {
       ...babelLoaderConfig,
-      options: {
-        ...babelLoaderConfig.options,
-        plugins: [
-          ...babelLoaderConfig.options.plugins,
-          [ 'react-transform', {
-            'transforms': [ {
-              'transform': 'react-transform-hmr',
-              'imports': [ 'react' ],
-              'locals': [ 'module' ],
-            }, {
-              'transform': 'react-transform-catch-errors',
-              'imports': [ 'react', 'redbox-react' ],
-            } ],
-          } ],
-        ],
-      },
+      use: [
+        { loader: 'react-hot-loader/webpack' },
+        ...babelLoaderConfig.use,
+      ],
     } ],
   },
 }

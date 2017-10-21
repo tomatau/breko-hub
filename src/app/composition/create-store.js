@@ -1,15 +1,16 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from 'app/composition/root-reducer'
+import { middleware } from 'app/composition/middleware'
 
 const log = debug('create-store')
 
-export default (middleware, initialState) => {
+export default (initialState, mware=middleware) => {
   const store = createStore(
     rootReducer,
     initialState,
     composeWithDevTools(
-      applyMiddleware(...middleware),
+      applyMiddleware(...mware),
     ),
   )
 

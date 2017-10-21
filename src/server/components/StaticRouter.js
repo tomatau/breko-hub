@@ -5,15 +5,15 @@ import { createMemoryHistory } from 'history'
 class StaticRouter extends React.Component {
   static propTypes = {
     history: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     history: createMemoryHistory(),
-  }
+  };
 
   static childContextTypes = {
     router: PropTypes.object.isRequired,
-  }
+  };
 
   getChildContext() {
     return {

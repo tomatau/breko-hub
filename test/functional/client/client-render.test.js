@@ -1,11 +1,8 @@
-import { Main, history } from 'app/main'
+import { Main, run } from 'app/main'
+import { ConnectedRouter } from 'react-router-redux'
 import fetchMock from 'fetch-mock'
 
 describe(`Client Render`, function () {
-  before(() => {
-    history.push('/')
-  })
-
   const barResponse = [ 'some', 'test', 'response', 'data' ]
 
   beforeEach((done) => {
@@ -17,13 +14,17 @@ describe(`Client Render`, function () {
         'Content-Length': '1',
       },
     })
-    this.wrapper = mount(Main)
+    /* move into helper */
+    this.history = helpers.createHistory('/')
+    this.store = helpers.createStore(this.history)
+    run()
+    this.wrapper = mount(Main(this.store, this.history, ConnectedRouter))
+    /* /move into helper */
     defer(done)
   })
 
   afterEach(() => {
-    this.wrapper.unmount()
-    fetchMock.restore()
+    helpers.cleanup(this)
   })
 
   it(`sets the page title`, () => {
@@ -49,7 +50,7 @@ describe(`Client Render`, function () {
   describe(`Routes`, () => {
     describe(`404`, () => {
       beforeEach((done) => {
-        history.push('/no-match-found')
+        this.history.push('/no-match-found')
         defer(done)
       })
 
@@ -61,7 +62,7 @@ describe(`Client Render`, function () {
 
     describe(`/oops`, () => {
       beforeEach((done) => {
-        history.push('/oops')
+        this.history.push('/oops')
         defer(done)
       })
 
@@ -73,7 +74,7 @@ describe(`Client Render`, function () {
 
     describe(`/bar`, () => {
       beforeEach((done) => {
-        history.push('/bar')
+        this.history.push('/bar')
         defer(done)
       })
 
@@ -114,7 +115,7 @@ describe(`Client Render`, function () {
       })
 
       beforeEach((done) => {
-        history.push('/private')
+        this.history.push('/private')
         defer(done)
       })
 

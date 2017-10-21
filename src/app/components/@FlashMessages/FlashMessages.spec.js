@@ -58,7 +58,8 @@ describe('FlashMessages Component', function () {
 describe('Connected FlashMessages', function () {
   beforeEach(() => {
     this.messages = makeMessages()
-    this.store = helpers.createStore({
+    this.history = helpers.createHistory('/')
+    this.store = helpers.createStore(this.history, {
       flash: { messages: this.messages },
     })
     sinon.stub(this.store, 'dispatch')

@@ -9,6 +9,7 @@ import { isBrowser } from 'app/utils'
 const log = debug('DISPATCH:')
 
 export const sagaMiddleware = createSagaMiddleware()
+
 export const middleware = [
   thunkMiddleware,
   promiseMiddleware(),

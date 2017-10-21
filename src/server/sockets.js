@@ -10,8 +10,8 @@ export default function sockets(server) {
   const socketServer = Socket(server)
 
   const socketsStore = createStore(
-    [ ...middleware, outServerViaSocketIO(socketServer) ],
     {},
+    [ ...middleware, outServerViaSocketIO(socketServer) ],
   )
 
   socketServer.on('connection', socket => {

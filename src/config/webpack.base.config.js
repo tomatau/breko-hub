@@ -76,31 +76,33 @@ export default {
 export const babelLoaderConfig = {
   test: /\.jsx?$/,
   include: [ APP, CONFIG, SERVER ],
-  loader: 'babel-loader',
-  options: {
-    'presets': [
-      [ 'env', {
-        targets: { browsers: [ 'last 2 versions' ] },
-        modules: false,
-      } ],
-      'react',
-    ],
-    'plugins': [
-      'dynamic-import-webpack',
-      'transform-export-extensions',
-      'transform-decorators-legacy',
-      'transform-class-properties',
-      'transform-object-rest-spread',
-      'add-module-exports',
-      'lodash',
-      'ramda',
-      'react-require',
-      [ 'provide-modules', {
-        'debug': 'debug',
-      } ],
-      'babel-root-import',
-      // ALT+SHIFT+o = Ø
-      [ 'jsx-fragment', { 'tagName': 'Ø' } ],
-    ],
-  },
+  use: [ {
+    loader: 'babel-loader',
+    options: {
+      'presets': [
+        [ 'env', {
+          targets: { browsers: [ 'last 2 versions' ] },
+          modules: false,
+        } ],
+        'react',
+      ],
+      'plugins': [
+        'dynamic-import-webpack',
+        'transform-export-extensions',
+        'transform-decorators-legacy',
+        'transform-class-properties',
+        'transform-object-rest-spread',
+        'add-module-exports',
+        'lodash',
+        'ramda',
+        'react-require',
+        [ 'provide-modules', {
+          'debug': 'debug',
+        } ],
+        'babel-root-import',
+        // ALT+SHIFT+o = Ø
+        [ 'jsx-fragment', { 'tagName': 'Ø' } ],
+      ],
+    },
+  } ],
 }

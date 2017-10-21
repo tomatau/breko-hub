@@ -4,36 +4,36 @@ import Router from 'koa-router'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import supertest from 'supertest-as-promised'
 import { createMemoryHistory } from 'history'
-import { routerMiddleware, LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux'
 import Helmet from 'react-helmet'
 import { TESTS } from 'config/paths'
 import server from 'server-instance'
 import StaticRouter from 'server/components/StaticRouter'
 import { setRoutes, rootRouter } from 'server/router'
-import clientApp from 'app'
+import * as clientApp from 'app/main'
 
-const TestRoute = () => <div>Test Route</div>
-const AnotherRoute = () => <div>Another Route</div>
-const RedirectRoute = () => <Redirect to='/test' />
-const ErrorRoute = () => { throw new Error('error from react route') }
-const ReactApp = (
-  <div>
-    <Helmet
-      title='test document title'
-      meta={ [
-        { 'name': 'description', 'content': 'test description, hello' },
-        { 'charset': 'utf-8' },
-      ]}>
-      <html lang='en' />
-    </Helmet>
-    <h2>Test App</h2>
-    <Switch>
-      <Route path='/test' component={TestRoute} />
-      <Route path='/another' component={AnotherRoute} />
-      <Route path='/error-route' component={ErrorRoute} />
-      <Route path='/redirect' component={RedirectRoute} />
-    </Switch>
-  </div>
+const ReactApp = (store, history, Router) => (
+  <Router history={history}>
+    <div>
+      <Helmet
+        title='test document title'
+        meta={ [
+          { 'name': 'description', 'content': 'test description, hello' },
+          { 'charset': 'utf-8' },
+        ]}>
+        <html lang='en' />
+      </Helmet>
+      <h2>Test App</h2>
+      <Switch>
+        <Route path='/test' render={() => <div>Test Route</div>} />
+        <Route path='/another' render={() => <div>Another Route</div>} />
+        <Route path='/redirect' render={() => <Redirect to='/test' />} />
+        <Route path='/error-route' render={() => {
+          throw new Error('error from react route')
+        }} />
+      </Switch>
+    </div>
+  </Router>
 )
 
 /*
@@ -41,7 +41,7 @@ const ReactApp = (
 Routes have been stubbed out to avoid complexities of testing the full app.
  */
 describe('Server Side Render', function () {
-  const testRouter = Router()
+  const testRouter = new Router()
   const assets = {
     javascript: {
       body: '/test-asset.js',
@@ -67,13 +67,18 @@ describe('Server Side Render', function () {
       setRoutes(assets)
       await rootRouter.routes()(ctx, next)
     })
-    // set createAppInstance to use stubs
-    sandbox.stub(clientApp, 'createAppInstance').returns(ReactApp)
+  })
+
+  beforeEach(() => {
+    sandbox.stub(clientApp, 'Main').callsFake(ReactApp)
+  })
+
+  afterEach(() => {
+    helpers.cleanup(this)
   })
 
   after(() => {
     Helmet.canUseDOM = true
-    sandbox.restore()
   })
 
   it(`still renders the app when not found`, () =>
@@ -120,9 +125,7 @@ describe('Server Side Render', function () {
       .expect((res) => {
         const testHistory = helpers.createHistory('/test')
         const renderedApp = ReactDOM.renderToString(
-          <StaticRouter history={testHistory}>
-            {ReactApp}
-          </StaticRouter>
+          ReactApp(null, testHistory, StaticRouter)
         )
 
         if (!res.text.includes(renderedApp)) {
@@ -142,10 +145,7 @@ describe('Server Side Render', function () {
       .get('/test')
       .expect((res) => {
         const stubHistory = createMemoryHistory({ initialEntries: [ '/test' ] })
-        const stubStore = helpers.createStore(
-          {},
-          [ routerMiddleware(stubHistory) ]
-        )
+        const stubStore = helpers.createStore(stubHistory)
 
         stubStore.dispatch({
           type: LOCATION_CHANGE,

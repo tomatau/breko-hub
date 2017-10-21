@@ -1,10 +1,11 @@
 import Koa from 'koa'
 import lodash from 'lodash/index'
+import fetchMock from 'fetch-mock'
 import { createMemoryHistory } from 'history'
-import promiseMiddleware from 'redux-promise-middleware'
-import thunkMiddleware from 'redux-thunk'
+import { routerMiddleware } from 'react-router-redux'
 import chaiJestSnapshot from 'chai-jest-snapshot'
 import createStore from 'app/composition/create-store'
+import { middleware } from 'app/composition/middleware'
 
 const helpers = {
   setupSnapshots(filename) {
@@ -19,14 +20,13 @@ const helpers = {
     clone.middleware = lodash.clone(app.middleware)
     return clone
   },
-  createStore(initialState={}, middleware=[]) {
+  createStore(history, initialState={}, mware=middleware) {
     return createStore(
+      initialState,
       [
-        thunkMiddleware,
-        promiseMiddleware(),
-        ...middleware,
+        ...mware,
+        routerMiddleware(history),
       ],
-      initialState
     )
   },
   createHistory(path) {
@@ -56,13 +56,14 @@ const helpers = {
       },
     }
   },
-  cleanup(wrapper) {
-    if (wrapper) {
-      wrapper.unmount()
+  cleanup(ctx) {
+    if (ctx.wrapper) {
+      ctx.wrapper.unmount()
     }
     sandbox.restore()
     sessionStorage.clear()
     localStorage.clear()
+    fetchMock.restore()
   },
 }
 

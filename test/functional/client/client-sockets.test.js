@@ -1,4 +1,5 @@
 import io from 'socket.io-client'
+import 'app/composition/socket'
 
 describe(`Client Socket`, function () {
   const expectedConnection = `${global.location.protocol}//${global.location.hostname}:${global.location.port}`

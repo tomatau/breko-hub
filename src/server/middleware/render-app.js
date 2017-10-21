@@ -1,12 +1,12 @@
 import ReactDOMServer from 'react-dom/server'
-import { Provider } from 'react-redux'
 import { LOCATION_CHANGE } from 'react-router-redux'
+import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { compact, isOneOf } from 'app/utils'
 import makeHtmlBody from 'server/utils/make-html-body'
 import StaticRouter from 'server/components/StaticRouter'
-import app from 'app'
+import * as app from 'app/main'
 
-const log = debug('renderApp')
+const log = debug('render-app')
 const isClientRedirect = isOneOf([ 'PUSH', 'REPLACE' ])
 
 export default function (assets) {
@@ -15,13 +15,10 @@ export default function (assets) {
       type: LOCATION_CHANGE,
       payload: ctx.history.location,
     })
-    const html = ReactDOMServer.renderToString(
-      <Provider store={ctx.store}>
-        <StaticRouter history={ctx.history}>
-          {app.createAppInstance()}
-        </StaticRouter>
-      </Provider>
+    const __html = ReactDOMServer.renderToString(
+      app.Main(ctx.store, ctx.history, StaticRouter)
     )
+
     if (isClientRedirect(ctx.history.action)) {
       log('302 redirect to', ctx.history.location.pathname)
       ctx.status = 302
@@ -37,9 +34,10 @@ export default function (assets) {
             JSON.stringify(ctx.store.getState(), null, 2)
           };`,
         ],
-        content: [
-          { id: 'app-container', dangerouslySetInnerHTML: { __html: html } },
-        ],
+        content: [ {
+          id: CONTAINER_ELEMENT_ID,
+          dangerouslySetInnerHTML: { __html },
+        } ],
       })
     }
   }

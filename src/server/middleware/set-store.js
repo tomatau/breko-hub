@@ -12,8 +12,8 @@ export default async function setStore(ctx, next) {
   })
 
   ctx.store = createStore(
-    [ ...middleware, routerMiddleware(ctx.history) ],
     {},
+    [ ...middleware, routerMiddleware(ctx.history) ],
   )
 
   await next()
