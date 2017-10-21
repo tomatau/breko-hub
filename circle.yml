@@ -2,7 +2,7 @@ machine:
   timezone:
     Europe/London
   node:
-    version: v8.0
+    version: v8.7
   environment:
     PORT: 9001
 

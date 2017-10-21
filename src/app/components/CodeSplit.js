@@ -5,10 +5,12 @@ import PropTypes from 'prop-types'
 export default class CodeSplit extends React.Component {
   static propTypes = {
     load: PropTypes.func,
+    children: PropTypes.func,
   };
 
   static defaultProps = {
     load: noop,
+    children: noop,
   };
 
   state = {
