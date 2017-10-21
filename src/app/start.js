@@ -20,6 +20,7 @@ const store = createStore(
 
 /* Socket Redux Synchronisation */
 inClientViaSocketIO(socket, store.dispatch)
+
 socket.open()
 
 /* Saga Listener */

@@ -9,7 +9,7 @@
     "test": "scripty",
     "test:server": "scripty",
     "test:unit": "scripty",
-    "test:func": "scripty",
+    "test:int": "scripty",
     "test:snap": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true npm run test:unit",
     "start": "node ./src/server-entry.js",
     "build": "scripty",
@@ -22,7 +22,7 @@
     "lint",
     "lint:styles",
     "test:unit",
-    "test:func"
+    "test:int"
   ],
   "repository": {
     "type": "git",

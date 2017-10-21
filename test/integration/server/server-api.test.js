@@ -3,17 +3,11 @@ import server from 'server-instance'
 import { setRoutes, rootRouter } from 'server/router'
 
 describe(`Server API`, function () {
-  // helpers available from test/test.setup.js
   const app = helpers.cloneApp(server)
 
   before(() => {
-    app.use(async (ctx, next) => {
-      setRoutes({
-        javascript: {},
-        styles: {},
-      })
-      await rootRouter.routes()(ctx, next)
-    })
+    setRoutes()
+    app.use(rootRouter.routes())
   })
 
   const body = { test: 'body' }

@@ -23,4 +23,4 @@ test:
     # - npm run start:
     #     background: true
     - npm run test:unit -- --reporter spec
-    - npm run test:func -- --reporter spec
+    - npm run test:int -- --reporter spec

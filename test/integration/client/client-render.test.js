@@ -51,11 +51,13 @@ describe(`Client Render`, function () {
     describe(`404`, () => {
       beforeEach((done) => {
         this.history.push('/no-match-found')
-        defer(done)
+        defer(() => {
+          this.wrapper.update()
+          done()
+        })
       })
 
       it(`renders the 404 route when no match found`, () => {
-        this.wrapper.update()
         expect(this.wrapper.find('.NotFoundRoute')).to.be.present()
       })
     })
@@ -63,11 +65,13 @@ describe(`Client Render`, function () {
     describe(`/oops`, () => {
       beforeEach((done) => {
         this.history.push('/oops')
-        defer(done)
+        defer(() => {
+          this.wrapper.update()
+          done()
+        })
       })
 
       it(`renders the .OopsRoute`, () => {
-        this.wrapper.update()
         expect(this.wrapper.find('.OopsRoute')).to.be.present()
       })
     })
@@ -75,24 +79,21 @@ describe(`Client Render`, function () {
     describe(`/bar`, () => {
       beforeEach((done) => {
         this.history.push('/bar')
-        defer(done)
-      })
-
-      it(`updates the page title`, done => {
-        this.wrapper.update()
         defer(() => {
-          expect(document.title).to.eql('Bar | Breko Hub')
+          this.wrapper.update()
           done()
         })
       })
 
+      it(`updates the page title`, () => {
+        expect(document.title).to.eql('Bar | Breko Hub')
+      })
+
       it(`renders the .BarRoute`, () => {
-        this.wrapper.update()
         expect(this.wrapper.find('.BarRoute')).to.be.present()
       })
 
       it(`renders the response from /api/bar`, () => {
-        this.wrapper.update()
         barResponse.forEach(item => {
           const barItem = this.wrapper.find({ children: item })
           expect(barItem).to.be.present()
@@ -116,7 +117,10 @@ describe(`Client Render`, function () {
 
       beforeEach((done) => {
         this.history.push('/private')
-        defer(done)
+        defer(() => {
+          this.wrapper.update()
+          done()
+        })
       })
 
       afterEach(() => {
@@ -124,19 +128,16 @@ describe(`Client Render`, function () {
       })
 
       it(`redirects to /`, () => {
-        this.wrapper.update()
         expect(this.wrapper.find('.HomeRoute')).to.be.present()
       })
 
       it(`adds a flash message`, () => {
-        this.wrapper.update()
         const flashMsgs = this.wrapper.find('span.FlashMessages__Msg')
         expect(flashMsgs).to.be.present()
         expect(flashMsgs.text()).to.contain(privateMsg.message)
       })
 
       it(`removes flash messages after 4 seconds`, (done) => {
-        this.wrapper.update()
         expect(
           this.wrapper.find('.FlashMessages__Msg')
         ).to.be.present()
