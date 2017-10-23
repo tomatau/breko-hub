@@ -4,6 +4,12 @@ exports[`HomeRoute Component matches snapshot 1`] = `
 <section
   className="HomeRoute"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title />
+  </HelmetWrapper>
   <p>
     Welcome to breko-hub
   </p>

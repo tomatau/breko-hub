@@ -18,7 +18,7 @@ const { document } = window
 global.window = window
 global.document = document
 
-global.requestAnimationFrame = callback => setTimeout(callback, 0)
+global.requestAnimationFrame = setImmediate
 
 keys(document).forEach(property => {
   if (typeof global[property] === 'undefined') {

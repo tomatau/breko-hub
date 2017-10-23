@@ -12,7 +12,7 @@ import StaticRouter from 'server/components/StaticRouter'
 import { setRoutes, rootRouter } from 'server/router'
 import * as clientApp from 'app/main'
 
-const ReactApp = (store, history, Router) => (
+const StubReactApp = (store, history, Router) => (
   <Router history={history}>
     <div>
       <Helmet
@@ -70,7 +70,7 @@ describe('Server Side Render', function () {
   })
 
   beforeEach(() => {
-    sandbox.stub(clientApp, 'Main').callsFake(ReactApp)
+    sandbox.stub(clientApp, 'Main').callsFake(StubReactApp)
   })
 
   afterEach(() => {
@@ -125,7 +125,7 @@ describe('Server Side Render', function () {
       .expect((res) => {
         const testHistory = helpers.createHistory('/test')
         const renderedApp = ReactDOM.renderToString(
-          ReactApp(null, testHistory, StaticRouter)
+          StubReactApp(null, testHistory, StaticRouter)
         )
 
         if (!res.text.includes(renderedApp)) {

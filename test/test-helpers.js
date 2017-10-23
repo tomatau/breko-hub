@@ -2,8 +2,10 @@ import Koa from 'koa'
 import lodash from 'lodash/index'
 import fetchMock from 'fetch-mock'
 import { createMemoryHistory } from 'history'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
 import chaiJestSnapshot from 'chai-jest-snapshot'
+import { CONTAINER_ELEMENT_ID } from 'config/constants'
+import { Main, run } from 'app/main'
 import createStore from 'app/composition/create-store'
 import { middleware } from 'app/composition/middleware'
 
@@ -32,6 +34,7 @@ const helpers = {
   createHistory(path) {
     return createMemoryHistory({
       initialEntries: [ path ],
+      initialIndex: 0,
     })
   },
   createStorage() {
@@ -54,6 +57,21 @@ const helpers = {
           this.removeItem(key)
         }
       },
+    }
+  },
+  prepare(ctx, path, done) {
+    ctx.history = helpers.createHistory(path)
+    ctx.store = helpers.createStore(ctx.history)
+    run()
+    ctx.wrapper = mount(
+      Main(ctx.store, ctx.history, ConnectedRouter),
+      { attachTo: document.getElementById(CONTAINER_ELEMENT_ID) },
+    )
+    if (done) {
+      defer(() => {
+        ctx.wrapper.update()
+        done()
+      })
     }
   },
   cleanup(ctx) {
