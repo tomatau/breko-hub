@@ -49,10 +49,14 @@ export default {
       }),
     }, {
       ...babelLoaderConfig,
-      use: [
-        { loader: 'react-hot-loader/webpack' },
-        ...babelLoaderConfig.use,
-      ],
+      options: {
+        ...babelLoaderConfig.options,
+        plugins: [
+          ...babelLoaderConfig.options.plugins,
+          'extract-hoc/babel',
+          'react-hot-loader/babel',
+        ],
+      },
     } ],
   },
 }

@@ -1,7 +1,7 @@
 @import '~vars';
 @import '~tao-scss/index';
 
-.msg {
+.Msg {
   display: block;
   margin-bottom: rem(5px);
 
@@ -16,14 +16,16 @@
   &--good {
     color: $good-green;
   }
-}
 
-.close {
-  border: 1px solid $border-grey;
-  border-radius: rem(10px);
-  padding: 1px rem(5px);
+  &__close {
+    border: rem(1px) solid $border-grey;
+    border-radius: rem(8px);
+    font-size: em(16px);
+    margin: 0 rem(8px);
+    padding: 0 rem(4px);
 
-  &:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

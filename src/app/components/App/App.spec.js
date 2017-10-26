@@ -1,56 +1,55 @@
 import DocumentMeta from 'react-helmet'
-import { shallow } from 'enzyme'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import App from './App'
 import styles from './App.module.scss'
 import avatarPath from 'assets/avatar.jpeg'
 
-describe('App Component', function () {
+describe(`App Component`, function () {
   helpers.setupSnapshots(__filename)
 
   beforeEach(() => {
-    this.tree = shallow(<App />)
+    this.wrapper = shallow(<App />)
   })
 
-  it('renders a div tag with className at rootNode', () => {
-    expect(this.tree.hasClass(styles.app)).to.eql(true)
+  it(`renders a div tag with className at rootNode`, () => {
+    expect(this.wrapper).to.have.className(styles.app)
   })
 
-  it('renders a Helmet document meta as firtChild', () => {
-    const firstChild = this.tree.childAt(0)
+  it(`renders a Helmet document meta as firtChild`, () => {
+    const firstChild = this.wrapper.childAt(0)
     expect(firstChild).to.have.type(DocumentMeta)
   })
 
-  it('renders HeadNavigation as second child', () => {
-    const secondChild = this.tree.childAt(1)
+  it(`renders HeadNavigation as second child`, () => {
+    const secondChild = this.wrapper.childAt(1)
     expect(secondChild).to.have.type(HeadNavigation)
   })
 
-  it('renders FlashMessages as third child', () => {
-    const thirdChild = this.tree.childAt(2)
+  it(`renders FlashMessages as third child`, () => {
+    const thirdChild = this.wrapper.childAt(2)
     expect(thirdChild).to.have.type(FlashMessages)
   })
 
-  it('renders an img as fourth child', () => {
-    const fourthChild = this.tree.childAt(3)
+  it(`renders an img as fourth child`, () => {
+    const fourthChild = this.wrapper.childAt(3)
     expect(fourthChild).to.have.type('img')
   })
 
-  it('renders a h1 as fifth child', () => {
-    const fifthChild = this.tree.childAt(4)
+  it(`renders a h1 as fifth child`, () => {
+    const fifthChild = this.wrapper.childAt(4)
     expect(fifthChild).to.have.type('h1')
   })
 
-  it('renders a main.content as sixth child', () => {
-    const sixthChild = this.tree.childAt(5)
+  it(`renders a main.content as sixth child`, () => {
+    const sixthChild = this.wrapper.childAt(5)
     expect(sixthChild).to.have.type('main')
     expect(sixthChild).to.have.className(styles.content)
   })
 
-  describe('DocumentMeta', () => {
-    it('sets the meta options', () => {
-      expect(this.tree.find(DocumentMeta).getElement()).to.eql(
+  describe(`DocumentMeta`, () => {
+    it(`sets the meta options`, () => {
+      expect(this.wrapper.find(DocumentMeta).getElement()).to.eql(
         <DocumentMeta
           defaultTitle='Breko Hub'
           titleTemplate='%s | Breko Hub'>
@@ -64,9 +63,9 @@ describe('App Component', function () {
     })
   })
 
-  describe('Img', () => {
-    it('has avatar as src with alt=me and width=70', () => {
-      const img = this.tree.find('img')
+  describe(`Img`, () => {
+    it(`has avatar as src with alt=me and width=70`, () => {
+      const img = this.wrapper.find('img')
       expect(img.props()).to.shallowDeepEqual({
         src: avatarPath,
         alt: 'me',
@@ -75,17 +74,17 @@ describe('App Component', function () {
     })
   })
 
-  describe('Title', () => {
-    it('should have "Breko Hub" as text child', () => {
-      const title = this.tree.find('h1')
+  describe(`Title`, () => {
+    it(`should have "Breko Hub" as text child`, () => {
+      const title = this.wrapper.find('h1')
       expect(title.text()).to.contain('Breko Hub')
     })
   })
 
-  describe('Main', () => {
-    it('renders routes inside Main', () => {
+  describe(`Main`, () => {
+    it(`renders routes inside Main`, () => {
       expect(
-        snap(this.tree.find('main'))
+        snap(this.wrapper.find('main'))
       ).to.matchSnapshot()
     })
   })

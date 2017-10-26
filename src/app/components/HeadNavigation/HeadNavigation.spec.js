@@ -1,44 +1,53 @@
-import sd from 'skin-deep'
 import { NavLink } from 'react-router-dom'
 import HeadNavigation from './HeadNavigation'
 import styles from './HeadNavigation.module.scss'
 
-describe('Head Navigation Component', function () {
+describe(`Head Navigation Component`, function () {
+  const shallowHN = props => shallow(<HeadNavigation {...props} />)
+
   beforeEach(() => {
-    this.tree = sd.shallowRender(<HeadNavigation />)
+    this.wrapper = shallowHN()
   })
 
-  it('renders a nav element with styles.nav className', () => {
-    const nav = this.tree.subTree('nav')
-    expect(nav.props).to.have.property('className', styles.nav)
+  it(`renders a <nav> with styles.nav className as rootNode`, () => {
+    const rootNode = this.wrapper.at(0)
+    expect(rootNode).to.have.type('nav')
   })
 
-  it('passes other props through', () => {
+  it(`extends styles.nav className on rootNode`, () => {
+    const className = 'test-class-name'
+    const rootNode = shallowHN({ className }).at(0)
+    expect(rootNode).to.have.className(styles.nav)
+    expect(rootNode).to.have.className(className)
+  })
+
+  it(`passes other props through`, () => {
     const otherProps = { id: 'foo', 'data-prop': 'bar' }
-    let treeWithProps = sd.shallowRender(<HeadNavigation {...otherProps} />)
-    expect(treeWithProps.props).to.shallowDeepEqual(otherProps)
+    const rootNode = shallowHN(otherProps).at(0)
+    expect(rootNode.props()).to.shallowDeepEqual(otherProps)
   })
 
-  describe('NavLinks', () => {
+  describe(`NavLinks`, () => {
     const links = [
-      { to: '/', content: 'Home' },
+      { to: '/', content: 'Home', exact: true },
       { to: '/bar', content: 'Bar' },
       { to: '/private', content: 'Private' },
     ]
 
-    it('only renders the necessary links', () => {
+    it(`only renders the necessary links`, () => {
       expect(
-        this.tree.everySubTree(NavLink.displayName)
+        this.wrapper.find(NavLink)
       ).to.have.length(links.length)
     })
 
-    links.forEach(link =>
+    links.forEach((link, idx) =>
       it(`renders the ${link.content} link`, () => {
-        const node = this.tree.subTree(NavLink, { to: link.to })
-        expect(node.type).to.eql(NavLink)
-        expect(node.props).to.shallowDeepEqual({
+        const navLink = this.wrapper.find(NavLink).at(idx)
+        expect(navLink.props()).to.shallowDeepEqual({
+          to: link.to,
           children: link.content,
           activeClassName: styles.active,
+          ...link.exact && { exact: true },
         })
       })
     )

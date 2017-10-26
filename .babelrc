@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", { "targets": { "node": true } }],
+    [ "env", { "targets": { "node": true } } ],
     "react"
   ],
   "plugins": [
@@ -12,14 +12,14 @@
     "add-module-exports",
     "babel-root-import",
     "react-require",
-    ["provide-modules", {
+    [ "provide-modules", {
       "debug": "debug"
-    }],
-    ["module-resolver", {
+    } ],
+    [ "module-resolver", {
       "root": ["./src"]
-    }],
-    ["jsx-fragment", {
+    } ],
+    [ "jsx-fragment", {
       "tagName": "Ø"
-    }]
+    } ]
   ]
 }

@@ -1,9 +1,9 @@
 import OopsRoute from './OopsRoute'
 
-describe('OopsRoute Component', function () {
+describe(`OopsRoute Component`, function () {
   helpers.setupSnapshots(__filename)
 
-  it('matches snapshot', () => {
+  it(`matches snapshot`, () => {
     expect(
       snap(shallow(<OopsRoute />))
     ).to.matchSnapshot()

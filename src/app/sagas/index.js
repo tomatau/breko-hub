@@ -13,7 +13,7 @@ export function * timeoutRemoveFlash(nextFlash) {
       timeout: delay(4000),
       removed: take(action =>
         action.type === REMOVE_MESSAGE
-        && action.id === nextFlash.id
+        && action.payload.id === nextFlash.id
       ),
     })
     if (!removed) {

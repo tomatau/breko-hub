@@ -2,8 +2,8 @@ import { request } from 'app/utils'
 import { API_FETCH } from './bar.constants'
 import { apiFetch } from './bar.actions'
 
-describe('Bar Actions', function () {
-  describe('apiFetch()', () => {
+describe(`Bar Actions`, function () {
+  describe(`apiFetch()`, () => {
     beforeEach(() => {
       sinon.stub(request, 'fetch')
     })
@@ -12,16 +12,16 @@ describe('Bar Actions', function () {
       request.fetch.restore()
     })
 
-    it('returns an action with type API_FETCH', () => {
+    it(`returns an action with type API_FETCH`, () => {
       expect(apiFetch()).to.have.property('type', API_FETCH)
     })
 
-    it('calls fetch with /api/bar', () => {
+    it(`calls fetch with /api/bar`, () => {
       apiFetch()
       expect(request.fetch).to.have.been.calledWith('/api/bar')
     })
 
-    it('resolves the promise from fetching /api/bar', async () => {
+    it(`resolves the promise from fetching /api/bar`, () => {
       const requestResolve = { some: 'data' }
       request.fetch.returns(Promise.resolve(requestResolve))
 

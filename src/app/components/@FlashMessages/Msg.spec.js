@@ -1,53 +1,79 @@
-import { shallow } from 'enzyme'
-import Msg from './Msg'
-import styles from './Msg.module.scss'
+import fixtures from '~/test/fixtures'
+import { WrappedComponent as Msg } from './Msg'
 
-describe('Msg Component', function () {
+describe(`Msg Component`, function () {
+  const shallowM = props => shallow(<Msg {...props} />)
+
   beforeEach(() => {
-    this.messages = makeMessages()
+    this.messages = fixtures.makeMessages()
     this.msg = _.sample(this.messages)
-    this.tree = shallow(<Msg msg={this.msg} />)
+    this.wrapper = shallowM()
   })
 
-  it('should have the className from styles', () => {
-    expect(this.tree.hasClass(styles.msg)).to.eql(true)
+  it(`renders a span with Msg and styles.msg classNames`, () => {
+    expect(this.wrapper).to.have.tagName('span')
+    expect(this.wrapper).to.have.className('Msg')
   })
 
-  it('should render the message', () => {
-    expect(this.tree.text()).to.contain(this.msg.message)
+  it(`allows extending classNames`, () => {
+    const className = 'test-class-name'
+    this.wrapper.setProps({ className })
+    expect(this.wrapper).to.have.className(className)
   })
 
-  it('have the bem-modifier according to the msg.type', () => {
+  it(`transfers props to the root element`, () => {
+    const otherProps = {
+      id: 'bar',
+      'data-other': 'prop',
+    }
+    this.wrapper.setProps(otherProps)
+    const rootNode = this.wrapper.at(0)
+    expect(rootNode.props()).to.shallowDeepEqual(otherProps)
+  })
+
+  it(`renders the message as first child`, () => {
+    const firstChild = shallowM({ msg: this.msg }).childAt(0)
+    expect(firstChild).to.have.text(this.msg.message)
+  })
+
+  it(`renders the button.Msg__close as last child`, () => {
+    const TIMES = '\u00D7'
+    const lastChild = shallowM({ msg: this.msg }).childAt(1)
+    expect(lastChild).to.have.tagName('button')
+    expect(lastChild).to.have.className('Msg__close')
+    expect(lastChild).to.have.text(TIMES)
+  })
+
+  it(`only renders the close when no message`, () => {
+    const children = this.wrapper.children()
+    expect(children).to.have.length(1)
+    expect(children.at(0)).to.have.className('Msg__close')
+  })
+
+  it(`has the bem-modifier according to its type`, () => {
     this.messages.forEach(msg => {
-      this.tree = shallow(<Msg msg={msg} />)
-      const modifierClass = `${styles.msg}--${msg.type}`
-      expect(this.tree.hasClass(modifierClass)).to.eql(true)
+      this.wrapper = shallowM({ msg })
+      expect(this.wrapper).to.have.className(`Msg--${msg.type}`)
     })
   })
 
-  it('should transfer props to the root element', () => {
-    const otherProps = { id: 'bar', 'data-other': 'prop' }
-    this.tree = shallow(<Msg msg={this.msg} {...otherProps} />)
-    expect(this.tree.props()).to.shallowDeepEqual(otherProps)
-  })
+  describe(`Close button`, () => {
+    const clickHandler = sinon.spy()
 
-  it('should render a close button with close className', () => {
-    expect(this.tree.find({ className: styles.close })).to.have.length(1)
+    beforeEach(() => {
+      this.wrapper.setProps({
+        msg: this.msg,
+        onClickClose: clickHandler,
+      })
+    })
+
+    afterEach(() => {
+      clickHandler.reset()
+    })
+
+    it(`dispatches a removeMsg with the msg id when clicked`, () => {
+      this.wrapper.find('.Msg__close').simulate('click')
+      expect(clickHandler).to.have.been.calledWith(this.msg.id)
+    })
   })
 })
-
-const makeMessages = () => [
-  {
-    id: '1',
-    message: 'test message',
-    type: 'error',
-  }, {
-    id: '2',
-    message: 'another test message',
-    type: 'good',
-  }, {
-    id: '3',
-    message: 'more test message',
-    type: 'info',
-  },
-]

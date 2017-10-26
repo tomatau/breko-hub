@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import { NavLink } from 'react-router-dom'
 import styles from './HeadNavigation.module.scss'
 
@@ -5,9 +6,9 @@ import styles from './HeadNavigation.module.scss'
 // unless you also subscribe to changes to routing state or context
 export default class HeadNavigation extends React.Component {
   render() {
-    const { ...props } = this.props
+    const { className, ...props } = this.props
     return (
-      <nav className={styles.nav} {...props}>
+      <nav className={cx(styles.nav, className)} {...props}>
         <NavLink exact activeClassName={styles.active} to='/'>
           Home
         </NavLink>
