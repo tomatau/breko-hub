@@ -4,7 +4,7 @@ import { path, pathOr, split, tryCatch, always, compose } from 'ramda'
 const get = (location, or) =>
   tryCatch(
     compose((or == null ? path : pathOr(or)), split('.')),
-    always(null)
+    () => always(undefined)
   )(location)
 
 export default get

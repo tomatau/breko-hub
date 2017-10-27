@@ -2,7 +2,8 @@ import io from 'socket.io-client'
 import 'app/composition/socket'
 
 describe(`Client Socket`, function () {
-  const expectedConnection = `${global.location.protocol}//${global.location.hostname}:${global.location.port}`
+  const { protocol, hostname, port } = global.location
+  const expectedConnection = `${protocol}//${hostname}:${port}`
 
   it(`connect to current host and port`, () => {
     expect(io.managers).to.have.property(expectedConnection)

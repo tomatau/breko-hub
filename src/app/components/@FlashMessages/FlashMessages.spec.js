@@ -1,4 +1,4 @@
-import fixtures from '~/test/fixtures'
+import fixtures from 'helpers/fixtures'
 import { WrappedComponent as FlashMessages } from './FlashMessages'
 import Msg from './Msg'
 
@@ -21,7 +21,10 @@ describe(`FlashMessages Component`, function () {
 
   context(`Given Messages`, () => {
     beforeEach(() => {
-      this.messages = fixtures.makeMessages()
+      this.messages = fixtures(
+        'makeMessages',
+        'addMessageCollection',
+      )
       this.wrapper.setProps({
         messages: this.messages,
       })

@@ -1,6 +1,6 @@
 import get from './get'
 
-describe('Get', function () {
+describe(`Get Helper`, function () {
   beforeEach(() => {
     this.object = {
       foo: 'bar',
@@ -13,33 +13,31 @@ describe('Get', function () {
     }
   })
 
-  it('returns undefined called with nothing', () => {
-    const getDoesntExist = get('missing')
-    expect(getDoesntExist(undefined)).to.eql(undefined)
+  it(`returns undefined when location isnt a string`, () => {
+    expect(get(undefined)('anything')).to.eql(undefined)
+    expect(get(123)('anything')).to.eql(undefined)
+    expect(get({})('anything')).to.eql(undefined)
   })
 
-  it('returns undefined when property doesnt exist', () => {
-    const getDoesntExist = get('missing')
-    expect(
-      getDoesntExist(this.object)
-    ).to.eql(undefined)
+  it(`returns when given undefined`, () => {
+    expect(get('missing')(undefined)).to.eql(undefined)
   })
 
-  it('gets a property from an object', () => {
-    const getFoo = get('foo')
-    expect(
-      getFoo(this.object)
-    ).to.eql(this.object.foo)
+  it(`returns undefined when property doesnt exist`, () => {
+    expect(get('missing')(this.object)).to.eql(undefined)
   })
 
-  it('gets a deep property from an object by dot syntax', () => {
-    const getDeeplyNested = get('bar.deeply.nested')
+  it(`gets a property from an object`, () => {
+    expect(get('foo')(this.object)).to.eql(this.object.foo)
+  })
+
+  it(`gets a deep property from an object by dot syntax`, () => {
     expect(
-      getDeeplyNested(this.object)
+      get('bar.deeply.nested')(this.object)
     ).to.eql(this.object.bar.deeply.nested)
   })
 
-  it('sets default as second argument when supplied', () => {
+  it(`sets default as second argument when supplied`, () => {
     const or = { test: 'default value' }
     const getDoesntExist = get('missing', or)
     expect(

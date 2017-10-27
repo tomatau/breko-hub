@@ -13,6 +13,6 @@ const isValidAttribute = isOneOf(validAttributes)
 
 const acceptableRegex = /^data\-/
 
-export const attrs = pickBy(
+export const cleanProps = pickBy(
   (val, key) => isValidAttribute(key) || acceptableRegex.test(key)
 )

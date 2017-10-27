@@ -4,6 +4,14 @@ exports[`NotFoundRoute Component matches snapshot 1`] = `
 <section
   className="NotFoundRoute"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Doesn't exist
+    </title>
+  </HelmetWrapper>
   404, page not found
 </section>
 `;

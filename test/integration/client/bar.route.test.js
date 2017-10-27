@@ -20,7 +20,6 @@ describe(`Bar Route`, function () {
   })
 
   it(`updates the page title`, done => {
-    /* flakey test 'cuz react-helmet */
     defer(() => {
       expect(document.title).to.eql('Bar | Breko Hub')
       done()

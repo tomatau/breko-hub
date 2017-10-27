@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Bem, noop, attrs } from 'app/utils'
+import { Bem, noop, cleanProps } from 'app/utils'
 import { removeMessage } from 'app/modules/flash/flash.actions'
 import './Msg.scss'
 
@@ -29,7 +29,7 @@ export default class Msg extends React.Component {
   render() {
     const { msg, className, ...props } = this.props
     return (
-      <span {...bem(null, msg.type, className)} {...attrs(props)}>
+      <span {...bem(null, msg.type, className)} {...cleanProps(props)}>
         {msg.message}
         <button {...bem('close')} onClick={this.clickMessage}>
           &times;

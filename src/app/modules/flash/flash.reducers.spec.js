@@ -1,4 +1,4 @@
-import fixtures from '~/test/fixtures'
+import fixtures from 'helpers/fixtures'
 import { flashReducers } from './flash.reducers'
 import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
@@ -13,7 +13,10 @@ describe(`Flash Reducers`, function () {
   })
 
   describe(REMOVE_MESSAGE, () => {
-    const messages = fixtures.makeMessages()
+    const messages = fixtures(
+      'makeMessages',
+      'addMessageCollection',
+    )
     const previousState = {
       messages,
       test: 'test previous state',
@@ -52,7 +55,10 @@ describe(`Flash Reducers`, function () {
   })
 
   describe(ADD_MESSAGE, () => {
-    const messages = fixtures.makeMessages()
+    const messages = fixtures(
+      'makeMessages',
+      'addMessageCollection',
+    )
     const previousState = {
       messages,
       test: 'test previous state',

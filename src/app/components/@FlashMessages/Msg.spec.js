@@ -1,11 +1,14 @@
-import fixtures from '~/test/fixtures'
+import fixtures from 'helpers/fixtures'
 import { WrappedComponent as Msg } from './Msg'
 
 describe(`Msg Component`, function () {
   const shallowM = props => shallow(<Msg {...props} />)
 
   beforeEach(() => {
-    this.messages = fixtures.makeMessages()
+    this.messages = fixtures(
+      'makeMessages',
+      'addMessageCollection',
+    )
     this.msg = _.sample(this.messages)
     this.wrapper = shallowM()
   })

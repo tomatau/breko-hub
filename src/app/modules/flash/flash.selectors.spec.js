@@ -1,3 +1,4 @@
+import fixtures from 'helpers/fixtures'
 import * as flashSelectors from './flash.selectors'
 
 describe('Flash Selectors', function () {
@@ -11,7 +12,13 @@ describe('Flash Selectors', function () {
     it('returns the flash messages', () => {
       const state = {
         flash: {
-          messages: [ { id: 'test' }, { id: 'messages' } ],
+          messages: fixtures(
+            'makeMessages',
+            'addRandomMessage',
+            'addRandomMessage',
+            'addRandomMessage',
+            'addRandomMessage',
+          ),
         },
       }
       expect(flashSelectors.getMessages(state)).to.eql(state.flash.messages)
@@ -28,7 +35,13 @@ describe('Flash Selectors', function () {
     it('returns the flash message start of list', () => {
       const state = {
         flash: {
-          messages: [ { id: 'test' }, { id: 'messages' } ],
+          messages: fixtures(
+            'makeMessages',
+            'addRandomMessage',
+            'addRandomMessage',
+            'addRandomMessage',
+            'addRandomMessage',
+          ),
         },
       }
       expect(

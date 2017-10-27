@@ -1,12 +1,13 @@
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
-import { get, noop } from 'app/utils'
-import * as barActions from 'app/modules/bar/bar.actions'
+import { noop } from 'app/utils'
+import { apiFetch } from 'app/modules/bar/bar.actions'
+import { getBar } from 'app/modules/bar/bar.selectors'
 import style from './BarRoute.module.scss'
 
 @connect(state => ({
-  bar: get('bar.data')(state),
-}), barActions)
+  bar: getBar(state),
+}), { apiFetch })
 export default class BarRoute extends React.Component {
   static defaultProps = {
     bar: [],

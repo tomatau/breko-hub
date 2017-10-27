@@ -1,8 +1,7 @@
 
 describe(`Client Render`, function () {
   beforeEach((done) => {
-    helpers.prepare(this, '/')
-    defer(done)
+    helpers.prepare(this, '/', done)
   })
 
   afterEach(() => {
@@ -10,7 +9,6 @@ describe(`Client Render`, function () {
   })
 
   it(`sets the page title`, done => {
-    /* flakey test 'cuz react-helmet */
     defer(() => {
       expect(document.title).to.eql('Breko Hub')
       done()
@@ -18,7 +16,6 @@ describe(`Client Render`, function () {
   })
 
   it(`sets the meta description and chartset`, () => {
-    /* flakey test 'cuz react-helmet */
     defer(() => {
       const metaCharset = document.querySelector('meta[charset]')
       expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
