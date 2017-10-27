@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import { SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT } from 'config/paths'
+import svgoConfig from 'config/svgo.config'
 import { isomorphicPlugin } from 'server/isomorphic-tools'
 
 export default {
@@ -23,7 +24,7 @@ export default {
   resolve: {
     modules: [ SRC, STYLES, 'node_modules' ],
     extensions: [
-      '.js', '.jsx', '.es', '.es6', '.scss',
+      '.js', '.jsx', '.scss',
     ],
   },
   plugins: [
@@ -66,8 +67,15 @@ export default {
         loader: 'file-loader',
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
-        options: { limit: 10000, mimetype: 'image/svg+xml' },
+        use: [
+          {
+            loader: 'svg-inline-loader',
+            options: { removeTags: false, removeSVGTagAttrs: false },
+          }, {
+            loader: 'svgo-loader',
+            options: svgoConfig,
+          },
+        ],
       },
     ],
   },

@@ -6,8 +6,6 @@ import { outClientViaSocketIO } from 'redux-via-socket.io'
 import { pipe, tap } from 'ramda'
 import { isBrowser } from 'app/utils'
 
-const log = debug('DISPATCH:')
-
 export const sagaMiddleware = createSagaMiddleware()
 
 export const middleware = [
@@ -26,6 +24,8 @@ if (isBrowser) {
     })
   )
 } else {
+  const log = debug('DISPATCH:')
+
   middleware.unshift(
     () => next => pipe(tap(log), next)
   )
