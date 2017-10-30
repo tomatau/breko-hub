@@ -49,7 +49,7 @@ Open a browser window at `localhost:9001`.
 **To claim the project:**
 
 ```
-git apply ./patches/0001-remove-most-example-code.patch
+git apply ./patches/0001-remove-example-code.patch
 ```
 
 This removes:
