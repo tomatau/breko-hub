@@ -10,20 +10,19 @@ Breko hub is a github repository that helps anyone create new JavaScript applica
 
 ### Documentation
 
-[https://tomatao.gitbooks.io/breko-hub/content/](https://tomatao.gitbooks.io/breko-hub/content/)
+[https://tomatao.gitbooks.io/breko-hub/content/](https://tomatao.gitbooks.io/breko-hub/content/) (outdated)
 
 ### Features
 
-- Enables building universal SPAs
-- A modern redux architecture
+- Quick setup universal SPAs
+- Universal redux architecture
 - Hot reloading of CSS-modules
-- Fast server side hot reloading
-- 99% ES-next code-base
+- Fast server side hot updates
+- ES-next code-base
 - Hot reloading unit tests in a browser
-- A comprehensive functional and unit test suite
+- A comprehensive integration and unit test suite
 - A lucid code-base
-- A pretty console output
-- Useful debugging tools
+- Great debugging tools
 
 ### Prerequsits
 
@@ -36,6 +35,8 @@ Use the following commands to get started on your new app using breko-hub.
 ```
 git clone --depth=1 git@github.com:tomatau/breko-hub.git <directory-name>
 cd <directory-name>
+rm -rf .git
+git init
 npm i
 mv example.env .env
 npm start
@@ -82,7 +83,6 @@ Breko hub uses the following libraries at its core:
 - [redux](http://redux.js.org/) - A library for state management.
 - [react-router](https://github.com/reactjs/react-router) - A routing library for React.
 - [react-router-redux](https://github.com/reactjs/react-router-redux) - Binding between react-router and redux.
-- [redial](https://www.npmjs.com/package/redial) - Universal data fetching for React.
 - [redux-saga](https://github.com/yelouafi/redux-saga) - Side effect management for redux.
 - [reselect](https://github.com/reactjs/reselect) - A library for creating state selectors.
 - [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) - A redux middleware for creating asynchronous actions.
@@ -141,13 +141,13 @@ npm run test:unit
 
 Runs the test suite in a node environment through mocha, once.
 
-**Functional/integration tests run**
+**integration tests run**
 
 ```
-npm run test:func
+npm run test:int
 ```
 
-Runs functional tests inside `./test/functional` directory.
+Runs integration tests inside `./test/integration` directory.
 
 **Lint**
 

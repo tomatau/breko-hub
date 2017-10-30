@@ -1,7 +1,7 @@
-import { filter, identity, always, reject, isNil, flip, contains, pickBy } from 'ramda'
+import { filter, always, reject, isNil, flip, contains, pickBy } from 'ramda'
 import validAttributes from './valid-attributes'
 
-export const compact = filter(identity)
+export const compact = filter(Boolean)
 
 export const noop = always(undefined)
 
