@@ -134,7 +134,7 @@
     "socket.io-client": "^2.0.3",
     "style-loader": "^0.19.0",
     "svg-inline-loader": "^0.8.0",
-    "svgo-loader": "^1.2.1",
+    "svgo-loader": "^2.0.0",
     "tao-scss": "~0.4.1",
     "type-to-reducer": "^1.0.4",
     "url-loader": "~0.6.1",
