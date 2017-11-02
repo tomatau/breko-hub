@@ -17,7 +17,7 @@ const { document } = window
 
 global.window = window
 global.document = document
-
+global.HTMLElement = window.HTMLElement
 global.requestAnimationFrame = setImmediate
 
 keys(document).forEach(property => {

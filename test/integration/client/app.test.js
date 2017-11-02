@@ -9,10 +9,11 @@ describe(`Client Render`, function () {
   })
 
   it(`sets the page title`, done => {
-    defer(() => {
+    // flakey test
+    setTimeout(() => {
       expect(document.title).to.eql('Breko Hub')
       done()
-    })
+    }, 100)
   })
 
   it(`sets the meta description and chartset`, () => {
