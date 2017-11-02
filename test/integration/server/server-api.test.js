@@ -1,4 +1,4 @@
-import supertest from 'supertest-as-promised'
+import supertest from 'supertest'
 import server from 'server-instance'
 import { setRoutes, rootRouter } from 'server/router'
 

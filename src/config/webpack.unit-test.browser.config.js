@@ -80,24 +80,12 @@ export default {
       }),
     }, {
       ...babelLoaderConfig,
-      include: [
-        ...babelLoaderConfig.include,
-        TESTS,
-      ],
       options: {
         ...babelLoaderConfig.options,
-        'plugins': [
+        plugins: [
           ...babelLoaderConfig.options.plugins,
-          [ 'react-transform', {
-            'transforms': [ {
-              'transform': 'react-transform-hmr',
-              'imports': [ 'react' ],
-              'locals': [ 'module' ],
-            }, {
-              'transform': 'react-transform-catch-errors',
-              'imports': [ 'react', 'redbox-react' ],
-            } ],
-          } ],
+          'extract-hoc/babel',
+          'react-hot-loader/babel',
         ],
       },
     } ],
