@@ -54,7 +54,6 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: npm run test:unit -- --reporter spec
-
   test_integration:
     <<: *defaults
     steps:
@@ -66,7 +65,7 @@ jobs:
 
 workflows:
   version: 2
-  build_test:
+  build_lint_and_test:
     jobs:
       - checkout
       - install:
