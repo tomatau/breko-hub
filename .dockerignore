@@ -1,0 +1,17 @@
+coverage
+.idea
+node_modules
+src/static
+webpack-assets.json
+*.log
+*.sublime-workspace
+untracked*
+
+.editorconfig
+.env
+.gitignore
+.nvmrc
+circle.yml
+example.env
+LICENSE
+README.md
