@@ -141,8 +141,7 @@
     "url-loader": "~0.6.1",
     "uuid": "^3.1.0",
     "webpack": "^3.8.1",
-    "webpack-isomorphic-tools": "^3.0.5",
-    "yargs": "^10.0.3"
+    "webpack-isomorphic-tools": "^3.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

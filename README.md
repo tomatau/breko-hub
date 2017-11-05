@@ -166,3 +166,15 @@ npm run coverage:check
 ```
 
 Reads `.istanbul.yml` for thresholds in check.
+
+
+**Docker**
+
+There's a starting docker images you can use to get going. You'll probably wanr to modify the Dockerfile to your needs.
+
+```bash
+# production image built with assets
+$ docker build -t tomatao/breko-hub .
+# runs `npm start` with port at 9001
+$ docker run -p 9001:9001 tomatao/breko-hub
+```
