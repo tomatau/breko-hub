@@ -10,6 +10,7 @@ temp
 *.css.map
 webpack-assets.json
 webpack-stats.json
+loadable-modules.json
 logs
 *.log
 *.sublime-workspace

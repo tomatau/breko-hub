@@ -5,25 +5,25 @@ exports[`App Component Main renders routes inside Main 1`] = `
   className="src-app-components-App-App-module-content"
 >
   <Switch>
-    <CodeSplitRoute
+    <Route
+      component={[Function]}
       exact={true}
-      load={[Function]}
       path="/"
     />
-    <CodeSplitRoute
-      load={[Function]}
+    <Route
+      component={[Function]}
       path="/bar"
     />
-    <CodeSplitRoute
-      load={[Function]}
+    <Route
+      component={[Function]}
       path="/oops"
     />
     <Route
       component={[Function]}
       path="/private"
     />
-    <CodeSplitRoute
-      load={[Function]}
+    <Route
+      component={[Function]}
     />
   </Switch>
 </main>

@@ -64,7 +64,7 @@ describe('Server Side Render', function () {
     app.use(testRouter.routes())
     // add rootRouer routes
     app.use(async (ctx, next) => {
-      setRoutes(assets)
+      await setRoutes(assets)
       await rootRouter.routes()(ctx, next)
     })
   })
