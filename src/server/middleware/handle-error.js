@@ -29,6 +29,6 @@ export default async function handleError(ctx, next) {
 
 const ServerOops = () => (
   <div className='ServerOops'>
-    Oopsies! Broke'o-hub :(
+    Oopsies! Broke&quot;o-hub :(
   </div>
 )

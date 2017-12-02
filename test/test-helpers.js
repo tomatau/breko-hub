@@ -58,22 +58,28 @@ const helpers = {
   createStorage() {
     return {
       length: 1,
-      state: {},
+      _store: {},
+      _updateLength() {
+        this.length = Object.keys(this._store).length
+      },
       getItem(key) {
-        return this.state[key] || null
+        return this._store[key] || null
       },
       setItem(key, value) {
-        this.state[key] = typeof value === 'string'
+        this._store[key] = typeof value === 'string'
           ? value
           : JSON.stringify(value)
+        this._updateLength()
       },
       removeItem(key) {
-        delete this.state[key]
+        delete this._store[key]
+        this._updateLength()
       },
       clear() {
-        for (const key in this.state) {
+        for (const key in this._store) {
           this.removeItem(key)
         }
+        this._updateLength()
       },
     }
   },

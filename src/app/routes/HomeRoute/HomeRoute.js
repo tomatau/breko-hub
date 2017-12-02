@@ -5,7 +5,7 @@ export default class HomeRoute extends React.Component {
     return (
       <section className='HomeRoute'>
         <DocumentMeta>
-          <title></title>
+          <title />
         </DocumentMeta>
         <p>Welcome to breko-hub</p>
         <p>This app is intentionally minimal!</p>

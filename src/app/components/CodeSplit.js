@@ -18,11 +18,13 @@ export default class CodeSplit extends React.Component {
   };
 
   componentWillMount() {
-    if (hasWindow) this.callLoad(this.props.load)
+    const { load } = this.props
+    if (hasWindow) this.callLoad(load)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.load !== this.props.load) {
+    const { load } = this.props
+    if (nextProps.load !== load) {
       this.callLoad(nextProps.load)
     }
   }

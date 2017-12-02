@@ -15,7 +15,8 @@ export default class BarRoute extends React.Component {
   };
 
   componentDidMount() {
-    this.props.apiFetch()
+    const { apiFetch } = this.props
+    apiFetch()
   }
 
   render() {
@@ -28,7 +29,7 @@ export default class BarRoute extends React.Component {
         <h3>Bar</h3>
         <p>This route is making an api request</p>
         <p>If you change the response from <code>server/api/bar</code> endpoint</p>
-        <p>And then navigate away and back to this route, you'll see the changes immediately</p>
+        <p>And then navigate away and back to this route, you&apos;ll see the changes immediately</p>
         <div className={style.block}>
           {bar.map((item, i) =>
             <p key={i}>{item}</p>

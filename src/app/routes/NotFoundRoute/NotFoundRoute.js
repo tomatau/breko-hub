@@ -5,7 +5,7 @@ export default class NotFoundRoute extends React.Component {
     return (
       <section className='NotFoundRoute'>
         <DocumentMeta>
-          <title>Doesn't exist</title>
+          <title>Doesn&apos;t exist</title>
         </DocumentMeta>
         404, page not found
       </section>

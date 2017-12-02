@@ -32,9 +32,9 @@ export default class Html extends React.Component {
       bodyStyles,
     } = this.props
     const helmet = Helmet.renderStatic()
-
+    const { lang, ...htmlAttrs } = helmet.htmlAttributes.toComponent()
     return (
-      <html {...helmet.htmlAttributes.toComponent()}>
+      <html lang={lang} {...htmlAttrs}>
         <head>
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}

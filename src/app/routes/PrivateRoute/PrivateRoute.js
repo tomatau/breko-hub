@@ -7,8 +7,9 @@ import { addMessage } from 'app/modules/flash/flash.actions'
 @connect(null, { replace, addMessage })
 export default class PrivateRoute extends React.Component {
   componentWillMount() {
-    this.props.addMessage(privateRoute.denied, 'error')
-    this.props.replace('/')
+    const { addMessage, replace } = this.props
+    addMessage(privateRoute.denied, 'error')
+    replace('/')
   }
 
   render() {

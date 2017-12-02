@@ -16,9 +16,10 @@ class StaticRouter extends React.Component {
   };
 
   getChildContext() {
+    const { history } = this.props
     return {
       router: {
-        staticContext: this.props.history,
+        staticContext: history,
       },
     }
   }

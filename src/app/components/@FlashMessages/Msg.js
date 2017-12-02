@@ -23,7 +23,8 @@ export default class Msg extends React.Component {
   };
 
   handleClick = () => {
-    this.props.onClickClose(this.props.msg.id)
+    const { onClickClose, msg } = this.props
+    onClickClose(msg.id)
   }
 
   render() {
@@ -31,7 +32,10 @@ export default class Msg extends React.Component {
     return (
       <span {...bem(null, msg.type, className)} {...cleanProps(props)}>
         {msg.message}
-        <button {...bem('close')} onClick={this.handleClick}>
+        <button
+          type='button'
+          {...bem('close')}
+          onClick={this.handleClick}>
           &times;
         </button>
       </span>
