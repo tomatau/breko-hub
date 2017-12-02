@@ -5,6 +5,7 @@ delete process.env.DEBUG
 process.env.NODE_ENV = 'test'
 
 require('babel-core/register')({
+  ignore: /node_modules/,
   only: [
     /\/src\/app/,
     /\/src\/config/,
