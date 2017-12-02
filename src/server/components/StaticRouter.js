@@ -26,7 +26,7 @@ class StaticRouter extends React.Component {
   render() {
     const { history, ...props } = this.props
 
-    return <Router {...props} history={history}/>
+    return <Router {...props} history={history} />
   }
 }
 

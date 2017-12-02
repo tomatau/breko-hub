@@ -19,12 +19,12 @@ if (isBrowser) {
   middleware.push(
     outClientViaSocketIO(require('./socket')),
     createLogger({
-      predicate: () => debug.enabled,
+      predicate: () => debug.names.length,
       collapsed: true,
     })
   )
 } else {
-  const log = debug('DISPATCH:')
+  const log = debug('server-dispatch')
 
   middleware.unshift(
     () => next => pipe(tap(log), next)

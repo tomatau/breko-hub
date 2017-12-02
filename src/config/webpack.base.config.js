@@ -15,8 +15,8 @@ export default {
     ],
     body: [
       'babel-polyfill',
-      `${APP}/entry.js`,
       `${STYLES}/main.scss`,
+      `${APP}/entry.js`,
     ],
   },
   output: {
@@ -113,8 +113,6 @@ export const babelLoaderConfig = {
         'debug': 'debug',
       } ],
       'babel-root-import',
-      // ALT+SHIFT+o = Ø
-      [ 'jsx-fragment', { 'tagName': 'Ø' } ],
     ],
   },
 }

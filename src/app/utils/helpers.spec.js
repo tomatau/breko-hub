@@ -1,4 +1,4 @@
-import { compact } from './helpers'
+import { compact, cleanProps } from './helpers'
 
 describe('compact()', function () {
   it('removes falsey values from an array', () => {
@@ -60,5 +60,39 @@ describe('compact()', function () {
     }
     const actual = compact(messyObject)
     expect(actual).to.eql(expected)
+  })
+})
+
+describe(`cleanProps()`, function () {
+  it(`only sets valid HTML attributes`, () => {
+    const messyObject = {
+      htmlFor: true,
+      role: false,
+      rel: 0,
+      blahBlahBlah: -0,
+      id: null,
+      notAValidPropAtAll: {},
+      somethingRandom: '',
+      type: [],
+      dispatch: () => {},
+      onSomething: `() => {} can't assert functions are deep.equal`,
+      onClick: `() => {} can't assert functions are deep.equal`,
+      bsFunction: () => {},
+      style: 'false',
+      '0': '0',
+    }
+    const expected = {
+      htmlFor: true,
+      role: false,
+      rel: 0,
+      id: null,
+      type: [],
+      onClick: `() => {} can't assert functions are deep.equal`,
+      style: 'false',
+    }
+    const actual = cleanProps(messyObject)
+    _.forEach(expected, (val, key) => {
+      expect(actual).to.have.property(key).which.eql(val)
+    })
   })
 })

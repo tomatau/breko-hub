@@ -46,13 +46,18 @@ export default class Html extends React.Component {
             <link
               key={i}
               href={style}
-              type='text/css' rel='stylesheet' media='screen'
+              type='text/css'
+              rel='stylesheet'
+              media='screen'
             />
           ))}
           {stringScripts.map((script, i) => (
-            <script key={i} dangerouslySetInnerHTML={{
-              __html: script,
-            }} />
+            <script
+              key={i}
+              dangerouslySetInnerHTML={{
+                __html: script,
+              }}
+            />
           ))}
           {headScripts.map((script, i) => (
             <script src={script} key={i} />
@@ -66,14 +71,20 @@ export default class Html extends React.Component {
             <script key={i} src={script} />
           ))}
           {bodyStyles.map((style, i) => (
-            <script key={i} dangerouslySetInnerHTML={{
-              __html: `loadCSS('${style}')`,
-            }} />
+            <script
+              key={i}
+              dangerouslySetInnerHTML={{
+                __html: `loadCSS('${style}')`,
+              }}
+            />
           ))}
           {bodyStyles.map((style, i) => (
-            <noscript key={i} dangerouslySetInnerHTML={{
-              __html: `<link href="${style}" rel="stylesheet" />`,
-            }} />
+            <noscript
+              key={i}
+              dangerouslySetInnerHTML={{
+                __html: `<link href="${style}" rel="stylesheet" />`,
+              }}
+            />
           ))}
         </body>
       </html>

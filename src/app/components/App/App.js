@@ -57,7 +57,11 @@ export default class App extends React.Component {
         </DocumentMeta>
         <HeadNavigation />
         <FlashMessages />
-        <img src={avatarPath} alt='me' width='70' />
+        <img
+          src={avatarPath}
+          alt='me'
+          width='70'
+        />
         <h1>Breko Hub</h1>
         <main className={style.content}>
           <Switch>

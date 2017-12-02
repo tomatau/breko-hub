@@ -11,7 +11,7 @@ export const filterNil = reject(isNil)
 
 const isValidAttribute = isOneOf(validAttributes)
 
-const acceptableRegex = /^data\-/
+const acceptableRegex = /^data\-\w/
 
 export const cleanProps = pickBy(
   (val, key) => isValidAttribute(key) || acceptableRegex.test(key)
