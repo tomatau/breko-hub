@@ -18,4 +18,12 @@ require('babel-core/register')({
 require('../src/helpers/css-modules-hook')
 require('../src/helpers/global-jsdom')
 
-nhf([ /\.svg/, /\.jpg/, /\.jpeg/ ], nhf.normalize)
+const loadableRegex = /loadable-modules\.json/
+
+nhf(
+  [ /\.svg/, /\.jpg/, /\.jpeg/, loadableRegex ],
+  (request, parent) =>
+    loadableRegex.test(request)
+      ? {}
+      : nhf.normalize(request, parent)
+)

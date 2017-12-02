@@ -44,7 +44,7 @@ jobs:
           key: checkout-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm run lint
+      - run: npm run lint:js
       - run: npm run lint:styles
   test_unit:
     <<: *defaults
