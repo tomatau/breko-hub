@@ -18,16 +18,16 @@ if (isEnv('development')) {
   app.use(serve(STATIC))
 }
 
-isomorphicTools.server(ROOT, () => {
+isomorphicTools.server(ROOT, async () => {
   if (isEnv('development')) {
     app.use(async (ctx, next) => {
       const { rootRouter, setRoutes } = require(`${SERVER}/router`)
-      setRoutes(isomorphicTools.assets())
+      await setRoutes(isomorphicTools.assets())
       await rootRouter.routes()(ctx, next)
     })
   } else {
     const { rootRouter, setRoutes } = require(`${SERVER}/router`)
-    setRoutes(isomorphicTools.assets())
+    await setRoutes(isomorphicTools.assets())
     app.use(rootRouter.routes())
   }
 })

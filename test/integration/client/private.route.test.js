@@ -4,21 +4,14 @@ describe(`Private Route`, function () {
     message: 'You may not view the private route!!',
   }
 
-  before(() => {
-    this.clock = sinon.useFakeTimers()
-  })
-
   beforeEach((done) => {
+    this.clock = sinon.useFakeTimers()
     helpers.prepare(this, '/private', done)
   })
 
   afterEach(() => {
-    helpers.cleanup(this)
-    this.clock.tick(4000)
-  })
-
-  after(() => {
     this.clock.restore()
+    helpers.cleanup(this)
   })
 
   it(`redirects to /`, () => {

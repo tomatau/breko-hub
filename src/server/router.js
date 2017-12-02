@@ -1,5 +1,6 @@
 import router from 'koa-router'
 import compose from 'koa-compose'
+import Loadable from 'react-loadable'
 import setStore from 'server/middleware/set-store'
 import flashMessages from 'server/middleware/flash-messages'
 import renderApp from 'server/middleware/render-app'
@@ -8,9 +9,10 @@ import apiRouter from 'server/api'
 const log = debug('server-router')
 export const rootRouter = router()
 
-export function setRoutes(assets) {
+export async function setRoutes(assets) {
   log('rebuilding route middleware')
   rootRouter.stack.length = 0
+  await Loadable.preloadAll()
 
   /* build app from routes, set initial state and set response html */
   const renderReactApp = compose([

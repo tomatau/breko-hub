@@ -1,7 +1,10 @@
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
-import { SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT } from 'config/paths'
+import { ReactLoadablePlugin } from 'react-loadable/webpack'
+import {
+  SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT, LOADABLE,
+} from 'config/paths'
 import svgoConfig from 'config/svgo.config'
 import { isomorphicPlugin } from 'server/isomorphic-tools'
 
@@ -12,8 +15,8 @@ export default {
     ],
     body: [
       'babel-polyfill',
-      `${APP}/entry.js`,
       `${STYLES}/main.scss`,
+      `${APP}/entry.js`,
     ],
   },
   output: {
@@ -46,6 +49,9 @@ export default {
     new ExtractTextPlugin({
       filename: '[name].[hash].css',
       allChunks: true,
+    }),
+    new ReactLoadablePlugin({
+      filename: LOADABLE,
     }),
   ],
   module: {
@@ -107,8 +113,6 @@ export const babelLoaderConfig = {
         'debug': 'debug',
       } ],
       'babel-root-import',
-      // ALT+SHIFT+o = Ø
-      [ 'jsx-fragment', { 'tagName': 'Ø' } ],
     ],
   },
 }

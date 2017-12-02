@@ -152,7 +152,7 @@ Runs integration tests inside `./test/integration` directory.
 **Lint**
 
 ```
-npm run lint
+npm run lint:js
 npm run lint:styles
 ```
 

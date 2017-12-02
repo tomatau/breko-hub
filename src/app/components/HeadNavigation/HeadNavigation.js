@@ -9,7 +9,10 @@ export default class HeadNavigation extends React.Component {
     const { className, ...props } = this.props
     return (
       <nav className={cx(styles.nav, className)} {...props}>
-        <NavLink exact activeClassName={styles.active} to='/'>
+        <NavLink
+          exact
+          activeClassName={styles.active}
+          to='/'>
           Home
         </NavLink>
         <NavLink activeClassName={styles.active} to='/bar'>

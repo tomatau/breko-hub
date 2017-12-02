@@ -17,9 +17,6 @@
     } ],
     [ "module-resolver", {
       "root": ["./src"]
-    } ],
-    [ "jsx-fragment", {
-      "tagName": "Ø"
     } ]
   ]
 }

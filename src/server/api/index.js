@@ -1,9 +1,10 @@
 import { STATUS_CODES } from 'http'
-import router from 'koa-router'
+import Router from 'koa-router'
 import koaBody from 'koa-body'
 
 const parseBody = koaBody()
-const apiRouter = router({ prefix: '/api' })
+
+const apiRouter = new Router({ prefix: '/api' })
 
 apiRouter
   .all('ping', '/ping', parseBody, (ctx) => {
@@ -14,7 +15,7 @@ apiRouter
   })
   .all('not-found', '*', (ctx) => {
     ctx.response.status = 404
-    ctx.response.body = { error: STATUS_CODES[status] }
+    ctx.response.body = { error: STATUS_CODES[ctx.response.status] }
   })
 
 export default apiRouter

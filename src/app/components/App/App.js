@@ -1,15 +1,45 @@
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
+import Loadable from 'react-loadable'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
-import CodeSplitRoute from 'app/components/CodeSplitRoute'
 import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
-// example image import
 import avatarPath from 'assets/avatar.jpeg'
-// example s?css module import
 import style from './App.module.scss'
 
 const log = debug('App.js')
+
+const Loading = ({ pastDelay }) => (
+  pastDelay ? <div>Loading...</div> : null
+)
+
+const LoadableHomeRoute = Loadable({
+  loader: () => import('../../routes/HomeRoute/HomeRoute'),
+  loading: Loading,
+  webpack: () => [ require.resolveWeak('../../routes/HomeRoute/HomeRoute') ],
+  modules: [ '../../routes/HomeRoute/HomeRoute' ],
+})
+
+const LoadableBarRoute = Loadable({
+  loader: () => import('../../routes/BarRoute/BarRoute'),
+  loading: Loading,
+  webpack: () => [ require.resolveWeak('../../routes/BarRoute/BarRoute') ],
+  modules: [ '../../routes/BarRoute/BarRoute' ],
+})
+
+const LoadableOopsRoute = Loadable({
+  loader: () => import('../../routes/OopsRoute/OopsRoute'),
+  loading: Loading,
+  webpack: () => [ require.resolveWeak('../../routes/OopsRoute/OopsRoute') ],
+  modules: [ '../../routes/OopsRoute/OopsRoute' ],
+})
+
+const LoadableNotFoundRoute = Loadable({
+  loader: () => import('../../routes/NotFoundRoute/NotFoundRoute'),
+  loading: Loading,
+  webpack: () => [ require.resolveWeak('../../routes/NotFoundRoute/NotFoundRoute') ],
+  modules: [ '../../routes/NotFoundRoute/NotFoundRoute' ],
+})
 
 export default class App extends React.Component {
   render() {
@@ -27,30 +57,34 @@ export default class App extends React.Component {
         </DocumentMeta>
         <HeadNavigation />
         <FlashMessages />
-        <img src={avatarPath} alt='me' width='70' />
+        <img
+          src={avatarPath}
+          alt='me'
+          width='70'
+        />
         <h1>Breko Hub</h1>
         <main className={style.content}>
           <Switch>
-            <CodeSplitRoute
+            <Route
               exact
               path='/'
-              load={() => import('app/routes/HomeRoute/HomeRoute')}
+              component={LoadableHomeRoute}
             />
-            <CodeSplitRoute
+            <Route
               path='/bar'
-              load={() => import('app/routes/BarRoute/BarRoute')}
+              component={LoadableBarRoute}
             />
-            <CodeSplitRoute
+            <Route
               path='/oops'
-              load={() => import('app/routes/OopsRoute/OopsRoute')}
+              component={LoadableOopsRoute}
             />
             <Route
               path='/private'
               // no dynamic import when server side redirect
               component={PrivateRoute}
             />
-            <CodeSplitRoute
-              load={() => import('app/routes/NotFoundRoute/NotFoundRoute')}
+            <Route
+              component={LoadableNotFoundRoute}
             />
           </Switch>
         </main>

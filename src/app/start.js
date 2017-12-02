@@ -3,6 +3,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 import { createBrowserHistory } from 'history'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
+import Loadable from 'react-loadable'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { middleware } from 'app/composition/middleware'
 import createStore from 'app/composition/create-store'
@@ -27,7 +28,7 @@ socket.open()
 run()
 
 /* Mount in DOM */
-mount()
+Loadable.preloadReady().then(() => mount())
 
 if (module.hot) {
   module.hot.accept('app/main', mount)

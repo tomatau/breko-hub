@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/breko-hub
   docker:
-    - image: circleci/node:8.9
+    - image: circleci/node:8.9.1
       environment:
         PORT: 9001
         TZ: "/usr/share/zoneinfo/Europe/London"
@@ -44,7 +44,7 @@ jobs:
           key: checkout-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm run lint
+      - run: npm run lint:js
       - run: npm run lint:styles
   test_unit:
     <<: *defaults

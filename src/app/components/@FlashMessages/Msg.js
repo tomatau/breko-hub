@@ -22,7 +22,7 @@ export default class Msg extends React.Component {
     onClickClose: noop,
   };
 
-  clickMessage = () => {
+  handleClick = () => {
     this.props.onClickClose(this.props.msg.id)
   }
 
@@ -31,7 +31,7 @@ export default class Msg extends React.Component {
     return (
       <span {...bem(null, msg.type, className)} {...cleanProps(props)}>
         {msg.message}
-        <button {...bem('close')} onClick={this.clickMessage}>
+        <button {...bem('close')} onClick={this.handleClick}>
           &times;
         </button>
       </span>

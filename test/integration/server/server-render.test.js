@@ -17,7 +17,7 @@ const StubReactApp = (store, history, Router) => (
     <div>
       <Helmet
         title='test document title'
-        meta={ [
+        meta={[
           { 'name': 'description', 'content': 'test description, hello' },
           { 'charset': 'utf-8' },
         ]}>
@@ -28,9 +28,10 @@ const StubReactApp = (store, history, Router) => (
         <Route path='/test' render={() => <div>Test Route</div>} />
         <Route path='/another' render={() => <div>Another Route</div>} />
         <Route path='/redirect' render={() => <Redirect to='/test' />} />
-        <Route path='/error-route' render={() => {
-          throw new Error('error from react route')
-        }} />
+        <Route
+          path='/error-route'
+          render={() => { throw new Error('error from react route') }}
+        />
       </Switch>
     </div>
   </Router>
@@ -64,7 +65,7 @@ describe('Server Side Render', function () {
     app.use(testRouter.routes())
     // add rootRouer routes
     app.use(async (ctx, next) => {
-      setRoutes(assets)
+      await setRoutes(assets)
       await rootRouter.routes()(ctx, next)
     })
   })
