@@ -24,6 +24,6 @@ describe(`Server API`, function () {
     supertest(app.callback())
       .get('/api/bar')
       .expect('content-type', /application\/json/)
-      .expect({ bar: [ 'bruce', 'willis', 'wet', 'himself' ] })
+      .expect({ bar: [ 'lorem', 'ipsum', 'dolor', 'sit', 'amet' ] })
   )
 })

@@ -1,13 +1,13 @@
-import router from 'koa-router'
+import Router from 'koa-router'
 import compose from 'koa-compose'
 import Loadable from 'react-loadable'
 import setStore from 'server/middleware/set-store'
 import flashMessages from 'server/middleware/flash-messages'
 import renderApp from 'server/middleware/render-app'
-import apiRouter from 'server/api'
 
 const log = debug('server-router')
-export const rootRouter = router()
+
+export const rootRouter = new Router()
 
 export async function setRoutes(assets) {
   log('rebuilding route middleware')
@@ -23,6 +23,10 @@ export async function setRoutes(assets) {
     /* give assets from bundle, set response body from react app */
     renderApp(assets),
   ])
+
+  const { apiRouter, setApiRoutes } = require('server/api')
+
+  setApiRoutes()
 
   rootRouter
     .use(apiRouter.routes())

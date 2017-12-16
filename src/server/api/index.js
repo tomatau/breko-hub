@@ -4,18 +4,20 @@ import koaBody from 'koa-body'
 
 const parseBody = koaBody()
 
-const apiRouter = new Router({ prefix: '/api' })
+export const apiRouter = new Router({ prefix: '/api' })
 
-apiRouter
-  .all('ping', '/ping', parseBody, (ctx) => {
-    ctx.response.body = { pong: ctx.request.body }
-  })
-  .get('bar', '/bar', (ctx) => {
-    ctx.response.body = { bar: [ 'bruce', 'willis', 'wet', 'himself' ] }
-  })
-  .all('not-found', '*', (ctx) => {
-    ctx.response.status = 404
-    ctx.response.body = { error: STATUS_CODES[ctx.response.status] }
-  })
+export function setApiRoutes() {
+  apiRouter.stack.length = 0
 
-export default apiRouter
+  apiRouter
+    .all('ping', '/ping', parseBody, (ctx) => {
+      ctx.response.body = { pong: ctx.request.body }
+    })
+    .get('bar', '/bar', (ctx) => {
+      ctx.response.body = { bar: [ 'lorem', 'ipsum', 'dolor', 'sit', 'amet' ] }
+    })
+    .all('not-found', '*', (ctx) => {
+      ctx.response.status = 404
+      ctx.response.body = { error: STATUS_CODES[ctx.response.status] }
+    })
+}
