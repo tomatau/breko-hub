@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
-import { AppContainer } from 'react-hot-loader'
 import { createBrowserHistory } from 'history'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 import Loadable from 'react-loadable'
@@ -8,7 +7,7 @@ import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { middleware } from 'app/composition/middleware'
 import createStore from 'app/composition/create-store'
 import socket from 'app/composition/socket'
-import { run } from 'app/main'
+import { run, Main } from 'app/main'
 
 const log = debug('start')
 
@@ -28,19 +27,11 @@ socket.open()
 run()
 
 /* Mount in DOM */
-Loadable.preloadReady().then(() => mount())
-
-if (module.hot) {
-  module.hot.accept('app/main', mount)
-}
-
-function mount() {
-  const { Main } = require('app/main')
-  log(`Mounting onto #${CONTAINER_ELEMENT_ID}`)
-  ReactDOM.hydrate(
-    <AppContainer>
-      {Main(store, history, ConnectedRouter)}
-    </AppContainer>,
-    document.getElementById(CONTAINER_ELEMENT_ID)
-  )
-}
+Loadable.preloadReady()
+  .then(() => {
+    log(`Mounting onto #${CONTAINER_ELEMENT_ID}`)
+    ReactDOM.hydrate(
+      Main(store, history, ConnectedRouter),
+      document.getElementById(CONTAINER_ELEMENT_ID)
+    )
+  })

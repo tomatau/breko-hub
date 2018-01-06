@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { replace } from 'react-router-redux'
+import { hot } from 'react-hot-loader'
 import { privateRoute } from 'app/copy'
 import { addMessage } from 'app/modules/flash/flash.actions'
 
-
 @connect(null, { replace, addMessage })
-export default class PrivateRoute extends React.Component {
+class PrivateRoute extends React.Component {
   componentWillMount() {
     const { addMessage, replace } = this.props
     addMessage(privateRoute.denied, 'error')
@@ -20,3 +20,5 @@ export default class PrivateRoute extends React.Component {
     )
   }
 }
+
+export default hot(module)(PrivateRoute)

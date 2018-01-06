@@ -1,6 +1,7 @@
 import DocumentMeta from 'react-helmet'
+import { hot } from 'react-hot-loader'
 
-export default class NotFoundRoute extends React.Component {
+class NotFoundRoute extends React.Component {
   render() {
     return (
       <section className='NotFoundRoute'>
@@ -12,3 +13,5 @@ export default class NotFoundRoute extends React.Component {
     )
   }
 }
+
+export default hot(module)(NotFoundRoute)

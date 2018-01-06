@@ -1,6 +1,7 @@
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
+import { hot } from 'react-hot-loader'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
@@ -41,7 +42,7 @@ const LoadableNotFoundRoute = Loadable({
   modules: [ '../../routes/NotFoundRoute/NotFoundRoute' ],
 })
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     log('render')
     return (
@@ -92,3 +93,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default hot(module)(App)
