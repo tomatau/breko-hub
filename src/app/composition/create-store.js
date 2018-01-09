@@ -16,7 +16,7 @@ export default (initialState, mware=middleware) => {
 
   if (module.hot) {
     module.hot.accept('app/composition/root-reducer', () => {
-      const { rootReducer } = require('app/composition/root-reducer')
+      const rootReducer = require('app/composition/root-reducer')
       log(`Replacing store's root reducer`)
       store.replaceReducer(rootReducer)
     })
