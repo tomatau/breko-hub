@@ -12,7 +12,6 @@ export default {
       'webpack-hot-middleware/client',
     ],
     body: [
-      'react-hot-loader/patch',
       ...webpackConfig.entry.body,
     ],
   },

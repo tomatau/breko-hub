@@ -1,5 +1,6 @@
+import { hot } from 'react-hot-loader'
 
-export default class OopsRoute extends React.Component {
+class OopsRoute extends React.Component {
   render() {
     return (
       <section className='OopsRoute'>
@@ -8,3 +9,5 @@ export default class OopsRoute extends React.Component {
     )
   }
 }
+
+export default hot(module)(OopsRoute)
