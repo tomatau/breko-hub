@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { NavLink } from 'react-router-dom'
+import { nav as navCopy } from 'app/copy'
 import styles from './HeadNavigation.module.scss'
 
 // Putting this inside a connect will break activeClassName
@@ -13,13 +14,13 @@ export default class HeadNavigation extends React.Component {
           exact
           activeClassName={styles.active}
           to='/'>
-          Home
+          {navCopy.home}
         </NavLink>
         <NavLink activeClassName={styles.active} to='/bar'>
-          Bar
+          {navCopy.bar}
         </NavLink>
         <NavLink activeClassName={styles.active} to='/private'>
-          Private
+          {navCopy.private}
         </NavLink>
       </nav>
     )

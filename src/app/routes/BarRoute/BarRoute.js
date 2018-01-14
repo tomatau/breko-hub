@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
 import { hot } from 'react-hot-loader'
 import { noop } from 'app/utils'
+import { nav as navCopy } from 'app/copy'
 import { apiFetch } from 'app/modules/bar/bar.actions'
 import { getBar } from 'app/modules/bar/bar.selectors'
 import style from './BarRoute.module.scss'
@@ -25,9 +26,9 @@ class BarRoute extends React.Component {
     return (
       <section className='BarRoute'>
         <DocumentMeta>
-          <title>Bar</title>
+          <title>{navCopy.bar}</title>
         </DocumentMeta>
-        <h3>Bar</h3>
+        <h3>{navCopy.bar}</h3>
         <p>This route is making an api request</p>
         <p>If you change the response from <code>server/api/bar</code> endpoint</p>
         <p>And then navigate away and back to this route, you&apos;ll see the changes immediately</p>

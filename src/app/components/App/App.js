@@ -2,6 +2,7 @@ import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import { hot } from 'react-hot-loader'
+import { app as appCopy } from 'app/copy'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
@@ -11,7 +12,7 @@ import style from './App.module.scss'
 const log = debug('App.js')
 
 const Loading = ({ pastDelay }) => (
-  pastDelay ? <div>Loading...</div> : null
+  pastDelay ? <div>{appCopy.loading}</div> : null
 )
 
 const LoadableHomeRoute = Loadable({
@@ -48,13 +49,13 @@ class App extends React.Component {
     return (
       <div className={style.app}>
         <DocumentMeta
-          defaultTitle='Breko Hub'
-          titleTemplate='%s | Breko Hub'>
+          defaultTitle={`${appCopy.title}`}
+          titleTemplate={`%s | ${appCopy.title}`}>
           <html lang='en' />
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width,initial-scale=1.0' />
-          <meta name='description' content='Breko Hub, a minimal boilerplate for building universal react applications' />
-          <meta name='keywords' content='react,redux,react-router,koa,universal,babel,es7,hmr,webpack' />
+          <meta name='description' content={appCopy.meta.description} />
+          <meta name='keywords' content={appCopy.meta.keywords} />
         </DocumentMeta>
         <HeadNavigation />
         <FlashMessages />
@@ -63,7 +64,7 @@ class App extends React.Component {
           alt='me'
           width='70'
         />
-        <h1>Breko Hub</h1>
+        <h1>{appCopy.title}</h1>
         <main className={style.content}>
           <Switch>
             <Route

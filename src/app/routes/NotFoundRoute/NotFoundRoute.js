@@ -1,14 +1,15 @@
 import DocumentMeta from 'react-helmet'
 import { hot } from 'react-hot-loader'
+import { notFoundRoute } from 'app/copy'
 
 class NotFoundRoute extends React.Component {
   render() {
     return (
       <section className='NotFoundRoute'>
         <DocumentMeta>
-          <title>Doesn&apos;t exist</title>
+          <title>{notFoundRoute.title}</title>
         </DocumentMeta>
-        404, page not found
+        {notFoundRoute.content}
       </section>
     )
   }
