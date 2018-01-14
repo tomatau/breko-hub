@@ -46,19 +46,6 @@ With the default `.env` file, this will start your application in development mo
 
 Open a browser window at `localhost:9001`.
 
-**To claim the project:**
-
-```
-git apply ./patches/0001-remove-example-code.patch
-```
-
-This removes:
-  - /bar route related code
-  - /oops route related code
-  - /private route related code including flash messages support
-
-You will be left with a HomeRoute with some copy inside. Also the App.js component will have some meta data that you should update. Also, don't forget to update the name in your package.json!
-
 ### Blog
 
 There is also a new [blog](https://tomatao-blog.herokuapp.com/) that documents some of the techniques used in breko-hub. The blog was also created using breko-hub as a starting point.
