@@ -164,7 +164,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.5.1",
-    "fetch-mock": "^5.13.1",
+    "fetch-mock": "^6.0.0",
     "html-webpack-plugin": "^3.0.0",
     "jsdom": "^11.5.1",
     "mocha": "^5.0.0",
