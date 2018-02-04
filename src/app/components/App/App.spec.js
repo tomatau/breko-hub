@@ -13,6 +13,7 @@ describe(`App Component`, function () {
   })
 
   it(`renders a div tag with className at rootNode`, () => {
+    expect(this.wrapper.type()).to.eql('div')
     expect(this.wrapper).to.have.className(styles.app)
   })
 
