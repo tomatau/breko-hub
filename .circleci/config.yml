@@ -53,7 +53,17 @@ jobs:
           key: checkout-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm run test:unit -- --reporter spec
+      - run:
+          name: Unit Tests
+          command: |
+            npm run test:unit -- \
+              --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: test/reports/unit/test-results.xml
+      - store_test_results:
+          path: test/reports
+      - store_artifacts:
+          path: test/reports
   test_integration:
     <<: *defaults
     steps:
@@ -61,7 +71,17 @@ jobs:
           key: checkout-cache-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm run test:int -- --reporter spec
+      - run:
+          name: Integration Tests
+          command: |
+            npm run test:int -- \
+              --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: test/reports/integration/test-results.xml
+      - store_test_results:
+          path: test/reports
+      - store_artifacts:
+          path: test/reports
 
 workflows:
   version: 2
