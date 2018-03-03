@@ -139,7 +139,7 @@
     "svgo-loader": "^2.1.0",
     "tao-scss": "~0.4.1",
     "type-to-reducer": "^1.0.4",
-    "url-loader": "~0.6.1",
+    "url-loader": "~1.0.0",
     "uuid": "^3.1.0",
     "webpack": "^3.9.1",
     "webpack-isomorphic-tools": "^3.0.5"
