@@ -5,7 +5,7 @@ exports[`NotFoundRoute Component matches snapshot 1`] = `
   className="NotFoundRoute"
 >
   <HelmetWrapper
-    defer={true}
+    defer={false}
     encodeSpecialCharacters={true}
   >
     <title>

@@ -5,6 +5,7 @@ import { configure, shallow, mount, render } from 'enzyme'
 import lodash from 'lodash/index'
 import ramda from 'ramda/src/index'
 import snap from 'enzyme-to-json'
+import Helmet from 'react-helmet'
 import { isBrowser } from 'app/utils'
 import helpers from './test-helpers'
 
@@ -16,6 +17,8 @@ chai.use(require('chai-enzyme')())
 chai.use(require('sinon-chai'))
 chai.use(require('chai-generator'))
 chai.use(require('chai-jest-snapshot'))
+
+Helmet.defaultProps.defer = false
 
 setGlobals(isBrowser ? window : global)
 
@@ -42,10 +45,10 @@ function setGlobals(global) {
   global.NBSP = '\u00A0'
 
   if (!global.sessionStorage) {
-    global.sessionStorage = helpers.createStorage()
+    global.sessionStorage = helpers.createStorage('sessionStorage')
   }
 
   if (!global.localStorage) {
-    global.localStorage = helpers.createStorage()
+    global.localStorage = helpers.createStorage('localStorage')
   }
 }

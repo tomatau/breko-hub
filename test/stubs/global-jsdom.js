@@ -7,7 +7,7 @@ global.jsdom = new JSDOM(`
     <head>
     </head>
     <body>
-      <div id="application-root"></div>
+      <div id="app-container"></div>
     </body>
   </html>
 `, { url: 'http://localhost:3210/' })

@@ -1,6 +1,6 @@
 
 describe(`Client Render`, function () {
-  beforeEach((done) => {
+  beforeEach(done => {
     helpers.prepare(this, '/', done)
   })
 
@@ -8,21 +8,15 @@ describe(`Client Render`, function () {
     helpers.cleanup(this)
   })
 
-  it(`sets the page title`, done => {
-    // flakey test
-    setTimeout(() => {
-      expect(document.title).to.eql('Breko Hub')
-      done()
-    }, 100)
+  it(`sets the page title`, () => {
+    expect(document.title).to.eql('Breko Hub')
   })
 
   it(`sets the meta description and chartset`, () => {
-    defer(() => {
-      const metaCharset = document.querySelector('meta[charset]')
-      expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
-      const metaDesc = document.querySelector('meta[name=description]')
-      expect(metaDesc.getAttribute('content')).to.contain('Breko Hub')
-    })
+    const metaCharset = document.querySelector('meta[charset]')
+    expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
+    const metaDesc = document.querySelector('meta[name=description]')
+    expect(metaDesc.getAttribute('content')).to.contain('Breko Hub')
   })
 
   it(`only renders the HomeRoute`, () => {

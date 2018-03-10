@@ -1,6 +1,6 @@
 
 describe(`Oops Route`, function () {
-  beforeEach((done) => {
+  beforeEach(done => {
     helpers.prepare(this, '/oops', done)
   })
 

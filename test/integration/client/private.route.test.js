@@ -4,7 +4,7 @@ describe(`Private Route`, function () {
     message: 'You may not view the private route!!',
   }
 
-  beforeEach((done) => {
+  beforeEach(done => {
     this.clock = sinon.useFakeTimers()
     helpers.prepare(this, '/private', done)
   })

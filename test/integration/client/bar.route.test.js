@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock'
 describe(`Bar Route`, function () {
   const barResponse = [ 'some', 'test', 'response', 'data' ]
 
-  beforeEach((done) => {
+  beforeEach(done => {
     fetchMock.get('/api/bar', {
       status: 200,
       body: { bar: barResponse },

@@ -1,6 +1,6 @@
 
 describe(`404 Route`, function () {
-  beforeEach((done) => {
+  beforeEach(done => {
     helpers.prepare(this, '/no-match-found', done)
   })
 

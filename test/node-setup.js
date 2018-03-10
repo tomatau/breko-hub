@@ -16,7 +16,7 @@ require('babel-core/register')({
 })
 
 require('../src/helpers/css-modules-hook')
-require('../src/helpers/global-jsdom')
+require('./stubs/global-jsdom')
 
 const loadableRegex = /loadable-modules\.json/
 
