@@ -21,8 +21,7 @@
   "pre-push": [
     "lint:js",
     "lint:styles",
-    "test:unit",
-    "test:int"
+    "test"
   ],
   "repository": {
     "type": "git",
