@@ -55,9 +55,10 @@ const helpers = {
       ],
     )
   },
-  createStorage() {
+  createStorage(_name) {
     return {
       length: 1,
+      _name,
       _store: {},
       _updateLength() {
         this.length = Object.keys(this._store).length
