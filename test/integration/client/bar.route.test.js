@@ -19,11 +19,8 @@ describe(`Bar Route`, function () {
     helpers.cleanup(this)
   })
 
-  it(`updates the page title`, done => {
-    defer(() => {
-      expect(document.title).to.eql('Bar | Breko Hub')
-      done()
-    })
+  it(`updates the page title`, () => {
+    expect(document.title).to.eql('Bar | Breko Hub')
   })
 
   it(`renders the .BarRoute`, () => {
