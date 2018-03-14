@@ -25,12 +25,7 @@ export default function hotReload(app) {
   app.use(koaWebpack({
     compiler,
     dev: {
-      quiet: true,
-      noInfo: true,
-      stats: {
-        colors: true,
-        reasons: true,
-      },
+      stats: 'minimal',
     },
     hot: {
       log: log.koaWebpack,

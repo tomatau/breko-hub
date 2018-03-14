@@ -78,7 +78,6 @@
     "chokidar": "^2.0.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.19",
-    "compressible": "^2.0.13",
     "css-loader": "^0.28.10",
     "css-modules-require-hook": "^4.2.3",
     "cssnano": "^3.10.0",
@@ -179,7 +178,6 @@
     "scripty": "^1.7.2",
     "sinon": "^4.4.2",
     "sinon-chai": "^3.0.0",
-    "supertest": "^3.0.0",
-    "webpack-hot-middleware": "^2.21.2"
+    "supertest": "^3.0.0"
   }
 }
