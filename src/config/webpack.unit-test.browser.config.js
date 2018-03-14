@@ -17,7 +17,6 @@ export default {
       ...glob.sync('./src/**/*.spec.js').map(file =>
         `mocha-loader!${path.join(ROOT, file)}`
       ),
-      'webpack-hot-middleware/client',
     ],
   },
   devtool: '#cheap-module-eval-source-map',
@@ -39,7 +38,6 @@ export default {
       allChunks: true,
     }),
     new webpack.IgnorePlugin(/ReactContext|react\/addons/), // skin-deep
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(),
   ],
   resolve: {

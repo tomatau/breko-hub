@@ -9,7 +9,6 @@ export default {
     ...webpackConfig.entry,
     head: [
       ...webpackConfig.entry.head,
-      'webpack-hot-middleware/client',
     ],
     body: [
       ...webpackConfig.entry.body,
@@ -19,7 +18,6 @@ export default {
   plugins: [
     ...webpackConfig.plugins,
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [ ...webpackConfig.module.rules, {
