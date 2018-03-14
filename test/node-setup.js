@@ -4,7 +4,7 @@ const nhf = require('node-hook-filename')
 delete process.env.DEBUG
 process.env.NODE_ENV = 'test'
 
-require('babel-core/register')({
+require('babel-register')({
   ignore: /node_modules/,
   only: [
     /\/src\/app/,
