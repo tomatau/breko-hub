@@ -179,6 +179,7 @@
     "scripty": "^1.7.2",
     "sinon": "^4.4.2",
     "sinon-chai": "^3.0.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webpack-cli": "^2.0.12"
   }
 }
