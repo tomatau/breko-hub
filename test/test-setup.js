@@ -35,7 +35,7 @@ function setGlobals(global) {
   global.render = render
 
   global.defer = setImmediate
-  global.sandbox = sinon.sandbox.create()
+  global.sandbox = sinon.createSandbox()
 
   global._ = lodash
   global.R = ramda

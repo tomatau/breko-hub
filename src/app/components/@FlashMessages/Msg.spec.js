@@ -71,7 +71,7 @@ describe(`Msg Component`, function () {
     })
 
     afterEach(() => {
-      clickHandler.reset()
+      clickHandler.resetHistory()
     })
 
     it(`dispatches a removeMsg with the msg id when clicked`, () => {
