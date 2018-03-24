@@ -92,15 +92,15 @@ export const babelLoaderConfig = {
   include: [ APP, CONFIG, SERVER ],
   loader: 'babel-loader',
   options: {
+    babelrc: false,
     presets: [
       [ 'env', {
         targets: { browsers: [ 'last 2 versions' ] },
-        modules: false,
       } ],
       'react',
     ],
     plugins: [
-      'dynamic-import-webpack',
+      'syntax-dynamic-import',
       'transform-export-extensions',
       'transform-decorators-legacy',
       'transform-class-properties',

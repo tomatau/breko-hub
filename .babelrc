@@ -16,7 +16,7 @@
       "debug": "debug"
     } ],
     [ "module-resolver", {
-      "root": ["./src"]
+      "root": [ "./src" ]
     } ]
   ]
 }
