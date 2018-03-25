@@ -60,7 +60,11 @@ export default class Html extends React.Component {
             />
           ))}
           {headScripts.map((script, i) => (
-            <script src={script} key={i} />
+            <script
+              async={false}
+              src={script}
+              key={i}
+            />
           ))}
         </head>
         <body {...helmet.bodyAttributes.toComponent()}>

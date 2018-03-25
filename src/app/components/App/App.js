@@ -82,7 +82,6 @@ class App extends React.Component {
             />
             <Route
               path='/private'
-              // no dynamic import when server side redirect
               component={PrivateRoute}
             />
             <Route

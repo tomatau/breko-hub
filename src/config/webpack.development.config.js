@@ -1,24 +1,11 @@
-import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpackConfig, { babelLoaderConfig } from 'config/webpack.base.config'
 import { SRC } from 'config/paths'
 
 export default {
   ...webpackConfig,
-  entry: {
-    ...webpackConfig.entry,
-    head: [
-      ...webpackConfig.entry.head,
-    ],
-    body: [
-      ...webpackConfig.entry.body,
-    ],
-  },
+  mode: 'development',
   devtool: '#cheap-module-eval-source-map',
-  plugins: [
-    ...webpackConfig.plugins,
-    new webpack.NamedModulesPlugin(),
-  ],
   module: {
     rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,
@@ -36,14 +23,12 @@ export default {
       test: /\.s?css$/,
       include: [ SRC ],
       exclude: /module\.s?css$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          'css-loader',
-          'postcss-loader',
-          { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
-        ],
-      }),
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader',
+        { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
+      ],
     }, {
       ...babelLoaderConfig,
       options: {

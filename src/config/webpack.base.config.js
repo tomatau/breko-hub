@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import { ReactLoadablePlugin } from 'react-loadable/webpack'
 import {
@@ -30,9 +30,19 @@ export default {
       '.js', '.jsx', '.scss',
     ],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'head',
+          reuseExistingChunk: true,
+          minChunks: 2,
+        },
+      },
+    },
+  },
   plugins: [
     isomorphicPlugin,
-    new webpack.NoEmitOnErrorsPlugin(),
     new CleanPlugin([ 'src/static' ], {
       root: ROOT,
     }),
@@ -43,10 +53,7 @@ export default {
         'APP_ENV': JSON.stringify('browser'),
       },
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'head',
-    }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
       allChunks: true,
     }),
@@ -96,6 +103,7 @@ export const babelLoaderConfig = {
     presets: [
       [ 'env', {
         targets: { browsers: [ 'last 2 versions' ] },
+        modules: false,
       } ],
       'react',
     ],
@@ -105,14 +113,12 @@ export const babelLoaderConfig = {
       'transform-decorators-legacy',
       'transform-class-properties',
       'transform-object-rest-spread',
-      'add-module-exports',
       'lodash',
       'ramda',
       'react-require',
       [ 'provide-modules', {
         'debug': 'debug',
       } ],
-      'babel-root-import',
     ],
   },
 }
