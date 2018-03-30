@@ -1,3 +1,4 @@
+import React from 'react'
 import { Provider } from 'react-redux'
 import { sagaMiddleware } from 'app/composition/middleware'
 import rootSaga from 'app/sagas'
