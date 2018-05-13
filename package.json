@@ -97,7 +97,7 @@
     "koa-router": "7.4.0",
     "koa-session-store": "^2.0.0",
     "koa-static": "^4.0.2",
-    "koa-webpack": "^3.0.2",
+    "koa-webpack": "^4.0.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.5",
     "mini-css-extract-plugin": "^0.4.0",
