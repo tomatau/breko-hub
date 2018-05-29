@@ -137,7 +137,7 @@
     "type-to-reducer": "^1.1.0",
     "url-loader": "~1.0.0",
     "uuid": "^3.2.1",
-    "webpack": "^4.8.3",
+    "webpack": "^4.10.1",
     "webpack-isomorphic-tools": "^3.0.5"
   },
   "devDependencies": {

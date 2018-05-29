@@ -2,7 +2,7 @@ import ReactDOMServer from 'react-dom/server'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
-import { LOADABLE } from 'config/paths'
+import { LOADABLE_FILE } from 'config/paths'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { compact, isOneOf, get, isEnv } from 'app/utils'
 import makeHtmlBody from 'server/utils/make-html-body'
@@ -40,7 +40,7 @@ export default function (assets) {
       ctx.response.body = makeHtmlBody({
         headScripts: compact([
           javascripts.head,
-          getBundles(require(LOADABLE), modules).map(b => b.file),
+          getBundles(require(LOADABLE_FILE), modules).map(b => b.file),
         ]),
         headStyles: compact([ styles.body, styles.head ]),
         bodyScripts: compact([ javascripts.body ]),

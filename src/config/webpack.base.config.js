@@ -3,20 +3,21 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CleanPlugin from 'clean-webpack-plugin'
 import { ReactLoadablePlugin } from 'react-loadable/webpack'
 import {
-  SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT, LOADABLE,
+  SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT, LOADABLE_FILE,
 } from 'config/paths'
 import svgoConfig from 'config/svgo.config'
 import { isomorphicPlugin } from 'server/isomorphic-tools'
 
 export default {
   entry: {
-    head: [
-      `${APP}/utils/loadCSS.js`,
-    ],
+    // need body first in list for development hot reloading
     body: [
       'babel-polyfill',
       `${STYLES}/main.scss`,
       `${APP}/entry.js`,
+    ],
+    head: [
+      `${APP}/utils/loadCSS.js`,
     ],
   },
   output: {
@@ -58,7 +59,7 @@ export default {
       allChunks: true,
     }),
     new ReactLoadablePlugin({
-      filename: LOADABLE,
+      filename: LOADABLE_FILE,
     }),
   ],
   module: {
