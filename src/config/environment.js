@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import loadEnv from 'node-env-file'
-import { ROOT } from 'config/paths'
+import { ENV_FILE } from 'config/paths'
 
-loadEnv(`${ROOT}/.env`, { raise: false })
+loadEnv(ENV_FILE, { raise: false })
 
 debug.enable(process.env.DEBUG)
 debug.log = console.info.bind(console)
