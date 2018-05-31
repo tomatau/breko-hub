@@ -13,6 +13,8 @@ const log = debug('render-app')
 const isClientRedirect = isOneOf([ 'PUSH', 'REPLACE' ])
 const getJavascripts = get('javascript', {})
 const getStyles = get('styles', {})
+const getFile = get('file', '')
+const JS_FILE_REGEX = /.*\.js$/
 
 export default function (assets) {
   const javascripts = getJavascripts(assets)
@@ -24,7 +26,7 @@ export default function (assets) {
       payload: ctx.history.location,
     })
 
-    let modules = []
+    const modules = []
     const __html = ReactDOMServer.renderToString(
       <Loadable.Capture report={mod => modules.push(mod)}>
         {app.Main(ctx.store, ctx.history, StaticRouter)}
@@ -37,13 +39,22 @@ export default function (assets) {
       ctx.redirect(ctx.history.location.pathname)
     } else {
       log('setting html response body')
+      const bundles = getBundles(require(LOADABLE_FILE), modules)
       ctx.response.body = makeHtmlBody({
         headScripts: compact([
           javascripts.head,
-          getBundles(require(LOADABLE_FILE), modules).map(b => b.file),
         ]),
-        headStyles: compact([ styles.body, styles.head ]),
-        bodyScripts: compact([ javascripts.body ]),
+        headStyles: compact([
+          styles.body,
+          styles.head,
+        ]),
+        bodyScripts: compact([
+          ...bundles
+            .map(getFile)
+            .filter(file => JS_FILE_REGEX.test(file))
+            .map(file => `/${file}`),
+          javascripts.body,
+        ]),
         stringScripts: [
           `window.__INITIAL_STATE__ = ${
             JSON.stringify(ctx.store.getState(), null, isEnv('development') && 2)
