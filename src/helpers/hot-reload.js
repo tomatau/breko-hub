@@ -8,10 +8,7 @@ import { SERVER } from 'config/paths'
 import { isomorphicTools } from 'server/isomorphic-tools'
 import { noop } from 'app/utils'
 
-const log = {
-  hot: debug('hot-reload'),
-  koaWebpack: debug('koa-webpack'),
-}
+const log = debug('hot-reload')
 const serverDirs = [ /\/server\//, /\/config\//, /\/styles\//, /\/assets\// ]
 const allDirs = [ /\/app\//, ...serverDirs ]
 
@@ -19,8 +16,8 @@ export default async function hotReload(app) {
   const compiler = webpack(webpackDevelopmentConfig)
   const watcher = chokidar.watch(SERVER)
 
-  compiler.plugin('compile', () => log.hot('Webpack - compile started...'))
-  compiler.plugin('compilation', () => log.hot('Webpack - compiling...'))
+  compiler.plugin('compile', () => log('Webpack - compile started...'))
+  compiler.plugin('compilation', () => log('Webpack - compiling...'))
 
   const hotMiddleware = await koaWebpack({
     compiler,
@@ -29,7 +26,7 @@ export default async function hotReload(app) {
         stats: 'minimal',
       },
       hotClient: {
-        log: log.koaWebpack,
+        log: debug('koa-webpack'),
       },
     },
   })
@@ -38,13 +35,13 @@ export default async function hotReload(app) {
 
   watcher.on('ready', () => {
     watcher.on('all', _.after(2, (event, file) => {
-      log.hot('Watcher - live update in server', event, file)
+      log('Watcher - live update in server', event, file)
       clearServerCache(serverDirs)
     }))
   })
 
   compiler.plugin('done', _.after(2, () => {
-    log.hot('Webpack - recompiled!')
+    log('Webpack - recompiled!')
     clearServerCache(allDirs)
     isomorphicTools.refresh()
   }))
