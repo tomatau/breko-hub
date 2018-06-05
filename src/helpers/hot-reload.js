@@ -15,22 +15,26 @@ const log = {
 const serverDirs = [ /\/server\//, /\/config\//, /\/styles\//, /\/assets\// ]
 const allDirs = [ /\/app\//, ...serverDirs ]
 
-export default function hotReload(app) {
+export default async function hotReload(app) {
   const compiler = webpack(webpackDevelopmentConfig)
   const watcher = chokidar.watch(SERVER)
 
   compiler.plugin('compile', () => log.hot('Webpack - compile started...'))
   compiler.plugin('compilation', () => log.hot('Webpack - compiling...'))
 
-  app.use(koaWebpack({
+  const hotMiddleware = await koaWebpack({
     compiler,
-    dev: {
-      stats: 'minimal',
+    config: {
+      devMiddleware: {
+        stats: 'minimal',
+      },
+      hotClient: {
+        log: log.koaWebpack,
+      },
     },
-    hot: {
-      log: log.koaWebpack,
-    },
-  }))
+  })
+
+  app.use(hotMiddleware)
 
   watcher.on('ready', () => {
     watcher.on('all', _.after(2, (event, file) => {
