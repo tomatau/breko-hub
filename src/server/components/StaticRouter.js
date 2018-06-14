@@ -7,12 +7,12 @@ class StaticRouter extends React.Component {
     history: PropTypes.object,
   };
 
-  static defaultProps = {
-    history: createMemoryHistory(),
-  };
-
   static childContextTypes = {
     router: PropTypes.object.isRequired,
+  };
+
+  static defaultProps = {
+    history: createMemoryHistory(),
   };
 
   getChildContext() {
