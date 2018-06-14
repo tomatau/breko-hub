@@ -111,11 +111,11 @@
     "react-bem-helper": "^1.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
-    "react-hot-loader": "^4.2.0",
+    "react-hot-loader": "^4.3.2",
     "react-loadable": "^5.4.0",
     "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
@@ -137,7 +137,7 @@
     "type-to-reducer": "^1.1.0",
     "url-loader": "~1.0.0",
     "uuid": "^3.2.1",
-    "webpack": "^4.10.2",
+    "webpack": "^4.12.0",
     "webpack-isomorphic-tools": "^3.0.6"
   },
   "devDependencies": {
@@ -147,7 +147,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.0.0",
-    "chai-enzyme": "^1.0.0-beta.0",
+    "chai-enzyme": "^1.0.0-beta.1",
     "chai-generator": "^2.1.0",
     "chai-jest-snapshot": "^2.0.0",
     "chai-shallow-deep-equal": "^1.4.6",
@@ -176,7 +176,7 @@
     "sass-lint": "^1.12.1",
     "scripty": "^1.7.2",
     "sinon": "^6.0.0",
-    "sinon-chai": "^3.1.0",
+    "sinon-chai": "^3.2.0",
     "supertest": "^3.1.0",
     "webpack-cli": "^3.0.6"
   }
