@@ -13,7 +13,7 @@
     "test:snap": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true npm run test:unit",
     "start": "node ./src/server-entry.js",
     "build": "scripty",
-    "lint:js": "eslint src scripts test --ext .js",
+    "lint:js": "eslint src test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml",
     "coverage": "scripty",
     "coverage:check": "babel-istanbul check-coverage"
