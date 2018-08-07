@@ -129,7 +129,7 @@
     "sass-loader": "^7.0.3",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "style-loader": "^0.21.0",
+    "style-loader": "^0.22.0",
     "svg-inline-loader": "^0.8.0",
     "svgo": "^1.0.5",
     "svgo-loader": "^2.1.0",
