@@ -58,7 +58,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-dynamic-import-node": "^2.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-provide-modules": "^1.0.3",
