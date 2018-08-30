@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/breko-hub
   docker:
-    - image: circleci/node:8.9.1
+    - image: circleci/node:8.11.4
       environment:
         PORT: 9001
         TZ: "/usr/share/zoneinfo/Europe/London"
