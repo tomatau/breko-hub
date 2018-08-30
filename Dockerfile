@@ -1,4 +1,4 @@
-FROM node:8.9-alpine
+FROM node:8.11-alpine
 
 RUN addgroup -S breko \
    && adduser -S -g breko breko

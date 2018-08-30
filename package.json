@@ -44,8 +44,8 @@
     "url": "https://github.com/tomatau/breko-hub/issues"
   },
   "engines": {
-    "node": "~8.9",
-    "npm": "~5.5"
+    "node": "~8.11",
+    "npm": "~6.4"
   },
   "homepage": "https://github.com/tomatau/breko-hub#readme",
   "greenkeeper": {
