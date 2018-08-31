@@ -8,6 +8,9 @@
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
   },
   "extends": [
     "plugin:jsx-a11y/recommended"
