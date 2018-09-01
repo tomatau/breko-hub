@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactDOM from 'react-dom/server'
 import serve from 'koa-static'
 import Router from 'koa-router'

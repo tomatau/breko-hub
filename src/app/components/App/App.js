@@ -1,8 +1,8 @@
+import React from 'react'
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import { hot } from 'react-hot-loader'
-import { get } from 'app/utils'
 import { app as appCopy } from 'app/copy'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
@@ -16,31 +16,29 @@ const Loading = ({ pastDelay }) => (
   pastDelay ? <div>{appCopy.loading}</div> : null
 )
 
-const getDefault = get('default')
-
 const LoadableHomeRoute = Loadable({
-  loader: () => import('../../routes/HomeRoute/HomeRoute').then(getDefault),
+  loader: () => import('../../routes/HomeRoute/HomeRoute'),
   loading: Loading,
   webpack: () => [ require.resolveWeak('../../routes/HomeRoute/HomeRoute') ],
   modules: [ '../../routes/HomeRoute/HomeRoute' ],
 })
 
 const LoadableBarRoute = Loadable({
-  loader: () => import('../../routes/BarRoute/BarRoute').then(getDefault),
+  loader: () => import('../../routes/BarRoute/BarRoute'),
   loading: Loading,
   webpack: () => [ require.resolveWeak('../../routes/BarRoute/BarRoute') ],
   modules: [ '../../routes/BarRoute/BarRoute' ],
 })
 
 const LoadableOopsRoute = Loadable({
-  loader: () => import('../../routes/OopsRoute/OopsRoute').then(getDefault),
+  loader: () => import('../../routes/OopsRoute/OopsRoute'),
   loading: Loading,
   webpack: () => [ require.resolveWeak('../../routes/OopsRoute/OopsRoute') ],
   modules: [ '../../routes/OopsRoute/OopsRoute' ],
 })
 
 const LoadableNotFoundRoute = Loadable({
-  loader: () => import('../../routes/NotFoundRoute/NotFoundRoute').then(getDefault),
+  loader: () => import('../../routes/NotFoundRoute/NotFoundRoute'),
   loading: Loading,
   webpack: () => [ require.resolveWeak('../../routes/NotFoundRoute/NotFoundRoute') ],
   modules: [ '../../routes/NotFoundRoute/NotFoundRoute' ],

@@ -1,3 +1,4 @@
+import React from 'react'
 import cx from 'classnames'
 import { NavLink } from 'react-router-dom'
 import { nav as navCopy } from 'app/copy'

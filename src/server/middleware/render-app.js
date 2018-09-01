@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import Loadable from 'react-loadable'

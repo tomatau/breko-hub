@@ -1,6 +1,9 @@
+import React from 'react'
 import fixtures from 'helpers/fixtures'
-import { WrappedComponent as FlashMessages } from './FlashMessages'
+import ConnectedComponent from './FlashMessages'
 import Msg from './Msg'
+
+const { WrappedComponent: FlashMessages } = ConnectedComponent
 
 describe(`FlashMessages Component`, function () {
   const shallowFM = props => shallow(<FlashMessages {...props} />)

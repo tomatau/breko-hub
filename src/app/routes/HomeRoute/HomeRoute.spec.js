@@ -1,3 +1,4 @@
+import React from 'react'
 import HomeRoute from './HomeRoute'
 
 describe(`HomeRoute Component`, function () {

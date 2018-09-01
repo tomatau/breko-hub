@@ -1,3 +1,4 @@
+import React from 'react'
 import NotFoundRoute from './NotFoundRoute'
 
 describe(`NotFoundRoute Component`, function () {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import { replace } from 'react-router-redux'
 import { hot } from 'react-hot-loader'

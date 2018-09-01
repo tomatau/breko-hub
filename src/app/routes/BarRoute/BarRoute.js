@@ -1,3 +1,4 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import DocumentMeta from 'react-helmet'
 import { hot } from 'react-hot-loader'

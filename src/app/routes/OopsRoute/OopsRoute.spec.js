@@ -1,3 +1,4 @@
+import React from 'react'
 import OopsRoute from './OopsRoute'
 
 describe(`OopsRoute Component`, function () {
