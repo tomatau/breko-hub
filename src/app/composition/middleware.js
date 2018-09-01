@@ -17,7 +17,7 @@ export const middleware = [
 /* istanbul ignore else  */
 if (isBrowser) {
   middleware.push(
-    outClientViaSocketIO(require('./socket')),
+    outClientViaSocketIO(require('./socket').default),
     createLogger({
       predicate: () => debug.names.length,
       collapsed: true,

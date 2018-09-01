@@ -12,7 +12,6 @@ export default {
   entry: {
     // need body first in list for development hot reloading
     body: [
-      'babel-polyfill',
       `${STYLES}/main.scss`,
       `${APP}/entry.js`,
     ],
@@ -23,13 +22,12 @@ export default {
   output: {
     path: STATIC,
     filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].chunk.js',
     publicPath: '/',
   },
   resolve: {
     modules: [ SRC, STYLES, 'node_modules' ],
-    extensions: [
-      '.js', '.jsx', '.scss',
-    ],
+    extensions: [ '.js', '.scss' ],
   },
   optimization: {
     splitChunks: {
@@ -101,22 +99,28 @@ export const babelLoaderConfig = {
   loader: 'babel-loader',
   options: {
     babelrc: false,
+    configFile: false,
     presets: [
-      [ 'env', {
-        targets: { browsers: [ 'last 2 versions' ] },
-        modules: false,
-      } ],
-      'react',
+      [
+        '@babel/preset-env', {
+          targets: { browsers: [ 'last 2 versions' ] },
+          modules: false,
+        },
+      ],
+      '@babel/preset-react',
     ],
     plugins: [
-      'syntax-dynamic-import',
-      'transform-export-extensions',
-      'transform-decorators-legacy',
-      'transform-class-properties',
-      'transform-object-rest-spread',
+      '@babel/plugin-syntax-dynamic-import',
+      [ '@babel/plugin-transform-runtime', {
+        modules: false,
+      } ],
+      '@babel/plugin-proposal-export-default-from',
+      '@babel/plugin-proposal-export-namespace-from',
+      [ '@babel/plugin-proposal-decorators', { legacy: true } ],
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-proposal-object-rest-spread',
       'lodash',
       'ramda',
-      'react-require',
       [ 'provide-modules', {
         'debug': 'debug',
       } ],

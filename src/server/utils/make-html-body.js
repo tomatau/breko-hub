@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import Html from 'server/components/Html'
 

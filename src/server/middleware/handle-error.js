@@ -1,3 +1,4 @@
+import React from 'react'
 import { RedBoxError } from 'redbox-react'
 import ReactDOMServer from 'react-dom/server'
 import { set } from 'lodash'

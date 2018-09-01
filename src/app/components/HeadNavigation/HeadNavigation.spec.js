@@ -1,3 +1,4 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import HeadNavigation from './HeadNavigation'
 import styles from './HeadNavigation.module.scss'

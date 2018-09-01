@@ -1,5 +1,8 @@
+import React from 'react'
 import fixtures from 'helpers/fixtures'
-import { WrappedComponent as Msg } from './Msg'
+import ConnectedComponent from './Msg'
+
+const { WrappedComponent: Msg } = ConnectedComponent
 
 describe(`Msg Component`, function () {
   const shallowM = props => shallow(<Msg {...props} />)
