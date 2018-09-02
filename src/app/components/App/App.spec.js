@@ -38,9 +38,10 @@ describe(`App Component`, function () {
     expect(fourthChild).to.have.type('img')
   })
 
-  it(`renders a h1 as fifth child`, () => {
-    const fifthChild = this.wrapper.childAt(4)
-    expect(fifthChild).to.have.type('h1')
+  it(`renders a header as fifth child`, () => {
+    expect(
+      snap(this.wrapper.childAt(4))
+    ).to.matchSnapshot()
   })
 
   it(`renders a main.content as sixth child`, () => {
@@ -54,7 +55,8 @@ describe(`App Component`, function () {
       expect(this.wrapper.find(DocumentMeta).getElement()).to.eql(
         <DocumentMeta
           defaultTitle='Breko Hub'
-          titleTemplate='%s | Breko Hub'>
+          titleTemplate='%s | Breko Hub'
+        >
           <html lang='en' />
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width,initial-scale=1.0' />

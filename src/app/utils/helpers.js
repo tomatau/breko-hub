@@ -1,4 +1,13 @@
-import { filter, always, reject, isNil, flip, contains, pickBy } from 'ramda'
+import {
+  always,
+  contains,
+  filter,
+  flip,
+  isNil,
+  mapObjIndexed,
+  pickBy,
+  reject,
+} from 'ramda'
 import validAttributes from './valid-attributes'
 
 export const compact = filter(Boolean)
@@ -15,4 +24,8 @@ const acceptableRegex = /^data\-\w/
 
 export const cleanProps = pickBy(
   (val, key) => isValidAttribute(key) || acceptableRegex.test(key)
+)
+
+export const addKeyAsProperty = name => mapObjIndexed(
+  (value, key) => ({ [name]: key, ...value })
 )
