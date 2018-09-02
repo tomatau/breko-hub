@@ -1,6 +1,5 @@
 import Router from 'koa-router'
 import compose from 'koa-compose'
-import Loadable from 'react-loadable'
 import { ConfigService } from 'app/utils'
 
 const log = debug('server-router')
@@ -13,16 +12,15 @@ export async function setRoutes(assets) {
 
   ConfigService.setEnv(process.env.CONFIG_ENV)
 
-  await Loadable.preloadAll()
-
-  /* build app from routes, set initial state and set response html */
   const renderReactApp = compose([
     /* set a store for server side state rendering */
     require('server/middleware/set-store').default,
     /* wire up flashMessages from redirect to server store */
     require('server/middleware/flash-messages').default,
-    /* give assets from bundle, set response body from react app */
-    require('server/middleware/render-app').default(assets),
+    /* map assets from bundle to ctx fo html */
+    require('server/middleware/map-assets').default(assets),
+    /* set response body from react app */
+    require('server/middleware/render-app').default(),
   ])
 
   const { apiRouter, setApiRoutes } = require('server/api')

@@ -1,4 +1,4 @@
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware, LOCATION_CHANGE } from 'react-router-redux'
 import createStore from 'app/composition/create-store'
 import { middleware } from 'app/composition/middleware'
 import { createMemoryHistory } from 'history'
@@ -15,6 +15,11 @@ export default async function setStore(ctx, next) {
     {},
     [ ...middleware, routerMiddleware(ctx.history) ],
   )
+
+  ctx.store.dispatch({
+    type: LOCATION_CHANGE,
+    payload: ctx.history.location,
+  })
 
   await next()
 }
