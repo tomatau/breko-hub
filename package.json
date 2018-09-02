@@ -140,9 +140,9 @@
     "webpack-isomorphic-tools": "^3.0.6"
   },
   "devDependencies": {
+    "@babel/node": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "babel-eslint": "^9.0.0",
-    "babel-istanbul": "^0.12.2",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.0.0",
     "chai-enzyme": "^1.0.0-beta.1",
@@ -168,6 +168,7 @@
     "mocha-loader": "^2.0.0",
     "node-hook-filename": "^1.0.0",
     "node-mocks-http": "^1.7.0",
+    "nyc": "^13.0.1",
     "pre-push": "^0.1.1",
     "react-test-renderer": "^16.4.1",
     "redbox-react": "^1.6.0",

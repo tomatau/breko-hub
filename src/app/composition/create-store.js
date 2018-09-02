@@ -14,6 +14,7 @@ export default (initialState, mware=middleware) => {
     ),
   )
 
+  /* istanbul ignore if  */
   if (module.hot) {
     module.hot.accept('app/composition/root-reducer', () => {
       const rootReducer = require('app/composition/root-reducer').default

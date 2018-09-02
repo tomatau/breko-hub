@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-babel-node \
-  `npm bin`/babel-istanbul cover \
-    `npm bin`/_mocha -- \
-      'src/**/*.spec.js' \
-      'test/integration/**/*.test.js' \
-      $@
+nyc \
+  mocha -- \
+    'src/**/*.spec.js' \
+    'test/integration/**/*.test.js' \
+    $@

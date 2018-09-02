@@ -15,3 +15,4 @@ logs
 *.log
 *.sublime-workspace
 *untracked*
+.nyc_output
