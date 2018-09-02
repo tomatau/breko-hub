@@ -1,12 +1,12 @@
 import chai, { expect } from 'chai'
-import sinon from 'sinon'
-import ReactSixteenAdapter from 'enzyme-adapter-react-16'
-import { configure, shallow, mount, render } from 'enzyme'
 import lodash from 'lodash/index'
 import ramda from 'ramda/src/index'
+import sinon from 'sinon'
+import { configure, shallow, mount, render } from 'enzyme'
+import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import snap from 'enzyme-to-json'
 import Helmet from 'react-helmet'
-import { isBrowser } from 'app/utils'
+import { isBrowser, ConfigService } from 'app/utils'
 import helpers from './test-helpers'
 
 configure({ adapter: new ReactSixteenAdapter() })
@@ -23,6 +23,8 @@ Helmet.defaultProps.defer = false
 setGlobals(isBrowser ? window : global)
 
 function setGlobals(global) {
+  ConfigService.setEnv(process.env.CONFIG_ENV)
+
   global.global = global
 
   global.expect = expect
