@@ -18,20 +18,19 @@ const store = createStore(
   [ ...middleware, routerMiddleware(history) ],
 )
 
-/* Socket Redux Synchronisation */
 inClientViaSocketIO(socket, store.dispatch)
 
 socket.open()
 
-/* Saga Listener */
 run()
 
-/* Mount in DOM */
-Loadable.preloadReady()
-  .then(() => {
-    log(`Mounting onto #${CONTAINER_ELEMENT_ID}`)
-    ReactDOM.hydrate(
-      Main(store, history, ConnectedRouter),
-      document.getElementById(CONTAINER_ELEMENT_ID)
-    )
-  })
+;(async function () {
+  await Loadable.preloadReady()
+
+  log(`Mounting onto #${CONTAINER_ELEMENT_ID}`)
+
+  ReactDOM.hydrate(
+    Main(store, history, ConnectedRouter),
+    document.getElementById(CONTAINER_ELEMENT_ID)
+  )
+}())
