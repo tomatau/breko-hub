@@ -36,7 +36,8 @@ export default class Msg extends React.Component {
         <button
           type='button'
           {...bem('close')}
-          onClick={this.handleClick}>
+          onClick={this.handleClick}
+        >
           &times;
         </button>
       </span>

@@ -21,7 +21,8 @@ const StubReactApp = (store, history, Router) => (
         meta={[
           { 'name': 'description', 'content': 'test description, hello' },
           { 'charset': 'utf-8' },
-        ]}>
+        ]}
+      >
         <html lang='en' />
       </Helmet>
       <h2>Test App</h2>

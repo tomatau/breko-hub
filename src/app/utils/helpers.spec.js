@@ -1,4 +1,4 @@
-import { compact, cleanProps } from './helpers'
+import { compact, cleanProps, addKeyAsProperty } from './helpers'
 
 describe('compact()', function () {
   it('removes falsey values from an array', () => {
@@ -93,6 +93,52 @@ describe(`cleanProps()`, function () {
     const actual = cleanProps(messyObject)
     _.forEach(expected, (val, key) => {
       expect(actual).to.have.property(key).which.eql(val)
+    })
+  })
+
+  describe(`addKeyAsProperty()`, () => {
+    it(`returns a function`, () => {
+      expect(addKeyAsProperty()).to.be.a('function')
+    })
+
+    it(`returns a new object with the key as a named property`, () => {
+      const namedProperty = 'title'
+      const objectToTest = {
+        firstKey: {},
+        secondKey: { foo: 'bar' },
+      }
+      const addTitleAsPropFromKey = addKeyAsProperty(namedProperty)
+
+      expect(
+        addTitleAsPropFromKey(objectToTest)
+      ).to.eql({
+        firstKey: {
+          [namedProperty]: 'firstKey',
+        },
+        secondKey: {
+          ...objectToTest.secondKey,
+          [namedProperty]: 'secondKey',
+        },
+      })
+    })
+
+    it(`doesn't overwrite existing properties with name`, () => {
+      const namedProperty = 'id'
+      const objectToTest = {
+        firstKey: {},
+        someKey: { [namedProperty]: `isn't overwritten` },
+      }
+      const addIdAsPropFromKey = addKeyAsProperty(namedProperty)
+      expect(
+        addIdAsPropFromKey(objectToTest)
+      ).to.eql({
+        firstKey: {
+          [namedProperty]: 'firstKey',
+        },
+        someKey: {
+          ...objectToTest.someKey,
+        },
+      })
     })
   })
 })

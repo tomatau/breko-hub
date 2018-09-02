@@ -7,3 +7,19 @@ exports[`OopsRoute Component matches snapshot 1`] = `
   PROBLEM
 </section>
 `;
+
+exports[`OopsRoute Component matches snapshot 2`] = `
+<section
+  className="OopsRoute"
+>
+  PROBLEM
+</section>
+`;
+
+exports[`OopsRoute Component matches snapshot 3`] = `
+<section
+  className="OopsRoute"
+>
+  PROBLEM
+</section>
+`;

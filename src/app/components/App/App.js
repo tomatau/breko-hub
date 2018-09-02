@@ -1,48 +1,15 @@
 import React from 'react'
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
-import Loadable from 'react-loadable'
 import { hot } from 'react-hot-loader'
 import { app as appCopy } from 'app/copy'
+import { routesList } from 'app/routes'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
-import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 import avatarPath from 'assets/avatar.jpeg'
 import style from './App.module.scss'
 
 const log = debug('App.js')
-
-const Loading = ({ pastDelay }) => (
-  pastDelay ? <div>{appCopy.loading}</div> : null
-)
-
-const LoadableHomeRoute = Loadable({
-  loader: () => import('../../routes/HomeRoute/HomeRoute'),
-  loading: Loading,
-  webpack: () => [ require.resolveWeak('../../routes/HomeRoute/HomeRoute') ],
-  modules: [ '../../routes/HomeRoute/HomeRoute' ],
-})
-
-const LoadableBarRoute = Loadable({
-  loader: () => import('../../routes/BarRoute/BarRoute'),
-  loading: Loading,
-  webpack: () => [ require.resolveWeak('../../routes/BarRoute/BarRoute') ],
-  modules: [ '../../routes/BarRoute/BarRoute' ],
-})
-
-const LoadableOopsRoute = Loadable({
-  loader: () => import('../../routes/OopsRoute/OopsRoute'),
-  loading: Loading,
-  webpack: () => [ require.resolveWeak('../../routes/OopsRoute/OopsRoute') ],
-  modules: [ '../../routes/OopsRoute/OopsRoute' ],
-})
-
-const LoadableNotFoundRoute = Loadable({
-  loader: () => import('../../routes/NotFoundRoute/NotFoundRoute'),
-  loading: Loading,
-  webpack: () => [ require.resolveWeak('../../routes/NotFoundRoute/NotFoundRoute') ],
-  modules: [ '../../routes/NotFoundRoute/NotFoundRoute' ],
-})
 
 class App extends React.Component {
   render() {
@@ -51,7 +18,8 @@ class App extends React.Component {
       <div className={style.app}>
         <DocumentMeta
           defaultTitle={`${appCopy.title}`}
-          titleTemplate={`%s | ${appCopy.title}`}>
+          titleTemplate={`%s | ${appCopy.title}`}
+        >
           <html lang='en' />
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width,initial-scale=1.0' />
@@ -65,29 +33,19 @@ class App extends React.Component {
           alt='me'
           width='70'
         />
-        <h1>{appCopy.title}</h1>
-        <main className={style.content}>
+        <header role='banner'>
+          <h1>{appCopy.title}</h1>
+        </header>
+        <main role='main' className={style.content}>
           <Switch>
-            <Route
-              exact
-              path='/'
-              component={LoadableHomeRoute}
-            />
-            <Route
-              path='/bar'
-              component={LoadableBarRoute}
-            />
-            <Route
-              path='/oops'
-              component={LoadableOopsRoute}
-            />
-            <Route
-              path='/private'
-              component={PrivateRoute}
-            />
-            <Route
-              component={LoadableNotFoundRoute}
-            />
+            {routesList.map(route => (
+              <Route
+                key={route.name}
+                exact={route.exact}
+                path={route.path}
+                component={route.component}
+              />
+            ))}
           </Switch>
         </main>
       </div>

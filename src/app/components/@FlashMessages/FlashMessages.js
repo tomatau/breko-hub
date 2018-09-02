@@ -22,7 +22,11 @@ export default class FlashMessages extends React.Component {
   render() {
     const { messages, ...props } = this.props
     return (
-      <div {...bem()} {...cleanProps(props)}>
+      <div
+        {...bem()}
+        role='alertdialog'
+        {...cleanProps(props)}
+      >
         {messages.map(msg => (
           <Msg key={msg.id} msg={msg} />
         ))}
