@@ -1,12 +1,16 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { oopsRoute } from 'app/copy'
+import DocumentMeta from 'react-helmet'
+import { oopsRoute as oopsRouteCopy } from 'app/copy'
 
 class OopsRoute extends React.Component {
   render() {
     return (
       <section className='OopsRoute'>
-        {oopsRoute.content}
+        <DocumentMeta>
+          <title>{oopsRouteCopy.documentTitle}</title>
+        </DocumentMeta>
+        {oopsRouteCopy.content}
       </section>
     )
   }

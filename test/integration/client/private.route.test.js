@@ -1,7 +1,7 @@
 
 describe(`Private Route`, function () {
   const privateMsg = {
-    message: 'You may not view the private route!!',
+    message: 'You were redirected because you can\'t view the private page',
   }
 
   beforeEach(done => {

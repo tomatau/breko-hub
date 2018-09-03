@@ -10,97 +10,17 @@ exports[`HomeRoute Component matches snapshot 1`] = `
   >
     <title />
   </HelmetWrapper>
+  <h2>
+    Welcome to Breko-Hub!
+  </h2>
   <p>
-    Welcome to breko-hub
+    A boilerplate designed for quick development!
   </p>
   <p>
-    This app is intentionally minimal!
+    There are examples showing how you can customise to your needs.
   </p>
   <p>
-    There are various mini-examples showing how you can customise to your needs.
-  </p>
-  <p>
-    Breko hub is designed to be quick to develop with:
-  </p>
-  <p>
-    Make a change to the styles in a 
-    <code>
-      *.module.scss
-    </code>
-     file or a component and see for yourself!
-  </p>
-  <p>
-    Even the server routes and api endpoints auto update on changes very quickly!
-  </p>
-</section>
-`;
-
-exports[`HomeRoute Component matches snapshot 2`] = `
-<section
-  className="HomeRoute"
->
-  <HelmetWrapper
-    defer={false}
-    encodeSpecialCharacters={true}
-  >
-    <title />
-  </HelmetWrapper>
-  <p>
-    Welcome to breko-hub
-  </p>
-  <p>
-    This app is intentionally minimal!
-  </p>
-  <p>
-    There are various mini-examples showing how you can customise to your needs.
-  </p>
-  <p>
-    Breko hub is designed to be quick to develop with:
-  </p>
-  <p>
-    Make a change to the styles in a 
-    <code>
-      *.module.scss
-    </code>
-     file or a component and see for yourself!
-  </p>
-  <p>
-    Even the server routes and api endpoints auto update on changes very quickly!
-  </p>
-</section>
-`;
-
-exports[`HomeRoute Component matches snapshot 3`] = `
-<section
-  className="HomeRoute"
->
-  <HelmetWrapper
-    defer={false}
-    encodeSpecialCharacters={true}
-  >
-    <title />
-  </HelmetWrapper>
-  <p>
-    Welcome to breko-hub
-  </p>
-  <p>
-    This app is intentionally minimal!
-  </p>
-  <p>
-    There are various mini-examples showing how you can customise to your needs.
-  </p>
-  <p>
-    Breko hub is designed to be quick to develop with:
-  </p>
-  <p>
-    Make a change to the styles in a 
-    <code>
-      *.module.scss
-    </code>
-     file or a component and see for yourself!
-  </p>
-  <p>
-    Even the server routes and api endpoints auto update on changes very quickly!
+    The server routes also auto update on changes!
   </p>
 </section>
 `;

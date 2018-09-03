@@ -1,16 +1,16 @@
 import React from 'react'
 import DocumentMeta from 'react-helmet'
 import { hot } from 'react-hot-loader'
-import { notFoundRoute } from 'app/copy'
+import { notFoundRoute as notFoundRouteCopy } from 'app/copy'
 
 class NotFoundRoute extends React.Component {
   render() {
     return (
       <section className='NotFoundRoute'>
         <DocumentMeta>
-          <title>{notFoundRoute.title}</title>
+          <title>{notFoundRouteCopy.documentTitle}</title>
         </DocumentMeta>
-        {notFoundRoute.content}
+        {notFoundRouteCopy.content}
       </section>
     )
   }

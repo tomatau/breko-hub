@@ -32,7 +32,7 @@ describe(`Head Navigation Component`, function () {
     const links = [
       { to: '/', content: 'Home', exact: true },
       { to: '/bar', content: 'Bar' },
-      { to: '/private', content: 'Private' },
+      { to: '/private', content: 'Admin' },
     ]
 
     it(`only renders the necessary links`, () => {

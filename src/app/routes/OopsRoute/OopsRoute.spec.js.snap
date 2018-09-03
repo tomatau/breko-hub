@@ -4,22 +4,25 @@ exports[`OopsRoute Component matches snapshot 1`] = `
 <section
   className="OopsRoute"
 >
-  PROBLEM
-</section>
-`;
-
-exports[`OopsRoute Component matches snapshot 2`] = `
-<section
-  className="OopsRoute"
->
-  PROBLEM
-</section>
-`;
-
-exports[`OopsRoute Component matches snapshot 3`] = `
-<section
-  className="OopsRoute"
->
-  PROBLEM
+  <HelmetWrapper
+    defer={false}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Oopsies
+    </title>
+  </HelmetWrapper>
+  <h2>
+    There was a problem
+  </h2>
+  <p>
+    Something went oops, oh no!
+  </p>
+  <p>
+    We need to fix it, but this is an example.
+  </p>
+  <p>
+    Your developers and managers should change this page :)
+  </p>
 </section>
 `;
