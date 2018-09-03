@@ -1,20 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Bem, noop, cleanProps } from 'app/utils'
-import { removeMessage } from 'app/modules/flash/flash.actions'
 import './Msg.scss'
 
 const bem = new Bem('Msg')
 
-@connect(null, { onClickClose: removeMessage })
 export default class Msg extends React.Component {
+  buttonRef = React.createRef();
+
   static propTypes = {
     msg: PropTypes.shape({
       id: PropTypes.string,
       type: PropTypes.oneOf([ 'error', 'good', 'info' ]),
       message: PropTypes.string,
-    }),
+    }).isRequired,
     onClickClose: PropTypes.func,
   };
 
@@ -23,6 +22,10 @@ export default class Msg extends React.Component {
     onClickClose: noop,
   };
 
+  componentDidMount() {
+    this.buttonRef.current.focus()
+  }
+
   handleClick = () => {
     const { onClickClose, msg } = this.props
     onClickClose(msg.id)
@@ -30,17 +33,26 @@ export default class Msg extends React.Component {
 
   render() {
     const { msg, className, ...props } = this.props
+    const descriptionId = `Msg__description--${msg.id}`
     return (
-      <span {...bem(null, msg.type, className)} {...cleanProps(props)}>
-        {msg.message}
+      <div
+        {...bem(null, msg.type, className)}
+        role='alertdialog'
+        aria-labelledby={descriptionId}
+        {...cleanProps(props)}
+      >
+        <span id={descriptionId}>
+          {msg.message}
+        </span>
         <button
+          ref={this.buttonRef}
           type='button'
           {...bem('close')}
           onClick={this.handleClick}
         >
           &times;
         </button>
-      </span>
+      </div>
     )
   }
 }
