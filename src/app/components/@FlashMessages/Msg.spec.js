@@ -1,11 +1,9 @@
 import React from 'react'
 import fixtures from 'helpers/fixtures'
-import ConnectedComponent from './Msg'
-
-const { WrappedComponent: Msg } = ConnectedComponent
+import Msg from './Msg'
 
 describe(`Msg Component`, function () {
-  const shallowM = props => shallow(<Msg {...props} />)
+  const mountComp = props => mount(<Msg {...props} />)
 
   beforeEach(() => {
     this.messages = fixtures(
@@ -13,17 +11,26 @@ describe(`Msg Component`, function () {
       'addMessageCollection',
     )
     this.msg = _.sample(this.messages)
-    this.wrapper = shallowM()
+    this.mounted = mountComp({ msg: this.msg })
+    this.wrapper = this.mounted.childAt(0)
   })
 
   it(`renders a span with Msg and styles.msg classNames`, () => {
-    expect(this.wrapper).to.have.tagName('span')
+    expect(this.wrapper).to.have.tagName('div')
     expect(this.wrapper).to.have.className('Msg')
+  })
+
+  it(`has a11y props for role and aria-labelledby`, () => {
+    expect(this.wrapper).to.have.prop('role', 'alertdialog')
+    expect(this.wrapper).to.have.prop(
+      'aria-labelledby',
+      `Msg__description--${this.msg.id}`,
+    )
   })
 
   it(`allows extending classNames`, () => {
     const className = 'test-class-name'
-    this.wrapper.setProps({ className })
+    this.mounted.setProps({ className })
     expect(this.wrapper).to.have.className(className)
   })
 
@@ -32,34 +39,30 @@ describe(`Msg Component`, function () {
       id: 'bar',
       'data-other': 'prop',
     }
-    this.wrapper.setProps(otherProps)
-    const rootNode = this.wrapper.at(0)
+    this.mounted.setProps(otherProps)
+    const rootNode = this.mounted.childAt(0)
     expect(rootNode.props()).to.shallowDeepEqual(otherProps)
   })
 
-  it(`renders the message as first child`, () => {
-    const firstChild = shallowM({ msg: this.msg }).childAt(0)
+  it(`renders a span#Msg__description--<id>{message} as first child`, () => {
+    const firstChild = this.wrapper.childAt(0)
+    expect(firstChild).to.have.tagName('span')
+    expect(firstChild).to.have.prop('id', `Msg__description--${this.msg.id}`)
     expect(firstChild).to.have.text(this.msg.message)
   })
 
   it(`renders the button.Msg__close as last child`, () => {
     const TIMES = '\u00D7'
-    const lastChild = shallowM({ msg: this.msg }).childAt(1)
+    const lastChild = this.wrapper.childAt(1)
     expect(lastChild).to.have.tagName('button')
     expect(lastChild).to.have.className('Msg__close')
     expect(lastChild).to.have.text(TIMES)
   })
 
-  it(`only renders the close when no message`, () => {
-    const children = this.wrapper.children()
-    expect(children).to.have.length(1)
-    expect(children.at(0)).to.have.className('Msg__close')
-  })
-
   it(`has the bem-modifier according to its type`, () => {
     this.messages.forEach(msg => {
-      this.wrapper = shallowM({ msg })
-      expect(this.wrapper).to.have.className(`Msg--${msg.type}`)
+      this.root = mountComp({ msg })
+      expect(this.root).to.have.className(`Msg--${msg.type}`)
     })
   })
 
@@ -67,7 +70,7 @@ describe(`Msg Component`, function () {
     const clickHandler = sinon.spy()
 
     beforeEach(() => {
-      this.wrapper.setProps({
+      this.mounted.setProps({
         msg: this.msg,
         onClickClose: clickHandler,
       })
