@@ -36,7 +36,11 @@ class App extends React.Component {
         <header role='banner'>
           <h1>{appCopy.title}</h1>
         </header>
-        <main role='main' className={style.content}>
+        <main
+          role='main'
+          aria-live='polite'
+          className={style.content}
+        >
           <Switch>
             {routesList.map(route => (
               <Route
