@@ -1,5 +1,6 @@
 import React from 'react'
 import DocumentMeta from 'react-helmet'
+import { app as appCopy } from 'app/copy'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import App from './App'
@@ -60,8 +61,8 @@ describe(`App Component`, function () {
           <html lang='en' />
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width,initial-scale=1.0' />
-          <meta name='description' content='Breko Hub, a minimal boilerplate for building universal react applications' />
-          <meta name='keywords' content='react,redux,react-router,koa,universal,babel,es7,hmr,webpack' />
+          <meta name='description' content={appCopy.meta.description} />
+          <meta name='keywords' content={appCopy.meta.keywords} />
         </DocumentMeta>
       )
     })

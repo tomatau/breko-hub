@@ -4,7 +4,7 @@ import { addKeyAsProperty } from 'app/utils'
 import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 
 const Loading = ({ pastDelay }) => (
-  pastDelay ? <div>{appCopy.loading}</div> : null
+  pastDelay ? <h2>{appCopy.loading}</h2> : null
 )
 
 export const routesMap = addKeyAsProperty('name')({

@@ -12,38 +12,11 @@ exports[`NotFoundRoute Component matches snapshot 1`] = `
       Doesn't exist
     </title>
   </HelmetWrapper>
-  404, page not found
-</section>
-`;
-
-exports[`NotFoundRoute Component matches snapshot 2`] = `
-<section
-  className="NotFoundRoute"
->
-  <HelmetWrapper
-    defer={false}
-    encodeSpecialCharacters={true}
-  >
-    <title>
-      Doesn't exist
-    </title>
-  </HelmetWrapper>
-  404, page not found
-</section>
-`;
-
-exports[`NotFoundRoute Component matches snapshot 3`] = `
-<section
-  className="NotFoundRoute"
->
-  <HelmetWrapper
-    defer={false}
-    encodeSpecialCharacters={true}
-  >
-    <title>
-      Doesn't exist
-    </title>
-  </HelmetWrapper>
-  404, page not found
+  <h2>
+    404
+  </h2>
+  <p>
+    Page not found!
+  </p>
 </section>
 `;

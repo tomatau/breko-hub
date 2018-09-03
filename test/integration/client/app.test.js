@@ -16,7 +16,9 @@ describe(`Client Render`, function () {
     const metaCharset = document.querySelector('meta[charset]')
     expect(metaCharset.getAttribute('charset')).to.eql('utf-8')
     const metaDesc = document.querySelector('meta[name=description]')
-    expect(metaDesc.getAttribute('content')).to.contain('Breko Hub')
+    expect(metaDesc.getAttribute('content')).to.eql(
+      'A boilerplate for building universal react applications'
+    )
   })
 
   it(`only renders the HomeRoute`, () => {
