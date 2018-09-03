@@ -8,6 +8,27 @@
 
 Breko hub is a github repository that helps anyone create new JavaScript applications. Giving you a technically sound and well tested starting point for your application.
 
+## Why?
+
+Create-React-App, Razzle, NextJS, etc... are fantastic alternatives!
+
+The reason for Breko-hub is that it comes with some extras:
+- test setup for integration on client and server
+- test setup with additional helpers
+- config management
+- accessibility features on routing
+- code splitting configuration
+- configuration for linting
+- it's not a framework, tool or library -- so everything is transparent!
+
+## Why not?
+
+- The community around the alternatives are much bigger!
+- There's more exposed configuration
+- The documentation is lacking because
+- tomatau: "I might stop supporting it one day, although I don't intend to!"
+- The alternatives have some very nice features!
+
 ### Documentation
 
 [https://tomatao.gitbooks.io/breko-hub/content/](https://tomatao.gitbooks.io/breko-hub/content/) (outdated)
@@ -18,11 +39,10 @@ Breko hub is a github repository that helps anyone create new JavaScript applica
 - Universal redux architecture
 - Hot reloading of CSS-modules
 - Fast server side hot updates
-- ES-next code-base
-- Hot reloading unit tests in a browser
+- Babel 7 codebase everywhere
 - A comprehensive integration and unit test suite
 - A lucid code-base
-- Great debugging tools
+- Great debugging tools!
 
 ### Prerequsits
 
@@ -87,7 +107,7 @@ Breko hub uses the following libraries at its core:
 
 **Developing**
 
-```
+```bash
 npm run start [-- --open]
 ```
 
@@ -95,29 +115,23 @@ Builds and serves app with hot reloading and debugging support.
 
 **Build client-side app**
 
-```
+Change your NODE_ENV to "production", you can do this is `.env` file or your hosted environment.
+
+```bash
 npm run build
 ```
 
 Creates bundles and assets into `./src/static` directory. Reads `.env` but always uses production Webpack configuration.
 
-**Start the server**
+**Start the server in production**
 
-Set the NODE_ENV flag to production in your .env file.
+Set the NODE_ENV flag to production in your `.env` file.
 
-```
+```bash
 npm start
 ```
 
 Expects bundles and assets to exist in the `./src/static` directory. Runs the server in production mode.
-
-**Unit test development server**
-
-```
-npm run test:server
-```
-
-Start a test server using Mocha and Webpack-middleware. Provides a browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
 
 
 **Unit test single run**
@@ -154,14 +168,26 @@ npm run coverage:check
 
 Reads `.istanbul.yml` for thresholds in check.
 
+**Unit test development server (BROKEN)**
 
-**Docker**
+```bash
+npm run test:server
+```
+
+Start a test server using Mocha and Webpack-middleware. Provides a browser based testing environment. Loading tests from within `./src` where extension is `.test.js`.
+
+
+### Configuration
+
+Change anything you want! It's all exposed and for you! \<3
+
+## Docker
 
 There's a starting docker images you can use to get going. You'll probably wanr to modify the Dockerfile to your needs.
 
 ```bash
 # production image built with assets
-$ docker build -t tomatao/breko-hub .
+$ docker build -t your-username/your-app-name .
 # runs `npm start` with port at 9001
-$ docker run -p 9001:9001 tomatao/breko-hub
+$ docker run -p 9001:9001 your-username/your-app-name
 ```
