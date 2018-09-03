@@ -2,6 +2,7 @@
 
 exports[`App Component Main renders routes inside Main 1`] = `
 <main
+  aria-live="polite"
   className="src-app-components-App-App-module-content"
   role="main"
 >
