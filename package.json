@@ -106,7 +106,7 @@
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
-    "react": "^16.4.1",
+    "react": "^16.5.1",
     "react-bem-helper": "^1.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
