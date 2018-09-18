@@ -170,7 +170,7 @@
     "node-mocks-http": "^1.7.0",
     "nyc": "^13.0.1",
     "pre-push": "^0.1.1",
-    "react-test-renderer": "^16.5.1",
+    "react-test-renderer": "^16.5.2",
     "redbox-react": "^1.6.0",
     "sass-lint": "^1.12.1",
     "scripty": "^1.7.2",
