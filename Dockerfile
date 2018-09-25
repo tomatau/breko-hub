@@ -8,10 +8,10 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_a
   /usr/local/bin/dumb-init
 RUN chmod +x /usr/local/bin/dumb-init
 
-RUN apk add --update --no-cach \
+RUN apk add --update --no-cache \
   tzdata
 
-ENV APP_DIR /usr/application
+ENV APP_DIR /usr/project
 ENV NODE_ENV production
 ENV PORT 9001
 ENV DEBUG *,-babel,-koa*,-css-modules*,-engine*,-socket.io*,-follow-redirects
@@ -23,9 +23,9 @@ RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
-COPY .babelrc .
 COPY package.json .
 COPY package-lock.json .
+COPY babel.config.js .
 COPY postcss.config.js .
 COPY src src
 
