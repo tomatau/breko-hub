@@ -1,24 +1,17 @@
-FROM node:8.11-alpine
+FROM node:10-alpine
 
 RUN addgroup -S breko \
    && adduser -S -g breko breko
 
-# install dumb-init
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
-  /usr/local/bin/dumb-init
-RUN chmod +x /usr/local/bin/dumb-init
-
 RUN apk add --update --no-cache \
-  tzdata
-
-ENV APP_DIR /usr/project
-ENV NODE_ENV production
-ENV PORT 9001
-ENV DEBUG *,-babel,-koa*,-css-modules*,-engine*,-socket.io*,-follow-redirects
+  tzdata tini
 
 ENV TZ Europe/London
 RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
   echo "Europe/London" > /etc/timezone
+
+ENV APP_DIR /usr/project
+ENV NODE_ENV setup
 
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
@@ -27,22 +20,27 @@ COPY package.json .
 COPY package-lock.json .
 COPY babel.config.js .
 COPY postcss.config.js .
+
 COPY src src
 
-RUN chown -R breko:breko $APP_DIR
+RUN npm set progress=false \
+  && npm ci
 
-# restrict permissions
-USER breko
+ENV PORT 9001
+ENV DEBUG *,-babel*,-koa*,-css-modules*,-engine*,-socket.io*
+ENV NODE_ENV production
 
-RUN npm install
-
-# build assets
 RUN ./node_modules/.bin/webpack \
   --config "./src/config/webpack.production.config.babel.js"
 
+RUN npm prune --production \
+  && npm dedupe
+
+RUN chown -R breko:breko $APP_DIR
+USER breko
+
 EXPOSE $PORT
 
-# use dumb-init to take burden of PID 1
-ENTRYPOINT [ "dumb-init" ]
+ENTRYPOINT [ "/sbin/tini", "--" ]
 
 CMD [ "node", "./src/server-entry.js" ]
