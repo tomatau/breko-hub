@@ -186,7 +186,7 @@ There's a starting docker images you can use to get going. You'll probably wanr 
 
 ```bash
 # production image built with assets
-$ docker build -t your-username/your-app-name .
+$ docker build --compress -t your-username/your-app-name .
 # runs `npm start` with port at 9001
 $ docker run -p 9001:9001 your-username/your-app-name
 ```
