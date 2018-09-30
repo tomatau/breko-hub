@@ -3,7 +3,6 @@ import 'helpers/css-modules-hook'
 import 'helpers/clean-asset-json'
 import http from 'http'
 import serve from 'koa-static'
-import hotReload from 'helpers/hot-reload'
 import { isEnv } from 'app/utils'
 import { ROOT, SERVER, SOCKETS, STATIC } from 'config/paths'
 import { isomorphicTools, isomorphicPlugin } from 'server/isomorphic-tools'
@@ -13,7 +12,7 @@ const log = debug('app')
 
 if (isEnv('development')) {
   isomorphicPlugin.development()
-  hotReload(app)
+  require('helpers/hot-reload').default(app)
 } else {
   app.use(serve(STATIC))
 }
