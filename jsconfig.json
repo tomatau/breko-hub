@@ -8,9 +8,9 @@
         "snapshotCallIdentifiers": [
           "toMatchSnapshot",
           "toThrowErrorMatchingSnapshot",
-          "matchSnapshot",
+          "matchSnapshot"
         ]
       }
-    ],
+    ]
   }
 }
