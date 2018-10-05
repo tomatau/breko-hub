@@ -81,7 +81,7 @@
     "cssnano": "^4.0.0",
     "debug": "^4.0.0",
     "extract-hoc": "0.0.5",
-    "file-loader": "^1.1.11",
+    "file-loader": "^2.0.0",
     "glob": "^7.1.2",
     "is-promise": "~2.1.0",
     "isomorphic-fetch": "^2.2.1",
