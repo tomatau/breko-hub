@@ -141,7 +141,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "babel-eslint": "^10.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.0.0",
