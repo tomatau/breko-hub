@@ -1,3 +1,16 @@
 {
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+  // Enable/disable default JavaScript formatter (For Prettier)
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "prettier.printWidth": 90,
   "javascript.implicitProjectConfig.experimentalDecorators": true
 }
