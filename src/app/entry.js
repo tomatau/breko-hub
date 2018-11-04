@@ -1,3 +1,4 @@
+import 'raf/polyfill'
 import { ConfigService } from 'app/utils'
 
 debug.enable(process.env.DEBUG)

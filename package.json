@@ -95,6 +95,7 @@
     "node-env-file": "~0.1.8",
     "node-sass": "^4.10.0",
     "prop-types": "^15.6.2",
+    "raf": "^3.4.1",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
     "react-bem-helper": "^1.4.1",
