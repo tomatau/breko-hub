@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "plugins": [
+      {
+        "name": "typescript-snapshots-plugin",
+        "snapshotDir": "./",
+        "snapshotCallIdentifiers": [
+          "toMatchSnapshot",
+          "toThrowErrorMatchingSnapshot",
+          "matchSnapshot",
+        ]
+      }
+    ],
+  }
+}
