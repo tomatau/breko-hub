@@ -7,7 +7,13 @@ import {
   mapObjIndexed,
   pickBy,
   reject,
+  unapply,
+  nth,
+  pipe,
+  either,
+  test,
 } from 'ramda'
+
 import validAttributes from './valid-attributes'
 
 export const compact = filter(Boolean)
@@ -18,14 +24,18 @@ export const isOneOf = flip(contains)
 
 export const filterNil = reject(isNil)
 
+export const secondArg = unapply(nth(1))
+
 const isValidAttribute = isOneOf(validAttributes)
 
-const acceptableRegex = /^data\-\w/
+const isValidAttrName = either(isValidAttribute, test(/^data\-\w/))
 
 export const cleanProps = pickBy(
-  (val, key) => isValidAttribute(key) || acceptableRegex.test(key)
+  pipe(
+    secondArg,
+    isValidAttrName
+  )
 )
 
-export const addKeyAsProperty = name => mapObjIndexed(
-  (value, key) => ({ [name]: key, ...value })
-)
+export const addKeyAsProperty = name =>
+  mapObjIndexed((value, key) => ({ [name]: key, ...value }))
