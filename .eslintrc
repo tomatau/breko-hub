@@ -12,6 +12,11 @@
       "legacyDecorators": true
     }
   },
+  "settings": {
+    "react": {
+      "version": "16.5"
+    }
+  },
   "extends": [
     "plugin:jsx-a11y/recommended"
   ],
