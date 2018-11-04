@@ -1,4 +1,4 @@
-import { compact, cleanProps, addKeyAsProperty } from './helpers'
+import { compact, cleanProps, addKeyAsProperty, secondArg } from './helpers'
 
 describe('compact()', function () {
   it('removes falsey values from an array', () => {
@@ -139,6 +139,20 @@ describe(`cleanProps()`, function () {
           ...objectToTest.someKey,
         },
       })
+    })
+  })
+
+  describe(`secondArg()`, () => {
+    it(`returns second argument on call`, () => {
+      expect(secondArg('first', 'second', 'third')).to.equal('second')
+    })
+
+    it(`returns undefined on just one argument`, () => {
+      expect(secondArg(1)).to.equal(undefined)
+    })
+
+    it(`returns undefined on call without arguments`, () => {
+      expect(secondArg()).to.equal(undefined)
     })
   })
 })
