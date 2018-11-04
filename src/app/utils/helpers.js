@@ -26,9 +26,10 @@ export const filterNil = reject(isNil)
 
 export const secondArg = unapply(nth(1))
 
-const isValidAttribute = isOneOf(validAttributes)
-
-const isValidAttrName = either(isValidAttribute, test(/^data\-\w/))
+const isValidAttrName = either(
+  isOneOf(validAttributes),
+  test(/^data\-\w/)
+)
 
 export const cleanProps = pickBy(
   pipe(
