@@ -1,4 +1,4 @@
-import { filter } from 'ramda'
+import { append, propEq, evolve, reject } from 'ramda'
 import { typeToReducer, get } from 'app/utils'
 import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
@@ -9,15 +9,10 @@ const initialState = {
 }
 
 export const flashReducers = typeToReducer({
-  [REMOVE_MESSAGE]: (state, action) => ({
-    ...state,
-    messages: filter(
-      flash => flash.id !== getFlashId(action),
-      state.messages
-    ),
-  }),
-  [ADD_MESSAGE]: (state, action) => ({
-    ...state,
-    messages: [ ...state.messages, action.payload ],
-  }),
+  [REMOVE_MESSAGE]: (state, action) => evolve({
+    messages: reject(propEq('id', getFlashId(action))),
+  }, state),
+  [ADD_MESSAGE]: (state, action) => evolve({
+    messages: append(action.payload),
+  }, state),
 }, initialState)
