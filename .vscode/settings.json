@@ -8,7 +8,8 @@
     "*.js": "javascriptreact"
   },
   "search.exclude": {
-    "**/node_modules": true
+    "**/node_modules": true,
+    "src/static": true
   },
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "prettier.printWidth": 90,
