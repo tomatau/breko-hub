@@ -141,7 +141,7 @@
     "cssnano": "^4.1.7",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "enzyme-to-json": "^3.3.4",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.8.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
