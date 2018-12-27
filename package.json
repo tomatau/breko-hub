@@ -90,7 +90,7 @@
     "koa-router": "7.4.0",
     "koa-session-store": "^2.0.0",
     "koa-static": "^5.0.0",
-    "loader-utils": "^1.1.0",
+    "loader-utils": "^1.2.3",
     "lodash": "^4.17.11",
     "node-env-file": "~0.1.8",
     "node-sass": "^4.10.0",
