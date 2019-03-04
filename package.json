@@ -136,7 +136,7 @@
     "chance": "^1.0.16",
     "cheerio": "^1.0.0-rc.2",
     "chokidar": "^2.0.3",
-    "clean-webpack-plugin": "^1.0.0",
+    "clean-webpack-plugin": "^2.0.0",
     "css-loader": "^2.0.0",
     "cssnano": "^4.1.7",
     "enzyme": "^3.7.0",
