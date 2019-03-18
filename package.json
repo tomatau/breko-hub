@@ -105,7 +105,7 @@
     "react-loadable": "^5.5.0",
     "react-redux": "^5.1.0",
     "react-router": "^5.0.0",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-router-redux": "^5.0.0-alpha.9",
     "redbox-react": "^1.6.0",
     "redux": "^4.0.1",
