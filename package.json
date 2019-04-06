@@ -134,7 +134,7 @@
     "chai-jest-snapshot": "^2.0.0",
     "chai-shallow-deep-equal": "^1.4.6",
     "chance": "^1.0.16",
-    "cheerio": "^1.0.0-rc.2",
+    "cheerio": "^1.0.0-rc.3",
     "chokidar": "^2.0.3",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^2.0.0",
