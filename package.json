@@ -173,7 +173,7 @@
     "style-loader": "^0.23.1",
     "supertest": "^3.1.0",
     "svg-inline-loader": "^0.8.0",
-    "svgo": "^1.1.1",
+    "svgo": "^1.2.2",
     "svgo-loader": "^2.1.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.24.0",
