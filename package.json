@@ -165,7 +165,7 @@
     "pre-push": "^0.1.1",
     "react-test-renderer": "^16.6.0",
     "rimraf": "^2.6.2",
-    "sass-lint": "^1.12.1",
+    "sass-lint": "^1.13.1",
     "sass-loader": "^7.0.3",
     "scripty": "^1.8.0",
     "sinon": "^7.1.1",
