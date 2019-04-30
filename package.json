@@ -135,7 +135,7 @@
     "chai-shallow-deep-equal": "^1.4.6",
     "chance": "^1.0.16",
     "cheerio": "^1.0.0-rc.2",
-    "chokidar": "^2.0.3",
+    "chokidar": "^3.0.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^2.0.0",
     "cssnano": "^4.1.7",
