@@ -160,7 +160,7 @@
     "node-hook-filename": "^1.0.0",
     "node-mocks-http": "^1.7.3",
     "node-prune": "^1.0.2",
-    "nyc": "^13.1.0",
+    "nyc": "^14.1.1",
     "postcss-loader": "^3.0.0",
     "pre-push": "^0.1.1",
     "react-test-renderer": "^16.6.0",
