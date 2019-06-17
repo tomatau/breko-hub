@@ -125,7 +125,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.0.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.0.0",
