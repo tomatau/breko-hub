@@ -176,7 +176,7 @@
     "svgo": "^1.1.1",
     "svgo-loader": "^2.1.0",
     "url-loader": "^2.0.0",
-    "webpack": "^4.24.0",
+    "webpack": "^4.39.1",
     "webpack-cli": "^3.0.6"
   }
 }
