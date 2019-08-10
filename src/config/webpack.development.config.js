@@ -15,8 +15,9 @@ export default {
         { loader: 'style-loader' },
         { loader: 'css-loader',
           options: {
-            modules: true,
-            localIdentName: '[path][name]-[local]',
+            modules: {
+              localIdentName: '[path][name]-[local]',
+            },
           },
         },
         { loader: 'postcss-loader' },

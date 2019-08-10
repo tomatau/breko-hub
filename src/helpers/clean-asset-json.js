@@ -4,7 +4,7 @@ import { isEnv } from 'app/utils/predicates'
 const log = debug('clean-assets')
 
 if (isEnv('development')) {
-  require('rimraf').default(ASSET_FILE, err => {
+  require('rimraf')(ASSET_FILE, err => {
     if (err) {
       log(err)
       process.exit(1)

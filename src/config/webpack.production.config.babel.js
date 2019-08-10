@@ -24,8 +24,9 @@ export default {
         MiniCssExtractPlugin.loader,
         { loader: 'css-loader',
           options: {
-            modules: true,
-            localIdentName: '[path][name]-[local]',
+            modules: {
+              localIdentName: '[path][name]-[local]',
+            },
           } },
         'postcss-loader',
         { loader: 'sass-loader', options: { outputStyle: 'compressed' } },

@@ -61,7 +61,12 @@ export default {
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader',
-          options: { modules: true, localIdentName: '[path][name]-[local]' } },
+          options: {
+            modules: {
+              localIdentName: '[path][name]-[local]',
+            },
+          },
+        },
         { loader: 'sass-loader' },
       ],
     }, {
