@@ -1,16 +1,17 @@
 import React from 'react'
 import cx from 'classnames'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { nav as navCopy } from 'app/copy'
+import { cleanProps } from 'app/utils'
 import styles from './HeadNavigation.module.scss'
 
 // Putting this inside a connect will break activeClassName
 // unless you also subscribe to changes to routing state or context
-export default class HeadNavigation extends React.Component {
+export default withRouter(class HeadNavigation extends React.Component {
   render() {
     const { className, ...props } = this.props
     return (
-      <nav className={cx(styles.nav, className)} {...props}>
+      <nav className={cx(styles.nav, className)} {...cleanProps(props)}>
         <NavLink
           exact
           activeClassName={styles.active}
@@ -27,4 +28,4 @@ export default class HeadNavigation extends React.Component {
       </nav>
     )
   }
-}
+})
