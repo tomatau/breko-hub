@@ -1,6 +1,8 @@
 // This file ensures JSDOM is loaded before React is included
 const nhf = require('node-hook-filename')
 
+require('raf/polyfill')
+
 delete process.env.DEBUG
 process.env.NODE_ENV = 'test'
 process.env.CONFIG_ENV = 'test'
