@@ -1,9 +1,9 @@
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import CleanPlugin from 'clean-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import { ReactLoadablePlugin } from 'react-loadable/webpack'
 import {
-  SRC, APP, STATIC, CONFIG, STYLES, SERVER, ROOT, LOADABLE_FILE,
+  SRC, APP, STATIC, CONFIG, STYLES, SERVER, LOADABLE_FILE,
 } from 'config/paths'
 import svgoConfig from 'config/svgo.config'
 import { isomorphicPlugin } from 'server/isomorphic-tools'
@@ -42,9 +42,7 @@ export default {
   },
   plugins: [
     isomorphicPlugin,
-    new CleanPlugin([ 'src/static' ], {
-      root: ROOT,
-    }),
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -111,9 +109,7 @@ export const babelLoaderConfig = {
     ],
     plugins: [
       '@babel/plugin-syntax-dynamic-import',
-      [ '@babel/plugin-transform-runtime', {
-        modules: false,
-      } ],
+      [ '@babel/plugin-transform-runtime', { modules: false } ],
       '@babel/plugin-proposal-export-default-from',
       '@babel/plugin-proposal-export-namespace-from',
       [ '@babel/plugin-proposal-decorators', { legacy: true } ],
