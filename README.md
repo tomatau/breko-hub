@@ -89,7 +89,7 @@ Breko hub uses the following libraries at its core:
 - [react](http://facebook.github.io/react/) - A library for building interfaces.
 - [redux](http://redux.js.org/) - A library for state management.
 - [react-router](https://github.com/reactjs/react-router) - A routing library for React.
-- [react-router-redux](https://github.com/reactjs/react-router-redux) - Binding between react-router and redux.
+- [connected-react-router](https://github.com/supasate/connected-react-router) - Binding between react-router and redux.
 - [redux-saga](https://github.com/yelouafi/redux-saga) - Side effect management for redux.
 - [reselect](https://github.com/reactjs/reselect) - A library for creating state selectors.
 - [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) - A redux middleware for creating asynchronous actions.

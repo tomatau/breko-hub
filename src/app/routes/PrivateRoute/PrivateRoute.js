@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { replace } from 'react-router-redux'
+import { replace } from 'connected-react-router'
 import DocumentMeta from 'react-helmet'
 import { hot } from 'react-hot-loader'
 import { privateRoute as privateRouteCopy } from 'app/copy'

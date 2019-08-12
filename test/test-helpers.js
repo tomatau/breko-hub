@@ -2,7 +2,7 @@ import Koa from 'koa'
 import lodash from 'lodash/index'
 import fetchMock from 'fetch-mock'
 import { createMemoryHistory } from 'history'
-import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
+import { routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import chaiJestSnapshot from 'chai-jest-snapshot'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { Main, run } from 'app/main'
@@ -48,6 +48,7 @@ const helpers = {
   },
   createStore(history, initialState={}, mware=middleware) {
     return createStore(
+      history,
       initialState,
       [
         ...mware,

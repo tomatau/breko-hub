@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
 import Loadable from 'react-loadable'
@@ -14,6 +14,7 @@ const log = debug('start')
 const history = createBrowserHistory()
 
 const store = createStore(
+  history,
   window.__INITIAL_STATE__ || {},
   [ ...middleware, routerMiddleware(history) ],
 )

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import { routerReducer as routing } from 'react-router-redux'
+import { connectRouter } from 'connected-react-router'
 import { flashReducers as flash } from 'app/modules/flash/flash.reducers'
 import { barReducers as bar } from 'app/modules/bar/bar.reducers'
 
-export default combineReducers({
+export default history => combineReducers({
   flash,
   bar,
-  routing,
+  router: connectRouter(history),
 })
