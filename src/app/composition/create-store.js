@@ -5,9 +5,9 @@ import { middleware } from 'app/composition/middleware'
 
 const log = debug('create-store')
 
-export default (initialState, mware=middleware) => {
+export default (history, initialState, mware=middleware) => {
   const store = createStore(
-    rootReducer,
+    rootReducer(history),
     initialState,
     composeWithDevTools(
       applyMiddleware(...mware),

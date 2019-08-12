@@ -1,4 +1,4 @@
-import { routerMiddleware, LOCATION_CHANGE } from 'react-router-redux'
+import { routerMiddleware, LOCATION_CHANGE } from 'connected-react-router'
 import createStore from 'app/composition/create-store'
 import { middleware } from 'app/composition/middleware'
 import { createMemoryHistory } from 'history'
@@ -12,6 +12,7 @@ export default async function setStore(ctx, next) {
   })
 
   ctx.store = createStore(
+    ctx.history,
     {},
     [ ...middleware, routerMiddleware(ctx.history) ],
   )

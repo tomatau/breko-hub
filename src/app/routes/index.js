@@ -1,7 +1,6 @@
 import Loadable from 'react-loadable'
 import { app as appCopy } from 'app/copy'
 import { addKeyAsProperty } from 'app/utils'
-import PrivateRoute from 'app/routes/PrivateRoute/PrivateRoute'
 
 const Loading = ({ pastDelay }) => (
   pastDelay ? <h2>{appCopy.loading}</h2> : null
@@ -38,7 +37,12 @@ export const routesMap = addKeyAsProperty('name')({
   },
   private: {
     path: '/private',
-    component: PrivateRoute,
+    component: Loadable({
+      loader: () => import('./PrivateRoute/PrivateRoute'),
+      loading: Loading,
+      webpack: () => [ require.resolveWeak('./PrivateRoute/PrivateRoute') ],
+      modules: [ './PrivateRoute/PrivateRoute' ],
+    }),
   },
   notFound: {
     component: Loadable({

@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import HeadNavigation from './HeadNavigation'
+import WrappedHeadNavigation from './HeadNavigation'
 import styles from './HeadNavigation.module.scss'
+
+const HeadNavigation = WrappedHeadNavigation.WrappedComponent
 
 describe(`Head Navigation Component`, function () {
   const shallowHN = props => shallow(<HeadNavigation {...props} />)

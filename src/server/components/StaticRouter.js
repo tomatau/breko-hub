@@ -8,27 +8,20 @@ class StaticRouter extends React.Component {
     history: PropTypes.object,
   };
 
-  static childContextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static defaultProps = {
     history: createMemoryHistory(),
   };
 
-  getChildContext() {
-    const { history } = this.props
-    return {
-      router: {
-        staticContext: history,
-      },
-    }
-  }
-
   render() {
     const { history, ...props } = this.props
 
-    return <Router {...props} history={history} />
+    return (
+      <Router
+        {...props}
+        history={history}
+        staticContext={history}
+      />
+    )
   }
 }
 
