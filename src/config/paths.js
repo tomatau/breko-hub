@@ -13,4 +13,5 @@ export const STATIC = path.join(SRC, 'static')
 export const ASSETS = path.join(SRC, 'assets')
 export const STYLES = path.join(SRC, 'styles')
 export const ASSET_FILE = `${SERVER}/webpack-assets.json`
-export const LOADABLE_FILE = `${SERVER}/loadable-modules.json`
+export const LOADABLE_FILE_NAME = `loadable-stats.json`
+export const LOADABLE_FILE = path.resolve(STATIC, LOADABLE_FILE_NAME)

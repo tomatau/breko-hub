@@ -21,12 +21,17 @@ require('@babel/register')({
 require('../src/helpers/css-modules-hook')
 require('./stubs/global-jsdom')
 
-const loadableRegex = /loadable-modules\.json/
+const loadableRegex = /loadable-stats\.json/
+const stubLoadableStats = {
+  // assetsByChunkName: { main: [] },
+  // entrypoints: { main: {} },
+  namedChunkGroups: { main: { assets: [], childAssets: {} } },
+}
 
 nhf(
   [ /\.svg/, /\.jpg/, /\.jpeg/, loadableRegex ],
   (request, parent) =>
     loadableRegex.test(request)
-      ? {}
+      ? stubLoadableStats
       : nhf.normalize(request, parent)
 )

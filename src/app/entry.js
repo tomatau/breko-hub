@@ -1,4 +1,5 @@
 import 'raf/polyfill'
+import 'react-hot-loader'
 import { ConfigService } from 'app/utils'
 
 debug.enable(process.env.DEBUG)

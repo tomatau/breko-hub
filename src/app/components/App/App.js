@@ -1,7 +1,7 @@
 import React from 'react'
 import DocumentMeta from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import { app as appCopy } from 'app/copy'
 import { routesList } from 'app/routes'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
@@ -57,4 +57,4 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(App)
+export default hot(App)

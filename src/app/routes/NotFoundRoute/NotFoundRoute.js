@@ -1,9 +1,8 @@
 import React from 'react'
 import DocumentMeta from 'react-helmet'
-import { hot } from 'react-hot-loader'
 import { notFoundRoute as notFoundRouteCopy } from 'app/copy'
 
-class NotFoundRoute extends React.Component {
+export default class NotFoundRoute extends React.Component {
   render() {
     return (
       <section className='NotFoundRoute'>
@@ -15,5 +14,3 @@ class NotFoundRoute extends React.Component {
     )
   }
 }
-
-export default hot(module)(NotFoundRoute)
