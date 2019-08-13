@@ -5,7 +5,6 @@ import Router from 'koa-router'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import supertest from 'supertest'
 import { createMemoryHistory } from 'history'
-import { LOCATION_CHANGE } from 'connected-react-router'
 import Helmet from 'react-helmet'
 import { TESTS } from 'config/paths'
 import server from 'server-instance'
@@ -139,8 +138,8 @@ describe('Server Side Render', function () {
 
   it(`renders initial state from the store`, () => {
     const cleanupState = R.compose(
-      R.dissocPath([ 'routing', 'location', 'key' ]),
-      R.dissocPath([ 'routing', 'location', 'state' ]),
+      R.dissocPath([ 'router', 'location', 'key' ]),
+      R.dissocPath([ 'router', 'location', 'state' ]),
       R.mapObjIndexed(R.filter(Boolean)),
     )
     const initialStateRegex = /<script[ \w-="]*>window.__INITIAL_STATE__ = ([{},/$ \w\n\r":[\]-]+);<\/script>/
@@ -150,11 +149,6 @@ describe('Server Side Render', function () {
       .expect((res) => {
         const stubHistory = createMemoryHistory({ initialEntries: [ '/test' ] })
         const stubStore = helpers.createStore(stubHistory)
-
-        stubStore.dispatch({
-          type: LOCATION_CHANGE,
-          payload: stubHistory.location,
-        })
 
         const expectedState = cleanupState(stubStore.getState())
         const renderedState = cleanupState(

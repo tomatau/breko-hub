@@ -6,6 +6,12 @@ export default {
   ...webpackConfig,
   mode: 'development',
   devtool: '#cheap-module-eval-source-map',
+  resolve: {
+    ...webpackConfig.resolve,
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
   module: {
     rules: [ ...webpackConfig.module.rules, {
       test: /module\.s?css$/,

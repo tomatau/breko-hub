@@ -1,9 +1,8 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
 import DocumentMeta from 'react-helmet'
 import { oopsRoute as oopsRouteCopy } from 'app/copy'
 
-class OopsRoute extends React.Component {
+export default class OopsRoute extends React.Component {
   render() {
     return (
       <section className='OopsRoute'>
@@ -15,5 +14,3 @@ class OopsRoute extends React.Component {
     )
   }
 }
-
-export default hot(module)(OopsRoute)

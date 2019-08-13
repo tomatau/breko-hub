@@ -27,10 +27,12 @@ export default class Html extends React.Component {
       content,
       otherLinks,
       stringScripts,
+      headElements,
       headStyles,
       headScripts,
       bodyScripts,
       bodyStyles,
+      bodyElements,
     } = this.props
     const helmet = Helmet.renderStatic()
     const { lang, ...htmlAttrs } = helmet.htmlAttributes.toComponent()
@@ -67,11 +69,13 @@ export default class Html extends React.Component {
               key={i}
             />
           ))}
+          {headElements}
         </head>
         <body {...helmet.bodyAttributes.toComponent()}>
           {content.map((props, i) => (
             <div key={i} {...props} />
           ))}
+          {bodyElements}
           {bodyScripts.map((script, i) => (
             <script key={i} src={script} />
           ))}

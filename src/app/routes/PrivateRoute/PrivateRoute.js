@@ -2,12 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { replace } from 'connected-react-router'
 import DocumentMeta from 'react-helmet'
-import { hot } from 'react-hot-loader'
 import { privateRoute as privateRouteCopy } from 'app/copy'
 import { addMessage } from 'app/modules/flash/flash.actions'
 
 @connect(null, { replace, addMessage })
-class PrivateRoute extends React.Component {
+export default class PrivateRoute extends React.Component {
   constructor(props) {
     const { addMessage, replace } = props
     addMessage(privateRouteCopy.flasgMessage, 'error')
@@ -26,5 +25,3 @@ class PrivateRoute extends React.Component {
     )
   }
 }
-
-export default hot(module)(PrivateRoute)

@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { inClientViaSocketIO } from 'redux-via-socket.io'
-import Loadable from 'react-loadable'
+import { loadableReady } from '@loadable/component'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { middleware } from 'app/composition/middleware'
 import createStore from 'app/composition/create-store'
@@ -26,7 +26,7 @@ socket.open()
 run()
 
 ;(async function () {
-  await Loadable.preloadReady()
+  await loadableReady()
 
   log(`Mounting onto #${CONTAINER_ELEMENT_ID}`)
 

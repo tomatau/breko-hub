@@ -1,9 +1,9 @@
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import { ReactLoadablePlugin } from 'react-loadable/webpack'
+import LoadablePlugin from '@loadable/webpack-plugin'
 import {
-  SRC, APP, STATIC, CONFIG, STYLES, SERVER, LOADABLE_FILE,
+  SRC, APP, STATIC, CONFIG, STYLES, SERVER, LOADABLE_FILE_NAME,
 } from 'config/paths'
 import svgoConfig from 'config/svgo.config'
 import { isomorphicPlugin } from 'server/isomorphic-tools'
@@ -11,7 +11,7 @@ import { isomorphicPlugin } from 'server/isomorphic-tools'
 export default {
   entry: {
     // need body first in list for development hot reloading
-    body: [
+    main: [
       `${STYLES}/main.scss`,
       `${APP}/entry.js`,
     ],
@@ -54,8 +54,9 @@ export default {
       filename: '[name].[hash].css',
       allChunks: true,
     }),
-    new ReactLoadablePlugin({
-      filename: LOADABLE_FILE,
+    new LoadablePlugin({
+      filename: LOADABLE_FILE_NAME,
+      writeToDisk: true,
     }),
   ],
   module: {
@@ -108,6 +109,7 @@ export const babelLoaderConfig = {
       '@babel/preset-react',
     ],
     plugins: [
+      '@loadable/babel-plugin',
       '@babel/plugin-syntax-dynamic-import',
       [ '@babel/plugin-transform-runtime', { modules: false } ],
       '@babel/plugin-proposal-export-default-from',

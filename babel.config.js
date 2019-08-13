@@ -8,6 +8,7 @@ module.exports = {
     '@babel/preset-react',
   ],
   'plugins': [
+    '@loadable/babel-plugin',
     '@babel/plugin-syntax-dynamic-import',
     'dynamic-import-node',
     '@babel/plugin-proposal-export-default-from',

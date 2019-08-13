@@ -8,28 +8,63 @@ exports[`App Component Main renders routes inside Main 1`] = `
 >
   <Switch>
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
       exact={true}
       key="home"
       path="/"
     />
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
       key="bar"
       path="/bar"
     />
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
       key="oops"
       path="/oops"
     />
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
       key="private"
       path="/private"
     />
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
       key="notFound"
     />
   </Switch>
