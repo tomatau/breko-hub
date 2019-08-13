@@ -1,5 +1,4 @@
-import { put, fork, take, race, select } from 'redux-saga/effects'
-import { delay } from 'redux-saga'
+import { put, fork, take, race, select, delay } from 'redux-saga/effects'
 import * as flashSelectors from 'app/modules/flash/flash.selectors'
 import * as flashActions from 'app/modules/flash/flash.actions'
 import { REMOVE_MESSAGE, ADD_MESSAGE } from 'app/modules/flash/flash.constants'

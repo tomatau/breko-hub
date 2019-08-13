@@ -13,7 +13,8 @@ const helpers = {
   prepare(ctx, path, done) {
     ctx.history = helpers.createHistory(path)
     ctx.store = helpers.createStore(ctx.history)
-    run()
+    ctx.saga = run()
+
     ctx.wrapper = mount(
       Main(ctx.store, ctx.history, ConnectedRouter),
       { attachTo: document.getElementById(CONTAINER_ELEMENT_ID) },
@@ -26,6 +27,9 @@ const helpers = {
     }
   },
   cleanup(ctx) {
+    if (ctx.saga) {
+      ctx.saga.cancel()
+    }
     if (ctx.wrapper) {
       ctx.wrapper.unmount()
     }
