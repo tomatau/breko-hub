@@ -17,32 +17,35 @@ export default {
     ...webpackConfig.plugins,
   ],
   module: {
-    rules: [ ...webpackConfig.module.rules, {
-      test: /module\.s?css$/,
-      include: [ APP, STYLES ],
-      use: [
-        MiniCssExtractPlugin.loader,
-        { loader: 'css-loader',
-          options: {
-            modules: {
-              localIdentName: '[path][name]-[local]',
-            },
-          } },
-        'postcss-loader',
-        { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
-      ],
-    }, {
-      test: /\.s?css$/,
-      include: [ APP, STYLES ],
-      exclude: /module\.s?css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader',
-        { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
-      ],
-    }, {
-      ...babelLoaderConfig,
-    } ],
+    rules: [
+      ...webpackConfig.module.rules,
+      {
+        test: /module\.s?css$/,
+        include: [ APP, STYLES ],
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[path][name]-[local]',
+              },
+            } },
+          'postcss-loader',
+          { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
+        ],
+      }, {
+        test: /\.s?css$/,
+        include: [ APP, STYLES ],
+        exclude: /module\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
+        ],
+      }, {
+        ...babelLoaderConfig,
+      },
+    ],
   },
 }

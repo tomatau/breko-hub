@@ -13,43 +13,46 @@ export default {
     },
   },
   module: {
-    rules: [ ...webpackConfig.module.rules, {
-      test: /module\.s?css$/,
-      include: [ SRC ],
-      // not extracting css-modules in development for hot-reloading
-      use: [
-        { loader: 'style-loader' },
-        { loader: 'css-loader',
-          options: {
-            modules: {
-              localIdentName: '[path][name]-[local]',
+    rules: [
+      ...webpackConfig.module.rules,
+      {
+        test: /module\.s?css$/,
+        include: [ SRC ],
+        // not extracting css-modules in development for hot-reloading
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[path][name]-[local]',
+              },
             },
           },
-        },
-        { loader: 'postcss-loader' },
-        { loader: 'sass-loader',
-          options: { outputStyle: 'expanded' } },
-      ],
-    }, {
-      test: /\.s?css$/,
-      include: [ SRC ],
-      exclude: /module\.s?css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader',
-        { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
-      ],
-    }, {
-      ...babelLoaderConfig,
-      options: {
-        ...babelLoaderConfig.options,
-        plugins: [
-          ...babelLoaderConfig.options.plugins,
-          'extract-hoc/babel',
-          'react-hot-loader/babel',
+          { loader: 'postcss-loader' },
+          { loader: 'sass-loader',
+            options: { outputStyle: 'expanded' } },
         ],
+      }, {
+        test: /\.s?css$/,
+        include: [ SRC ],
+        exclude: /module\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
+        ],
+      }, {
+        ...babelLoaderConfig,
+        options: {
+          ...babelLoaderConfig.options,
+          plugins: [
+            ...babelLoaderConfig.options.plugins,
+            'extract-hoc/babel',
+            'react-hot-loader/babel',
+          ],
+        },
       },
-    } ],
+    ],
   },
 }
