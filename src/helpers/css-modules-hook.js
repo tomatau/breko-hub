@@ -10,7 +10,7 @@ log('Building CSS-modules for all .scss and .css files')
 
 cssModulesHook({
   extensions: [ '.scss', '.css' ],
-  prepend: [ autoprefixer({ browsers: [ 'last 2 versions' ] }) ],
+  prepend: [ autoprefixer() ],
   generateScopedName: `[path][name]-[local]`,
   preprocessCss(cssString, filename) {
     const { css } = sass.renderSync({
