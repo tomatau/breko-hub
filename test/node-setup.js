@@ -25,7 +25,17 @@ const loadableRegex = /loadable-stats\.json/
 const stubLoadableStats = {
   // assetsByChunkName: { main: [] },
   // entrypoints: { main: {} },
-  namedChunkGroups: { main: { assets: [], childAssets: {} } },
+  publicPath: '/',
+  outputPath: '/dist',
+  namedChunkGroups: {
+    main: {
+      assets: [
+        'test-main-asset.css',
+        'test-main-asset.js',
+      ],
+      childAssets: {},
+    },
+  },
 }
 
 nhf(

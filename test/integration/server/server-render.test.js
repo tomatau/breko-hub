@@ -14,7 +14,7 @@ import * as clientApp from 'app/main'
 
 const StubReactApp = (store, history, Router) => (
   <Router history={history}>
-    <div>
+    <main>
       <Helmet
         title='test document title'
         meta={[
@@ -26,15 +26,15 @@ const StubReactApp = (store, history, Router) => (
       </Helmet>
       <h2>Test App</h2>
       <Switch>
-        <Route path='/test' render={() => <div>Test Route</div>} />
-        <Route path='/another' render={() => <div>Another Route</div>} />
+        <Route path='/test' render={() => <section>Test Route</section>} />
+        <Route path='/another' render={() => <section>Another Route</section>} />
         <Route path='/redirect' render={() => <Redirect to='/test' />} />
         <Route
           path='/error-route'
           render={() => { throw new Error('error from react route') }}
         />
       </Switch>
-    </div>
+    </main>
   </Router>
 )
 
@@ -46,10 +46,14 @@ describe('Server Side Render', function () {
   const testRouter = new Router()
   const assets = {
     javascript: {
-      body: '/test-asset.js',
+      head: '/test-head-asset.js',
+      main: '/test-main-asset.js',
+      deferred: '/test-deferred-asset.js',
     },
     styles: {
-      body: '/test-asset.css',
+      head: '/test-head-asset.css',
+      main: '/test-main-asset.css',
+      deferred: '/test-deferred-asset.css',
     },
   }
   // helpers available from test/test.setup.js
@@ -101,39 +105,50 @@ describe('Server Side Render', function () {
       .expect(500)
   )
 
-  it(`renders a html page with assets`, () =>
+  it(`renders document title and meta data`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
       .expect(/<!doctype html>/)
       .expect(/<html lang="en">/)
-      .expect(/<link href="\/test-asset.css" type="text\/css" rel="stylesheet" media="screen"\/>/)
-      .expect(/<script src="\/test-asset.js">/)
+      .expect(/<title[\w\s-="]*>test document title<\/title>/)
+      .expect(/<meta[\w\s-="]* name="description" content="test description, hello"\/>/)
+      .expect(/<meta[\w\s-="]* charSet="utf-8"\/>/)
   )
 
-  it(`renders document title and meta from helmet`, () =>
+  it(`renders a head assets`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
-      .expect(/<title data-react-helmet="true">test document title<\/title>/)
-      .expect(/<meta data-react-helmet="true" name="description" content="test description, hello"\/>/)
-      .expect(/<meta data-react-helmet="true" charSet="utf-8"\/>/)
+      .expect(/<head>.*<link href="\/test-head-asset.css" type="text\/css" rel="stylesheet" media="screen"\/>.*<\/head>/)
+      .expect(/<head>.*<script src="\/test-head-asset.js"><\/script>.*<\/head>/)
   )
 
-  it(`renders a react route`, () =>
+  it(`renders deferred scripts and deferred css in body`, () =>
     supertest(app.callback())
       .get('/test')
       .expect(200)
-      .expect((res) => {
-        const testHistory = helpers.createHistory('/test')
-        const renderedApp = ReactDOM.renderToString(
-          StubReactApp(null, testHistory, StaticRouter)
-        )
+      .expect(/<body>.*<script src="\/test-deferred-asset.js\"><\/script>.*<\/body>/)
+      // use loadCSS for deferred CSS and <noscript> fallback
+      .expect(/<body>.*<script>loadCSS\('\/test-deferred-asset.css'\)<\/script>.*<\/body>/)
+      .expect(/<body>.*<noscript><link href="\/test-deferred-asset.css" rel="stylesheet" \/><\/noscript>.*<\/body>/)
+  )
 
-        if (!res.text.includes(renderedApp)) {
-          throw new Error('should render a react route!')
-        }
-      })
+  it(`renders preload links, links and scripts for main assets`, () =>
+    supertest(app.callback())
+      .get('/test')
+      .expect(200)
+      .expect(/<head>.*<link[\w\s-="]* rel="preload" as="style" href="\/test-main-asset.css"\/>.*<\/head>/)
+      .expect(/<head>.*<link[\w\s-="]* rel="preload" as="script" href="\/test-main-asset.js"\/>.*<\/head>/)
+      .expect(/<head>.*<link[\w\s-="]* rel="stylesheet" href="\/test-main-asset.css"\/>.*<\/head>/)
+      .expect(/<body>.*<script async=""[\w\s-="]* src="\/test-main-asset.js"><\/script>.*<\/body>/)
+  )
+
+  it(`renders the config_env setting`, () =>
+    supertest(app.callback())
+      .get('/test')
+      .expect(200)
+      .expect(/<script>window.__CONFIG_ENV__ = "test";<\/script>/)
   )
 
   it(`renders initial state from the store`, () => {
@@ -160,6 +175,22 @@ describe('Server Side Render', function () {
         }
       })
   })
+
+  it(`renders a react route`, () =>
+    supertest(app.callback())
+      .get('/test')
+      .expect(200)
+      .expect((res) => {
+        const testHistory = helpers.createHistory('/test')
+        const renderedApp = ReactDOM.renderToString(
+          StubReactApp(null, testHistory, StaticRouter)
+        )
+
+        if (!res.text.includes(renderedApp)) {
+          throw new Error('should render a react route!')
+        }
+      })
+  )
 
   it(`wires up session cookie`, () =>
     supertest(app.callback())
@@ -196,7 +227,7 @@ describe('Server Side Render', function () {
 
   it(`serves gziped assets`, () =>
     supertest(app.callback())
-      .get(assets.javascript.body)
+      .get(assets.javascript.main)
       .expect(200)
       .expect('content-encoding', 'gzip')
   )

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotFoundRoute Component matches snapshot 1`] = `
-<section
-  className="NotFoundRoute"
->
+<Fragment>
   <HelmetWrapper
     defer={false}
     encodeSpecialCharacters={true}
@@ -12,11 +10,15 @@ exports[`NotFoundRoute Component matches snapshot 1`] = `
       Doesn't exist
     </title>
   </HelmetWrapper>
-  <h2>
-    404
-  </h2>
-  <p>
-    Page not found!
-  </p>
-</section>
+  <section
+    className="NotFoundRoute"
+  >
+    <h2>
+      404
+    </h2>
+    <p>
+      Page not found!
+    </p>
+  </section>
+</Fragment>
 `;

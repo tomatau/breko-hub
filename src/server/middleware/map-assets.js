@@ -9,19 +9,21 @@ export default function (assets) {
 
   return async function mapAssets(ctx, next) {
     ctx.assets = {
+      headStyles: compact([
+        styles.head,
+      ]),
+      inlineScripts: [
+        `window.__CONFIG_ENV__ = ${JSON.stringify(ConfigService.getEnv())};`,
+      ],
       headScripts: compact([
         javascripts.head,
       ]),
-      headStyles: compact([
-        styles.body,
-        styles.head,
-      ]),
-      bodyScripts: compact([
-        javascripts.body,
-      ]),
-      stringScripts: [
-        `window.__CONFIG_ENV__ = ${JSON.stringify(ConfigService.getEnv())};`,
+      deferredScripts: [
+        javascripts.deferred,
       ],
+      deferredStyles: compact([
+        styles.deferred,
+      ]),
     }
     await next()
   }

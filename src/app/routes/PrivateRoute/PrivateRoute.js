@@ -16,12 +16,14 @@ export default class PrivateRoute extends React.Component {
 
   render() {
     return (
-      <section className='PrivateRoute'>
+      <>
         <DocumentMeta>
           <title>{privateRouteCopy.documentTitle}</title>
         </DocumentMeta>
-        {privateRouteCopy.content}
-      </section>
+        <section className='PrivateRoute'>
+          {privateRouteCopy.content}
+        </section>
+      </>
     )
   }
 }

@@ -8,6 +8,7 @@ import makeHtmlBody from 'server/utils/make-html-body'
 
 const log = debug('handle-error')
 
+// would prefer to use error-overlay but SSR and hot-reload breaks it
 export default async function handleError(ctx, next) {
   try {
     await next()

@@ -32,6 +32,7 @@ isomorphicTools.server(ROOT, async () => {
 })
 
 const server = http.createServer(app.callback())
+
 global.socketServer = require(SOCKETS).default(server)
 
 server.listen(process.env.PORT, () => {

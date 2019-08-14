@@ -10,13 +10,18 @@ import { isomorphicPlugin } from 'server/isomorphic-tools'
 
 export default {
   entry: {
-    // need body first in list for development hot reloading
+    // need 'main' first in list for development hot reloading
+    // @loadable/components depends on entry named "main"
     main: [
       `${STYLES}/main.scss`,
       `${APP}/entry.js`,
     ],
     head: [
+      `${APP}/head.js`,
+    ],
+    deferred: [
       `${APP}/utils/loadCSS.js`,
+      `${STYLES}/deferred.scss`,
     ],
   },
   output: {

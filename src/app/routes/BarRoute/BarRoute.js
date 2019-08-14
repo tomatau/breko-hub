@@ -24,17 +24,19 @@ export default class BarRoute extends React.Component {
   render() {
     const { bar } = this.props
     return (
-      <section className='BarRoute'>
+      <>
         <DocumentMeta>
           <title>{barRouteCopy.documentTitle}</title>
         </DocumentMeta>
-        {barRouteCopy.content}
-        <div className={style.block}>
-          {bar.map((item, i) =>
-            <p key={i}>{item}</p>
-          )}
-        </div>
-      </section>
+        <section className='BarRoute'>
+          {barRouteCopy.content}
+          <div className={style.block} aria-live='polite'>
+            {bar.map((item, i) =>
+              <p key={i}>{item}</p>
+            )}
+          </div>
+        </section>
+      </>
     )
   }
 }

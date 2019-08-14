@@ -1,26 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomeRoute Component matches snapshot 1`] = `
-<section
-  className="HomeRoute"
->
+<Fragment>
   <HelmetWrapper
     defer={false}
     encodeSpecialCharacters={true}
   >
     <title />
   </HelmetWrapper>
-  <h2>
-    Welcome to Breko-Hub!
-  </h2>
-  <p>
-    A boilerplate designed for quick development!
-  </p>
-  <p>
-    There are examples showing how you can customise to your needs.
-  </p>
-  <p>
-    The server routes also auto update on changes!
-  </p>
-</section>
+  <section
+    className="HomeRoute"
+  >
+    <h2>
+      Welcome to Breko-Hub!
+    </h2>
+    <p>
+      A boilerplate designed for quick development!
+    </p>
+    <p>
+      There are examples showing how you can customise to your needs.
+    </p>
+    <p>
+      The server routes also auto update on changes!
+    </p>
+  </section>
+</Fragment>
 `;

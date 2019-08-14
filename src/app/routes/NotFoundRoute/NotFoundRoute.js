@@ -5,12 +5,14 @@ import { notFoundRoute as notFoundRouteCopy } from 'app/copy'
 export default class NotFoundRoute extends React.Component {
   render() {
     return (
-      <section className='NotFoundRoute'>
+      <>
         <DocumentMeta>
           <title>{notFoundRouteCopy.documentTitle}</title>
         </DocumentMeta>
-        {notFoundRouteCopy.content}
-      </section>
+        <section className='NotFoundRoute'>
+          {notFoundRouteCopy.content}
+        </section>
+      </>
     )
   }
 }

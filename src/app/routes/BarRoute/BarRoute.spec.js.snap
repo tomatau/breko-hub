@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BarRoute Component matches snapshot 1`] = `
-<section
-  className="BarRoute"
->
+<Fragment>
   <HelmetWrapper
     defer={false}
     encodeSpecialCharacters={true}
@@ -12,18 +10,23 @@ exports[`BarRoute Component matches snapshot 1`] = `
       Bar
     </title>
   </HelmetWrapper>
-  <h2>
-    The Bar Route!
-  </h2>
-  <p>
-    API request to the 
-    <code>
-      /api/bar
-    </code>
-     endpoint.
-  </p>
-  <div
-    className="src-app-routes-BarRoute-BarRoute-module-block"
-  />
-</section>
+  <section
+    className="BarRoute"
+  >
+    <h2>
+      The Bar Route!
+    </h2>
+    <p>
+      API request to the 
+      <code>
+        /api/bar
+      </code>
+       endpoint.
+    </p>
+    <div
+      aria-live="polite"
+      className="src-app-routes-BarRoute-BarRoute-module-block"
+    />
+  </section>
+</Fragment>
 `;

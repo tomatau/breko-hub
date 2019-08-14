@@ -5,8 +5,6 @@ import { nav as navCopy } from 'app/copy'
 import { cleanProps } from 'app/utils'
 import styles from './HeadNavigation.module.scss'
 
-// Putting this inside a connect will break activeClassName
-// unless you also subscribe to changes to routing state or context
 export default withRouter(class HeadNavigation extends React.Component {
   render() {
     const { className, ...props } = this.props
