@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { notFoundRoute as notFoundRouteCopy } from 'app/copy'
 
 export default class NotFoundRoute extends React.Component {

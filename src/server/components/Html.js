@@ -1,5 +1,4 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 
 const reactElementsPropType = PropTypes.oneOfType([
@@ -21,6 +20,7 @@ export default class Html extends React.Component {
   };
 
   static defaultProps = {
+    helmetContext: {},
     headLinks: [],
     headStyles: [],
     inlineScripts: [],
@@ -43,8 +43,10 @@ export default class Html extends React.Component {
       bodyElements,
       deferredScripts,
       deferredStyles,
+      helmetContext,
     } = this.props
-    const helmet = Helmet.renderStatic()
+    // const helmet = Helmet.renderStatic()
+    const { helmet } = helmetContext
     const { lang, ...htmlAttrs } = helmet.htmlAttributes.toComponent()
     return (
       <html lang={lang} {...htmlAttrs}>

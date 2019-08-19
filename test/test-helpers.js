@@ -1,9 +1,11 @@
+import React from 'react'
 import Koa from 'koa'
 import lodash from 'lodash/index'
 import fetchMock from 'fetch-mock'
 import { createMemoryHistory } from 'history'
 import { routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import chaiJestSnapshot from 'chai-jest-snapshot'
+import { HelmetProvider } from 'react-helmet-async'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { Main, run } from 'app/main'
 import createStore from 'app/composition/create-store'
@@ -16,7 +18,9 @@ const helpers = {
     ctx.saga = run()
 
     ctx.wrapper = mount(
-      Main(ctx.store, ctx.history, ConnectedRouter),
+      <HelmetProvider>
+        {Main(ctx.store, ctx.history, ConnectedRouter)}
+      </HelmetProvider>,
       { attachTo: document.getElementById(CONTAINER_ELEMENT_ID) },
     )
     if (done) {

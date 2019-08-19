@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { app as appCopy } from 'app/copy'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'

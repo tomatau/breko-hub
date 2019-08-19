@@ -5,7 +5,7 @@ import Router from 'koa-router'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import supertest from 'supertest'
 import { createMemoryHistory } from 'history'
-import Helmet from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { TESTS } from 'config/paths'
 import server from 'server-instance'
 import StaticRouter from 'server/components/StaticRouter'
@@ -60,7 +60,7 @@ describe('Server Side Render', function () {
   const app = helpers.cloneApp(server)
 
   before(() => {
-    Helmet.canUseDOM = false
+    HelmetProvider.canUseDOM = false
     // serve assets
     app.use(serve(TESTS + '/fixtures/assets'))
     // setup a broken route
@@ -84,7 +84,7 @@ describe('Server Side Render', function () {
   })
 
   after(() => {
-    Helmet.canUseDOM = true
+    HelmetProvider.canUseDOM = true
   })
 
   it(`still renders the app when not found`, () =>
@@ -183,7 +183,9 @@ describe('Server Side Render', function () {
       .expect((res) => {
         const testHistory = helpers.createHistory('/test')
         const renderedApp = ReactDOM.renderToString(
-          StubReactApp(null, testHistory, StaticRouter)
+          <HelmetProvider context={{}}>
+            {StubReactApp(null, testHistory, StaticRouter)}
+          </HelmetProvider>
         )
 
         if (!res.text.includes(renderedApp)) {

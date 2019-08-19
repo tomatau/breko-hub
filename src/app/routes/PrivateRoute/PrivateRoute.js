@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { replace } from 'connected-react-router'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { privateRoute as privateRouteCopy } from 'app/copy'
 import { addMessage } from 'app/modules/flash/flash.actions'
 

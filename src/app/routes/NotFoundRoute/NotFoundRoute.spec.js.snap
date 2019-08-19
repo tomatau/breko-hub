@@ -2,14 +2,14 @@
 
 exports[`NotFoundRoute Component matches snapshot 1`] = `
 <Fragment>
-  <HelmetWrapper
+  <Helmet
     defer={false}
     encodeSpecialCharacters={true}
   >
     <title>
       Doesn't exist
     </title>
-  </HelmetWrapper>
+  </Helmet>
   <section
     className="NotFoundRoute"
   >

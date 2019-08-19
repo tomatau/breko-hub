@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { oopsRoute as oopsRouteCopy } from 'app/copy'
 
 export default class OopsRoute extends React.Component {
