@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { noop } from 'app/utils'
 import { barRoute as barRouteCopy } from 'app/copy'
 import { apiFetch } from 'app/modules/bar/bar.actions'

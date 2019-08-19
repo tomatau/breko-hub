@@ -2,14 +2,14 @@
 
 exports[`OopsRoute Component matches snapshot 1`] = `
 <Fragment>
-  <HelmetWrapper
+  <Helmet
     defer={false}
     encodeSpecialCharacters={true}
   >
     <title>
       Oopsies
     </title>
-  </HelmetWrapper>
+  </Helmet>
   <section
     className="OopsRoute"
   >

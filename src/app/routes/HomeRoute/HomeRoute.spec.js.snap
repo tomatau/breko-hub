@@ -2,12 +2,12 @@
 
 exports[`HomeRoute Component matches snapshot 1`] = `
 <Fragment>
-  <HelmetWrapper
+  <Helmet
     defer={false}
     encodeSpecialCharacters={true}
   >
     <title />
-  </HelmetWrapper>
+  </Helmet>
   <section
     className="HomeRoute"
   >

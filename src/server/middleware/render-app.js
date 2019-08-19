@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
+import { HelmetProvider } from 'react-helmet-async'
 import { isEnv, isOneOf } from 'app/utils'
 import { LOADABLE_FILE } from 'config/paths'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
@@ -15,9 +16,12 @@ export default function () {
   return async function renderApp(ctx) {
     const extractor = new ChunkExtractor({ statsFile: LOADABLE_FILE })
 
+    const helmetContext = {}
     const __html = ReactDOMServer.renderToString(
       <ChunkExtractorManager extractor={extractor}>
-        {app.Main(ctx.store, ctx.history, StaticRouter)}
+        <HelmetProvider context={helmetContext}>
+          {app.Main(ctx.store, ctx.history, StaticRouter)}
+        </HelmetProvider>
       </ChunkExtractorManager>
     )
 
@@ -28,6 +32,7 @@ export default function () {
     } else {
       log('setting html response body')
       ctx.response.body = makeHtmlBody({
+        helmetContext,
         ...ctx.assets, /* ctx.assets set in map-assets*/
         inlineScripts: [
           ...ctx.assets.inlineScripts,

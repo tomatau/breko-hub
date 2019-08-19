@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentMeta from 'react-helmet'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 import { app as appCopy } from 'app/copy'

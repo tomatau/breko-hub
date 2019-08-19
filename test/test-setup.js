@@ -5,7 +5,7 @@ import sinon from 'sinon'
 import { configure, shallow, mount, render } from 'enzyme'
 import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import snap from 'enzyme-to-json'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { isBrowser, ConfigService } from 'app/utils'
 import helpers from './test-helpers'
 

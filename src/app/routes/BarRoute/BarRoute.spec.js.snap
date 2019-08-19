@@ -2,14 +2,14 @@
 
 exports[`BarRoute Component matches snapshot 1`] = `
 <Fragment>
-  <HelmetWrapper
+  <Helmet
     defer={false}
     encodeSpecialCharacters={true}
   >
     <title>
       Bar
     </title>
-  </HelmetWrapper>
+  </Helmet>
   <section
     className="BarRoute"
   >
