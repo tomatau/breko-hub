@@ -149,7 +149,7 @@
     "eslint": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-mocha": "^6.0.0",
+    "eslint-plugin-mocha": "^6.1.0",
     "eslint-plugin-react": "^7.14.3",
     "fetch-mock": "^7.3.9",
     "file-loader": "^4.2.0",
