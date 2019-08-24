@@ -121,7 +121,7 @@
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "tao-scss": "~0.4.1",
-    "type-to-reducer": "^1.1.0",
+    "type-to-reducer": "^1.2.0",
     "uuid": "^3.3.2",
     "webpack-isomorphic-tools": "^3.0.6"
   },
