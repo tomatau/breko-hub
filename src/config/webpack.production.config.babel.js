@@ -24,14 +24,23 @@ export default {
         include: [ APP, STYLES ],
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader',
+          {
+            loader: 'css-loader',
             options: {
               modules: {
                 localIdentName: '[path][name]-[local]',
               },
-            } },
+            },
+          },
           'postcss-loader',
-          { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                outputStyle: 'compressed',
+              },
+            },
+          },
         ],
       }, {
         test: /\.s?css$/,
@@ -41,7 +50,14 @@ export default {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                outputStyle: 'compressed',
+              },
+            },
+          },
         ],
       }, {
         ...babelLoaderConfig,

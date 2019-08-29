@@ -29,8 +29,14 @@ export default {
             },
           },
           { loader: 'postcss-loader' },
-          { loader: 'sass-loader',
-            options: { outputStyle: 'expanded' } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
+            },
+          },
         ],
       }, {
         test: /\.s?css$/,
@@ -40,7 +46,14 @@ export default {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          { loader: 'sass-loader', options: { outputStyle: 'expanded' } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
+            },
+          },
         ],
       }, {
         ...babelLoaderConfig,
