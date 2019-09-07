@@ -126,7 +126,7 @@
     "webpack-isomorphic-tools": "^3.0.6"
   },
   "devDependencies": {
-    "@babel/node": "^7.5.5",
+    "@babel/node": "^7.6.1",
     "@loadable/babel-plugin": "^5.10.0",
     "@loadable/webpack-plugin": "^5.7.1",
     "babel-eslint": "^10.0.3",
