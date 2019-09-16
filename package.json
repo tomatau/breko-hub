@@ -114,7 +114,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^2.5.0",
-    "redux-saga": "^1.0.5",
+    "redux-saga": "^1.1.0",
     "redux-thunk": "^2.3.0",
     "redux-via-socket.io": "~0.3.0",
     "reselect": "^4.0.0",
