@@ -16,7 +16,9 @@
     "lint:js": "eslint src test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml",
     "coverage": "scripty",
-    "coverage:check": "babel-istanbul check-coverage"
+    "coverage:check": "babel-istanbul check-coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "pre-push": [
     "lint:js",
@@ -122,6 +124,7 @@
     "socket.io-client": "^2.3.0",
     "tao-scss": "~0.4.1",
     "type-to-reducer": "^1.2.0",
+    "unfetch": "^4.1.0",
     "uuid": "^3.3.3",
     "webpack-isomorphic-tools": "^3.0.6"
   },
@@ -143,6 +146,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
+    "cypress": "^3.4.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
