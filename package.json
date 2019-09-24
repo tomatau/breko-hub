@@ -65,7 +65,7 @@
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.6.0",
+    "@babel/register": "^7.6.2",
     "@babel/runtime": "^7.6.0",
     "@hot-loader/react-dom": "^16.9.0",
     "@loadable/component": "^5.10.2",
