@@ -1,3 +1,4 @@
+import 'unfetch/polyfill'
 import 'raf/polyfill'
 import 'react-hot-loader'
 import { ConfigService } from 'app/utils'

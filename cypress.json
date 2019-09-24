@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:9001",
+  "env": {
+    "API_ENDPOINT": "http://localhost:9001"
+  },
+  "chromeWebSecurity": false
+}
