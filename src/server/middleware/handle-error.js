@@ -26,7 +26,7 @@ export default async function handleError(ctx, next) {
     ctx.status = 500
     ctx.response.body = makeHtmlBody({
       helmetContext,
-      content: [ {
+      bodyDivs: [ {
         id: CONTAINER_ELEMENT_ID,
         dangerouslySetInnerHTML: { __html },
       } ],
