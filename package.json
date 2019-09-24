@@ -1,6 +1,6 @@
 {
   "name": "breko-hub",
-  "version": "1.0.0-rc.10",
+  "version": "1.0.0-rc.11",
   "description": "Babel React Koa - Hot Universal Boilerplate",
   "moduleRoots": [
     "src"
@@ -67,7 +67,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "@babel/runtime": "^7.6.2",
-    "@hot-loader/react-dom": "^16.9.0",
+    "@loadable/babel-plugin": "^5.10.0",
     "@loadable/component": "^5.10.2",
     "@loadable/server": "^5.10.2",
     "autoprefixer": "^9.6.1",
@@ -127,7 +127,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.6.2",
-    "@loadable/babel-plugin": "^5.10.0",
+    "@hot-loader/react-dom": "^16.9.0",
     "@loadable/webpack-plugin": "^5.7.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",

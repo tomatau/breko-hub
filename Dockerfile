@@ -20,6 +20,7 @@ COPY package.json .
 COPY package-lock.json .
 COPY babel.config.js .
 COPY postcss.config.js .
+COPY .browserslistrc .
 
 COPY src src
 
