@@ -1,4 +1,7 @@
-const ensureObject = val => (typeof val === 'string' ? JSON.parse(val) : val)
+const ensureObject = val =>
+  (typeof val === 'string')
+    ? JSON.parse(val)
+    : val
 
 export class _ConfigService {
   _env = '';
