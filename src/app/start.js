@@ -41,4 +41,4 @@ run()
     </HelmetProvider>,
     document.getElementById(CONTAINER_ELEMENT_ID)
   )
-}())
+})()
