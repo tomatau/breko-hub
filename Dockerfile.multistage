@@ -83,7 +83,7 @@ FROM base AS build
 # grab all the installed dependencies
 COPY --from=dependencies $APP_DIR/node_modules ./node_modules
 
-# need root user to create the build assets
+# need root user to create the build assets and change ownership
 USER root
 
 RUN ./node_modules/.bin/webpack \
