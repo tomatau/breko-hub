@@ -38,3 +38,22 @@ jobs:
 
       - name: Integration test
         run: ./node_modules/.bin/mocha 'test/integration/**/*.test.js'
+
+  heroku_deploy:
+    name: Deploy to Heroku
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Heroku login
+        uses: actions/heroku@master
+        with:
+          args: container:login
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Heroku push
+        uses: actions/heroku@master
+        with:
+          args: container:push -a breko-hub web
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
