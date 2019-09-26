@@ -1,11 +1,11 @@
-name: Pull request workflow
-on: [pull_request]
-  # push:
-  #   branches:
-  #   - master
-  # pull_request:
-  #   branches:
-  #   - '*'
+name: Pull request and Push master workflow
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - '*'
 
 jobs:
   build:
@@ -24,7 +24,6 @@ jobs:
 
       - name: Install
         run: npm ci
-        # run: npm ci --ignore-scripts
         env:
           CI: true
 
