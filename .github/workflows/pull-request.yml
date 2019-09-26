@@ -23,7 +23,7 @@ jobs:
           node-version: 10.x
 
       - name: Install
-        run: npm ci --no-optional
+        run: npm ci
 
       - name: Lint
         run: |

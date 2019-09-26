@@ -67,7 +67,7 @@ COPY test test
 USER root
 
 RUN npm set progress=false \
-  && npm ci --no-optional --quiet
+  && npm ci --quiet
 
 RUN ./node_modules/.bin/eslint src test --ext .js
 RUN ./node_modules/.bin/sass-lint --verbose -c .sass-lint.yml
@@ -90,7 +90,7 @@ RUN ./node_modules/.bin/webpack \
   --config "./src/config/webpack.production.config.babel.js"
 
 # get rid of any devDependencies installed in `dependencies` stage
-RUN npm prune --production --no-optional \
+RUN npm prune --production \
   && npm dedupe
 
 # breko user needs to own the ./node_modules and src for running the server
