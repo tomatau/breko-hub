@@ -23,9 +23,7 @@ jobs:
           node-version: 10.x
 
       - name: Install
-        run: npm ci
-        env:
-          CI: true
+        run: npm ci --no-optional
 
       - name: Lint
         run: |
@@ -82,6 +80,8 @@ jobs:
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
           args: install cypress
+        env:
+          CI: true
 
       - name: Run cypress tests
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
