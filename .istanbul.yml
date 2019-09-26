@@ -1,17 +1,17 @@
 verbose: false
 instrumentation:
-    excludes: ['**/*.test.js']
+  excludes: ['**/*.test.js']
 reporting:
-    dir: ./coverage
-    watermarks:
-        statements: [50, 80]
-        lines: [50, 80]
-        functions: [50, 80]
-        branches: [50, 80]
+  dir: ./coverage
+  watermarks:
+    statements: [50, 80]
+    lines: [50, 80]
+    functions: [50, 80]
+    branches: [50, 80]
 check:
-    global:
-        statements: 90
-        lines: 90
-        branches: 90
-        functions: 90
-        excludes: []
+  global:
+    statements: 90
+    lines: 90
+    branches: 90
+    functions: 90
+    excludes: []
