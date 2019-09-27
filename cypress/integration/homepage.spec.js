@@ -1,5 +1,5 @@
 
-describe(`User story: Application name and purpose`, function () {
+describe(`Homepage`, function () {
   it('has h1 with title', () => {
     cy.visit('/')
     cy.get('header h1')
