@@ -69,10 +69,10 @@ USER root
 RUN npm set progress=false \
   && npm ci --quiet
 
-RUN ./node_modules/.bin/eslint src test --ext .js
-RUN ./node_modules/.bin/sass-lint --verbose -c .sass-lint.yml
-RUN ./node_modules/.bin/mocha 'src/**/*.spec.js'
-RUN ./node_modules/.bin/mocha 'test/integration/**/*.test.js'
+RUN $(npm bin)/eslint src test --ext .js
+RUN $(npm bin)/sass-lint --verbose -c .sass-lint.yml
+RUN $(npm bin)/mocha 'src/**/*.spec.js'
+RUN $(npm bin)/mocha 'test/integration/**/*.test.js'
 
 # ---------------
 # ---- build ----
@@ -86,7 +86,7 @@ COPY --from=dependencies $APP_DIR/node_modules ./node_modules
 # need root user to create the build assets and change ownership
 USER root
 
-RUN ./node_modules/.bin/webpack \
+RUN $(npm bin)/webpack \
   --config "./src/config/webpack.production.config.babel.js"
 
 # get rid of any devDependencies installed in `dependencies` stage
