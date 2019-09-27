@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/tomatau/breko-hub.svg?style=svg)](https://circleci.com/gh/tomatau/breko-hub)
+![Github workflow status](https://github.com/tomatau/breko-hub/workflows/Pull%20request%20and%20Push%20master%20workflow/badge.svg)
 
 **B**abel **Re**act **Ko**a - **H**ot **U**niversal **B**oilerplate
 
