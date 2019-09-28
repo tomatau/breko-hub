@@ -15,6 +15,13 @@ const log = debug('start')
 
 const history = createBrowserHistory()
 
+history.listen(() => {
+  // reset activeElement back to body on navigation
+  setImmediate(() =>
+    document.activeElement.blur()
+  )
+})
+
 const store = createStore(
   history,
   window.__INITIAL_STATE__ || {},
