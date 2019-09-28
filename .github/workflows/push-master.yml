@@ -1,5 +1,8 @@
-name: Pull request
-on: [pull_request]
+name: Push master
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   lint_and_test:
@@ -30,8 +33,38 @@ jobs:
       - name: Integration test
         run: $(npm bin)/mocha 'test/integration/**/*.test.js'
 
-  review_app_test:
-    name: Test review app
+  heroku_deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Heroku login
+        uses: actions/heroku@master
+        with:
+          args: container:login
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Heroku push
+        uses: actions/heroku@master
+        with:
+          args: container:push -a breko-hub web
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Heroku release
+        uses: actions/heroku@master
+        with:
+          args: container:release -a breko-hub web
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+  cypress_browser_test:
+    name: Run cypress browser tests
+    needs: heroku_deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,16 +79,9 @@ jobs:
         env:
           CI: true
 
-      - name: Wait for review app
-        uses: niteoweb/reviewapps-deploy-status@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          deployments_timeout: 420
-
       - name: Run cypress tests
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
           args: run cypress:run
         env:
-          CYPRESS_BASE_URL: https://breko-hub-pr-${{ github.event.number }}.herokuapp.com/
+          CYPRESS_BASE_URL: https://breko-hub.herokuapp.com/
