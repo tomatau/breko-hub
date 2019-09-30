@@ -12,9 +12,10 @@ describe(`Head Navigation Component`, function () {
     this.wrapper = shallowHN()
   })
 
-  it(`renders a <nav> with styles.nav className as rootNode`, () => {
+  it(`renders a nav.HeadNavigation as rootNode`, () => {
     const rootNode = this.wrapper.at(0)
     expect(rootNode).to.have.type('nav')
+    expect(rootNode).to.have.className('HeadNavigation')
   })
 
   it(`extends styles.nav className on rootNode`, () => {

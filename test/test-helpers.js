@@ -37,6 +37,9 @@ const helpers = {
     if (ctx.wrapper) {
       ctx.wrapper.unmount()
     }
+    if (ctx.clock) {
+      ctx.clock.restore()
+    }
     sandbox.restore()
     sessionStorage.clear()
     localStorage.clear()
@@ -98,6 +101,28 @@ const helpers = {
     clone.keys = lodash.clone(app.keys)
     clone.middleware = lodash.clone(app.middleware)
     return clone
+  },
+  createEvent(options={}) {
+    return {
+      preventDefault() { },
+      stopPropagation() { },
+      alt: false,
+      bubbles: true,
+      button: 0,
+      cancelable: true,
+      clientX: 0,
+      clientY: 0,
+      ctrl: false,
+      detail: 1,
+      key: 0,
+      meta: false,
+      relatedTarget: null,
+      screenX: 0,
+      screenY: 0,
+      shift: false,
+      view: window,
+      ...options,
+    }
   },
 }
 

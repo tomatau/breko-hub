@@ -2,7 +2,6 @@ import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import LoadablePlugin from '@loadable/webpack-plugin'
-import RobotstxtPlugin from 'robotstxt-webpack-plugin'
 import {
   SRC, APP, STATIC, CONFIG, STYLES, SERVER, LOADABLE_FILE_NAME,
 } from 'config/paths'
@@ -49,7 +48,6 @@ export default {
   plugins: [
     isomorphicPlugin,
     new CleanWebpackPlugin(),
-    new RobotstxtPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),

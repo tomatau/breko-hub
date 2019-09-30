@@ -227,6 +227,13 @@ describe('Server Side Render', function () {
       .expect('content-type', 'image/x-icon')
   )
 
+  it(`serves the robots.txt`, () =>
+    supertest(app.callback())
+      .get('/robots.txt')
+      .expect(200, `User-agent: *\nAllow: /\n`)
+      .expect('content-type', 'text/plain; charset=utf-8')
+  )
+
   it(`serves gziped assets`, () =>
     supertest(app.callback())
       .get(assets.javascript.main)
