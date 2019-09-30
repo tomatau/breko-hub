@@ -11,14 +11,14 @@
     "test:unit": "scripty",
     "test:int": "scripty",
     "test:snap": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true npm run test:unit",
+    "test:e2e": "scripty",
+    "test:e2e:run": "cypress run -P ./",
     "start": "node ./src/server-entry.js",
     "build": "scripty",
     "lint:js": "eslint src test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml",
     "coverage": "scripty",
-    "coverage:check": "babel-istanbul check-coverage",
-    "cypress:open": "cypress open -P ./",
-    "cypress:run": "cypress run -P ./"
+    "coverage:check": "babel-istanbul check-coverage"
   },
   "pre-push": [
     "lint:js",
