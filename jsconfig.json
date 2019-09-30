@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "target": "esnext",
+    "experimentalDecorators": true,
     "plugins": [
       {
         "name": "typescript-snapshots-plugin",
@@ -12,5 +14,9 @@
         ]
       }
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "static"
+  ]
 }
