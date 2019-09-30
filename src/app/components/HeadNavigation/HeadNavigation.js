@@ -9,18 +9,21 @@ export default withRouter(class HeadNavigation extends React.Component {
   render() {
     const { className, ...props } = this.props
     return (
-      <nav className={cx(styles.nav, className)} {...cleanProps(props)}>
+      <nav
+        className={cx('HeadNavigation', styles.nav, className)}
+        {...cleanProps(props)}
+      >
         <NavLink
           exact
-          activeClassName={styles.active}
           to='/'
+          activeClassName={styles.active}
         >
           {navCopy.home}
         </NavLink>
-        <NavLink activeClassName={styles.active} to='/bar'>
+        <NavLink to='/bar' activeClassName={styles.active}>
           {navCopy.bar}
         </NavLink>
-        <NavLink activeClassName={styles.active} to='/private'>
+        <NavLink to='/private' activeClassName={styles.active}>
           {navCopy.private}
         </NavLink>
       </nav>
