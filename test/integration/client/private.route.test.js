@@ -10,7 +10,6 @@ describe(`Private Route`, function () {
   })
 
   afterEach(() => {
-    this.clock.restore()
     helpers.cleanup(this)
   })
 
@@ -28,7 +27,7 @@ describe(`Private Route`, function () {
     expect(
       this.wrapper.find('.Msg')
     ).to.have.length(1)
-    this.wrapper.find('.Msg__close').simulate('click')
+    this.wrapper.find('.Msg__close').simulate('click', helpers.createEvent())
     defer(() => {
       this.wrapper.update()
       expect(
@@ -38,7 +37,7 @@ describe(`Private Route`, function () {
     })
   })
 
-  it(`removes flash messages after 4 seconds`, (done) => {
+  it(`removes flash messages after 4 seconds`, done => {
     expect(
       this.wrapper.find('.Msg')
     ).to.be.present()
