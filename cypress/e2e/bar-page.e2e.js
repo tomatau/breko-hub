@@ -5,14 +5,22 @@ describe(`Bar page`, function () {
         method: 'GET',
         url: '/api/bar',
         status: 200,
-        response: [ 'a', 'b', 'c', 'd' ],
+        response: { bar: [ 'a', 'b', 'c', 'd' ] },
       })
+      .as('bar')
   })
 
   it(`sets body as activeElement after navigating to bar`, () => {
     cy.visit('/')
     cy.get('a[href="/bar"]').click()
     cy.document().its('activeElement').should('match', 'body')
+  })
+
+  it(`passes aXe check`, () => {
+    cy.visit('/bar')
+    cy.wait('@bar')
+    cy.injectAxe()
+    cy.checkA11y()
   })
 
   it('has visible header, nav, and main section', () => {
