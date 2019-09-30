@@ -53,9 +53,9 @@ jobs:
         with:
           deployments_timeout: 420
 
-      - name: Run cypress tests
+      - name: Run cypress e2e tests
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
-          args: run cypress:run
+          args: run test:e2e:run
         env:
           CYPRESS_BASE_URL: https://breko-hub-pr-${{ github.event.number }}.herokuapp.com/

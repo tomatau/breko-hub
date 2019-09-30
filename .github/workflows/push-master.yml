@@ -63,7 +63,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
   cypress_browser_test:
-    name: Run cypress browser tests
+    name: Test deployed heroku app
     needs: heroku_deploy
     runs-on: ubuntu-latest
     steps:
@@ -79,9 +79,9 @@ jobs:
         env:
           CI: true
 
-      - name: Run cypress tests
+      - name: Run cypress e2e tests
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
-          args: run cypress:run
+          args: run test:e2e:run
         env:
           CYPRESS_BASE_URL: https://breko-hub.herokuapp.com/
