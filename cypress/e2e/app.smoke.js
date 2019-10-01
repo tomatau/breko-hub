@@ -3,7 +3,7 @@ describe(`Smoke test`, function () {
     cy.server().route('**/bar').as('getBar')
   })
 
-  it('has visible header, nav, and main section', () => {
+  it('connects to the environment endpoint and displays the result', () => {
     cy.visit('/bar')
     cy.get('main').within(() => {
       cy.wait('@getBar')
