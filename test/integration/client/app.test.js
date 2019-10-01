@@ -18,9 +18,7 @@ describe(`Client App render`, function () {
     ).to.eql('utf-8')
     expect(
       document.querySelector('meta[name=description]').getAttribute('content')
-    ).to.eql(
-      'A boilerplate for building universal react applications'
-    )
+    ).to.eql('A boilerplate for building universal react applications')
   })
 
   it(`only renders the HomeRoute`, () => {

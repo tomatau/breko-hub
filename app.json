@@ -1,4 +1,10 @@
 {
   "name": "Breko hub",
-  "description": "Boilerplate for universal boilerplate project"
+  "description": "Boilerplate for universal React projects",
+  "env": {
+    "CONFIG_ENV": "development",
+    "HEROKU_APP_NAME": {
+      "required": true
+    }
+  }
 }
