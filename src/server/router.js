@@ -11,6 +11,7 @@ export async function setRoutes(assets) {
   rootRouter.stack.length = 0
 
   ConfigService.setEnv(process.env.CONFIG_ENV)
+  ConfigService.assignVars(process.env.APP_CONFIG)
 
   const renderReactApp = compose([
     /* set a store for server side state rendering */

@@ -1,4 +1,4 @@
-import { request } from 'app/utils'
+import { request, ConfigService } from 'app/utils'
 import { API_FETCH } from './bar.constants'
 import { apiFetch } from './bar.actions'
 
@@ -18,7 +18,9 @@ describe(`Bar Actions`, function () {
 
     it(`calls fetch with /api/bar`, () => {
       apiFetch()
-      expect(request.fetch).to.have.been.calledWith('/api/bar')
+      expect(request.fetch).to.have.been.calledWith(
+        ConfigService.get('API_ENDPOINT') + '/bar'
+      )
     })
 
     it(`resolves the promise from fetching /api/bar`, () => {

@@ -7,6 +7,7 @@ import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import snap from 'enzyme-to-json'
 import { Helmet } from 'react-helmet-async'
 import { isBrowser, ConfigService } from 'app/utils'
+import appConfig from 'config/app.config'
 import helpers from './test-helpers'
 
 configure({ adapter: new ReactSixteenAdapter() })
@@ -18,12 +19,15 @@ chai.use(require('sinon-chai'))
 chai.use(require('chai-generator'))
 chai.use(require('chai-jest-snapshot'))
 
+process.env.APP_CONFIG = JSON.stringify(appConfig)
+
 Helmet.defaultProps.defer = false
 
 setGlobals(isBrowser ? window : global)
 
 function setGlobals(global) {
   ConfigService.setEnv(process.env.CONFIG_ENV)
+  ConfigService.assignVars(process.env.APP_CONFIG)
 
   global.global = global
 

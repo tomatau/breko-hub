@@ -9,10 +9,16 @@ export default function (assets) {
 
   return async function mapAssets(ctx, next) {
     ctx.assets = {
+      headLinks: [ {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      } ],
       headStyles: compact([
         styles.head,
       ]),
       inlineScripts: [
+        `window.__APP_CONFIG__ = ${JSON.stringify(ConfigService.getVars())};`,
         `window.__CONFIG_ENV__ = ${JSON.stringify(ConfigService.getEnv())};`,
       ],
       headScripts: compact([

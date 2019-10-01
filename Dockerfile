@@ -24,6 +24,7 @@ ENV APP_DIR /usr/project
 
 # default NODE_ENV to production for all stages
 ENV NODE_ENV production
+ENV CONFIG_ENV production
 ENV PORT 9001
 ENV DEBUG *,-babel*,-koa*,-css-modules*,-engine*,-socket.io*,-mocha*,-eslint*,-cypress*
 

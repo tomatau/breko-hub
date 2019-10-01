@@ -4,12 +4,13 @@ describe(`Bar Route`, function () {
   const barResponse = [ 'some', 'test', 'response', 'data' ]
 
   beforeEach(done => {
-    fetchMock.get('/api/bar', {
-      status: 200,
-      body: { bar: barResponse },
-      headers:  {
-        'Content-Type': 'application/json',
-        'Content-Length': '1',
+    fetchMock.mock({
+      matcher: 'https://breko-hub-test.com/api/bar',
+      method: 'GET',
+      name: 'bar-endpoint',
+      response: {
+        status: 200,
+        body: { bar: barResponse },
       },
     })
     helpers.prepare(this, '/bar', done)
@@ -25,6 +26,10 @@ describe(`Bar Route`, function () {
 
   it(`renders the .BarRoute`, () => {
     expect(this.wrapper.find('.BarRoute')).to.be.present()
+  })
+
+  it(`calls the /bar endpoint once`, () => {
+    expect(fetchMock.called('bar-endpoint')).to.eql(true)
   })
 
   it(`renders the response from /api/bar`, () => {
