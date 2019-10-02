@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OopsRoute Component matches snapshot 1`] = `
+<Fragment>
+  <Helmet
+    defer={false}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Oopsies
+    </title>
+  </Helmet>
+  <section
+    className="OopsRoute"
+  >
+    <h2>
+      There was a problem
+    </h2>
+    <p>
+      Contact an administrator.
+    </p>
+  </section>
+</Fragment>
+`;

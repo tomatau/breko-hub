@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component Main renders routes inside Main 1`] = `
+<main
+  aria-live="polite"
+>
+  <Switch>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
+      exact={true}
+      key="home"
+      path="/"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
+      key="oops"
+      path="/oops"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "load": [Function],
+          "preload": [Function],
+          "render": [Function],
+        }
+      }
+      key="notFound"
+    />
+  </Switch>
+</main>
+`;
+
+exports[`App Component renders a header as second child 1`] = `
+<header>
+  <h1>
+    App
+  </h1>
+</header>
+`;
+
+exports[`App Component renders a header as second child of div 1`] = `
+<header>
+  <h1>
+    Breko Hub
+  </h1>
+</header>
+`;

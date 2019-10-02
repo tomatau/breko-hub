@@ -30,6 +30,37 @@ jobs:
       - name: Integration test
         run: $(npm bin)/mocha 'test/integration/**/*.test.js'
 
+  lint_and_test_starter_code:
+    name: Lint and test starter code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install
+        run: npm ci
+
+      - name: Remove example code
+        run: npm run remove-examples
+
+      - name: Lint
+        run: |
+          $(npm bin)/eslint src test --ext .js
+          $(npm bin)/sass-lint --verbose -c .sass-lint.yml
+
+      - name: Unit test
+        run: $(npm bin)/mocha 'src/**/*.spec.js'
+
+      - name: Integration test
+        run: $(npm bin)/mocha 'test/integration/**/*.test.js'
+
   review_app_test:
     name: Test review app
     runs-on: ubuntu-latest
