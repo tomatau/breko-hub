@@ -85,3 +85,10 @@ jobs:
           args: run test:e2e:run
         env:
           CYPRESS_BASE_URL: https://breko-hub.herokuapp.com/
+
+      - name: Run cypress smoke tests
+        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
+        with:
+          args: run test:smoke
+        env:
+          CYPRESS_BASE_URL: https://breko-hub.herokuapp.com/
