@@ -13,6 +13,10 @@ export default function (assets) {
         rel: 'icon',
         type: 'image/x-icon',
         href: '/favicon.ico',
+      }, {
+        rel: 'preload',
+        as: 'script',
+        href: javascripts.head,
       } ],
       headStyles: compact([
         styles.head,
