@@ -122,6 +122,7 @@ describe('Server Side Render', function () {
       .expect(200)
       .expect(/<head>.*<link href="\/test-head-asset.css" type="text\/css" rel="stylesheet" media="screen"\/>.*<\/head>/)
       .expect(/<head>.*<script src="\/test-head-asset.js"><\/script>.*<\/head>/)
+      .expect(/<head>.*<link rel="preload" as="script" href="\/test-head-asset.js"\/>.*<\/head>/)
   )
 
   it(`renders deferred scripts and deferred css in body`, () =>
