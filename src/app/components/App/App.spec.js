@@ -46,8 +46,8 @@ describe(`App Component`, function () {
     it(`sets the meta options`, () => {
       expect(this.wrapper.find(DocumentMeta).getElement()).to.eql(
         <DocumentMeta
-          defaultTitle='Breko Hub'
-          titleTemplate='%s | Breko Hub'
+          defaultTitle={`${appCopy.title}`}
+          titleTemplate={`%s | ${appCopy.title}`}
         >
           <html lang='en' />
           <meta charSet='utf-8' />
