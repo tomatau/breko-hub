@@ -27,7 +27,7 @@ class App extends React.Component {
         </DocumentMeta>
         <div className={style.app}>
           <HeadNavigation />
-          <header role='banner'>
+          <header>
             <h1>{appCopy.title}</h1>
           </header>
           <main

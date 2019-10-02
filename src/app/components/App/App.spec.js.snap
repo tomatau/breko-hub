@@ -71,14 +71,8 @@ exports[`App Component Main renders routes inside Main 1`] = `
 </main>
 `;
 
-exports[`App Component renders a header as fifth child 1`] = `null`;
-
-exports[`App Component renders a header as fifth child of div 1`] = `null`;
-
 exports[`App Component renders a header as second child of div 1`] = `
-<header
-  role="banner"
->
+<header>
   <h1>
     Breko Hub
   </h1>
