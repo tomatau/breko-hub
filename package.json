@@ -19,7 +19,8 @@
     "lint:js": "eslint src test --ext .js",
     "lint:styles": "sass-lint --verbose -c .sass-lint.yml",
     "coverage": "scripty",
-    "coverage:check": "babel-istanbul check-coverage"
+    "coverage:check": "babel-istanbul check-coverage",
+    "remove-examples": "scripty"
   },
   "pre-push": [
     "lint:js",

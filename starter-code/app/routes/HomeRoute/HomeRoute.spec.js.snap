@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeRoute Component matches snapshot 1`] = `
+<Fragment>
+  <Helmet
+    defer={false}
+    encodeSpecialCharacters={true}
+  >
+    <title />
+  </Helmet>
+  <section
+    className="HomeRoute"
+  >
+    <h2>
+      Home route
+    </h2>
+    <p>
+      Content in copy file.
+    </p>
+  </section>
+</Fragment>
+`;
