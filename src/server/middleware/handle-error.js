@@ -7,6 +7,8 @@ import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import { isEnv } from 'app/utils'
 import makeHtmlBody from 'server/utils/make-html-body'
 
+import Server500 from 'server/components/Server500'
+
 const log = debug('handle-error')
 
 // would prefer to use error-overlay but SSR and hot-reload breaks it
@@ -19,7 +21,7 @@ export default async function handleError(ctx, next) {
     const helmetContext = {}
     const __html = ReactDOMServer.renderToStaticMarkup(
       <HelmetProvider context={helmetContext}>
-        {isEnv('development') ? <RedBoxError error={err} /> : <ServerOops />}
+        {isEnv('development') ? <RedBoxError error={err} /> : <Server500 />}
       </HelmetProvider>
     )
 
@@ -33,9 +35,3 @@ export default async function handleError(ctx, next) {
     })
   }
 }
-
-const ServerOops = () => (
-  <div className='ServerOops'>
-    Oopsies! Broke&quot;o-hub :(
-  </div>
-)
