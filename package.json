@@ -13,6 +13,7 @@
     "test:snap": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true npm run test:unit",
     "test:e2e": "scripty",
     "test:e2e:run": "cypress run -P ./",
+    "test:smoke": "cypress run -P ./ --config integrationFolder=cypress/smoke",
     "start": "node ./src/server-entry.js",
     "build": "scripty",
     "lint:js": "eslint src test --ext .js",
