@@ -174,7 +174,7 @@
     "nyc": "^14.1.1",
     "postcss-loader": "^3.0.0",
     "pre-push": "^0.1.1",
-    "react-test-renderer": "^16.10.1",
+    "react-test-renderer": "^16.10.2",
     "rimraf": "^3.0.0",
     "sass-lint": "^1.13.1",
     "sass-loader": "^8.0.0",
