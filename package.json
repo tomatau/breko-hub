@@ -108,7 +108,7 @@
     "ramda": "^0.26.1",
     "react": "^16.10.2",
     "react-bem-helper": "^1.4.1",
-    "react-dom": "^16.10.1",
+    "react-dom": "^16.10.2",
     "react-helmet-async": "^1.0.3",
     "react-hot-loader": "^4.12.14",
     "react-redux": "^7.1.1",
