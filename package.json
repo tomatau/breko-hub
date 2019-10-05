@@ -74,7 +74,7 @@
     "@loadable/babel-plugin": "^5.10.3",
     "@loadable/component": "^5.10.3",
     "@loadable/server": "^5.10.3",
-    "autoprefixer": "^9.6.1",
+    "autoprefixer": "^9.6.2",
     "babel-plugin-dynamic-import-node": "^2.3.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.2.0",
