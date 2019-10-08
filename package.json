@@ -131,7 +131,7 @@
     "webpack-isomorphic-tools": "^3.0.6"
   },
   "devDependencies": {
-    "@babel/node": "^7.6.2",
+    "@babel/node": "^7.6.3",
     "@hot-loader/react-dom": "^16.10.2",
     "@loadable/webpack-plugin": "^5.7.1",
     "axe-core": "^3.3.2",
