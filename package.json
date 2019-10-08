@@ -68,7 +68,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "@loadable/babel-plugin": "^5.10.3",
