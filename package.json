@@ -70,7 +70,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
+    "@babel/runtime": "^7.6.3",
     "@loadable/babel-plugin": "^5.10.3",
     "@loadable/component": "^5.10.3",
     "@loadable/server": "^5.10.3",
