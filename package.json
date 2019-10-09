@@ -143,7 +143,7 @@
     "chai-generator": "^2.1.0",
     "chai-jest-snapshot": "^2.0.0",
     "chai-shallow-deep-equal": "^1.4.6",
-    "chance": "^1.1.0",
+    "chance": "^1.1.2",
     "cheerio": "^1.0.0-rc.3",
     "chokidar": "^3.2.1",
     "clean-webpack-plugin": "^3.0.0",
