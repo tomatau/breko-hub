@@ -6,5 +6,6 @@
     "HEROKU_APP_NAME": {
       "required": true
     }
-  }
+  },
+  "stack": "heroku-18"
 }
