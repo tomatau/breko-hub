@@ -97,3 +97,10 @@ jobs:
           args: run test:smoke
         env:
           CYPRESS_BASE_URL: https://breko-hub-pr-${{ github.event.number }}.herokuapp.com/
+
+      - name: Upload test recordings on fail
+        if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: cypress-videos
+          path: cypress/videos
