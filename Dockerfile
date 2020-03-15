@@ -6,7 +6,7 @@
 # it's used in all other stages as a base and contains a minimum for production.
 
 # alpine is even smaller than distroless, also we can use `sh`
-FROM node:10-alpine AS base
+FROM node:12-alpine AS base
 
 # add a user that has limited permissions
 RUN addgroup -S breko \
