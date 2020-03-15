@@ -1,4 +1,4 @@
-import uuid from 'uuid'
+import { uuid } from 'app/utils'
 import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
 const makeFlash = (message, type='info') => ({

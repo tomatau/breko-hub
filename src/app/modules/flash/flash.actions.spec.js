@@ -1,4 +1,4 @@
-import uuid from 'uuid'
+import { uuid } from 'app/utils'
 import * as actions from './flash.actions'
 import { REMOVE_MESSAGE, ADD_MESSAGE } from './flash.constants'
 
