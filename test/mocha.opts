@@ -1,4 +1,0 @@
---require @babel/polyfill
---require mocha-clean
---require test/node-setup.js
---require test/test-setup.js
