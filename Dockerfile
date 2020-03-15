@@ -62,6 +62,7 @@ COPY .eslintrc .
 COPY .eslintignore .
 COPY .istanbul.yml .
 COPY .sass-lint.yml .
+COPY .mocharc.js .
 COPY test test
 
 # use root when install dependencies and running tests
