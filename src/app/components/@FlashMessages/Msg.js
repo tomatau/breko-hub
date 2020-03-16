@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Bem, noop, cleanProps } from 'app/utils'
+import { TYPES } from 'app/modules/flash/flash.constants'
 import './Msg.scss'
 
 const bem = new Bem('Msg')
@@ -11,7 +12,7 @@ export default class Msg extends React.Component {
   static propTypes = {
     msg: PropTypes.shape({
       id: PropTypes.string,
-      type: PropTypes.oneOf([ 'error', 'good', 'info' ]),
+      type: PropTypes.oneOf(Object.values(TYPES)),
       message: PropTypes.string,
     }).isRequired,
     onClickClose: PropTypes.func,

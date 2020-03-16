@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
-import { replace } from 'connected-react-router'
+import React from 'react'
+import { Helmet as DocumentMeta } from 'react-helmet-async'
 import { privateRoute as privateRouteCopy } from 'app/copy'
-import { addMessage } from 'app/modules/flash/flash.actions'
 
-function PrivateRoute(props) {
-  useEffect(() => {
-    props.addMessage(privateRouteCopy.flasgMessage, 'error')
-  })
+export default function PrivateRoute() {
   return (
-    <Redirect to='/' />
+    <>
+      <DocumentMeta>
+        <title>{privateRouteCopy.documentTitle}</title>
+      </DocumentMeta>
+      <section className='PrivateRoute'>
+        {privateRouteCopy.content}
+      </section>
+    </>
   )
 }
-
-export default connect(null, { replace, addMessage })(PrivateRoute)

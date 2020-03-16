@@ -190,5 +190,8 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
+  },
+  "optionalDependencies": {
+    "cypress": "^4.1.0"
   }
 }

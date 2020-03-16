@@ -1,6 +1,5 @@
 describe(`Private page`, function () {
   it(`redirects to / and focuses the flash message close button`, () => {
-    cy.visit('/').wait(1000)
     cy.visit('/private')
 
     cy.url().should('match', /\/$/)

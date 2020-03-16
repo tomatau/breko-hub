@@ -38,7 +38,7 @@ export const barRoute = {
 
 export const privateRoute = {
   documentTitle: `Confidential`,
-  flasgMessage: `You were redirected because you can't view the private page`,
+  flashMessage: `You were redirected because you can't view the private page`,
   content: (
     <>
       <h2>You shouldn&apos;t be here!</h2>

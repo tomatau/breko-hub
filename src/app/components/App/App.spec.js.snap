@@ -45,16 +45,9 @@ exports[`App Component Main renders routes inside Main 1`] = `
       path="/oops"
     />
     <Route
-      component={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "load": [Function],
-          "preload": [Function],
-          "render": [Function],
-        }
-      }
       key="private"
       path="/private"
+      render={[Function]}
     />
     <Route
       component={
