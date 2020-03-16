@@ -1,5 +1,25 @@
+import React from 'react'
+import { Redirect } from 'react-router'
 import loadable from '@loadable/component'
 import { addKeyAsProperty } from 'app/utils'
+import { privateRoute as privateRouteCopy } from 'app/copy'
+import { TYPES } from 'app/modules/flash/flash.constants'
+
+function RequireAuthRoute() {
+  return (
+    <Redirect
+      from='/private'
+      to={{
+        pathname: '/',
+        state: {
+          flash: { message: privateRouteCopy.flashMessage, type: TYPES.error },
+        },
+      }}
+    />
+  )
+}
+
+const LoadablePrivate = loadable(() => import('./PrivateRoute/PrivateRoute'))
 
 export const routesMap = addKeyAsProperty('name')({
   home: {
@@ -17,7 +37,11 @@ export const routesMap = addKeyAsProperty('name')({
   },
   private: {
     path: '/private',
-    component: loadable(() => import('./PrivateRoute/PrivateRoute')),
+    render: () => (
+      <RequireAuthRoute>
+        <LoadablePrivate />
+      </RequireAuthRoute>
+    ),
   },
   notFound: {
     component: loadable(() => import('./NotFoundRoute/NotFoundRoute')),

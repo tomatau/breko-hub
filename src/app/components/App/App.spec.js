@@ -10,10 +10,10 @@ describe(`App Component`, function () {
   helpers.setupSnapshots(__filename)
 
   beforeEach(() => {
-    this.wrapper = shallow(<App />)
+    this.wrapper = shallow(<App.WrappedComponent />)
   })
 
-  it(`renders a Helmet document meta as firtChild`, () => {
+  it(`renders a Helmet document meta as firstChild`, () => {
     const firstChild = this.wrapper.childAt(0)
     expect(firstChild).to.have.type(DocumentMeta)
   })

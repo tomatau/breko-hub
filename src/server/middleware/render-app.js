@@ -1,8 +1,9 @@
 import React from 'react'
+import * as R from 'ramda'
 import ReactDOMServer from 'react-dom/server'
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
 import { HelmetProvider } from 'react-helmet-async'
-import { isEnv, isOneOf } from 'app/utils'
+import { isEnv, get, isOneOf } from 'app/utils'
 import { LOADABLE_FILE } from 'config/paths'
 import { CONTAINER_ELEMENT_ID } from 'config/constants'
 import makeHtmlBody from 'server/utils/make-html-body'
@@ -10,7 +11,13 @@ import StaticRouter from 'server/components/StaticRouter'
 import * as app from 'app/main'
 
 const log = debug('render-app')
-const isClientRedirect = isOneOf([ 'PUSH', 'REPLACE' ])
+
+const isRedirect = R.compose(
+  isOneOf([ 'PUSH', 'REPLACE' ]),
+  get('history.action')
+)
+const getPathname = get('history.location.pathname')
+const getLocationFlashState = get('history.location.state.flash', {})
 
 export default function () {
   return async function renderApp(ctx) {
@@ -25,10 +32,13 @@ export default function () {
       </ChunkExtractorManager>
     )
 
-    if (isClientRedirect(ctx.history.action)) {
-      log('302 redirect to', ctx.history.location.pathname)
+    if (isRedirect(ctx)) {
+      const url = getPathname(ctx)
+      const locationState = getLocationFlashState(ctx)
+      ctx.addFlash(locationState.message, locationState.type)
+      log('302 redirect to', url)
       ctx.status = 302
-      ctx.redirect(ctx.history.location.pathname)
+      ctx.redirect(url)
     } else {
       log('setting html response body')
       ctx.response.body = makeHtmlBody({

@@ -1,14 +1,37 @@
 import React from 'react'
 import { Helmet as DocumentMeta } from 'react-helmet-async'
-import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
+import { get } from 'app/utils'
+import { addMessage } from 'app/modules/flash/flash.actions'
 import { app as appCopy } from 'app/copy'
 import { routesList } from 'app/routes'
 import HeadNavigation from 'app/components/HeadNavigation/HeadNavigation'
 import FlashMessages from 'app/components/@FlashMessages/FlashMessages'
 import style from './App.module.scss'
 
+const getLocationFlashState = get('state.flash', {})
+
+@connect(null, { addMessage })
+@withRouter
 class App extends React.Component {
+  componentDidMount() {
+    this.addFlashFromLocation()
+  }
+
+  componentDidUpdate() {
+    this.addFlashFromLocation()
+  }
+
+  addFlashFromLocation = () => {
+    const { location, addMessage } = this.props
+    const flashState = getLocationFlashState(location)
+    if (flashState.message) {
+      addMessage(flashState.message, flashState.type)
+    }
+  }
+
   render() {
     return (
       <>
@@ -41,7 +64,10 @@ class App extends React.Component {
                   key={route.name}
                   exact={route.exact}
                   path={route.path}
-                  component={route.component}
+                  {...route.render
+                    ? { render: route.render }
+                    : { component: route.component }
+                  }
                 />
               ))}
             </Switch>
