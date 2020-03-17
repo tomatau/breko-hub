@@ -78,7 +78,8 @@ jobs:
           CI: true
 
       - name: Wait for review app
-        uses: niteoweb/reviewapps-deploy-status@v1.0.2
+        id: review_app_test
+        uses: niteoweb/reviewapps-deploy-status@v1.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -89,14 +90,14 @@ jobs:
         with:
           args: run test:e2e:run
         env:
-          CYPRESS_BASE_URL: https://breko-hub-pr-${{ github.event.number }}.herokuapp.com/
+          CYPRESS_BASE_URL: ${{ steps.review_app_test.outputs.review_app_url }}
 
       - name: Run cypress smoke tests
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
           args: run test:smoke
         env:
-          CYPRESS_BASE_URL: https://breko-hub-pr-${{ github.event.number }}.herokuapp.com/
+          CYPRESS_BASE_URL: ${{ steps.review_app_test.outputs.review_app_url }}
 
       - name: Upload test recordings on fail
         if: failure()
