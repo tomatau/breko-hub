@@ -32,7 +32,10 @@ class App extends React.Component {
                 key={route.name}
                 exact={route.exact}
                 path={route.path}
-                component={route.component}
+                {...route.render
+                  ? { render: route.render }
+                  : { component: route.component }
+                }
               />
             ))}
           </Switch>
