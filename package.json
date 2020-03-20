@@ -137,7 +137,7 @@
     "@loadable/webpack-plugin": "^5.12.0",
     "axe-core": "^3.5.2",
     "babel-eslint": "^11.0.0-beta.2",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.0.0",
     "chai-enzyme": "^1.0.0-beta.1",
