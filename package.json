@@ -86,7 +86,7 @@
     "debug": "^4.1.1",
     "extract-hoc": "0.0.5",
     "history": "^4.10.1",
-    "is-promise": "~3.0.0",
+    "is-promise": "~4.0.0",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
