@@ -111,7 +111,7 @@
     "react-bem-helper": "^1.4.1",
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.4",
-    "react-hot-loader": "^4.12.20",
+    "react-hot-loader": "^4.12.21",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redbox-react": "^1.6.0",
